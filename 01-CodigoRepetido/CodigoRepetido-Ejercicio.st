@@ -21,33 +21,29 @@ TestCase subclass: #CustomerBookTest
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/5/2022 21:58:01'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/6/2022 18:36:50'!
 test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
 
 		|customerBook customer|
 		customerBook := CustomerBook new.
 		customer := 'John Lennon'.
-		self assert: (self tiempoDeEjecucionDelClosure: [customerBook addCustomerNamed: customer] tardaMenosMilisegundosQue: 50 * millisecond).
+		
+		self assert: (self tiempoDeEjecucionDelClosure: [customerBook addCustomerNamed: customer] tardaMenosMilisegundosQue: 50 * millisecond	).
 		 
 		
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'NR 4/3/2019 10:50:13'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/6/2022 18:36:03'!
 test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 
-	| customerBook millisecondsBeforeRunning millisecondsAfterRunning paulMcCartney |
+	| customerBook customer |
 	
 	customerBook := CustomerBook new.
-	paulMcCartney := 'Paul McCartney'.
-	
-	customerBook addCustomerNamed: paulMcCartney.
-	  
-	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
-	customerBook removeCustomerNamed: paulMcCartney.
-	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
-	
-	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (100 * millisecond)
+	customer := 'Paul McCartney'.
+	customerBook addCustomerNamed: customer.
+	 
+	self assert: (self tiempoDeEjecucionDelClosure: [customerBook removeCustomerNamed: customer.]  tardaMenosMilisegundosQue: 100 * millisecond)
 	
 ! !
 
