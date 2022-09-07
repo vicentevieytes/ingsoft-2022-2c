@@ -21,62 +21,78 @@ TestCase subclass: #CustomerBookTest
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/6/2022 18:36:50'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/7/2022 01:10:38'!
+afterFailing: closureToFail withError: errorToCheck check: closureOfAssertions 
+
+	[closureToFail value. self fail] on: errorToCheck do: closureOfAssertions! !
+
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/7/2022 00:18:29'!
+afterFailing: closureToFail withError: errorToCheck isTrue: closureOfConditionToCheck 
+
+	[closureToFail value. self fail] on: errorToCheck do: [^ closureOfConditionToCheck value]! !
+
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/6/2022 23:43:49'!
+closureExecutionTime: closureToTest takesLessThan: timeLimitInMilliseconds 
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |	
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	closureToTest value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning) < (timeLimitInMilliseconds)! !
+
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/6/2022 23:42:37'!
 test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
 
-		|customerBook customer|
-		customerBook := CustomerBook new.
-		customer := 'John Lennon'.
+		| customerBook |
 		
-		self assert: (self tiempoDeEjecucionDelClosure: [customerBook addCustomerNamed: customer] tardaMenosMilisegundosQue: 50 * millisecond	).
+		customerBook := CustomerBook new.
+		
+		self assert: (self closureExecutionTime: [customerBook addCustomerNamed: 'John Lennon'] takesLessThan: 50 * millisecond	).
 		 
 		
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/6/2022 18:36:03'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/6/2022 23:42:37'!
 test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 
-	| customerBook customer |
+	| customerBook |
 	
 	customerBook := CustomerBook new.
-	customer := 'Paul McCartney'.
-	customerBook addCustomerNamed: customer.
+	customerBook addCustomerNamed: 'Paul McCartney'.
 	 
-	self assert: (self tiempoDeEjecucionDelClosure: [customerBook removeCustomerNamed: customer.]  tardaMenosMilisegundosQue: 100 * millisecond)
+	self assert: (self closureExecutionTime: [customerBook removeCustomerNamed: 'Paul McCartney'..]  takesLessThan: 100 * millisecond)
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'HernanWilkinson 5/9/2012 18:12'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/7/2022 01:12:07'!
 test03CanNotAddACustomerWithEmptyName 
 
 	| customerBook |
 			
 	customerBook := CustomerBook new.
 
-	[ customerBook addCustomerNamed: ''.
-	self fail ]
-		on: Error 
-		do: [ :anError | 
-			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
-			self assert: customerBook isEmpty ]! !
+	self afterFailing: [customerBook addCustomerNamed: ''] withError: Error check: [:anError |
+				self assert: (anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage).
+				self assert: (customerBook isEmpty)
+				]
+	! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'HAW 8/28/2017 08:57:25'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/7/2022 01:10:38'!
 test04CanNotRemoveAnInvalidCustomer
 	
-	| customerBook johnLennon |
+	| customerBook |
 			
 	customerBook := CustomerBook new.
-	johnLennon := 'John Lennon'.
-	customerBook addCustomerNamed: johnLennon.
+	customerBook addCustomerNamed: 'John Lennon'.
 	
-	[ customerBook removeCustomerNamed: 'Paul McCartney'.
-	self fail ]
-		on: NotFound 
-		do: [ :anError | 
-			self assert: customerBook numberOfCustomers = 1.
-			self assert: (customerBook includesCustomerNamed: johnLennon) ]
-! !
+	self afterFailing: [customerBook removeCustomerNamed: 'Paul McCartney'.] withError: NotFound check: [ 
+			self assert: (customerBook numberOfCustomers = 1).
+			self assert: (customerBook includesCustomerNamed: 'John Lennon')
+			]
+	! !
 
 !CustomerBookTest methodsFor: 'testing' stamp: 'NR 4/3/2019 10:50:25'!
 test05SuspendingACustomerShouldNotRemoveItFromCustomerBook
@@ -153,17 +169,6 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 			self assert: customerBook numberOfCustomers = 1.
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]
 ! !
-
-!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/5/2022 21:54:56'!
-tiempoDeEjecucionDelClosure: closureATestear tardaMenosMilisegundosQue: limiteDeTiempoEnMilisegundos 
-
-	| millisecondsBeforeRunning millisecondsAfterRunning |	
-	
-	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
-	closureATestear value.
-	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
-	
-	^(millisecondsAfterRunning-millisecondsBeforeRunning) < (limiteDeTiempoEnMilisegundos)! !
 
 
 !classDefinition: #CustomerBook category: 'CodigoRepetido-Ejercicio'!
