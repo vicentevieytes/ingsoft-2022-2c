@@ -67,20 +67,22 @@ test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/7/2022 01:12:07'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/7/2022 11:26:37'!
 test03CanNotAddACustomerWithEmptyName 
 
 	| customerBook |
 			
 	customerBook := CustomerBook new.
 
-	self afterFailing: [customerBook addCustomerNamed: ''] withError: Error check: [:anError |
+	self  		afterFailing: [customerBook addCustomerNamed: ''] 
+			withError: Error 
+			check: [:anError |
 				self assert: (anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage).
 				self assert: (customerBook isEmpty)
 				]
 	! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/7/2022 01:10:38'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'LM 9/7/2022 11:26:55'!
 test04CanNotRemoveAnInvalidCustomer
 	
 	| customerBook |
@@ -88,7 +90,9 @@ test04CanNotRemoveAnInvalidCustomer
 	customerBook := CustomerBook new.
 	customerBook addCustomerNamed: 'John Lennon'.
 	
-	self afterFailing: [customerBook removeCustomerNamed: 'Paul McCartney'.] withError: NotFound check: [ 
+	self afterFailing: [customerBook removeCustomerNamed: 'Paul McCartney'.] 
+		 withError: NotFound 
+		 check: [ 
 			self assert: (customerBook numberOfCustomers = 1).
 			self assert: (customerBook includesCustomerNamed: 'John Lennon')
 			]
