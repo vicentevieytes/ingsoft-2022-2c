@@ -393,6 +393,24 @@ Numero subclass: #Entero
 	
 	^Entero with: self integerValue // aDivisor integerValue! !
 
+!Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 18:21:21'!
+AddAFraccion: aFraccion
+	^ (self * aFraccion denominator + aFraccion numerator) / aFraccion denominator! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 21:52:47'!
+AddAnEntero: anEnteroAdder 
+	^Entero with: self integerValue + anEnteroAdder integerValue! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 19:04:03'!
+divideAFraccion: aFraccionDividend
+
+	^ aFraccionDividend numerator / (aFraccionDividend denominator * self).	! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 19:06:13'!
+divideAnEntero: anEnteroDividend
+
+	^Fraccion with: anEnteroDividend over: self! !
+
 !Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 20:53:40'!
 fibonacci
 
@@ -402,6 +420,26 @@ fibonacci
 !Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 21:53:21'!
 greatestCommonDivisorWith: anEntero
 	^Entero with: (self integerValue gcd: anEntero integerValue)! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 18:28:26'!
+multiplyAFraccion: aFraccionMultiplying
+
+	^ aFraccionMultiplying numerator * self / aFraccionMultiplying denominator ! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 21:53:38'!
+multiplyAnEntero: anEnteroMultiplying
+	
+	^ Entero with: self integerValue * anEnteroMultiplying integerValue! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 18:57:50'!
+substractFromAFraccion: aFraccionMinuend
+
+	^ aFraccionMinuend numerator - (self * aFraccionMinuend denominator) / aFraccionMinuend denominator ! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 21:54:42'!
+substractFromAnEntero: AnEnteroMinued
+
+	^ Entero with: AnEnteroMinued integerValue - self integerValue.! !
 
 
 !Entero methodsFor: 'comparing' stamp: 'LM 9/12/2022 21:42:58'!
@@ -444,45 +482,6 @@ isZero
 	
 	^self integerValue = 0! !
 
-
-!Entero methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 18:21:21'!
-AddAFraccion: aFraccion
-	^ (self * aFraccion denominator + aFraccion numerator) / aFraccion denominator! !
-
-!Entero methodsFor: 'polimonkey' stamp: 'LM 9/12/2022 21:52:47'!
-AddAnEntero: anEnteroAdder 
-	^Entero with: self integerValue + anEnteroAdder integerValue! !
-
-!Entero methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 19:04:03'!
-divideAFraccion: aFraccionDividend
-
-	^ aFraccionDividend numerator / (aFraccionDividend denominator * self).	! !
-
-!Entero methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 19:06:13'!
-divideAnEntero: anEnteroDividend
-
-	^Fraccion with: anEnteroDividend over: self! !
-
-!Entero methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 18:28:26'!
-multiplyAFraccion: aFraccionMultiplying
-
-	^ aFraccionMultiplying numerator * self / aFraccionMultiplying denominator ! !
-
-!Entero methodsFor: 'polimonkey' stamp: 'LM 9/12/2022 21:53:38'!
-multiplyAnEntero: anEnteroMultiplying
-	
-	^ Entero with: self integerValue * anEnteroMultiplying integerValue! !
-
-!Entero methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 18:57:50'!
-substractFromAFraccion: aFraccionMinuend
-
-	^ aFraccionMinuend numerator - (self * aFraccionMinuend denominator) / aFraccionMinuend denominator ! !
-
-!Entero methodsFor: 'polimonkey' stamp: 'LM 9/12/2022 21:54:42'!
-substractFromAnEntero: AnEnteroMinued
-
-	^ Entero with: AnEnteroMinued integerValue - self integerValue.! !
-
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Entero class' category: 'Numero-Exercise'!
@@ -507,7 +506,7 @@ with: aValue
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
 Entero subclass: #Cero
-	instanceVariableNames: 'value'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
@@ -518,16 +517,10 @@ fibonacci
 	^Entero with: 1.! !
 
 
-!Cero methodsFor: 'initialization' stamp: 'LM 9/12/2022 20:40:36'!
-initialize
-
-	value:= 0.! !
-
-
-!Cero methodsFor: 'value' stamp: 'LM 9/12/2022 20:58:18'!
+!Cero methodsFor: 'value' stamp: 'LM 9/14/2022 01:21:26'!
 integerValue
 
-	^value! !
+	^0! !
 
 
 !classDefinition: #EnteroMayorAUno category: 'Numero-Exercise'!
@@ -553,7 +546,7 @@ initializeWith: aValue
 	value := aValue! !
 
 
-!EnteroMayorAUno methodsFor: 'as yet unclassified' stamp: 'LM 9/12/2022 20:58:26'!
+!EnteroMayorAUno methodsFor: 'value' stamp: 'LM 9/12/2022 20:58:26'!
 integerValue
 
 	^value! !
@@ -582,50 +575,36 @@ fibonacci
 
 	^self error: Entero negativeFibonacciErrorDescription.! !
 
-!EnteroNegativo methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 20:25:32'!
-fibonacci: anEntero
-
-	^self error: Entero negativeFibonacciErrorDescription.! !
-
-!EnteroNegativo methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 20:58:59'!
-integerValue
-
-	^value! !
-
 
 !EnteroNegativo methodsFor: 'initialization' stamp: 'LM 9/12/2022 20:52:48'!
 initializeWith: aValue 
 	
 	value := aValue.! !
 
+
+!EnteroNegativo methodsFor: 'value' stamp: 'LM 9/12/2022 20:58:59'!
+integerValue
+
+	^value! !
+
 
 !classDefinition: #Uno category: 'Numero-Exercise'!
 Entero subclass: #Uno
-	instanceVariableNames: 'value'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
-
-!Uno methodsFor: 'initialization' stamp: 'LM 9/12/2022 20:37:26'!
-initialize
-
-	value:= 1.! !
-
 
 !Uno methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 21:57:20'!
 fibonacci
 
 	^self.! !
 
-!Uno methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 20:30:31'!
-fibonacci: anEntero
 
-	^self.! !
-
-!Uno methodsFor: 'arithmetic operations' stamp: 'LM 9/12/2022 20:59:04'!
+!Uno methodsFor: 'value' stamp: 'LM 9/14/2022 01:21:14'!
 integerValue
 
-	^value! !
+	^1! !
 
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
@@ -657,6 +636,58 @@ Numero subclass: #Fraccion
 	
 	^ aDivisor divideAFraccion: self.! !
 
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 18:17:59'!
+AddAFraccion: aFraccionAdder
+
+	| newNumerator newDenominator |
+	
+	newNumerator := (numerator * aFraccionAdder denominator) + (denominator * aFraccionAdder numerator).
+	newDenominator := denominator * aFraccionAdder denominator.
+	
+	^newNumerator / newDenominator ! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 18:16:40'!
+AddAnEntero: anEnteroAdder
+
+	^ (anEnteroAdder * self denominator + self numerator) / self denominator
+
+	! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 19:01:45'!
+divideAFraccion: aFraccionDividend
+
+	^(aFraccionDividend numerator * denominator) / (aFraccionDividend denominator * numerator)! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 19:07:41'!
+divideAnEntero: anEnteroDividend
+
+	^ denominator * anEnteroDividend / numerator! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 18:27:32'!
+multiplyAFraccion: aFraccionMultiplying
+
+	^(numerator * aFraccionMultiplying numerator) / (denominator * aFraccionMultiplying denominator)! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 18:26:17'!
+multiplyAnEntero: anEnteroMultiplying
+	
+	^ self numerator * anEnteroMultiplying / self denominator ! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 18:43:37'!
+substractFromAFraccion: aFraccionMinuend
+
+	| newNumerator newDenominator |
+	
+	newNumerator := (aFraccionMinuend numerator * denominator) - (aFraccionMinuend denominator * numerator).
+	newDenominator := aFraccionMinuend denominator * denominator.
+	
+	^newNumerator / newDenominator ! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'LM 9/11/2022 18:55:13'!
+substractFromAnEntero: AnEnteroMinued
+
+	^ AnEnteroMinued * denominator - numerator / denominator! !
+
 
 !Fraccion methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 20:42'!
 = anObject
@@ -687,59 +718,6 @@ initializeWith: aNumerator over: aDenominator
 	
 	numerator := aNumerator.
 	denominator := aDenominator ! !
-
-
-!Fraccion methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 18:17:59'!
-AddAFraccion: aFraccionAdder
-
-	| newNumerator newDenominator |
-	
-	newNumerator := (numerator * aFraccionAdder denominator) + (denominator * aFraccionAdder numerator).
-	newDenominator := denominator * aFraccionAdder denominator.
-	
-	^newNumerator / newDenominator ! !
-
-!Fraccion methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 18:16:40'!
-AddAnEntero: anEnteroAdder
-
-	^ (anEnteroAdder * self denominator + self numerator) / self denominator
-
-	! !
-
-!Fraccion methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 19:01:45'!
-divideAFraccion: aFraccionDividend
-
-	^(aFraccionDividend numerator * denominator) / (aFraccionDividend denominator * numerator)! !
-
-!Fraccion methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 19:07:41'!
-divideAnEntero: anEnteroDividend
-
-	^ denominator * anEnteroDividend / numerator! !
-
-!Fraccion methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 18:27:32'!
-multiplyAFraccion: aFraccionMultiplying
-
-	^(numerator * aFraccionMultiplying numerator) / (denominator * aFraccionMultiplying denominator)! !
-
-!Fraccion methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 18:26:17'!
-multiplyAnEntero: anEnteroMultiplying
-	
-	^ self numerator * anEnteroMultiplying / self denominator ! !
-
-!Fraccion methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 18:43:37'!
-substractFromAFraccion: aFraccionMinuend
-
-	| newNumerator newDenominator |
-	
-	newNumerator := (aFraccionMinuend numerator * denominator) - (aFraccionMinuend denominator * numerator).
-	newDenominator := aFraccionMinuend denominator * denominator.
-	
-	^newNumerator / newDenominator ! !
-
-!Fraccion methodsFor: 'polimonkey' stamp: 'LM 9/11/2022 18:55:13'!
-substractFromAnEntero: AnEnteroMinued
-
-	^ AnEnteroMinued * denominator - numerator / denominator! !
 
 
 !Fraccion methodsFor: 'testing' stamp: 'NR 9/23/2018 23:41:38'!
