@@ -144,12 +144,7 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 20:33:50'!
-setUp
-
-	sentenceFinder := SentenceFinderByPrefix new.! !
-
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 20:36:08'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/17/2022 20:36:08'!
 test01Ejemplo
 
 	|aStack anOrderedCollection|
@@ -165,6 +160,12 @@ test01Ejemplo
 		
 	self assert: (sentenceFinder find: 'Wint' in: aStack) equals: anOrderedCollection.! !
 
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LM 9/17/2022 20:33:50'!
+setUp
+
+	sentenceFinder := SentenceFinderByPrefix new.! !
+
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
 Object subclass: #OOStack
@@ -173,10 +174,10 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'initialize' stamp: 'LM 9/17/2022 19:55:57'!
+!OOStack methodsFor: 'initialize' stamp: 'LM 9/18/2022 20:43:43'!
 initialize
 
-	stackTop:= OOStackEmptyElement new.
+	stackTop:= OOStackNullElement new.
 	size := 0! !
 
 
@@ -237,52 +238,55 @@ Object subclass: #OOStackElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStackElement methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 19:13:28'!
+!OOStackElement methodsFor: 'stack operations' stamp: 'LM 9/18/2022 20:44:43'!
+isEmpty
+	
+	^false! !
+
+
+!OOStackElement methodsFor: 'stack element operations' stamp: 'LM 9/17/2022 19:13:28'!
 elementValue
 
 	^elementValue! !
 
-!OOStackElement methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 19:30:59'!
+!OOStackElement methodsFor: 'stack element operations' stamp: 'LM 9/17/2022 19:25:33'!
+previous
+	
+	^previous! !
+
+
+!OOStackElement methodsFor: 'initialize' stamp: 'LM 9/17/2022 19:30:59'!
 in: aStack withValue: aValue
 
 	previous := aStack stackTop.
 	elementValue := aValue.! !
 
-!OOStackElement methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 19:21:53'!
-isEmpty
-	
-	^False! !
-
-!OOStackElement methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 19:25:33'!
-previous
-	
-	^previous! !
-
 
-!classDefinition: #OOStackEmptyElement category: 'Stack-Exercise'!
-Object subclass: #OOStackEmptyElement
+!classDefinition: #OOStackNullElement category: 'Stack-Exercise'!
+Object subclass: #OOStackNullElement
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStackEmptyElement methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 19:55:27'!
+!OOStackNullElement methodsFor: 'stack operations' stamp: 'LM 9/18/2022 20:45:04'!
+isEmpty
+	
+	^true! !
+
+
+!OOStackNullElement methodsFor: 'stack element operations' stamp: 'LM 9/17/2022 19:55:27'!
 elementValue
 
 	^self error: self class stackEmptyErrorDescription.! !
 
-!OOStackEmptyElement methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 19:36:21'!
-isEmpty
-	
-	^True! !
-
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'OOStackEmptyElement class' category: 'Stack-Exercise'!
-OOStackEmptyElement class
+!classDefinition: 'OOStackNullElement class' category: 'Stack-Exercise'!
+OOStackNullElement class
 	instanceVariableNames: ''!
 
-!OOStackEmptyElement class methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 19:55:20'!
+!OOStackNullElement class methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 19:55:20'!
 stackEmptyErrorDescription
 	
 	^ 'stack is empty!!!!!!'! !
@@ -295,7 +299,14 @@ Object subclass: #SentenceFinderByPrefix
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 20:38:53'!
+!SentenceFinderByPrefix methodsFor: 'initialize' stamp: 'LM 9/17/2022 20:16:42'!
+initialize
+
+		backupStack := OOStack new.
+		foundSentences := OrderedCollection new.! !
+
+
+!SentenceFinderByPrefix methodsFor: 'find' stamp: 'LM 9/17/2022 20:38:53'!
 find: aPrefix in: aStack
 
 	|top|
@@ -310,13 +321,7 @@ find: aPrefix in: aStack
 	^self find: aPrefix in: aStack.
 	! !
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 20:16:42'!
-initialize
-
-		backupStack := OOStack new.
-		foundSentences := OrderedCollection new.! !
-
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'LM 9/17/2022 20:29:59'!
+!SentenceFinderByPrefix methodsFor: 'find' stamp: 'LM 9/17/2022 20:29:59'!
 restaurarStack: aStack
 
 	backupStack isEmpty ifTrue: [^self].
