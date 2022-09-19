@@ -139,7 +139,7 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: 'sentenceFinder aStack'
+	instanceVariableNames: 'sentenceFinder aStack aStackBackup winter_is_coming Winter_is_here winning_is_everything The_winds_of_Winter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
@@ -150,103 +150,78 @@ test01EmptyStackReturnsEmptyCollection
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'Wint' inStack: OOStack new) 
 		 equals: OrderedCollection new.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:37:38'!
 test02OneSentenceWithPrefixReturnsSentence
 
-	aStack push: 'Winter is here'.
+	aStack push: Winter_is_here.
 		
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'Wint' inStack: aStack) 
-		 equals: #('Winter is here') asOrderedCollection.! !
+		 equals: {Winter_is_here} asOrderedCollection.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:52:53'!
 test03OneSentenceWithoutPrefixReturnsEmptyCollection
 
-	aStack push: 'asdWinter is here'.
+	aStack push: 'asd' , Winter_is_here.
 		
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'Wint' inStack: aStack)
 		 equals: OrderedCollection new.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:38:37'!
 test04LowercaseSentenceWithUppercasePrefixReturnsEmptyCollection
 
-	aStack push: 'winter is here'.
+	aStack push: winter_is_coming.
 		
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'Wint' inStack: aStack)
 		 equals: OrderedCollection new.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:39:27'!
 test05UppercaseSentenceWithLowercasePrefixReturnsEmptyCollection
 
-	aStack push: 'Winter is here'.	
+	aStack push: Winter_is_here.	
 		
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'wint' inStack: aStack)
 		 equals: OrderedCollection new.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:41:19'!
 test06OneSentenceWithPrefixAtTheBottomOfTheStack
-
-	aStack push: 'Winter is here'.
-	aStack push: 'winter is coming'.
-	aStack push: 'winning is everything'.
-	aStack push: 'The winds of Winter'.
-		
+	self pushCollectionToStack: {Winter_is_here. winter_is_coming. winning_is_everything. The_winds_of_Winter} asOrderedCollection.
+	
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'Wint' inStack: aStack)
-		 equals: #('Winter is here') asOrderedCollection.! !
+		 equals: {Winter_is_here } asOrderedCollection.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:42:52'!
 test07OneSentenceWithPrefixAtTheMiddleOfTheStack
-
-	aStack push: 'winter is coming'.
-	aStack push: 'Winter is here'.
-	aStack push: 'winning is everything'.
-	aStack push: 'The winds of Winter'.
-		
+	self pushCollectionToStack: {winter_is_coming. Winter_is_here.  winning_is_everything. The_winds_of_Winter} asOrderedCollection.
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'Wint' inStack: aStack)
-		 equals: #('Winter is here') asOrderedCollection.! !
+		 equals: {Winter_is_here} asOrderedCollection.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:44:22'!
 test08OneSentenceWithPrefixAtTheTopOfTheStack
-
-	aStack push: 'winter is coming'.
-	aStack push: 'winning is everything'.
-	aStack push: 'The winds of Winter'.
-	aStack push: 'Winter is here'.
-		
+	self pushCollectionToStack: {winter_is_coming. winning_is_everything. The_winds_of_Winter. Winter_is_here.  } asOrderedCollection.
+	
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'Wint' inStack: aStack)
-		 equals: #('Winter is here') asOrderedCollection.! !
+		 equals: {Winter_is_here} asOrderedCollection.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:45:33'!
 test09OneSentenceWithoutPrefixAndTwoWithPrefix
-
-	aStack push: 'winter is coming'.
-	aStack push: 'winning is everything'.
-	aStack push: 'The winds of Winter'.
-	aStack push: 'Winter is here'.
-		
+	self pushCollectionToStack: {winter_is_coming. winning_is_everything. The_winds_of_Winter. Winter_is_here.  } asOrderedCollection.
+	
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'win' inStack: aStack) 
-		 equals: #('winter is coming' 'winning is everything') asOrderedCollection.! !
+		 equals: {winter_is_coming. winning_is_everything} asOrderedCollection.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:46:18'!
 test10FourSentencesWithoutPrefixReturnsEmptyCollection
-
-	aStack push: 'winter is coming'.
-	aStack push: 'winning is everything'.
-	aStack push: 'The winds of Winter'.
-	aStack push: 'Winter is here'.
+	self pushCollectionToStack: {winter_is_coming. winning_is_everything. The_winds_of_Winter. Winter_is_here.}.
 		
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'Fan' inStack: aStack) equals: OrderedCollection new.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:46:56'!
 test11SameSentenceTwiceWithPrefixReturnsSentenceTwice
-
-	aStack push: 'winter is coming'.
-	aStack push: 'winning is everything'.
-	aStack push: 'The winds of Winter'.
-	aStack push: 'Winter is here'.
-	aStack push: 'Winter is here'.
+	self pushCollectionToStack: {winter_is_coming. winning_is_everything. The_winds_of_Winter. Winter_is_here. Winter_is_here}.
+	
 		
 	self assert: (sentenceFinder selectElementsContainingPrefix: 'Wint' inStack: aStack)
-		 equals: #('Winter is here' 'Winter is here') asOrderedCollection .! !
+		 equals: {Winter_is_here. Winter_is_here} asOrderedCollection .! !
 
 !SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
 test12EmptyPrefixShouldFail
@@ -268,29 +243,39 @@ test13PrefixWithSpacesShouldFail
 			self assert: anError messageText = SentenceFinderByPrefix prefixCannotHaveEmptySpacesErrorDescription ]	
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/19/2022 12:05:30'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/19/2022 15:52:05'!
 test14StackIsRestoredCorrectly
 
-	|aStackBackup|
-
-	aStack push: 'winter is coming'.
-	aStack push: 'winning is everything'.
-	aStack push: 'Winter is here'.
-	aStackBackup := OOStack new.
-	aStackBackup push: 'winter is coming'.
-	aStackBackup push: 'winning is everything'.
-	aStackBackup push: 'Winter is here'.
-		
+	
+	self pushCollectionToStack: {winter_is_coming . winning_is_everything . Winter_is_here} asOrderedCollection .
+	self pushCollectionToBackupStack: {winter_is_coming. winning_is_everything . Winter_is_here .}.
 	sentenceFinder selectElementsContainingPrefix: 'Win' inStack: aStack.
 	
-	self assertStack: aStack equalsStack: aStackBackup.! !
+	self assertStack: aStack equalsStack: aStackBackup.
+	! !
 
 
-!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LM 9/19/2022 12:05:53'!
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'VV 9/19/2022 15:50:58'!
+pushCollectionToBackupStack: aCollection
+
+	aCollection do: [:each  | aStackBackup push: each]! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'VV 9/19/2022 15:30:47'!
+pushCollectionToStack: aCollection
+
+	aCollection do: [:each  | aStack push: each]! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'VV 9/19/2022 15:50:36'!
 setUp
 
 	sentenceFinder := SentenceFinderByPrefix new.
-	aStack := OOStack new.! !
+	aStack := OOStack new.
+	aStackBackup := OOStack new.
+	winter_is_coming := 'winter is coming'.
+	Winter_is_here := 'Winter is here'.
+	winning_is_everything := 'winning is everything'.
+	The_winds_of_Winter := 'The winds of winter'
+! !
 
 
 !SentenceFinderByPrefixTest methodsFor: 'assertions' stamp: 'LM 9/19/2022 11:32:46'!
