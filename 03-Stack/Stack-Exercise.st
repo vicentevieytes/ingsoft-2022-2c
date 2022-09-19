@@ -144,8 +144,114 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 9/17/2022 20:36:08'!
-test01Ejemplo
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:10:41'!
+test01EmptyStackReturnsEmptyCollection
+
+	|aStack anOrderedCollection|
+
+	aStack := OOStack new.
+	
+	anOrderedCollection := OrderedCollection new.
+		
+	self assert: (sentenceFinder find: 'Wint' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:10:20'!
+test02OneSentenceWithPrefixReturnsSentence
+
+	|aStack anOrderedCollection sentence1|
+	
+	
+	aStack := OOStack new.		
+	sentence1:='Winter is here'.
+	aStack push: sentence1.
+	
+	anOrderedCollection := OrderedCollection new.
+	anOrderedCollection addFirst: sentence1.
+		
+	self assert: (sentenceFinder find: 'Wint' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:11:04'!
+test03OneSentenceWithoutPrefixReturnsEmptyCollection
+
+	|aStack anOrderedCollection sentence1|
+	
+	
+	aStack := OOStack new.		
+	sentence1:='asdWinter is here'.
+	aStack push: sentence1.
+	
+	anOrderedCollection := OrderedCollection new.
+	
+		
+	self assert: (sentenceFinder find: 'Wint' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:12:25'!
+test04LowercaseSentenceWithUppercasePrefixReturnsEmptyCollection
+
+	|aStack anOrderedCollection sentence1|
+	
+	
+	aStack := OOStack new.		
+	sentence1:='winter is here'.
+	aStack push: sentence1.
+	
+	anOrderedCollection := OrderedCollection new.
+	
+		
+	self assert: (sentenceFinder find: 'Wint' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:13:23'!
+test05UppercaseSentenceWithLowercasePrefixReturnsEmptyCollection
+
+	|aStack anOrderedCollection sentence1|
+	
+	
+	aStack := OOStack new.		
+	sentence1:='Winter is here'.
+	aStack push: sentence1.
+	
+	anOrderedCollection := OrderedCollection new.
+	
+		
+	self assert: (sentenceFinder find: 'wint' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:30:49'!
+test06OneSentenceWithPrefixAtTheBottomOfTheStack
+
+	|aStack anOrderedCollection|
+
+	aStack := OOStack new.
+	aStack push: 'Winter is here'.
+	aStack push: 'winter is coming'.
+	aStack push: 'winning is everything'.
+	aStack push: 'The winds of Winter'.
+	
+	
+	anOrderedCollection := OrderedCollection new.
+	anOrderedCollection addFirst: 'Winter is here'.
+		
+	self assert: (sentenceFinder find: 'Wint' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:31:34'!
+test07OneSentenceWithPrefixAtTheMiddleOfTheStack
+
+	|aStack anOrderedCollection|
+
+	aStack := OOStack new.
+	
+	aStack push: 'winter is coming'.
+	aStack push: 'Winter is here'.
+	aStack push: 'winning is everything'.
+	aStack push: 'The winds of Winter'.
+	
+	
+	anOrderedCollection := OrderedCollection new.
+	anOrderedCollection addFirst: 'Winter is here'.
+		
+	self assert: (sentenceFinder find: 'Wint' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:31:42'!
+test08OneSentenceWithPrefixAtTheTopOfTheStack
 
 	|aStack anOrderedCollection|
 
@@ -159,6 +265,86 @@ test01Ejemplo
 	anOrderedCollection addFirst: 'Winter is here'.
 		
 	self assert: (sentenceFinder find: 'Wint' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:31:59'!
+test09OneSentenceWithoutPrefixAndTwoWithPrefix
+
+	|aStack anOrderedCollection|
+
+	aStack := OOStack new.
+	aStack push: 'winter is coming'.
+	aStack push: 'winning is everything'.
+	aStack push: 'The winds of Winter'.
+	aStack push: 'Winter is here'.
+	
+	anOrderedCollection := #( 'winter is coming' 'winning is everything') asOrderedCollection.
+		
+	self assert: (sentenceFinder find: 'win' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:32:10'!
+test10FourSentencesWithoutPrefixReturnsEmptyCollection
+
+	|aStack anOrderedCollection|
+
+	aStack := OOStack new.
+	aStack push: 'winter is coming'.
+	aStack push: 'winning is everything'.
+	aStack push: 'The winds of Winter'.
+	aStack push: 'Winter is here'.
+	
+	anOrderedCollection := OrderedCollection new.
+		
+	self assert: (sentenceFinder find: 'Fan' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 21:34:19'!
+test11SameSentenceTwiceWithPrefix
+
+	|aStack anOrderedCollection|
+
+	aStack := OOStack new.
+	aStack push: 'winter is coming'.
+	aStack push: 'winning is everything'.
+	aStack push: 'The winds of Winter'.
+	aStack push: 'Winter is here'.
+	aStack push: 'Winter is here'.
+	
+	anOrderedCollection := #('Winter is here' 'Winter is here') asOrderedCollection . 
+		
+	self assert: (sentenceFinder find: 'Wint' in: aStack) equals: anOrderedCollection.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 22:01:23'!
+test12EmptyPrefixShouldFail
+
+	|aStack |
+
+	aStack := OOStack new.
+	aStack push: 'winter is coming'.
+	aStack push: 'winning is everything'.
+	aStack push: 'Winter is here'.
+	
+	self
+		should: [ sentenceFinder find: '' in: aStack]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix prefixCannotBeEmptyErrorDescription ]	
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'VV 9/18/2022 22:01:53'!
+test13PrefixWithSpacesShouldFail
+
+	|aStack |
+
+	aStack := OOStack new.
+	aStack push: 'winter is coming'.
+	aStack push: 'winning is everything'.
+	aStack push: 'Winter is here'.
+	
+	self
+		should: [ sentenceFinder find: 'w in' in: aStack]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix prefixCannotHaveEmptySpacesErrorDescription ]	
+! !
 
 
 !SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LM 9/17/2022 20:33:50'!
@@ -306,10 +492,12 @@ initialize
 		foundSentences := OrderedCollection new.! !
 
 
-!SentenceFinderByPrefix methodsFor: 'find' stamp: 'LM 9/17/2022 20:38:53'!
+!SentenceFinderByPrefix methodsFor: 'find' stamp: 'VV 9/18/2022 22:48:35'!
 find: aPrefix in: aStack
 
 	|top|
+	aPrefix isEmpty ifTrue: [^self error: self class prefixCannotBeEmptyErrorDescription].
+	((aPrefix findString: ' ' startingAt: 0) > 0 ) ifTrue: [^self error: self class prefixCannotHaveEmptySpacesErrorDescription ].
 	
 	aStack isEmpty ifTrue: [
 		self restaurarStack: aStack.
@@ -319,6 +507,8 @@ find: aPrefix in: aStack
 	backupStack push: top.
 	(top beginsWith: aPrefix) ifTrue: [foundSentences addFirst: top].
 	^self find: aPrefix in: aStack.
+	
+	
 	! !
 
 !SentenceFinderByPrefix methodsFor: 'find' stamp: 'LM 9/17/2022 20:29:59'!
@@ -327,3 +517,20 @@ restaurarStack: aStack
 	backupStack isEmpty ifTrue: [^self].
 	aStack push: backupStack pop.
 	self restaurarStack: aStack.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'VV 9/18/2022 21:37:05'!
+prefixCannotBeEmptyErrorDescription
+
+	^'Prefix cannot be an empty string!!!!!!'! !
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'VV 9/18/2022 21:37:24'!
+prefixCannotHaveEmptySpacesErrorDescription
+
+	^'Prefix cannot have empty spaces!!!!!!'! !
+
