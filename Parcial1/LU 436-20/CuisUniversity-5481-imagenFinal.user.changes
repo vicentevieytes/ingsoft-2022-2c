@@ -1,0 +1,30 @@
+
+
+----SNAPSHOT----(22 September 2022 22:03:00) CuisUniversity-5481-imagenFinal.image priorSource: 7271680!
+
+----STARTUP---- (22 September 2022 22:04:40) as /home/vicente/Desktop/linux64/CuisUniversity-5481-imagenFinal.image!
+
+
+!testRun: #CrewTest #test01MovingCrewToTreePlaceDoesNotMove stamp: 'VV 9/22/2022 22:04:45'!
+PASSED!
+
+!testRun: #CrewTest #test02MovingCrewToTreePlaceFilibusteroRemovesTree stamp: 'VV 9/22/2022 22:04:45'!
+PASSED!
+
+!testRun: #CrewTest #test03MovingCrewToFreePlace stamp: 'VV 9/22/2022 22:04:45'!
+PASSED!
+
+!testRun: #CrewTest #test04MovingCrewToFreePlaceCorsarioWritesDirectionInMap stamp: 'VV 9/22/2022 22:04:45'!
+PASSED!
+
+!testRun: #CrewTest #test05CrewCannotBuryTreasureIfBucaneroCannotDig stamp: 'VV 9/22/2022 22:04:45'!
+PASSED!
+
+!testRun: #CrewTest #test06CrewCanBuryTreasureIfBucaneroCanDig stamp: 'VV 9/22/2022 22:04:45'!
+PASSED!
+
+!testRun: #CrewTest #test07CaptainCanUseMap stamp: 'VV 9/22/2022 22:04:45'!
+PASSED!
+
+!testRun: #CrewTest #test08SimplePirateCannotUseMap stamp: 'VV 9/22/2022 22:04:45'!
+PASSED!
