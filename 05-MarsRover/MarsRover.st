@@ -315,14 +315,10 @@ position
 	^position! !
 
 
-!MarsRover methodsFor: 'moving' stamp: 'LM 10/6/2022 12:06:11'!
-move: aSequenceOfCommands 
+!MarsRover methodsFor: 'moving' stamp: 'LM 10/6/2022 14:27:20'!
+move: aSequenceOfCommandsAsString
 	
-	aSequenceOfCommands isEmpty ifTrue: [^self].
-	
-	(RoverCommand fromCharacter: aSequenceOfCommands first) moveRover: self.
-	
-	self move: aSequenceOfCommands allButFirst.! !
+	aSequenceOfCommandsAsString do: [:character| (RoverCommand fromCharacter: character) moveRover: self.]! !
 
 
 !MarsRover methodsFor: 'testing' stamp: 'LM 10/6/2022 12:29:54'!
