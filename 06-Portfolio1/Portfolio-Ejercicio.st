@@ -85,6 +85,140 @@ test04PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBala
 	
 	! !
 
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:07:12'!
+test05EmptyPortfolioHasNoTransactions
+
+	|portfolio1|
+	
+	portfolio1 _ Portfolio new.
+	
+	self assert: portfolio1 transactions equals: OrderedCollection new.
+	
+	
+	
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:06:20'!
+test06PortfolioWithOneAccountHasSameTransactionsAsAccount
+
+	|portfolio1 account1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	portfolio1 addAccount: account1.
+	
+	self assert: (portfolio1 transactions sum:[:transaction| transaction value]) equals: (account1 transactions sum:[:transaction| transaction value])
+	
+	
+	
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:06:33'!
+test07PortfolioWithAccountsAndAnotherPortfolioHasCorrectTransactions
+
+	|portfolio1 portfolio2 account1 account2|
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 50  on: account1 .
+	Withdraw register: 20 on: account2 .
+	
+	portfolio1 addAccount: account1.
+	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+
+	
+	self assert: (portfolio2 transactions sum:[:transaction| transaction value]) equals: (portfolio1 transactions sum:[:transaction| transaction value]) + (account2 transactions sum:[:transaction| transaction value])
+	
+	
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:06:39'!
+test08PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectTransactions
+
+	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	account3 _ ReceptiveAccount new.
+	
+	Deposit register: 50  on: account1 .
+	Withdraw register: 20 on: account2 .
+	Deposit register: 30 on: account3.
+	
+	portfolio1 addAccount: account1.
+	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+	(portfolio3 addAccount: account3) addPortfolio: portfolio2.
+
+	
+	self assert: (portfolio3 transactions sum:[:transaction| transaction value]) equals: (portfolio2 transactions sum:[:transaction| transaction value]) + (account3 transactions sum:[:transaction| transaction value])
+	
+	
+	
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:14:37'!
+test09EmptyPortfolioHasNotRegisteredATransaction
+
+	|portfolio1 account1 transaction1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 420 on: account1.
+	
+	self deny: (portfolio1 hasRegistered: transaction1) 
+	
+	
+	
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:14:13'!
+test10PortfolioWithOneAccountHasRegisteredItsTransaction
+
+	|portfolio1 account1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	portfolio1 addAccount: account1.
+	
+	self assert: (portfolio1 hasRegistered: account1 transactions first)
+	
+	
+	
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:17:20'!
+test11PortfolioWithAccountsAndAnotherPortfolioHasRegisteredTheAccountsTransaction
+
+	|portfolio1 portfolio2 account1 account2 transaction1|
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 50  on: account1 .
+	Withdraw register: 20 on: account2 .
+	
+	portfolio1 addAccount: account1.
+	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+
+	
+	self assert: (portfolio2 hasRegistered: transaction1)
+	
+	
+	! !
+
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
@@ -307,11 +441,28 @@ balance
 
 	^(accounts sum: [:account| account balance] ifEmpty: [0]) + (portfolios sum: [:portfolio | portfolio balance] ifEmpty: [0])! !
 
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LM 10/10/2022 16:18:00'!
+hasRegistered: aTransaction
+
+	^ 	(accounts anySatisfy: [:account| account transactions includes: aTransaction]) or: 
+		[portfolios anySatisfy: [:portfolio| portfolio hasRegistered: aTransaction]]
+! !
+
 !Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:50:40'!
 initialize
 
 	accounts _ OrderedCollection new.
 	portfolios _ OrderedCollection new.! !
+
+
+!Portfolio methodsFor: 'accessing' stamp: 'LM 10/10/2022 16:01:42'!
+transactions
+	
+	|res|
+	res _ OrderedCollection new.
+	accounts do: [:account| account transactions do: [:transaction|res add: transaction]].
+	portfolios do: [:portfolio| portfolio transactions do: [:transaction|res add: transaction]].
+	^res! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
