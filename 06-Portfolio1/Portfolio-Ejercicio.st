@@ -1,3 +1,91 @@
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 15:43:18'!
+test01EmptyPortfolioHasBalance0
+
+	|portfolio1|
+	
+	portfolio1 _ Portfolio new.
+	
+	self assert: portfolio1 balance equals: 0
+	
+	
+	
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 15:43:33'!
+test02PortfolioWithOneAccountHasSameBalanceAsAccount
+
+	|portfolio1 account1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	portfolio1 addAccount: account1.
+	
+	self assert: portfolio1 balance equals: account1 balance
+	
+	
+	
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 15:43:42'!
+test03PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
+
+	|portfolio1 portfolio2 account1 account2|
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 50  on: account1 .
+	Withdraw register: 20 on: account2 .
+	
+	portfolio1 addAccount: account1.
+	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+
+	
+	self assert: portfolio2 balance equals: portfolio1 balance + account2 balance
+	
+	
+	
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 15:43:56'!
+test04PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBalance
+
+	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	account3 _ ReceptiveAccount new.
+	
+	Deposit register: 50  on: account1 .
+	Withdraw register: 20 on: account2 .
+	Deposit register: 30 on: account3.
+	
+	portfolio1 addAccount: account1.
+	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+	(portfolio3 addAccount: account3) addPortfolio: portfolio2.
+
+	
+	self assert: portfolio3 balance equals: portfolio2 balance + account3 balance
+	
+	
+	
+	! !
+
+
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
 	instanceVariableNames: ''
@@ -87,86 +175,6 @@ test07AccountKnowsItsTransactions
 	self assert: 1 equals: account1 transactions size.
 	self assert: (account1 transactions includes: deposit1).
 ! !
-
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:43:09'!
-test08EmptyPortfolioHasBalance0
-
-	|portfolio1|
-	
-	portfolio1 _ Portfolio new.
-	
-	self assert: portfolio1 balance equals: 0
-	
-	
-	
-	! !
-
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:42:22'!
-test09PortfolioWithOneAccountHasSameBalanceAsAccount
-
-	|portfolio1 account1|
-	
-	portfolio1 _ Portfolio new.
-	account1 _ ReceptiveAccount new.
-	
-	Deposit register: 50 on: account1.
-	portfolio1 addAccount: account1.
-	
-	self assert: portfolio1 balance equals: account1 balance
-	
-	
-	
-	! !
-
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:49:38'!
-test10PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
-
-	|portfolio1 portfolio2 account1 account2|
-	
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
-	account1 _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	
-	Deposit register: 50  on: account1 .
-	Withdraw register: 20 on: account2 .
-	
-	portfolio1 addAccount: account1.
-	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
-
-	
-	self assert: portfolio2 balance equals: portfolio1 balance + account2 balance
-	
-	
-	
-	! !
-
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/10/2022 00:26:06'!
-test11PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBalance
-
-	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
-	
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
-	portfolio3 _ Portfolio new.
-	account1 _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	account3 _ ReceptiveAccount new.
-	
-	Deposit register: 50  on: account1 .
-	Withdraw register: 20 on: account2 .
-	Deposit register: 30 on: account3.
-	
-	portfolio1 addAccount: account1.
-	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
-	(portfolio3 addAccount: account3) addPortfolio: portfolio2.
-
-	
-	self assert: portfolio3 balance equals: portfolio2 balance + account3 balance
-	
-	
-	
-	! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio'!
