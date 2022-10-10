@@ -1,0 +1,1129 @@
+
+
+----QUIT----(11 September 2022 19:10:09) CuisUniversity-5481.image priorSource: 2810882!
+
+----STARTUP---- (11 September 2022 19:10:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5481.image!
+
+
+----QUIT----(11 September 2022 19:10:10) CuisUniversity-5481.image priorSource: 7059465!
+
+----STARTUP---- (6 October 2022 18:26:32) as /home/infinito/Descargas/CuisUniversity/CuisUniversity-5481.image!
+
+
+----SNAPSHOT----(6 October 2022 18:26:42) CuisUniversity-5481.image priorSource: 7059698!
+
+----End fileIn of /home/infinito/Descargas/CuisUniversity/Packages/System/Collections-CompactArrays.pck.st----!
+
+----End fileIn of /home/infinito/Descargas/CuisUniversity/Packages/Features/VectorEngineInSmalltalk.pck.st----!
+
+TTFontDescription initialize!
+
+----End fileIn of /home/infinito/Descargas/CuisUniversity/Packages/Features/VectorGraphics.pck.st----!
+
+----SNAPSHOT----(6 October 2022 18:27:47) CuisUniversity-5481.image priorSource: 7059902!
+
+----End fileIn of /home/infinito/Descargas/CuisUniversity/Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 20:47:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:47:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:47:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:47:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 20:47:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 20:47:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 20:47:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:47:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 20:47:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:48:06'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:48:06'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:48:21'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:48:21'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:48:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 20:48:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 20:48:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 20:48:31'!
+PASSED!
+!Withdraw methodsFor: 'initialization' stamp: 'MV 10/6/2022 20:51:39' prior: 50567019!
+initializeFor: aValue
+
+	value := 0 - aValue ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 20:51:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:51:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:51:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:51:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 20:51:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 20:51:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 20:51:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:51:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 20:52:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:52:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:52:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:52:39'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 20:52:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 20:52:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 20:52:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:52:39'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:52:50'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:52:54'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:53:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:53:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:53:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 20:53:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:53:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:53:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:53:12'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 20:53:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 20:53:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 20:53:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:53:12'!
+FAILURE!
+!Withdraw methodsFor: 'initialization' stamp: 'MV 10/6/2022 20:53:35' prior: 50567146!
+initializeFor: aValue
+
+	value :=  aValue ! !
+
+----End fileIn of /home/infinito/Descargas/CuisUniversity/Packages/TerseGuide.pck.st----!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 20:56:15' prior: 50567068!
+balance
+
+	^transactions   sum: [ :aTransaction | 
+									(aTransaction isKindOf: Deposit) ifTrue: [aTransaction value].
+									(aTransaction isKindOf: Withdraw) ifTrue: [0 - aTransaction value] ] 
+					ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 20:56:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:56:17'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:56:17'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:56:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 20:56:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 20:56:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 20:56:17'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 20:57:33' prior: 50570182!
+balance
+
+	^transactions   sum: [ :aTransaction | aTransaction signedValue] 
+					ifEmpty: [ 0 ]! !
+!Deposit methodsFor: 'initialization' stamp: 'MV 10/6/2022 20:57:49'!
+signedValue
+	^value! !
+!Withdraw methodsFor: 'value' stamp: 'MV 10/6/2022 20:58:07'!
+signedValue
+
+	 ^ 0 - value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 20:58:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:58:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:58:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:58:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 20:58:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 20:58:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 20:58:10'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 20:59:08' prior: 50570219!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction signedValue] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 20:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 20:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 20:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 20:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 20:59:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 20:59:08'!
+PASSED!
+
+----SNAPSHOT----(6 October 2022 20:59:11) CuisUniversity-5481.image priorSource: 7526457!
+
+----STARTUP---- (6 October 2022 21:02:42) as /home/infinito/Descargas/CuisUniversity/CuisUniversity-5481.image!
+
+
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Ejercicio' stamp: 'MV 10/6/2022 21:04:29'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Deposit category: 'Portfolio-Ejercicio' stamp: 'MV 10/6/2022 21:04:32'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #AccountTransaction
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio' stamp: 'MV 10/6/2022 21:04:36'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:04:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:04:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:04:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:04:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:04:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:04:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:04:39'!
+PASSED!
+
+----SNAPSHOT----(6 October 2022 21:04:41) CuisUniversity-5481.image priorSource: 7636451!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 21:06:22' prior: 50570258!
+balance
+
+	|balance|
+	
+	balance _ 0.
+	transactions do: [ :aTransaction | balance _ balance + aTransaction signedValue].
+	^balance
+	
+	"^transactions sum: [ :aTransaction | aTransaction signedValue] ifEmpty: [ 0 ]"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:06:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:06:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:06:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:06:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:06:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:06:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:06:23'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 21:07:52' prior: 50570362!
+balance
+
+	|balance|
+	
+	balance _ 0.
+	transactions do: [ :aTransaction | 
+						(aTransaction isKindOf: Deposit) ifTrue: [balance _ balance + aTransaction value].
+						(aTransaction isKindOf: Withdraw) ifTrue: [balance _ balance - aTransaction value]
+						].
+	^balance
+	
+	"^transactions sum: [ :aTransaction | aTransaction signedValue] ifEmpty: [ 0 ]"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:07:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:07:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:07:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:07:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:07:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:07:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:07:52'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 21:12:35' prior: 50570398!
+balance
+
+	|balance|
+	
+	balance _ 0.
+	transactions do: [ :aTransaction | aTransaction addToBalance: self					].
+	^balance
+	
+	"^transactions sum: [ :aTransaction | aTransaction signedValue] ifEmpty: [ 0 ]"! !
+
+----SNAPSHOT----(6 October 2022 21:12:39) CuisUniversity-5481.image priorSource: 7638668!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 21:14:23' prior: 50570439!
+balance
+
+	|balance|
+	
+	balance _ 0.
+	transactions do: [ :aTransaction | balance := aTransaction addToBalance: balance.]	^balance
+	
+	"^transactions sum: [ :aTransaction | aTransaction signedValue] ifEmpty: [ 0 ]"! !
+!Deposit methodsFor: 'value' stamp: 'MV 10/6/2022 21:14:38'!
+addToBalance: aBalance
+
+	^aBalance + value! !
+!Withdraw methodsFor: 'value' stamp: 'MV 10/6/2022 21:14:52'!
+addToBalance: aBalance
+
+	^aBalance - value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:14:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:14:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:14:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:14:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:14:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:14:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:14:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:15:03'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:15:03'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:15:03'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 21:15:16' prior: 50570452!
+balance
+
+	|balance|
+	
+	balance _ 0.
+	transactions do: [ :aTransaction | balance := aTransaction addToBalance: balance].
+	^balance
+	
+	"^transactions sum: [ :aTransaction | aTransaction signedValue] ifEmpty: [ 0 ]"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:15:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:15:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:15:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:15:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:15:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:15:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:15:17'!
+PASSED!
+!Deposit methodsFor: 'value' stamp: 'MV 10/6/2022 21:17:53'!
+applyToBalance: aBalance
+
+	^aBalance + value! !
+!Withdraw methodsFor: 'value' stamp: 'MV 10/6/2022 21:17:53'!
+applyToBalance: aBalance
+
+	^aBalance - value! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:17:53' prior: 50570507!
+balance
+
+	|balance|
+	
+	balance _ 0.
+	transactions do: [ :aTransaction | balance := aTransaction applyToBalance: balance].
+	^balance
+	
+	"^transactions sum: [ :aTransaction | aTransaction signedValue] ifEmpty: [ 0 ]"! !
+
+!methodRemoval: Deposit #addToBalance: stamp: 'MV 10/6/2022 21:17:53'!
+addToBalance: aBalance
+
+	^aBalance + value!
+
+!methodRemoval: Withdraw #addToBalance: stamp: 'MV 10/6/2022 21:17:53'!
+addToBalance: aBalance
+
+	^aBalance - value!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:17:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:17:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:17:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:17:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:17:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:17:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:17:54'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 21:23:37' prior: 50570551!
+balance
+
+	|balance|
+	"
+	balance _ 0.
+	transactions do: [ :aTransaction | balance := aTransaction applyToBalance: balance].
+	^balance
+	"
+	
+	balance := transactions inject: 0 into:[:sumSoFar :aTransaction| aTransaction applyToBalance: sumSoFar]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 21:24:06' prior: 50570595!
+balance
+
+	
+	"
+	balance _ 0.
+	transactions do: [ :aTransaction | balance := aTransaction applyToBalance: balance].
+	^balance
+	"
+	
+	^transactions inject: 0 into:[:balance :aTransaction| aTransaction applyToBalance: balance]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:24:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:24:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:24:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:24:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:24:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:24:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:24:07'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 21:24:29' prior: 50570606!
+balance
+
+	^transactions inject: 0 into:[:balance :aTransaction| aTransaction applyToBalance: balance]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:24:30'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'MV 10/6/2022 21:37:26'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:37:10'!
+test08
+
+	|portfolio account|
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	
+	
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:39:04' prior: 50570683!
+test08
+
+	|portfolio1 account1 deposit1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	deposit1 _ Deposit register: 50 on: account1.
+	portfolio1 addAccount: account1.
+	
+	self assert: portfolio1 balance equals: account1 balance
+	
+	
+	
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:39:26' prior: 50570690!
+test08
+
+	|portfolio1 account1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	portfolio1 addAccount: account1.
+	
+	self assert: portfolio1 balance equals: account1 balance
+	
+	
+	
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'MV 10/6/2022 21:40:15'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'no messages' stamp: 'MV 10/6/2022 21:40:12'!
+addAccount: anAccount
+
+	accounts add: anAccount.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:40:26' overrides: 16920235!
+initialize
+
+	accounts _ OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:40:53'!
+balance
+
+	^accounts sum: [:account| account balance]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'MV 10/6/2022 21:40:56'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:41:15'!
+test08PortfolioWithOneAccountHasSameBalanceAsAccount
+
+	|portfolio1 account1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	portfolio1 addAccount: account1.
+	
+	self assert: portfolio1 balance equals: account1 balance
+	
+	
+	
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test08 stamp: 'MV 10/6/2022 21:41:15'!
+test08
+
+	|portfolio1 account1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	portfolio1 addAccount: account1.
+	
+	self assert: portfolio1 balance equals: account1 balance
+	
+	
+	
+	!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:41:44'!
+test09
+
+	|portfolio1|
+	
+	portfolio1 _ Portfolio new.
+	
+	self assert: portfolio1 balance equals: 0
+	
+	
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MV 10/6/2022 21:41:49'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:42:12' prior: 50570728!
+balance
+
+	^accounts sum: [:account| account balance] ifEmpty: [0]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:42:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:42:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:42:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:42:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:42:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:42:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:42:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'MV 10/6/2022 21:42:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MV 10/6/2022 21:42:14'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:42:22'!
+test09PortfolioWithOneAccountHasSameBalanceAsAccount
+
+	|portfolio1 account1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	portfolio1 addAccount: account1.
+	
+	self assert: portfolio1 balance equals: account1 balance
+	
+	
+	
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test08PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'MV 10/6/2022 21:42:22'!
+test08PortfolioWithOneAccountHasSameBalanceAsAccount
+
+	|portfolio1 account1|
+	
+	portfolio1 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+	portfolio1 addAccount: account1.
+	
+	self assert: portfolio1 balance equals: account1 balance
+	
+	
+	
+	!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:43:09'!
+test08EmptyPortfolioHasBalance0
+
+	|portfolio1|
+	
+	portfolio1 _ Portfolio new.
+	
+	self assert: portfolio1 balance equals: 0
+	
+	
+	
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test09 stamp: 'MV 10/6/2022 21:43:09'!
+test09
+
+	|portfolio1|
+	
+	portfolio1 _ Portfolio new.
+	
+	self assert: portfolio1 balance equals: 0
+	
+	
+	
+	!
+
+----SNAPSHOT----(6 October 2022 21:43:14) CuisUniversity-5481.image priorSource: 7641518!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:47:37'!
+test10PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
+
+	|portfolio1 portfolio2 account1 account2|
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 50  on: account1 .
+	Withdraw register: 20 on: account2 .
+	
+	 
+	
+	self assert: portfolio1 balance equals: 0
+	
+	
+	
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MV 10/6/2022 21:49:38' prior: 50570870!
+test10PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
+
+	|portfolio1 portfolio2 account1 account2|
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 50  on: account1 .
+	Withdraw register: 20 on: account2 .
+	
+	portfolio1 addAccount: account1.
+	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+
+	
+	self assert: portfolio2 balance equals: portfolio1 balance + account2 balance
+	
+	
+	
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'MV 10/6/2022 21:50:14'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:50:12'!
+addPortfolio: aPortfolio
+
+	portfolios add: aPortfolio.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:50:40' prior: 50570724 overrides: 16920235!
+initialize
+
+	accounts _ OrderedCollection new.
+	portfolios _ OrderedCollection new.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:50:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:50:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:50:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:50:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:50:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:50:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:50:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08EmptyPortfolioHasBalance0 stamp: 'MV 10/6/2022 21:50:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'MV 10/6/2022 21:50:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance stamp: 'MV 10/6/2022 21:50:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test10PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance stamp: 'MV 10/6/2022 21:50:41'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:51:41' prior: 50570792!
+balance
+
+	^(accounts sum: [:account| account balance] ifEmpty: [0]) + (portfolios sum: [:portfolio | portfolio balance] ifEmpty: [0])! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08EmptyPortfolioHasBalance0 stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance stamp: 'MV 10/6/2022 21:51:43'!
+PASSED!
+
+----SNAPSHOT----(6 October 2022 21:52:01) CuisUniversity-5481.image priorSource: 7654910!
+
+----STARTUP---- (10 October 2022 00:15:08) as C:\Lautaro Disco C\Programas Varios\CuisUniversity\CuisUniversity-5481.image!
+
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08EmptyPortfolioHasBalance0 stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance stamp: 'LM 10/10/2022 00:15:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08EmptyPortfolioHasBalance0 stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance stamp: 'LM 10/10/2022 00:15:42'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/10/2022 00:16:26'!
+test01ReceptiveAccountHasZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance.
+! !
+
+!methodRemoval: ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LM 10/10/2022 00:16:26'!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance.
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/10/2022 00:25:49'!
+test11PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBalance
+
+	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	account3 _ ReceptiveAccount new.
+	
+	Deposit register: 50  on: account1 .
+	Withdraw register: 20 on: account2 .
+	Deposit register: 30 on: account3.
+	
+	portfolio1 addAccount: account1.
+	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+	(portfolio3 addAccount: account3) addPortfolio: portfolio2.
+
+	
+	self assert: portfolio2 balance equals: portfolio1 balance + account2 balance
+	
+	
+	
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/10/2022 00:26:06' prior: 50571109!
+test11PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBalance
+
+	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	account3 _ ReceptiveAccount new.
+	
+	Deposit register: 50  on: account1 .
+	Withdraw register: 20 on: account2 .
+	Deposit register: 30 on: account3.
+	
+	portfolio1 addAccount: account1.
+	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+	(portfolio3 addAccount: account3) addPortfolio: portfolio2.
+
+	
+	self assert: portfolio3 balance equals: portfolio2 balance + account3 balance
+	
+	
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test11PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBalance stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHasZeroAsBalanceWhenCreated stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08EmptyPortfolioHasBalance0 stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBalance stamp: 'LM 10/10/2022 00:26:08'!
+PASSED!
+
+----QUIT----(10 October 2022 00:28:26) CuisUniversity-5481.image priorSource: 7659492!
