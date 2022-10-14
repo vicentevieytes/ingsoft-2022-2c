@@ -18,7 +18,7 @@ test01EmptyPortfolioHasBalance0
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 15:43:33'!
+!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
 test02PortfolioWithOneAccountHasSameBalanceAsAccount
 
 	|portfolio1 account1|
@@ -27,7 +27,7 @@ test02PortfolioWithOneAccountHasSameBalanceAsAccount
 	account1 _ ReceptiveAccount new.
 	
 	Deposit register: 50 on: account1.
-	portfolio1 addAccount: account1.
+	portfolio1 add: account1.
 	
 	self assert: portfolio1 balance equals: account1 balance
 	
@@ -35,7 +35,7 @@ test02PortfolioWithOneAccountHasSameBalanceAsAccount
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 15:43:42'!
+!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
 test03PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
 
 	|portfolio1 portfolio2 account1 account2|
@@ -48,8 +48,8 @@ test03PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
 	Deposit register: 50  on: account1 .
 	Withdraw register: 20 on: account2 .
 	
-	portfolio1 addAccount: account1.
-	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+	portfolio1 add: account1.
+	(portfolio2 add: account2) add: portfolio1.
 
 	
 	self assert: portfolio2 balance equals: portfolio1 balance + account2 balance
@@ -58,7 +58,7 @@ test03PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 15:43:56'!
+!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
 test04PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBalance
 
 	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
@@ -74,9 +74,9 @@ test04PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBala
 	Withdraw register: 20 on: account2 .
 	Deposit register: 30 on: account3.
 	
-	portfolio1 addAccount: account1.
-	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
-	(portfolio3 addAccount: account3) addPortfolio: portfolio2.
+	portfolio1 add: account1.
+	(portfolio2 add: account2) add: portfolio1.
+	(portfolio3 add: account3) add: portfolio2.
 
 	
 	self assert: portfolio3 balance equals: portfolio2 balance + account3 balance
@@ -98,7 +98,7 @@ test05EmptyPortfolioHasNoTransactions
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:06:20'!
+!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:56'!
 test06PortfolioWithOneAccountHasSameTransactionsAsAccount
 
 	|portfolio1 account1|
@@ -107,7 +107,7 @@ test06PortfolioWithOneAccountHasSameTransactionsAsAccount
 	account1 _ ReceptiveAccount new.
 	
 	Deposit register: 50 on: account1.
-	portfolio1 addAccount: account1.
+	portfolio1 add: account1.
 	
 	self assert: (portfolio1 transactions sum:[:transaction| transaction value]) equals: (account1 transactions sum:[:transaction| transaction value])
 	
@@ -115,7 +115,7 @@ test06PortfolioWithOneAccountHasSameTransactionsAsAccount
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:06:33'!
+!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:56'!
 test07PortfolioWithAccountsAndAnotherPortfolioHasCorrectTransactions
 
 	|portfolio1 portfolio2 account1 account2|
@@ -128,8 +128,8 @@ test07PortfolioWithAccountsAndAnotherPortfolioHasCorrectTransactions
 	Deposit register: 50  on: account1 .
 	Withdraw register: 20 on: account2 .
 	
-	portfolio1 addAccount: account1.
-	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+	portfolio1 add: account1.
+	(portfolio2 add: account2) add: portfolio1.
 
 	
 	self assert: (portfolio2 transactions sum:[:transaction| transaction value]) equals: (portfolio1 transactions sum:[:transaction| transaction value]) + (account2 transactions sum:[:transaction| transaction value])
@@ -137,7 +137,7 @@ test07PortfolioWithAccountsAndAnotherPortfolioHasCorrectTransactions
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:06:39'!
+!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
 test08PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectTransactions
 
 	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
@@ -153,9 +153,9 @@ test08PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectTran
 	Withdraw register: 20 on: account2 .
 	Deposit register: 30 on: account3.
 	
-	portfolio1 addAccount: account1.
-	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
-	(portfolio3 addAccount: account3) addPortfolio: portfolio2.
+	portfolio1 add: account1.
+	(portfolio2 add: account2) add: portfolio1.
+	(portfolio3 add: account3) add: portfolio2.
 
 	
 	self assert: (portfolio3 transactions sum:[:transaction| transaction value]) equals: (portfolio2 transactions sum:[:transaction| transaction value]) + (account3 transactions sum:[:transaction| transaction value])
@@ -180,7 +180,7 @@ test09EmptyPortfolioHasNotRegisteredATransaction
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:14:13'!
+!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
 test10PortfolioWithOneAccountHasRegisteredItsTransaction
 
 	|portfolio1 account1|
@@ -189,7 +189,7 @@ test10PortfolioWithOneAccountHasRegisteredItsTransaction
 	account1 _ ReceptiveAccount new.
 	
 	Deposit register: 50 on: account1.
-	portfolio1 addAccount: account1.
+	portfolio1 add: account1.
 	
 	self assert: (portfolio1 hasRegistered: account1 transactions first)
 	
@@ -197,7 +197,7 @@ test10PortfolioWithOneAccountHasRegisteredItsTransaction
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:17:20'!
+!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:56'!
 test11PortfolioWithAccountsAndAnotherPortfolioHasRegisteredTheAccountsTransaction
 
 	|portfolio1 portfolio2 account1 account2 transaction1|
@@ -210,8 +210,8 @@ test11PortfolioWithAccountsAndAnotherPortfolioHasRegisteredTheAccountsTransactio
 	transaction1 _ Deposit register: 50  on: account1 .
 	Withdraw register: 20 on: account2 .
 	
-	portfolio1 addAccount: account1.
-	(portfolio2 addAccount: account2) addPortfolio: portfolio1.
+	portfolio1 add: account1.
+	(portfolio2 add: account2) add: portfolio1.
 
 	
 	self assert: (portfolio2 hasRegistered: transaction1)
@@ -419,54 +419,70 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
-Object subclass: #Portfolio
-	instanceVariableNames: 'accounts portfolios'
+!classDefinition: #BankEntity category: 'Portfolio-Ejercicio'!
+Object subclass: #BankEntity
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:40:12'!
-addAccount: anAccount
-
-	accounts add: anAccount.! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:50:12'!
-addPortfolio: aPortfolio
-
-	portfolios add: aPortfolio.! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:51:41'!
-balance
-
-	^(accounts sum: [:account| account balance] ifEmpty: [0]) + (portfolios sum: [:portfolio | portfolio balance] ifEmpty: [0])! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'LM 10/10/2022 16:18:00'!
+!BankEntity methodsFor: 'testing' stamp: 'vv 10/13/2022 21:24:45'!
 hasRegistered: aTransaction
 
-	^ 	(accounts anySatisfy: [:account| account transactions includes: aTransaction]) or: 
-		[portfolios anySatisfy: [:portfolio| portfolio hasRegistered: aTransaction]]
-! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MV 10/6/2022 21:50:40'!
-initialize
-
-	accounts _ OrderedCollection new.
-	portfolios _ OrderedCollection new.! !
+	self subclassResponsibility ! !
 
 
-!Portfolio methodsFor: 'accessing' stamp: 'LM 10/10/2022 16:01:42'!
+!BankEntity methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:24:43'!
+balance
+
+	self subclassResponsibility ! !
+
+!BankEntity methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:24:47'!
+transactions
+
+	self subclassResponsibility ! !
+
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'bankEntities'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!Portfolio methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:11:23'!
+balance
+
+	^bankEntities sum: [:bankEntity | bankEntity balance] ifEmpty: [0]! !
+
+!Portfolio methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:22:08'!
 transactions
 	
-	|res|
-	res _ OrderedCollection new.
-	accounts do: [:account| account transactions do: [:transaction|res add: transaction]].
-	portfolios do: [:portfolio| portfolio transactions do: [:transaction|res add: transaction]].
-	^res! !
+	
+	^bankEntities inject: OrderedCollection new into:[: transactionsSoFar :bankEntity| transactionsSoFar union: bankEntity transactions ]! !
+
+
+!Portfolio methodsFor: 'testing' stamp: 'vv 10/13/2022 21:12:59'!
+hasRegistered: aTransaction
+
+	^ bankEntities anySatisfy: [:bankEntity| bankEntity hasRegistered: aTransaction]
+! !
+
+
+!Portfolio methodsFor: 'adding' stamp: 'vv 10/13/2022 21:15:12'!
+add: aBankEntity
+
+	bankEntities add: aBankEntity ! !
+
+
+!Portfolio methodsFor: 'initialization' stamp: 'vv 10/13/2022 21:11:44'!
+initialize
+
+	bankEntities _ OrderedCollection new.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
-Object subclass: #ReceptiveAccount
+BankEntity subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -478,26 +494,26 @@ initialize
 	transactions := OrderedCollection new.! !
 
 
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
-register: aTransaction
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
+hasRegistered: aTransaction
 
-	transactions add: aTransaction 
+	^ transactions includes: aTransaction 
 ! !
 
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'MV 10/6/2022 21:24:29'!
+balance
+
+	^transactions inject: 0 into:[:balance :aTransaction| aTransaction applyToBalance: balance]! !
+
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'HernanWilkinson 7/13/2011 18:37'!
 transactions 
 
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'balance' stamp: 'MV 10/6/2022 21:24:29'!
-balance
+!ReceptiveAccount methodsFor: 'adding' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+register: aTransaction
 
-	^transactions inject: 0 into:[:balance :aTransaction| aTransaction applyToBalance: balance]! !
-
-
-!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
-hasRegistered: aTransaction
-
-	^ transactions includes: aTransaction 
+	transactions add: aTransaction 
 ! !
