@@ -1,16 +1,16 @@
-!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio'!
-TestCase subclass: #PortfolioTest
+!classDefinition: #PortfolioAccountTest category: 'Portfolio-Ejercicio'!
+TestCase subclass: #PortfolioAccountTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 15:43:18'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test01EmptyPortfolioHasBalance0
 
 	|portfolio1|
 	
-	portfolio1 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
 	
 	self assert: portfolio1 balance equals: 0
 	
@@ -18,12 +18,12 @@ test01EmptyPortfolioHasBalance0
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test02PortfolioWithOneAccountHasSameBalanceAsAccount
 
 	|portfolio1 account1|
 	
-	portfolio1 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
 	account1 _ ReceptiveAccount new.
 	
 	Deposit register: 50 on: account1.
@@ -35,13 +35,13 @@ test02PortfolioWithOneAccountHasSameBalanceAsAccount
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test03PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
 
 	|portfolio1 portfolio2 account1 account2|
 	
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
+	portfolio2 _ PortfolioAccount new.
 	account1 _ ReceptiveAccount new.
 	account2 _ ReceptiveAccount new.
 	
@@ -58,14 +58,14 @@ test03PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test04PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBalance
 
 	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
 	
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
-	portfolio3 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
+	portfolio2 _ PortfolioAccount new.
+	portfolio3 _ PortfolioAccount new.
 	account1 _ ReceptiveAccount new.
 	account2 _ ReceptiveAccount new.
 	account3 _ ReceptiveAccount new.
@@ -85,12 +85,12 @@ test04PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBala
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:07:12'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test05EmptyPortfolioHasNoTransactions
 
 	|portfolio1|
 	
-	portfolio1 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
 	
 	self assert: portfolio1 transactions equals: OrderedCollection new.
 	
@@ -98,12 +98,12 @@ test05EmptyPortfolioHasNoTransactions
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:56'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test06PortfolioWithOneAccountHasSameTransactionsAsAccount
 
 	|portfolio1 account1|
 	
-	portfolio1 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
 	account1 _ ReceptiveAccount new.
 	
 	Deposit register: 50 on: account1.
@@ -115,13 +115,13 @@ test06PortfolioWithOneAccountHasSameTransactionsAsAccount
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:56'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test07PortfolioWithAccountsAndAnotherPortfolioHasCorrectTransactions
 
 	|portfolio1 portfolio2 account1 account2|
 	
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
+	portfolio2 _ PortfolioAccount new.
 	account1 _ ReceptiveAccount new.
 	account2 _ ReceptiveAccount new.
 	
@@ -137,14 +137,14 @@ test07PortfolioWithAccountsAndAnotherPortfolioHasCorrectTransactions
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test08PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectTransactions
 
 	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
 	
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
-	portfolio3 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
+	portfolio2 _ PortfolioAccount new.
+	portfolio3 _ PortfolioAccount new.
 	account1 _ ReceptiveAccount new.
 	account2 _ ReceptiveAccount new.
 	account3 _ ReceptiveAccount new.
@@ -164,12 +164,12 @@ test08PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectTran
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 10/10/2022 16:14:37'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test09EmptyPortfolioHasNotRegisteredATransaction
 
 	|portfolio1 account1 transaction1|
 	
-	portfolio1 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
 	account1 _ ReceptiveAccount new.
 	
 	transaction1 _ Deposit register: 420 on: account1.
@@ -180,12 +180,12 @@ test09EmptyPortfolioHasNotRegisteredATransaction
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:57'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test10PortfolioWithOneAccountHasRegisteredItsTransaction
 
 	|portfolio1 account1|
 	
-	portfolio1 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
 	account1 _ ReceptiveAccount new.
 	
 	Deposit register: 50 on: account1.
@@ -197,13 +197,13 @@ test10PortfolioWithOneAccountHasRegisteredItsTransaction
 	
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'vv 10/13/2022 21:14:56'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
 test11PortfolioWithAccountsAndAnotherPortfolioHasRegisteredTheAccountsTransaction
 
 	|portfolio1 portfolio2 account1 account2 transaction1|
 	
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
+	portfolio1 _ PortfolioAccount new.
+	portfolio2 _ PortfolioAccount new.
 	account1 _ ReceptiveAccount new.
 	account2 _ ReceptiveAccount new.
 	
@@ -215,6 +215,116 @@ test11PortfolioWithAccountsAndAnotherPortfolioHasRegisteredTheAccountsTransactio
 
 	
 	self assert: (portfolio2 hasRegistered: transaction1)
+	
+	
+	! !
+
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 01:30:42'!
+test12CannotAddReceptiveAccountToPortfolioTwice
+
+	|portfolio1 account1 transaction1|
+	
+	portfolio1 _ PortfolioAccount new.
+	account1 _ ReceptiveAccount new.
+		
+	portfolio1 add: account1.
+	transaction1 _ Deposit register: 50  on: account1.
+		
+	[portfolio1 add: account1. self fail]  on: Error
+		do: [:anError| self assert: [
+							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
+							portfolio1 transactions = (OrderedCollection with: transaction1).
+							]]
+	
+	
+	! !
+
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 01:30:48'!
+test13CannotAddReceptiveAccountToPortfolioThatAlreadyHasAPortfolioWithThatAccount
+
+	|portfolio1 portfolio2 account1 transaction1|
+	
+	portfolio1 _ PortfolioAccount new.
+	portfolio2 _ PortfolioAccount new.
+	account1 _ ReceptiveAccount new.
+		
+	portfolio2 add: account1.
+	portfolio1 add: portfolio2.
+	transaction1 _ Deposit register: 50  on: account1.
+		
+	[portfolio1 add: account1. self fail]  on: Error
+		do: [:anError| self assert: [
+							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
+							portfolio1 transactions = (OrderedCollection with: transaction1).
+							]]
+	
+	
+	! !
+
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 00:50:15'!
+test14CannotAddPortfolioToSamePortfolio
+
+	|portfolio1 account1 transaction1|
+	
+	portfolio1 _ PortfolioAccount new.
+	account1 _ ReceptiveAccount new.
+		
+	portfolio1 add: account1.
+	transaction1 _ Deposit register: 50  on: account1.
+		
+	[portfolio1 add: portfolio1. self fail]  on: Error
+		do: [:anError| self assert: [
+							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
+							portfolio1 transactions = (OrderedCollection with: transaction1).
+							]]
+	
+	
+	! !
+
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 01:30:57'!
+test15CannotAddReceptiveAccountThatAlreadyIsInAParentsPortfolio
+
+	|portfolio1 portfolio2 account1 transaction1|
+	
+	portfolio1 _ PortfolioAccount new.
+	portfolio2 _ PortfolioAccount new.
+	account1 _ ReceptiveAccount new.
+		
+	portfolio1 add: account1.
+	portfolio1 add: portfolio2.
+	transaction1 _ Deposit register: 50  on: account1.
+		
+	[portfolio2 add: account1. self fail]  on: Error
+		do: [:anError| self assert: [
+							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
+							portfolio1 transactions = (OrderedCollection with: transaction1).
+							]]
+	
+	
+	
+	! !
+
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 01:31:13'!
+test16CannotAddPortfolioThatHasReceptiveAccountToAPortfolioThatAlreadyHasTheReceptiveAccount
+
+	|portfolio1 portfolio2 portfolio3 account1 transaction1|
+	
+	portfolio1 _ PortfolioAccount new.
+	portfolio2 _ PortfolioAccount new.
+	portfolio3 _ PortfolioAccount new.
+	account1 _ ReceptiveAccount new.
+		
+	portfolio3 add: account1.
+	portfolio3 add: portfolio2.
+	portfolio1 add: account1.
+	transaction1 _ Deposit register: 50  on: account1.
+		
+	[portfolio2 add: portfolio1. self fail]  on: Error
+		do: [:anError| self assert: [
+							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
+							portfolio1 transactions = (OrderedCollection with: transaction1).
+							]]
+	
 	
 	
 	! !
@@ -308,6 +418,179 @@ test07AccountKnowsItsTransactions
 		
 	self assert: 1 equals: account1 transactions size.
 	self assert: (account1 transactions includes: deposit1).
+! !
+
+
+!classDefinition: #Account category: 'Portfolio-Ejercicio'!
+Object subclass: #Account
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!Account methodsFor: 'testing' stamp: 'vv 10/13/2022 21:24:45'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility ! !
+
+
+!Account methodsFor: 'accessing' stamp: 'LM 10/16/2022 00:08:41'!
+addParent: aPortfolioAccount
+	
+	parents add: aPortfolioAccount.! !
+
+!Account methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:24:43'!
+balance
+
+	self subclassResponsibility ! !
+
+!Account methodsFor: 'accessing' stamp: 'LM 10/16/2022 00:05:34'!
+initialize
+
+	parents _ OrderedCollection new.! !
+
+!Account methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:24:47'!
+transactions
+
+	self subclassResponsibility ! !
+
+
+!classDefinition: #PortfolioAccount category: 'Portfolio-Ejercicio'!
+Account subclass: #PortfolioAccount
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!PortfolioAccount methodsFor: 'accessing' stamp: 'LM 10/16/2022 12:03:05'!
+allAccounts
+
+	^accounts inject: Set new into: [:allAccountsSoFar :account| allAccountsSoFar add: account. allAccountsSoFar union: account allAccounts].
+	
+! !
+
+!PortfolioAccount methodsFor: 'accessing' stamp: 'LM 10/15/2022 23:53:50'!
+balance
+
+	^accounts sum: [:bankEntity | bankEntity balance] ifEmpty: [0]! !
+
+!PortfolioAccount methodsFor: 'accessing' stamp: 'LM 10/16/2022 12:14:37'!
+transactions
+	
+	
+	^(accounts inject: OrderedCollection new into:[:transactionsSoFar :bankEntity| transactionsSoFar union: bankEntity transactions ]) asOrderedCollection ! !
+
+
+!PortfolioAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 12:12:19'!
+cannotAdd: anAccount
+
+	^	(accounts anySatisfy: [:account| account containsAccount: anAccount])   or: 
+		(parents anySatisfy: [:aParent| aParent isAChildOfAncestor: anAccount]) or: 
+		(self = anAccount)! !
+
+!PortfolioAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 12:12:46'!
+containsAccount: anAccount
+
+	^ (accounts anySatisfy: [:account| 			account = anAccount 
+										or: [anAccount allAccounts includes: account]])
+		or: (self = anAccount)! !
+
+!PortfolioAccount methodsFor: 'testing' stamp: 'LM 10/15/2022 23:53:50'!
+hasRegistered: aTransaction
+
+	^ accounts anySatisfy: [:bankEntity| bankEntity hasRegistered: aTransaction]
+! !
+
+!PortfolioAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 12:10:22'!
+isAChildOfAncestor: anAccount
+
+	^ 	(accounts anySatisfy: [:account| (account containsAccount: anAccount) or: [anAccount allAccounts includes: account]]) 
+		or: 
+		(parents anySatisfy: [:aParent| aParent isAChildOfAncestor: anAccount])
+		or:
+		(self = anAccount)
+		
+		"Lo importante es la buena onda"! !
+
+
+!PortfolioAccount methodsFor: 'adding' stamp: 'LM 10/16/2022 12:08:34'!
+add: anAccount
+
+	(self cannotAdd: anAccount) ifTrue: [self error: self class duplicatedAccountErrorMessage].
+	
+	accounts add: anAccount.
+	anAccount addParent: self. ! !
+
+
+!PortfolioAccount methodsFor: 'initialization' stamp: 'LM 10/16/2022 00:42:10'!
+initialize
+
+	accounts _ OrderedCollection new.
+	super initialize.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'PortfolioAccount class' category: 'Portfolio-Ejercicio'!
+PortfolioAccount class
+	instanceVariableNames: ''!
+
+!PortfolioAccount class methodsFor: 'as yet unclassified' stamp: 'LM 10/15/2022 23:53:16'!
+duplicatedAccountErrorMessage
+
+	^'Can not add duplicated account to porfolio'! !
+
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'LM 10/16/2022 00:42:13'!
+initialize
+
+	transactions := OrderedCollection new.
+	super initialize.! !
+
+
+!ReceptiveAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 00:43:31'!
+cannotAdd: anAccount
+
+	^self = anAccount! !
+
+!ReceptiveAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 12:10:22'!
+containsAccount: anAccount
+
+	^self = anAccount! !
+
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+
+
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'LM 10/16/2022 12:00:35'!
+allAccounts
+
+	^Set with: self.! !
+
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'MV 10/6/2022 21:24:29'!
+balance
+
+	^transactions inject: 0 into:[:balance :aTransaction| aTransaction applyToBalance: balance]! !
+
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+transactions 
+
+	^ transactions copy! !
+
+
+!ReceptiveAccount methodsFor: 'adding' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+register: aTransaction
+
+	transactions add: aTransaction 
 ! !
 
 
@@ -417,103 +700,3 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
-
-
-!classDefinition: #BankEntity category: 'Portfolio-Ejercicio'!
-Object subclass: #BankEntity
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!BankEntity methodsFor: 'testing' stamp: 'vv 10/13/2022 21:24:45'!
-hasRegistered: aTransaction
-
-	self subclassResponsibility ! !
-
-
-!BankEntity methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:24:43'!
-balance
-
-	self subclassResponsibility ! !
-
-!BankEntity methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:24:47'!
-transactions
-
-	self subclassResponsibility ! !
-
-
-!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
-BankEntity subclass: #Portfolio
-	instanceVariableNames: 'bankEntities'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!Portfolio methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:11:23'!
-balance
-
-	^bankEntities sum: [:bankEntity | bankEntity balance] ifEmpty: [0]! !
-
-!Portfolio methodsFor: 'accessing' stamp: 'vv 10/13/2022 21:22:08'!
-transactions
-	
-	
-	^bankEntities inject: OrderedCollection new into:[: transactionsSoFar :bankEntity| transactionsSoFar union: bankEntity transactions ]! !
-
-
-!Portfolio methodsFor: 'testing' stamp: 'vv 10/13/2022 21:12:59'!
-hasRegistered: aTransaction
-
-	^ bankEntities anySatisfy: [:bankEntity| bankEntity hasRegistered: aTransaction]
-! !
-
-
-!Portfolio methodsFor: 'adding' stamp: 'vv 10/13/2022 21:15:12'!
-add: aBankEntity
-
-	bankEntities add: aBankEntity ! !
-
-
-!Portfolio methodsFor: 'initialization' stamp: 'vv 10/13/2022 21:11:44'!
-initialize
-
-	bankEntities _ OrderedCollection new.! !
-
-
-!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
-BankEntity subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56'!
-initialize
-
-	transactions := OrderedCollection new.! !
-
-
-!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
-hasRegistered: aTransaction
-
-	^ transactions includes: aTransaction 
-! !
-
-
-!ReceptiveAccount methodsFor: 'accessing' stamp: 'MV 10/6/2022 21:24:29'!
-balance
-
-	^transactions inject: 0 into:[:balance :aTransaction| aTransaction applyToBalance: balance]! !
-
-!ReceptiveAccount methodsFor: 'accessing' stamp: 'HernanWilkinson 7/13/2011 18:37'!
-transactions 
-
-	^ transactions copy! !
-
-
-!ReceptiveAccount methodsFor: 'adding' stamp: 'HernanWilkinson 7/13/2011 18:37'!
-register: aTransaction
-
-	transactions add: aTransaction 
-! !
