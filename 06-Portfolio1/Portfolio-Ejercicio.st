@@ -1,6 +1,6 @@
 !classDefinition: #PortfolioAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #PortfolioAccountTest
-	instanceVariableNames: 'portfolio1 portfolio2 portfolio3 receptiveAccount1 receptiveAccount2 receptiveAccount3 transaction1'
+	instanceVariableNames: 'portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 receptiveAccount1 receptiveAccount2 receptiveAccount3 transaction1'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
@@ -205,13 +205,40 @@ test16CannotAddPortfolioThatHasReceptiveAccountToAPortfolioThatAlreadyHasTheRece
 	self assertThatDoing: [portfolio2 add: portfolio1] raisesDuplicatedAccountErrorAndDoesntChangePortfolio: portfolio1
 	! !
 
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'VV 10/17/2022 15:44:03'!
+test17CannotAddPortfolioThatHasReceptiveAccountToAPortfolioThatAlreadyHasTheReceptiveAccountInAParentPortfolio
+	
+	portfolio4 add: portfolio3.
+	portfolio3 add: receptiveAccount1.
+	portfolio4 add: portfolio2.
+	portfolio1 add: receptiveAccount1.
+	transaction1 _ Deposit register: 50  on: receptiveAccount1.
+		
+	self assertThatDoing: [portfolio2 add: portfolio1] raisesDuplicatedAccountErrorAndDoesntChangePortfolio: portfolio1! !
 
-!PortfolioAccountTest methodsFor: 'setUp' stamp: 'LM 10/17/2022 12:16:01'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'VV 10/17/2022 15:44:42'!
+test18StressTestWithError
+	portfolio5 add: portfolio4.
+	portfolio4 add: portfolio3.
+	portfolio5 add: portfolio2.
+	portfolio5 add: receptiveAccount2.
+	portfolio3 add: receptiveAccount1.
+	portfolio3 add: portfolio2.
+	portfolio1 add: receptiveAccount1.
+	transaction1 _ Deposit register: 50  on: receptiveAccount1.
+		
+	self assertThatDoing: [portfolio2 add: portfolio1] raisesDuplicatedAccountErrorAndDoesntChangePortfolio: portfolio1	
+	! !
+
+
+!PortfolioAccountTest methodsFor: 'setUp' stamp: 'VV 10/17/2022 15:43:43'!
 setUp
 
 	portfolio1 _ PortfolioAccount new.
 	portfolio2 _ PortfolioAccount new.
 	portfolio3 _ PortfolioAccount new.
+	portfolio4 _ PortfolioAccount new.
+	portfolio5 _ PortfolioAccount new.
 	receptiveAccount1 _ ReceptiveAccount new.
 	receptiveAccount2 _ ReceptiveAccount new.
 	receptiveAccount3 _ ReceptiveAccount new.! !
@@ -233,58 +260,58 @@ assertThatDoing: aBlock raisesDuplicatedAccountErrorAndDoesntChangePortfolio: aP
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
-	instanceVariableNames: 'account'
+	instanceVariableNames: 'receptiveAccount'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'VV 10/17/2022 13:32:10'!
 test01ReceptiveAccountHasZeroAsBalanceWhenCreated 
 
-	self assert: 0 equals: account balance.
+	self assert: 0 equals: receptiveAccount balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'VV 10/17/2022 13:32:10'!
 test02DepositIncreasesBalanceOnTransactionValue 
 
-	Deposit register: 100 on: account.
+	Deposit register: 100 on: receptiveAccount.
 		
-	self assert: 100 equals: account balance.
+	self assert: 100 equals: receptiveAccount balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'VV 10/17/2022 13:32:11'!
 test03WithdrawDecreasesBalanceOnTransactionValue 
 
-	Deposit register: 100 on: account.
-	Withdraw register: 50 on: account.
+	Deposit register: 100 on: receptiveAccount.
+	Withdraw register: 50 on: receptiveAccount.
 		
-	self assert: 50 equals: account balance.
+	self assert: 50 equals: receptiveAccount balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'VV 10/17/2022 13:32:10'!
 test04WithdrawValueMustBePositive 
 
 	| withdrawValue |
 	
 	withdrawValue := 50.
 	
-	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: receptiveAccount) value
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'VV 10/17/2022 13:32:10'!
 test05ReceptiveAccountKnowsRegisteredTransactions 
 
 	| deposit withdraw |
 	
-	account := ReceptiveAccount new.
-	deposit := Deposit register: 100 on: account.
-	withdraw := Withdraw register: 50 on: account.
+	receptiveAccount := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: receptiveAccount.
+	withdraw := Withdraw register: 50 on: receptiveAccount.
 		
-	self assert: (account hasRegistered: deposit).
-	self assert: (account hasRegistered: withdraw).
+	self assert: (receptiveAccount hasRegistered: deposit).
+	self assert: (receptiveAccount hasRegistered: withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:24:25'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'VV 10/17/2022 13:32:10'!
 test06ReceptiveAccountDoesNotKnowNotRegisteredTransactions
 
 	| deposit withdraw |
@@ -292,26 +319,26 @@ test06ReceptiveAccountDoesNotKnowNotRegisteredTransactions
 	deposit :=  Deposit for: 200.
 	withdraw := Withdraw for: 50.
 		
-	self deny: (account hasRegistered: deposit).
-	self deny: (account hasRegistered:withdraw).
+	self deny: (receptiveAccount hasRegistered: deposit).
+	self deny: (receptiveAccount hasRegistered:withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:29:00'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'VV 10/17/2022 13:32:10'!
 test07AccountKnowsItsTransactions 
 
 	| deposit |
 	
-	deposit := Deposit register: 50 on: account.
+	deposit := Deposit register: 50 on: receptiveAccount.
 		
-	self assert: 1 equals: account transactions size.
-	self assert: (account transactions includes: deposit).
+	self assert: 1 equals: receptiveAccount transactions size.
+	self assert: (receptiveAccount transactions includes: deposit).
 ! !
 
 
-!ReceptiveAccountTest methodsFor: 'setUp' stamp: 'LM 10/17/2022 12:23:13'!
+!ReceptiveAccountTest methodsFor: 'setUp' stamp: 'VV 10/17/2022 13:32:10'!
 setUp
 
-	account _ ReceptiveAccount new.! !
+	receptiveAccount _ ReceptiveAccount new.! !
 
 
 !classDefinition: #Account category: 'Portfolio-Ejercicio'!
@@ -347,6 +374,12 @@ transactions
 
 	self subclassResponsibility ! !
 
+
+!Account methodsFor: 'testing-private' stamp: 'VV 10/17/2022 15:40:47'!
+containsAnyAccountFrom: anAccount
+
+	self subclassResponsibility .! !
+
 
 !classDefinition: #PortfolioAccount category: 'Portfolio-Ejercicio'!
 Account subclass: #PortfolioAccount
@@ -374,36 +407,11 @@ transactions
 	^accounts inject: Set new into:[:transactionsSoFar :bankEntity| transactionsSoFar union: bankEntity transactions ]! !
 
 
-!PortfolioAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 12:12:19'!
-cannotAdd: anAccount
-
-	^	(accounts anySatisfy: [:account| account containsAccount: anAccount])   or: 
-		(parents anySatisfy: [:aParent| aParent isAChildOfAncestor: anAccount]) or: 
-		(self = anAccount)! !
-
-!PortfolioAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 12:12:46'!
-containsAccount: anAccount
-
-	^ (accounts anySatisfy: [:account| 			account = anAccount 
-										or: [anAccount allAccounts includes: account]])
-		or: (self = anAccount)! !
-
 !PortfolioAccount methodsFor: 'testing' stamp: 'LM 10/15/2022 23:53:50'!
 hasRegistered: aTransaction
 
 	^ accounts anySatisfy: [:bankEntity| bankEntity hasRegistered: aTransaction]
 ! !
-
-!PortfolioAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 12:10:22'!
-isAChildOfAncestor: anAccount
-
-	^ 	(accounts anySatisfy: [:account| (account containsAccount: anAccount) or: [anAccount allAccounts includes: account]]) 
-		or: 
-		(parents anySatisfy: [:aParent| aParent isAChildOfAncestor: anAccount])
-		or:
-		(self = anAccount)
-		
-		"Lo importante es la buena onda"! !
 
 
 !PortfolioAccount methodsFor: 'adding' stamp: 'LM 10/16/2022 12:08:34'!
@@ -413,6 +421,36 @@ add: anAccount
 	
 	accounts add: anAccount.
 	anAccount addParent: self. ! !
+
+
+!PortfolioAccount methodsFor: 'testing-private' stamp: 'VV 10/17/2022 15:30:14'!
+cannotAdd: anAccount
+
+	^	(accounts anySatisfy: [:account| account containsAnyAccountFrom: anAccount])   or: 
+		(parents anySatisfy: [:aParent| aParent hasInAHigherLevelPortfolioAnyAccountFrom: anAccount]) or: 
+		(self = anAccount)! !
+
+!PortfolioAccount methodsFor: 'testing-private' stamp: 'VV 10/17/2022 15:30:14'!
+containsAnyAccountFrom: anAccount
+	|allAccountsOfSelf|
+	allAccountsOfSelf _ self allAccounts .
+	
+	
+	^ (anAccount allAccounts anySatisfy: [:aChildrenOfAnAccount|
+			(allAccountsOfSelf includes: aChildrenOfAnAccount) or: self = aChildrenOfAnAccount		]
+		) or: (allAccountsOfSelf includes: anAccount).
+		
+		! !
+
+!PortfolioAccount methodsFor: 'testing-private' stamp: 'VV 10/17/2022 15:30:14'!
+hasInAHigherLevelPortfolioAnyAccountFrom: anAccount
+
+	^ 	(accounts anySatisfy: [:account| (account containsAnyAccountFrom: anAccount)
+			or: [anAccount allAccounts includes: account]]) 
+			or: (parents anySatisfy: [:aParent| aParent hasInAHigherLevelPortfolioAnyAccountFrom: anAccount])
+			or:	(self = anAccount)
+		
+		"Lo importante es la buena onda"! !
 
 
 !PortfolioAccount methodsFor: 'initialization' stamp: 'LM 10/16/2022 00:42:10'!
@@ -447,15 +485,11 @@ initialize
 	super initialize.! !
 
 
-!ReceptiveAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 00:43:31'!
-cannotAdd: anAccount
+!ReceptiveAccount methodsFor: 'testing-private' stamp: 'VV 10/17/2022 15:40:47'!
+containsAnyAccountFrom: anAccount
 
 	^self = anAccount! !
 
-!ReceptiveAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 12:10:22'!
-containsAccount: anAccount
-
-	^self = anAccount! !
 
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
 hasRegistered: aTransaction
@@ -534,10 +568,6 @@ applyToBalance: aBalance
 
 	^aBalance + value! !
 
-!Deposit methodsFor: 'value' stamp: 'MV 10/6/2022 20:57:49'!
-signedValue
-	^value! !
-
 !Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38'!
 value
 
@@ -572,11 +602,6 @@ initializeFor: aValue
 applyToBalance: aBalance
 
 	^aBalance - value! !
-
-!Withdraw methodsFor: 'value' stamp: 'MV 10/6/2022 20:58:07'!
-signedValue
-
-	 ^ 0 - value! !
 
 !Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33'!
 value
