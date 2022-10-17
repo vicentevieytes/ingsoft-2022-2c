@@ -1,178 +1,120 @@
 !classDefinition: #PortfolioAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #PortfolioAccountTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'portfolio1 portfolio2 portfolio3 receptiveAccount1 receptiveAccount2 receptiveAccount3 transaction1'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:15:37'!
 test01EmptyPortfolioHasBalance0
 
-	|portfolio1|
-	
-	portfolio1 _ PortfolioAccount new.
-	
 	self assert: portfolio1 balance equals: 0
 	
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:15:56'!
 test02PortfolioWithOneAccountHasSameBalanceAsAccount
 
-	|portfolio1 account1|
+	Deposit register: 50 on: receptiveAccount1.
+	portfolio1 add: receptiveAccount1.
 	
-	portfolio1 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-	
-	Deposit register: 50 on: account1.
-	portfolio1 add: account1.
-	
-	self assert: portfolio1 balance equals: account1 balance
+	self assert: portfolio1 balance equals: receptiveAccount1 balance
 	
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:15:59'!
 test03PortfolioWithAccountsAndAnotherPortfolioHasCorrectBalance
 
-	|portfolio1 portfolio2 account1 account2|
+	Deposit register: 50  on: receptiveAccount1 .
+	Withdraw register: 20 on: receptiveAccount2 .
 	
-	portfolio1 _ PortfolioAccount new.
-	portfolio2 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	
-	Deposit register: 50  on: account1 .
-	Withdraw register: 20 on: account2 .
-	
-	portfolio1 add: account1.
-	(portfolio2 add: account2) add: portfolio1.
+	portfolio1 add: receptiveAccount1.
+	(portfolio2 add: receptiveAccount2) add: portfolio1.
 
 	
-	self assert: portfolio2 balance equals: portfolio1 balance + account2 balance
+	self assert: portfolio2 balance equals: portfolio1 balance + receptiveAccount2 balance
 	
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:19:26'!
 test04PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectBalance
 
-	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
+	Deposit register: 50  on: receptiveAccount1 .
+	Withdraw register: 20 on: receptiveAccount2 .
+	Deposit register: 30 on: receptiveAccount3.
 	
-	portfolio1 _ PortfolioAccount new.
-	portfolio2 _ PortfolioAccount new.
-	portfolio3 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	account3 _ ReceptiveAccount new.
+	portfolio1 add: receptiveAccount1.
+	(portfolio2 add: receptiveAccount2) add: portfolio1.
+	(portfolio3 add: receptiveAccount3) add: portfolio2.
 	
-	Deposit register: 50  on: account1 .
-	Withdraw register: 20 on: account2 .
-	Deposit register: 30 on: account3.
-	
-	portfolio1 add: account1.
-	(portfolio2 add: account2) add: portfolio1.
-	(portfolio3 add: account3) add: portfolio2.
-
-	
-	self assert: portfolio3 balance equals: portfolio2 balance + account3 balance
+	self assert: portfolio3 balance equals: portfolio2 balance + receptiveAccount3 balance
 	
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:15:37'!
 test05EmptyPortfolioHasNoTransactions
 
-	|portfolio1|
-	
-	portfolio1 _ PortfolioAccount new.
-	
-	self assert: portfolio1 transactions equals: OrderedCollection new.
+	self assert: portfolio1 transactions equals: Set new.
 	
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:15:56'!
 test06PortfolioWithOneAccountHasSameTransactionsAsAccount
 
-	|portfolio1 account1|
+	Deposit register: 50 on: receptiveAccount1.
+	portfolio1 add: receptiveAccount1.
 	
-	portfolio1 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-	
-	Deposit register: 50 on: account1.
-	portfolio1 add: account1.
-	
-	self assert: (portfolio1 transactions sum:[:transaction| transaction value]) equals: (account1 transactions sum:[:transaction| transaction value])
+	self assert: portfolio1 transactions equals: receptiveAccount1 transactions
 	
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:19:34'!
 test07PortfolioWithAccountsAndAnotherPortfolioHasCorrectTransactions
 
-	|portfolio1 portfolio2 account1 account2|
+	Deposit register: 50  on: receptiveAccount1.
+	Withdraw register: 20 on: receptiveAccount2.
 	
-	portfolio1 _ PortfolioAccount new.
-	portfolio2 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	
-	Deposit register: 50  on: account1 .
-	Withdraw register: 20 on: account2 .
-	
-	portfolio1 add: account1.
-	(portfolio2 add: account2) add: portfolio1.
+	portfolio1 add: receptiveAccount1.
+	(portfolio2 add: receptiveAccount2) add: portfolio1.
 
-	
-	self assert: (portfolio2 transactions sum:[:transaction| transaction value]) equals: (portfolio1 transactions sum:[:transaction| transaction value]) + (account2 transactions sum:[:transaction| transaction value])
+	self assert: portfolio2 transactions equals: (portfolio1 transactions union: receptiveAccount2 transactions) 
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:19:38'!
 test08PortfolioWithAccountsAndAnotherPortfolioContainingAPortfolioHasCorrectTransactions
 
-	|portfolio1 portfolio2 portfolio3 account1 account2 account3|
+	Deposit register: 50  on: receptiveAccount1.
+	Withdraw register: 20 on: receptiveAccount2.
+	Deposit register: 30 on: receptiveAccount3.
 	
-	portfolio1 _ PortfolioAccount new.
-	portfolio2 _ PortfolioAccount new.
-	portfolio3 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	account3 _ ReceptiveAccount new.
+	portfolio1 add: receptiveAccount1.
+	(portfolio2 add: receptiveAccount2) add: portfolio1.
+	(portfolio3 add: receptiveAccount3) add: portfolio2.
 	
-	Deposit register: 50  on: account1 .
-	Withdraw register: 20 on: account2 .
-	Deposit register: 30 on: account3.
-	
-	portfolio1 add: account1.
-	(portfolio2 add: account2) add: portfolio1.
-	(portfolio3 add: account3) add: portfolio2.
-
-	
-	self assert: (portfolio3 transactions sum:[:transaction| transaction value]) equals: (portfolio2 transactions sum:[:transaction| transaction value]) + (account3 transactions sum:[:transaction| transaction value])
+	self assert: portfolio3 transactions equals: (portfolio2 transactions union: receptiveAccount3 transactions)
 	
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:16:25'!
 test09EmptyPortfolioHasNotRegisteredATransaction
 
-	|portfolio1 account1 transaction1|
-	
-	portfolio1 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-	
-	transaction1 _ Deposit register: 420 on: account1.
+	transaction1 _ Deposit register: 50 on: receptiveAccount1.
 	
 	self deny: (portfolio1 hasRegistered: transaction1) 
 	
@@ -180,38 +122,26 @@ test09EmptyPortfolioHasNotRegisteredATransaction
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:15:56'!
 test10PortfolioWithOneAccountHasRegisteredItsTransaction
 
-	|portfolio1 account1|
+	Deposit register: 50 on: receptiveAccount1.
+	portfolio1 add: receptiveAccount1.
 	
-	portfolio1 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-	
-	Deposit register: 50 on: account1.
-	portfolio1 add: account1.
-	
-	self assert: (portfolio1 hasRegistered: account1 transactions first)
+	self assert: (portfolio1 hasRegistered: receptiveAccount1 transactions asOrderedCollection first)
 	
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/15/2022 23:44:19'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:16:25'!
 test11PortfolioWithAccountsAndAnotherPortfolioHasRegisteredTheAccountsTransaction
 
-	|portfolio1 portfolio2 account1 account2 transaction1|
+	transaction1 _ Deposit register: 50  on: receptiveAccount1.
+	Withdraw register: 20 on: receptiveAccount2.
 	
-	portfolio1 _ PortfolioAccount new.
-	portfolio2 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	
-	transaction1 _ Deposit register: 50  on: account1 .
-	Withdraw register: 20 on: account2 .
-	
-	portfolio1 add: account1.
-	(portfolio2 add: account2) add: portfolio1.
+	portfolio1 add: receptiveAccount1.
+	(portfolio2 add: receptiveAccount2) add: portfolio1.
 
 	
 	self assert: (portfolio2 hasRegistered: transaction1)
@@ -219,112 +149,83 @@ test11PortfolioWithAccountsAndAnotherPortfolioHasRegisteredTheAccountsTransactio
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 01:30:42'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:16:25'!
 test12CannotAddReceptiveAccountToPortfolioTwice
 
-	|portfolio1 account1 transaction1|
-	
 	portfolio1 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
+	receptiveAccount1 _ ReceptiveAccount new.
 		
-	portfolio1 add: account1.
-	transaction1 _ Deposit register: 50  on: account1.
+	portfolio1 add: receptiveAccount1.
+	transaction1 _ Deposit register: 50  on: receptiveAccount1.
 		
-	[portfolio1 add: account1. self fail]  on: Error
-		do: [:anError| self assert: [
-							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
-							portfolio1 transactions = (OrderedCollection with: transaction1).
-							]]
-	
-	
-	! !
+	self assertThatDoing: [portfolio1 add: receptiveAccount1] raisesDuplicatedAccountErrorAndDoesntChangePortfolio: portfolio1.! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 01:30:48'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:16:25'!
 test13CannotAddReceptiveAccountToPortfolioThatAlreadyHasAPortfolioWithThatAccount
 
-	|portfolio1 portfolio2 account1 transaction1|
-	
-	portfolio1 _ PortfolioAccount new.
-	portfolio2 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-		
-	portfolio2 add: account1.
+	portfolio2 add: receptiveAccount1.
 	portfolio1 add: portfolio2.
-	transaction1 _ Deposit register: 50  on: account1.
+	transaction1 _ Deposit register: 50  on: receptiveAccount1.
 		
-	[portfolio1 add: account1. self fail]  on: Error
-		do: [:anError| self assert: [
-							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
-							portfolio1 transactions = (OrderedCollection with: transaction1).
-							]]
+	self assertThatDoing: [portfolio1 add: receptiveAccount1] raisesDuplicatedAccountErrorAndDoesntChangePortfolio: portfolio1
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 00:50:15'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:17:06'!
 test14CannotAddPortfolioToSamePortfolio
 
-	|portfolio1 account1 transaction1|
-	
-	portfolio1 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
+	portfolio1 add: receptiveAccount1.
+	transaction1 _ Deposit register: 50  on: receptiveAccount1.
 		
-	portfolio1 add: account1.
-	transaction1 _ Deposit register: 50  on: account1.
-		
-	[portfolio1 add: portfolio1. self fail]  on: Error
-		do: [:anError| self assert: [
-							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
-							portfolio1 transactions = (OrderedCollection with: transaction1).
-							]]
-	
-	
+	self assertThatDoing: [portfolio1 add: portfolio1] raisesDuplicatedAccountErrorAndDoesntChangePortfolio: portfolio1
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 01:30:57'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:17:48'!
 test15CannotAddReceptiveAccountThatAlreadyIsInAParentsPortfolio
 
-	|portfolio1 portfolio2 account1 transaction1|
-	
-	portfolio1 _ PortfolioAccount new.
-	portfolio2 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
-		
-	portfolio1 add: account1.
+	portfolio1 add: receptiveAccount1.
 	portfolio1 add: portfolio2.
-	transaction1 _ Deposit register: 50  on: account1.
+	transaction1 _ Deposit register: 50  on: receptiveAccount1.
 		
-	[portfolio2 add: account1. self fail]  on: Error
-		do: [:anError| self assert: [
-							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
-							portfolio1 transactions = (OrderedCollection with: transaction1).
-							]]
+	self assertThatDoing: [portfolio2 add: receptiveAccount1] raisesDuplicatedAccountErrorAndDoesntChangePortfolio: portfolio1
 	
 	
 	
 	! !
 
-!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/16/2022 01:31:13'!
+!PortfolioAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:18:08'!
 test16CannotAddPortfolioThatHasReceptiveAccountToAPortfolioThatAlreadyHasTheReceptiveAccount
 
-	|portfolio1 portfolio2 portfolio3 account1 transaction1|
-	
+	portfolio3 add: receptiveAccount1.
+	portfolio3 add: portfolio2.
+	portfolio1 add: receptiveAccount1.
+	transaction1 _ Deposit register: 50  on: receptiveAccount1.
+		
+	self assertThatDoing: [portfolio2 add: portfolio1] raisesDuplicatedAccountErrorAndDoesntChangePortfolio: portfolio1
+	! !
+
+
+!PortfolioAccountTest methodsFor: 'setUp' stamp: 'LM 10/17/2022 12:16:01'!
+setUp
+
 	portfolio1 _ PortfolioAccount new.
 	portfolio2 _ PortfolioAccount new.
 	portfolio3 _ PortfolioAccount new.
-	account1 _ ReceptiveAccount new.
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	receptiveAccount3 _ ReceptiveAccount new.! !
+
+
+!PortfolioAccountTest methodsFor: 'assertions' stamp: 'LM 10/17/2022 12:16:25'!
+assertThatDoing: aBlock raisesDuplicatedAccountErrorAndDoesntChangePortfolio: aPortfolio
 		
-	portfolio3 add: account1.
-	portfolio3 add: portfolio2.
-	portfolio1 add: account1.
-	transaction1 _ Deposit register: 50  on: account1.
-		
-	[portfolio2 add: portfolio1. self fail]  on: Error
-		do: [:anError| self assert: [
+	self should: aBlock
+		raise: Error
+		withExceptionDo: [:anError| self assert: [
 							anError messageText = PortfolioAccount duplicatedAccountErrorMessage.
-							portfolio1 transactions = (OrderedCollection with: transaction1).
+							aPortfolio transactions = (Set with: transaction1).
 							]]
-	
 	
 	
 	! !
@@ -332,59 +233,48 @@ test16CannotAddPortfolioThatHasReceptiveAccountToAPortfolioThatAlreadyHasTheRece
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'account'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/10/2022 00:16:26'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
 test01ReceptiveAccountHasZeroAsBalanceWhenCreated 
-
-	| account |
-	
-	account := ReceptiveAccount new.
 
 	self assert: 0 equals: account balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:48'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
 test02DepositIncreasesBalanceOnTransactionValue 
 
-	| account |
-	
-	account := ReceptiveAccount  new.
 	Deposit register: 100 on: account.
 		
 	self assert: 100 equals: account balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:52'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
 test03WithdrawDecreasesBalanceOnTransactionValue 
 
-	| account |
-	
-	account := ReceptiveAccount new.
 	Deposit register: 100 on: account.
 	Withdraw register: 50 on: account.
 		
 	self assert: 50 equals: account balance.
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
 test04WithdrawValueMustBePositive 
 
-	| account withdrawValue |
+	| withdrawValue |
 	
-	account := ReceptiveAccount new.
 	withdrawValue := 50.
 	
 	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:23:13'!
 test05ReceptiveAccountKnowsRegisteredTransactions 
 
-	| account deposit withdraw |
+	| deposit withdraw |
 	
 	account := ReceptiveAccount new.
 	deposit := Deposit register: 100 on: account.
@@ -394,12 +284,11 @@ test05ReceptiveAccountKnowsRegisteredTransactions
 	self assert: (account hasRegistered: withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 5/17/2021 17:29:53'!
-test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:24:25'!
+test06ReceptiveAccountDoesNotKnowNotRegisteredTransactions
 
-	| deposit withdraw account |
+	| deposit withdraw |
 	
-	account := ReceptiveAccount new.
 	deposit :=  Deposit for: 200.
 	withdraw := Withdraw for: 50.
 		
@@ -407,18 +296,22 @@ test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
 	self deny: (account hasRegistered:withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:14:01'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 10/17/2022 12:29:00'!
 test07AccountKnowsItsTransactions 
 
-	| account1 deposit1 |
+	| deposit |
 	
-	account1 := ReceptiveAccount new.
-	
-	deposit1 := Deposit register: 50 on: account1.
+	deposit := Deposit register: 50 on: account.
 		
-	self assert: 1 equals: account1 transactions size.
-	self assert: (account1 transactions includes: deposit1).
+	self assert: 1 equals: account transactions size.
+	self assert: (account transactions includes: deposit).
 ! !
+
+
+!ReceptiveAccountTest methodsFor: 'setUp' stamp: 'LM 10/17/2022 12:23:13'!
+setUp
+
+	account _ ReceptiveAccount new.! !
 
 
 !classDefinition: #Account category: 'Portfolio-Ejercicio'!
@@ -474,11 +367,11 @@ balance
 
 	^accounts sum: [:bankEntity | bankEntity balance] ifEmpty: [0]! !
 
-!PortfolioAccount methodsFor: 'accessing' stamp: 'LM 10/16/2022 12:14:37'!
+!PortfolioAccount methodsFor: 'accessing' stamp: 'LM 10/17/2022 11:54:49'!
 transactions
 	
 	
-	^(accounts inject: OrderedCollection new into:[:transactionsSoFar :bankEntity| transactionsSoFar union: bankEntity transactions ]) asOrderedCollection ! !
+	^accounts inject: Set new into:[:transactionsSoFar :bankEntity| transactionsSoFar union: bankEntity transactions ]! !
 
 
 !PortfolioAccount methodsFor: 'testing' stamp: 'LM 10/16/2022 12:12:19'!
@@ -547,10 +440,10 @@ Account subclass: #ReceptiveAccount
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'LM 10/16/2022 00:42:13'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'LM 10/17/2022 11:55:01'!
 initialize
 
-	transactions := OrderedCollection new.
+	transactions := Set new.
 	super initialize.! !
 
 
