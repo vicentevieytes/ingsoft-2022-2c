@@ -1,0 +1,958 @@
+
+
+----QUIT----(11 September 2022 19:10:09) CuisUniversity-5481.image priorSource: 2810882!
+
+----STARTUP---- (11 September 2022 19:10:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5481.image!
+
+
+----QUIT----(11 September 2022 19:10:10) CuisUniversity-5481.image priorSource: 7059465!
+
+----STARTUP---- (20 October 2022 14:28:28) as C:\Lautaro Disco C\Programas Varios\CuisUniversity\CuisUniversity-5481.image!
+
+
+----End fileIn of C:\Lautaro Disco C\Programas Varios\CuisUniversity\Portfolio-Solucion.st----!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'LM 10/20/2022 14:29:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LM 10/20/2022 14:29:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LM 10/20/2022 14:29:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LM 10/20/2022 14:29:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LM 10/20/2022 14:29:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LM 10/20/2022 14:29:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LM 10/20/2022 14:29:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LM 10/20/2022 14:29:37'!
+PASSED!
+
+TestCase subclass: #TransactionTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransactionTest category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 14:30:13'!
+TestCase subclass: #TransactionTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transaction category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 14:32:03'!
+Object subclass: #Transaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransactionTest methodsFor: 'no messages' stamp: 'LM 10/20/2022 14:31:46'!
+test01BalanceAfterTransactionIsCorrect
+
+	|receptiveAccount1 receptiveAccount2|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	Transaction for: 50 from: receptiveAccount1 to: receptiveAccount2.
+
+	! !
+!TransactionTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:32:56' prior: 50553096!
+test01BalanceAfterTransactionIsCorrect
+
+	|receptiveAccount1 receptiveAccount2|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	Transaction register: 50 from: receptiveAccount1 to: receptiveAccount2.
+
+	! !
+!TransactionTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:33:35' prior: 50553107!
+test01BalanceAfterTransactionIsCorrect
+
+	|receptiveAccount1 receptiveAccount2|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	Transaction register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: [receptiveAccount1 balance] equals: [-50].
+	self assert: [receptiveAccount2 balance] equals: [50].
+
+	! !
+!Transaction class methodsFor: 'no messages' stamp: 'LM 10/20/2022 14:34:49'!
+register: anAmount from: senderAccount to: receivingAccount
+
+	Withdraw register: 50 on: senderAccount.
+	Deposit register: 50 on: receivingAccount.! !
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:34:54'!
+FAILURE!
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:34:54'!
+FAILURE!
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:35:13'!
+FAILURE!
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:35:13'!
+FAILURE!
+!TransactionTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:36:02' prior: 50553118!
+test01BalanceAfterTransactionIsCorrect
+
+	|receptiveAccount1 receptiveAccount2|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	Transaction register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: (receptiveAccount1 balance) equals: (-50).
+	self assert: receptiveAccount2 balance equals: 50.
+
+	! !
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:36:03'!
+PASSED!
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:36:03'!
+PASSED!
+!TransactionTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:36:10' prior: 50553154!
+test01BalanceAfterTransactionIsCorrect
+
+	|receptiveAccount1 receptiveAccount2|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	Transaction register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: receptiveAccount1 balance equals: -50.
+	self assert: receptiveAccount2 balance equals: 50.
+
+	! !
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:36:10'!
+PASSED!
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:36:10'!
+PASSED!
+!TransactionTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:37:41'!
+test02TransactionsAreRegistered
+
+	|receptiveAccount1 receptiveAccount2 transaction1|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	transaction1 _ Transaction register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: (receptiveAccount1 hasRegistered: transaction1).
+	self assert: (receptiveAccount2 hasRegistered: transaction1)
+
+	! !
+
+!testRun: #TransactionTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 14:39:40'!
+FAILURE!
+!TransactionTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:43:33' prior: 50553197!
+test02TransactionsAreRegistered
+
+	|receptiveAccount1 receptiveAccount2 transaction1|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	transaction1 _ Transaction register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: (receptiveAccount1 hasRegistered: transaction1 withdraw).
+	self assert: (receptiveAccount2 hasRegistered: transaction1 deposit)
+
+	! !
+
+!classDefinition: 'Transaction class' category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 14:43:53'!
+Transaction class
+	instanceVariableNames: 'withdraw'!
+
+!classDefinition: 'Transaction class' category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 14:43:54'!
+Transaction class
+	instanceVariableNames: 'withdraw deposit'!
+!Transaction class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:43:51' prior: 50553132!
+register: anAmount from: senderAccount to: receivingAccount
+
+	withdraw _ Withdraw register: 50 on: senderAccount.
+	deposit _ Deposit register: 50 on: receivingAccount.! !
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:43:59'!
+PASSED!
+
+!testRun: #TransactionTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 14:43:59'!
+ERROR!
+
+!testRun: #TransactionTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 14:43:59'!
+ERROR!
+
+Transaction class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Transaction class' category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 14:44:41'!
+Transaction class
+	instanceVariableNames: ''!
+!Transaction class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:45:31' prior: 50553243!
+register: anAmount from: senderAccount to: receivingAccount
+
+	|withdraw deposit|
+
+	withdraw _ Withdraw register: 50 on: senderAccount.
+	deposit _ Deposit register: 50 on: receivingAccount.! !
+!Transaction class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:46:17' prior: 50553268!
+register: anAmount from: senderAccount to: receivingAccount
+
+	Withdraw register: 50 on: senderAccount.
+	Deposit register: 50 on: receivingAccount.! !
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:46:18'!
+PASSED!
+
+!testRun: #TransactionTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 14:46:18'!
+ERROR!
+
+!testRun: #TransactionTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 14:46:18'!
+ERROR!
+!TransactionTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:46:32' prior: 50553216!
+test02TransactionsAreRegistered
+
+	|receptiveAccount1 receptiveAccount2 transaction1|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	transaction1 _ Transaction register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: (receptiveAccount1 hasRegistered: transaction1).
+	self assert: (receptiveAccount2 hasRegistered: transaction1)
+
+	! !
+!Transaction class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:49:00' prior: 50553278!
+register: anAmount from: senderAccount to: receivingAccount
+
+	| transaction |
+	
+	transaction := self new.
+
+	Withdraw register: 50 on: senderAccount.
+	Deposit register: 50 on: receivingAccount.
+	
+	senderAccount register: transaction.
+	receivingAccount register: transaction.
+	
+	^ transaction! !
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:49:04'!
+ERROR!
+
+!testRun: #TransactionTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 14:49:04'!
+PASSED!
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:49:04'!
+ERROR!
+!Transaction methodsFor: 'no messages' stamp: 'LM 10/20/2022 14:49:48'!
+affectBalance: aBalance
+
+	^aBalance! !
+
+!testRun: #TransactionTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:49:49'!
+PASSED!
+
+!testRun: #TransactionTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 14:49:49'!
+PASSED!
+
+!classRenamed: #Transaction as: #Transfer stamp: 'LM 10/20/2022 14:51:04'!
+Smalltalk renameClassNamed: #Transaction as: #Transfer!
+!TransactionTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:51:04' prior: 50553176!
+test01BalanceAfterTransactionIsCorrect
+
+	|receptiveAccount1 receptiveAccount2|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	Transfer register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: receptiveAccount1 balance equals: -50.
+	self assert: receptiveAccount2 balance equals: 50.
+
+	! !
+!TransactionTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:51:04' prior: 50553296!
+test02TransactionsAreRegistered
+
+	|receptiveAccount1 receptiveAccount2 transaction1|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	transaction1 _ Transfer register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: (receptiveAccount1 hasRegistered: transaction1).
+	self assert: (receptiveAccount2 hasRegistered: transaction1)
+
+	! !
+
+!classRenamed: #TransactionTest as: #TransferTest stamp: 'LM 10/20/2022 14:51:16'!
+Smalltalk renameClassNamed: #TransactionTest as: #TransferTest!
+
+----SNAPSHOT----(20 October 2022 14:51:23) CuisUniversity-5481.image priorSource: 7059698!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:55:02'!
+test03EachPartOfATransactionCanReachTheOther
+
+	|receptiveAccount1 receptiveAccount2 transaction1|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	transaction1 _ Transfer register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: transaction1 deposit equals: transaction1 withdraw deposit.
+	self assert: transaction1 withdraw equals: transaction1 deposit withdraw.
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:55:09' prior: 50553388!
+test03EachPartOfATransactionCanReachTheOther
+
+	|receptiveAccount1 receptiveAccount2 transfer1|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	transfer1 _ Transfer register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: transfer1 deposit equals: transfer1 withdraw deposit.
+	self assert: transfer1 withdraw equals: transfer1 deposit withdraw.
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:55:15' prior: 50553365!
+test02TransactionsAreRegistered
+
+	|receptiveAccount1 receptiveAccount2 transfer1|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	transfer1 _ Transfer register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: (receptiveAccount1 hasRegistered: transfer1).
+	self assert: (receptiveAccount2 hasRegistered: transfer1)
+
+	! !
+
+----SNAPSHOT----(20 October 2022 14:55:18) CuisUniversity-5481.image priorSource: 7095484!
+
+Object subclass: #Transfer
+	instanceVariableNames: 'withdraw deposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 14:55:35'!
+Object subclass: #Transfer
+	instanceVariableNames: 'withdraw deposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:56:25' prior: 50553312!
+register: anAmount from: senderAccount to: receivingAccount
+
+	| transaction |
+	
+	transaction := self new initializeWithDeposit: (Withdraw register: 50 on: senderAccount) andWithdraw: (Deposit register: 50 on: receivingAccount).	
+	
+	senderAccount register: transaction.
+	receivingAccount register: transaction.
+	
+	^ transaction! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:58:25' prior: 50553452!
+register: anAmount from: senderAccount to: receivingAccount
+
+	| transaction |
+	
+	transaction := self new initializeWithDeposit: (Withdraw register: 50 on: senderAccount) andWithdraw: (Deposit register: 50 on: receivingAccount).	
+	
+	"senderAccount register: transaction."
+	"receivingAccount register: transaction."
+	
+	^ transaction! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:59:01'!
+initializeWithDeposit: aDeposit andWithdraw: aWithdraw
+
+	deposit _ aDeposit.
+	withdraw _ aWithdraw ! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:59:10'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:59:32' prior: 50553421!
+test02TransactionsAreRegistered
+
+	|receptiveAccount1 receptiveAccount2 transfer1|
+	
+	receptiveAccount1 _ ReceptiveAccount new.
+	receptiveAccount2 _ ReceptiveAccount new.
+	
+	transfer1 _ Transfer register: 50 from: receptiveAccount1 to: receptiveAccount2.
+	
+	self assert: (receptiveAccount1 hasRegistered: transfer1 withdraw).
+	self assert: (receptiveAccount2 hasRegistered: transfer1 deposit)
+
+	! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:59:40'!
+deposit
+
+	^deposit ! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:59:48'!
+withdraw
+
+	^withdraw ! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 14:59:55'!
+PASSED!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 14:59:56'!
+FAILURE!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 14:59:56'!
+FAILURE!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:00:29'!
+PASSED!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:00:29'!
+FAILURE!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:00:29'!
+ERROR!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:00:33'!
+FAILURE!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:01:47' prior: 50553466!
+register: anAmount from: senderAccount to: receivingAccount
+
+	| transaction |
+	
+	transaction := self new initializeWithDeposit: (Deposit register: 50 on: receivingAccount) andWithdraw: (Withdraw register: 50 on: senderAccount) .	
+	
+	"senderAccount register: transaction."
+	"receivingAccount register: transaction."
+	
+	^ transaction! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:01:49'!
+PASSED!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:01:49'!
+PASSED!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:01:49'!
+ERROR!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:01:49'!
+ERROR!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:01:57'!
+PASSED!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:02:01'!
+PASSED!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:02:02'!
+PASSED!
+
+----SNAPSHOT----(20 October 2022 15:02:05) CuisUniversity-5481.image priorSource: 7097116!
+
+Object subclass: #TransferWithdraw
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferWithdraw category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 15:02:56'!
+Object subclass: #TransferWithdraw
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #TransferDeposit
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferDeposit category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 15:03:03'!
+Object subclass: #TransferDeposit
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:08:37' prior: 50553535!
+register: anAmount from: senderAccount to: receivingAccount
+
+	| transaction |
+	
+	transaction := self new initializeWithDeposit: (TransferDeposit register: 50 on: receivingAccount) andWithdraw: (TransferWithdraw register: 50 on: senderAccount) .	
+	
+	"senderAccount register: transaction."
+	"receivingAccount register: transaction."
+	
+	^ transaction! !
+
+Object subclass: #TransferTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferTransaction category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 15:09:41'!
+Object subclass: #TransferTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+TransferTransaction subclass: #TransferDeposit
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferDeposit category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 15:09:47'!
+TransferTransaction subclass: #TransferDeposit
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+TransferTransaction subclass: #TransferWithdraw
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferWithdraw category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 15:09:51'!
+TransferTransaction subclass: #TransferWithdraw
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferTransaction methodsFor: 'no messages' stamp: 'LM 10/20/2022 15:10:06'!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+!TransferDeposit class methodsFor: 'no messages' stamp: 'LM 10/20/2022 15:10:22'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!methodRemoval: TransferDeposit class #for: stamp: 'LM 10/20/2022 15:10:31'!
+for: aValue
+
+	^ self new initializeFor: aValue !
+!TransferTransaction class methodsFor: 'no messages' stamp: 'LM 10/20/2022 15:11:16'!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+!TransferTransaction class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:11:20' prior: 50553669!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self new.
+	account register: transaction.
+		
+	^ transaction! !
+
+!methodRemoval: TransferTransaction #register:on: stamp: 'LM 10/20/2022 15:11:23'!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:11:54'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:11:54'!
+ERROR!
+
+AccountTransaction subclass: #TransferDeposit
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferDeposit category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 15:12:33'!
+AccountTransaction subclass: #TransferDeposit
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #TransferWithdraw
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferWithdraw category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 15:12:37'!
+AccountTransaction subclass: #TransferWithdraw
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferDeposit class methodsFor: 'no messages' stamp: 'LM 10/20/2022 15:13:10'!
+for: aValue
+
+	self new.! !
+!TransferWithdraw class methodsFor: 'nil' stamp: 'LM 10/20/2022 15:13:25'!
+for: aValue
+
+	^self new.! !
+!TransferDeposit class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:13:30' prior: 50553724!
+for: aValue
+
+	^self new.! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:13:33'!
+ERROR!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:13:33'!
+PASSED!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:13:33'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:13:37'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:13:37'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:18:58' prior: 50553479!
+initializeWithDeposit: aDeposit andWithdraw: aWithdraw
+
+	deposit _ aDeposit.
+	withdraw _ aWithdraw.
+	
+	deposit setTransfer: self.
+	withdraw setTransfer: self.! !
+!TransferDeposit methodsFor: 'no messages' stamp: 'LM 10/20/2022 15:19:18'!
+setTransfer: aTransfer
+
+	transfer _ aTransfer ! !
+!TransferWithdraw methodsFor: 'no messages' stamp: 'LM 10/20/2022 15:19:22'!
+setTransfer: aTransfer
+
+	transfer _ aTransfer ! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:19:35'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:19:35'!
+ERROR!
+
+Object subclass: #Transfer
+	instanceVariableNames: 'withdraw deposit value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'LM 10/20/2022 15:19:59'!
+Object subclass: #Transfer
+	instanceVariableNames: 'withdraw deposit value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:20:26' prior: 50553600!
+register: anAmount from: senderAccount to: receivingAccount
+
+	| transaction |
+	
+	transaction := self new initializeWithValue: anAmount andDeposit: (TransferDeposit register: 50 on: receivingAccount) andWithdraw: (TransferWithdraw register: 50 on: senderAccount) .	
+	
+	"senderAccount register: transaction."
+	"receivingAccount register: transaction."
+	
+	^ transaction! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:20:38'!
+initializeWithValue: anAmount andDeposit: aDeposit andWithdraw: aWithdraw
+
+	deposit _ aDeposit.
+	withdraw _ aWithdraw.
+	
+	deposit setTransfer: self.
+	withdraw setTransfer: self.! !
+
+!methodRemoval: Transfer #initializeWithDeposit:andWithdraw: stamp: 'LM 10/20/2022 15:20:39'!
+initializeWithDeposit: aDeposit andWithdraw: aWithdraw
+
+	deposit _ aDeposit.
+	withdraw _ aWithdraw.
+	
+	deposit setTransfer: self.
+	withdraw setTransfer: self.!
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:20:56' overrides: 50552889!
+value
+
+	transfer value.! !
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:21:04' overrides: 50552889!
+value
+
+	transfer value.! !
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:21:22' overrides: 50552893!
+affectBalance: aBalance
+
+	^aBalance + self value! !
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:21:29' overrides: 50552893!
+affectBalance: aBalance
+
+	^aBalance - self value ! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:21:32'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:21:32'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:21:52' prior: 50553804!
+initializeWithValue: anAmount andDeposit: aDeposit andWithdraw: aWithdraw
+
+	value _ anAmount.
+	deposit _ aDeposit.
+	withdraw _ aWithdraw.
+	
+	deposit setTransfer: self.
+	withdraw setTransfer: self.! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:21:55'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:21:55'!
+ERROR!
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:22:25' prior: 50553821 overrides: 50552889!
+value
+
+	^transfer value.! !
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:22:34' prior: 50553826 overrides: 50552889!
+value
+
+	^transfer value.! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:22:37'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:22:37'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:23:15' overrides: 16902254!
+value
+
+	^value! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:23:15'!
+PASSED!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:23:15'!
+PASSED!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:23:15'!
+ERROR!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:23:15'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:23:20'!
+PASSED!
+
+----SNAPSHOT----(20 October 2022 15:23:22) CuisUniversity-5481.image priorSource: 7101449!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:23:30'!
+PASSED!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:23:35'!
+ERROR!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:23:35'!
+ERROR!
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:23:55'!
+deposit
+
+	^transfer deposit! !
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:24:09'!
+withdraw
+
+	^transfer withdraw.! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:24:11'!
+PASSED!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:24:11'!
+PASSED!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:24:11'!
+PASSED!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:25:23' prior: 50553790!
+register: anAmount from: senderAccount to: receivingAccount
+
+	| transaction |
+	
+	transaction := self new initializeWithValue: anAmount from: senderAccount  to: receivingAccount.	
+	
+	"senderAccount register: transaction."
+	"receivingAccount register: transaction."
+	
+	^ transaction! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:26:30'!
+initializeWithValue: anAmount from: senderAccount to: receivingAccount
+
+	value _ anAmount.
+	deposit _ (TransferDeposit register: anAmount on: receivingAccount).
+	withdraw _ (TransferWithdraw register: anAmount on: senderAccount)
+	
+	deposit setTransfer: self.
+	withdraw setTransfer: self.! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:26:30'!
+ERROR!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:26:30'!
+ERROR!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:26:30'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:26:42'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:26:42'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:27:34'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:27:34'!
+ERROR!
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:28:09'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:28:18' prior: 50553945!
+initializeWithValue: anAmount from: senderAccount to: receivingAccount
+
+	value _ anAmount.
+	deposit _ (TransferDeposit register: anAmount on: receivingAccount).
+	withdraw _ (TransferWithdraw register: anAmount on: senderAccount).
+	
+	deposit setTransfer: self.
+	withdraw setTransfer: self.! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:28:19'!
+PASSED!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:28:19'!
+PASSED!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:28:19'!
+PASSED!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:28:50' prior: 50553984!
+initializeWithValue: anAmount from: senderAccount to: receivingAccount
+
+	value _ anAmount.
+	deposit _ (TransferDeposit register: anAmount on: receivingAccount).
+	withdraw _ (TransferWithdraw register: anAmount on: senderAccount).
+	
+	deposit setTransfer: self.
+	withdraw setTransfer: self.! !
+
+!testRun: #TransferTest #test01BalanceAfterTransactionIsCorrect stamp: 'LM 10/20/2022 15:28:50'!
+PASSED!
+
+!testRun: #TransferTest #test02TransactionsAreRegistered stamp: 'LM 10/20/2022 15:28:50'!
+PASSED!
+
+!testRun: #TransferTest #test03EachPartOfATransactionCanReachTheOther stamp: 'LM 10/20/2022 15:28:50'!
+PASSED!
+
+!methodRemoval: Transfer #initializeWithValue:andDeposit:andWithdraw: stamp: 'LM 10/20/2022 15:28:52'!
+initializeWithValue: anAmount andDeposit: aDeposit andWithdraw: aWithdraw
+
+	value _ anAmount.
+	deposit _ aDeposit.
+	withdraw _ aWithdraw.
+	
+	deposit setTransfer: self.
+	withdraw setTransfer: self.!
+
+----SNAPSHOT----(20 October 2022 15:34:19) CuisUniversity-5481.image priorSource: 7112006!
+
+----SNAPSHOT----(20 October 2022 15:36:40) CuisUniversity-5481.image priorSource: 7116366!
+
+----QUIT----(20 October 2022 15:37:22) CuisUniversity-5481.image priorSource: 7116458!
