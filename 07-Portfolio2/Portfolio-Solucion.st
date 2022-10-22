@@ -312,13 +312,13 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 19:41:11'!
-test01AccountSummaryOfAccountWithNoTransactions
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:20:55'!
+test01AccountSummaryOfReceptiveAccountWithNoTransactions
 
 	self assert: ReceptiveAccount new accountSummary equals: (OrderedCollection with: 'Balance = 0').! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 20:24:33'!
-test02AccountSummaryOfAccountWithOneDeposit
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:20:58'!
+test02AccountSummaryOfReceptiveAccountWithOneDeposit
 
 	|account1|
 	
@@ -328,8 +328,8 @@ test02AccountSummaryOfAccountWithOneDeposit
 		
 	self assert: account1 accountSummary equals: ({'Depósito por 50.'. 'Balance = 50'} asOrderedCollection).! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 20:25:32'!
-test03AccountSummaryOfAccountWithOneWithdrawal
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:21:01'!
+test03AccountSummaryOfReceptiveAccountWithOneWithdrawal
 
 	|account1|
 	
@@ -339,8 +339,8 @@ test03AccountSummaryOfAccountWithOneWithdrawal
 		
 	self assert: account1 accountSummary equals: ({'Extracción por 50.'. 'Balance = -50'} asOrderedCollection).! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 21:49:45'!
-test04AccountSummaryOfAccountWithOneTransferDeposit
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:21:04'!
+test04AccountSummaryOfReceptiveAccountWithOneTransferDeposit
 
 	|account1|
 	
@@ -351,8 +351,8 @@ test04AccountSummaryOfAccountWithOneTransferDeposit
 		
 	self assert: account1 accountSummary equals: ({'Depósito por transferencia de 50.'. 'Balance = 50'} asOrderedCollection).! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 21:52:15'!
-test05AccountSummaryOfAccountWithOneTransferWithdraw
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:21:08'!
+test05AccountSummaryOfReceptiveAccountWithOneTransferWithdraw
 
 	|account1|
 	
@@ -362,6 +362,34 @@ test05AccountSummaryOfAccountWithOneTransferWithdraw
 	Transfer register: 50 from: account1 to: ReceptiveAccount new.
 		
 	self assert: account1 accountSummary equals: ({'Extracción por transferencia de 50.'. 'Balance = -50'} asOrderedCollection).! !
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:21:12'!
+test06AccountSummaryOfReceptiveAccountWithManyTransactions
+
+	|account1|
+	
+	account1 _ ReceptiveAccount new.
+	
+	
+	Transfer register: 50 from: account1 to: ReceptiveAccount new.
+	Transfer register: 42 from: ReceptiveAccount new to: account1.
+	Deposit register: 10 on: account1.
+	Withdraw register: 15 on: account1.
+		
+	self 
+		assert: account1 accountSummary 
+		equals: ({'Extracción por transferencia de 50.'. 'Depósito por transferencia de 42.'. 'Depósito por 10.'. 'Extracción por 15.'. 'Balance = -13'} asOrderedCollection).! !
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:22:19'!
+test07AccountSummaryOfEmptyPortfolio
+
+	|portfolio1|
+	
+	portfolio1 _ Portfolio new.
+		
+	self 
+		assert: portfolio1 accountSummary 
+		equals: ({'Balance = 0'} asOrderedCollection).! !
 
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
@@ -698,13 +726,121 @@ affectBalance: aBalance
 
 	self subclassResponsibility ! !
 
+
+!classDefinition: #InterpersonalTransaction category: 'Portfolio-Solucion'!
+AccountTransaction subclass: #InterpersonalTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion'!
-AccountTransaction class
+!classDefinition: 'InterpersonalTransaction class' category: 'Portfolio-Solucion'!
+InterpersonalTransaction class
 	instanceVariableNames: ''!
 
-!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/21/2019 18:54:27'!
+!InterpersonalTransaction class methodsFor: 'as yet unclassified' stamp: 'LM 10/21/2022 22:04:43'!
+registerOn: aReceptiveAccount
+
+	| transaction |
+	
+	transaction := self new.
+	aReceptiveAccount register: transaction.
+		
+	^ transaction! !
+
+!InterpersonalTransaction class methodsFor: 'as yet unclassified' stamp: 'LM 10/21/2022 22:10:28'!
+registerOn: aReceptiveAccount asPartOfTransfer: aTransfer
+
+	| transaction |
+	
+	transaction := self new initializeAsPartOfTransfer: aTransfer.
+	aReceptiveAccount register: transaction.
+		
+	^ transaction! !
+
+
+!classDefinition: #TransferDeposit category: 'Portfolio-Solucion'!
+InterpersonalTransaction subclass: #TransferDeposit
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:21:22'!
+affectBalance: aBalance
+
+	^aBalance + self value! !
+
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/21/2022 22:11:09'!
+initializeAsPartOfTransfer: aTransfer
+
+	transfer _ aTransfer.! !
+
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:19:18'!
+setTransfer: aTransfer
+
+	transfer _ aTransfer ! !
+
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:22:25'!
+value
+
+	^transfer value.! !
+
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:24:09'!
+withdraw
+
+	^transfer withdraw.! !
+
+
+!classDefinition: #TransferWithdraw category: 'Portfolio-Solucion'!
+InterpersonalTransaction subclass: #TransferWithdraw
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:21:29'!
+affectBalance: aBalance
+
+	^aBalance - self value ! !
+
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:23:55'!
+deposit
+
+	^transfer deposit! !
+
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/21/2022 22:11:11'!
+initializeAsPartOfTransfer: aTransfer
+
+	transfer _ aTransfer.! !
+
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:19:22'!
+setTransfer: aTransfer
+
+	transfer _ aTransfer ! !
+
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:22:34'!
+value
+
+	^transfer value.! !
+
+
+!classDefinition: #PersonalTransaction category: 'Portfolio-Solucion'!
+AccountTransaction subclass: #PersonalTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'PersonalTransaction class' category: 'Portfolio-Solucion'!
+PersonalTransaction class
+	instanceVariableNames: ''!
+
+!PersonalTransaction class methodsFor: 'as yet unclassified' stamp: 'LM 10/21/2022 22:03:20'!
 register: aValue on: account
 
 	| transaction |
@@ -716,7 +852,7 @@ register: aValue on: account
 
 
 !classDefinition: #Deposit category: 'Portfolio-Solucion'!
-AccountTransaction subclass: #Deposit
+PersonalTransaction subclass: #Deposit
 	instanceVariableNames: 'value'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -756,86 +892,8 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #TransferDeposit category: 'Portfolio-Solucion'!
-AccountTransaction subclass: #TransferDeposit
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:21:22'!
-affectBalance: aBalance
-
-	^aBalance + self value! !
-
-!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:19:18'!
-setTransfer: aTransfer
-
-	transfer _ aTransfer ! !
-
-!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:22:25'!
-value
-
-	^transfer value.! !
-
-!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:24:09'!
-withdraw
-
-	^transfer withdraw.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferDeposit class' category: 'Portfolio-Solucion'!
-TransferDeposit class
-	instanceVariableNames: ''!
-
-!TransferDeposit class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:13:30'!
-for: aValue
-
-	^self new.! !
-
-
-!classDefinition: #TransferWithdraw category: 'Portfolio-Solucion'!
-AccountTransaction subclass: #TransferWithdraw
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:21:29'!
-affectBalance: aBalance
-
-	^aBalance - self value ! !
-
-!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:23:55'!
-deposit
-
-	^transfer deposit! !
-
-!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:19:22'!
-setTransfer: aTransfer
-
-	transfer _ aTransfer ! !
-
-!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:22:34'!
-value
-
-	^transfer value.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferWithdraw class' category: 'Portfolio-Solucion'!
-TransferWithdraw class
-	instanceVariableNames: ''!
-
-!TransferWithdraw class methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:13:25'!
-for: aValue
-
-	^self new.! !
-
-
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
-AccountTransaction subclass: #Withdraw
+PersonalTransaction subclass: #Withdraw
 	instanceVariableNames: 'value'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -877,25 +935,17 @@ Object subclass: #Transfer
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:49:48'!
-affectBalance: aBalance
-
-	^aBalance! !
-
 !Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 14:59:40'!
 deposit
 
 	^deposit ! !
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:28:50'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/21/2022 22:06:19'!
 initializeWithValue: anAmount from: senderAccount to: receivingAccount
 
 	value _ anAmount.
-	deposit _ (TransferDeposit register: anAmount on: receivingAccount).
-	withdraw _ (TransferWithdraw register: anAmount on: senderAccount).
-	
-	deposit setTransfer: self.
-	withdraw setTransfer: self.! !
+	deposit _ (TransferDeposit registerOn: receivingAccount asPartOfTransfer: self).
+	withdraw _ (TransferWithdraw registerOn: senderAccount asPartOfTransfer: self).! !
 
 !Transfer methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:23:15'!
 value
