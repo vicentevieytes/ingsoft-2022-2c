@@ -307,69 +307,46 @@ test07AccountKnowsItsTransactions
 
 !classDefinition: #ReportTest category: 'Portfolio-Solucion'!
 TestCase subclass: #ReportTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'account1 account2 account3 summarizer portfolio1 portfolio2 portfolio3 portfolio4'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:20:55'!
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 17:51:43'!
 test01AccountSummaryOfReceptiveAccountWithNoTransactions
 
-	self assert: ReceptiveAccount new accountSummary equals: (OrderedCollection with: 'Balance = 0').! !
+	self assert: (summarizer summarize: ReceptiveAccount new) equals: (OrderedCollection with: 'Balance = 0').! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:20:58'!
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
 test02AccountSummaryOfReceptiveAccountWithOneDeposit
 
-	|account1|
-	
-	account1 _ ReceptiveAccount new.
-	
 	Deposit register: 50 on: account1.
 		
-	self assert: account1 accountSummary equals: ({'Depósito por 50.'. 'Balance = 50'} asOrderedCollection).! !
+	self assert: (summarizer summarize: account1) equals: ({'Depósito por 50.'. 'Balance = 50'} asOrderedCollection).! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:21:01'!
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
 test03AccountSummaryOfReceptiveAccountWithOneWithdrawal
 
-	|account1|
-	
-	account1 _ ReceptiveAccount new.
-	
 	Withdraw register: 50 on: account1.
 		
-	self assert: account1 accountSummary equals: ({'Extracción por 50.'. 'Balance = -50'} asOrderedCollection).! !
+	self assert: (summarizer summarize: account1) equals: ({'Extracción por 50.'. 'Balance = -50'} asOrderedCollection).! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:21:04'!
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
 test04AccountSummaryOfReceptiveAccountWithOneTransferDeposit
 
-	|account1|
-	
-	account1 _ ReceptiveAccount new.
-	
-	
-	Transfer register: 50 from: ReceptiveAccount new to: account1 .
+	Transfer register: 50 from: ReceptiveAccount new to: account1.
 		
-	self assert: account1 accountSummary equals: ({'Depósito por transferencia de 50.'. 'Balance = 50'} asOrderedCollection).! !
+	self assert: (summarizer summarize: account1) equals: ({'Depósito por transferencia de 50.'. 'Balance = 50'} asOrderedCollection).! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:21:08'!
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
 test05AccountSummaryOfReceptiveAccountWithOneTransferWithdraw
 
-	|account1|
-	
-	account1 _ ReceptiveAccount new.
-	
-	
 	Transfer register: 50 from: account1 to: ReceptiveAccount new.
 		
-	self assert: account1 accountSummary equals: ({'Extracción por transferencia de 50.'. 'Balance = -50'} asOrderedCollection).! !
+	self assert: (summarizer summarize: account1) equals: ({'Extracción por transferencia de 50.'. 'Balance = -50'} asOrderedCollection).! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:21:12'!
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
 test06AccountSummaryOfReceptiveAccountWithManyTransactions
-
-	|account1|
-	
-	account1 _ ReceptiveAccount new.
-	
 	
 	Transfer register: 50 from: account1 to: ReceptiveAccount new.
 	Transfer register: 42 from: ReceptiveAccount new to: account1.
@@ -377,19 +354,69 @@ test06AccountSummaryOfReceptiveAccountWithManyTransactions
 	Withdraw register: 15 on: account1.
 		
 	self 
-		assert: account1 accountSummary 
+		assert: (summarizer summarize: account1) 
 		equals: ({'Extracción por transferencia de 50.'. 'Depósito por transferencia de 42.'. 'Depósito por 10.'. 'Extracción por 15.'. 'Balance = -13'} asOrderedCollection).! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/21/2022 22:22:19'!
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:57'!
 test07AccountSummaryOfEmptyPortfolio
 
-	|portfolio1|
+	self 
+		assert: (summarizer summarize: portfolio1)
+		equals: ({'Balance = 0'} asOrderedCollection).! !
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:57'!
+test08AccountSummaryOfPortfolioWithAReceptiveAccount
+
+	Deposit register: 33 on: account1.
 	
-	portfolio1 _ Portfolio new.
+	portfolio1 add: account1.
 		
 	self 
-		assert: portfolio1 accountSummary 
-		equals: ({'Balance = 0'} asOrderedCollection).! !
+		assert: (summarizer summarize: portfolio1)
+		equals: ({'Depósito por 33.'. 'Balance = 33'} asOrderedCollection).! !
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:18:58'!
+test09AccountSummaryOfPortfolioWithAPortfolioWithAReceptiveAccount
+
+	Deposit register: 33 on: account1.
+	
+	portfolio2 add: account1.
+	portfolio1 add: portfolio2.
+		
+	self 
+		assert: (summarizer summarize: portfolio1)
+		equals: ({'Depósito por 33.'. 'Balance = 33'} asOrderedCollection).! !
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:34:02'!
+test10AccountSummaryOfPortfolioWithManyAccounts
+
+	Deposit register: 33 on: account1.
+	Withdraw register: 10 on: account2.
+	Transfer register: 10 from: account3 to: account2.
+	
+	portfolio2 add: account1.
+	portfolio3 add: portfolio4.
+	portfolio3 add: account3.
+	portfolio4 add: account2.
+	portfolio1 add: portfolio2.	
+	portfolio1 add: portfolio3.
+		
+	self 
+		assert: (summarizer summarize: portfolio1)
+		equals: ({'Depósito por 33.'. 'Extracción por 10.'. 'Depósito por transferencia de 10.'. 'Extracción por transferencia de 10.'. 'Balance = 23'} asOrderedCollection).! !
+
+
+!ReportTest methodsFor: 'setUp' stamp: 'LM 10/22/2022 18:25:40'!
+setUp
+
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	account3 _ ReceptiveAccount new.
+	summarizer _ AccountSummarizer new.
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	portfolio4 _ Portfolio new.! !
 
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
@@ -491,6 +518,11 @@ accountSummary
 
 	self subclassResponsibility! !
 
+!Account methodsFor: 'reports' stamp: 'LM 10/22/2022 17:50:51'!
+beSummarizedBy: aSummarizer
+
+	self subclassResponsibility! !
+
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
 Account subclass: #Portfolio
@@ -563,11 +595,6 @@ transactions
 	^transactions ! !
 
 
-!Portfolio methodsFor: 'composition' stamp: 'LM 10/20/2022 20:00:55'!
-accountSummary
-	
-	self shouldBeImplemented ! !
-
 !Portfolio methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:02:59'!
 addedTo: aPortfolio 
 	
@@ -607,6 +634,12 @@ assertCanAdd: accountToAdd
 signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
+
+
+!Portfolio methodsFor: 'reports' stamp: 'LM 10/22/2022 18:04:51'!
+beSummarizedBy: aSummarizer
+
+	^aSummarizer summarizePortfolioWithAccounts: accounts andBalance: self balance.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -692,20 +725,70 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'reports' stamp: 'LM 10/20/2022 21:53:25'!
-accountSummary
+!ReceptiveAccount methodsFor: 'reports' stamp: 'LM 10/22/2022 17:50:18'!
+beSummarizedBy: aSummarizer
+	
+	^aSummarizer summarizeReceptiveAccountWithTransactions: transactions withBalance: self balance.! !
+
+
+!classDefinition: #AccountSummarizer category: 'Portfolio-Solucion'!
+Object subclass: #AccountSummarizer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 17:50:03'!
+summarize: anAccount
+
+	^anAccount beSummarizedBy: self.! !
+
+!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 17:59:57'!
+summarizePortfolio: aPortfolio
+
+	|res|
+	
+	res _ OrderedCollection new.
+	
+	res add:		('Balance = ' , aPortfolio balance asString).
+	^res	! !
+
+!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 18:14:45'!
+summarizePortfolioWithAccounts: aCollectionOfAccounts andBalance: aBalance 
+
+	|res|
+	
+	res _ OrderedCollection new.
+	
+	aCollectionOfAccounts do: [:account | res addAllLast: (self summarizeWithoutBalance: account)].
+	
+	res add:		('Balance = ' , aBalance asString).
+	^res	! !
+
+!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 17:45:59'!
+summarizeReceptiveAccountWithTransactions: aCollectionOfTransactions withBalance: aBalance
+
 	|res|
 	
 	res := OrderedCollection new .
-	transactions do: [:aTransaction| 
+	aCollectionOfTransactions do: [:aTransaction| 
 			(aTransaction isKindOf: Deposit) ifTrue: [(res add: 'Depósito por ' , aTransaction value asString ,'.')].
 			(aTransaction isKindOf: Withdraw) ifTrue: [(res add: 'Extracción por ' , aTransaction value asString ,'.')].
 			(aTransaction isKindOf: TransferDeposit ) ifTrue: [(res add: 'Depósito por transferencia de ' , aTransaction value asString ,'.')].
 			(aTransaction isKindOf: TransferWithdraw ) ifTrue: [(res add: 'Extracción por transferencia de ' , aTransaction value asString ,'.')			]
 			].		
 			
-	res add:		('Balance = ' , self balance asString).
+	res add:		('Balance = ' , aBalance asString).
 	^res	! !
+
+!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 18:13:07'!
+summarizeWithoutBalance: anAccount
+	
+	|res|
+
+	res _ 	anAccount beSummarizedBy: self.
+	res removeLast.
+	^res! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
