@@ -305,6 +305,65 @@ test07AccountKnowsItsTransactions
 ! !
 
 
+!classDefinition: #ReportTest category: 'Portfolio-Solucion'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 19:41:11'!
+test01AccountSummaryOfAccountWithNoTransactions
+
+	self assert: ReceptiveAccount new accountSummary equals: (OrderedCollection with: 'Balance = 0').! !
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 20:24:33'!
+test02AccountSummaryOfAccountWithOneDeposit
+
+	|account1|
+	
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 50 on: account1.
+		
+	self assert: account1 accountSummary equals: ({'Depósito por 50.'. 'Balance = 50'} asOrderedCollection).! !
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 20:25:32'!
+test03AccountSummaryOfAccountWithOneWithdrawal
+
+	|account1|
+	
+	account1 _ ReceptiveAccount new.
+	
+	Withdraw register: 50 on: account1.
+		
+	self assert: account1 accountSummary equals: ({'Extracción por 50.'. 'Balance = -50'} asOrderedCollection).! !
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 21:49:45'!
+test04AccountSummaryOfAccountWithOneTransferDeposit
+
+	|account1|
+	
+	account1 _ ReceptiveAccount new.
+	
+	
+	Transfer register: 50 from: ReceptiveAccount new to: account1 .
+		
+	self assert: account1 accountSummary equals: ({'Depósito por transferencia de 50.'. 'Balance = 50'} asOrderedCollection).! !
+
+!ReportTest methodsFor: 'tests' stamp: 'LM 10/20/2022 21:52:15'!
+test05AccountSummaryOfAccountWithOneTransferWithdraw
+
+	|account1|
+	
+	account1 _ ReceptiveAccount new.
+	
+	
+	Transfer register: 50 from: account1 to: ReceptiveAccount new.
+		
+	self assert: account1 accountSummary equals: ({'Extracción por transferencia de 50.'. 'Balance = -50'} asOrderedCollection).! !
+
+
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
 TestCase subclass: #TransferTest
 	instanceVariableNames: ''
@@ -398,6 +457,12 @@ addedTo: aPortfolio
 
 	self subclassResponsibility ! !
 
+
+!Account methodsFor: 'reports' stamp: 'LM 10/20/2022 20:00:38'!
+accountSummary
+
+	self subclassResponsibility! !
+
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
 Account subclass: #Portfolio
@@ -469,6 +534,11 @@ transactions
 	
 	^transactions ! !
 
+
+!Portfolio methodsFor: 'composition' stamp: 'LM 10/20/2022 20:00:55'!
+accountSummary
+	
+	self shouldBeImplemented ! !
 
 !Portfolio methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:02:59'!
 addedTo: aPortfolio 
@@ -593,6 +663,22 @@ addedTo: aPortfolio
 	
 	! !
 
+
+!ReceptiveAccount methodsFor: 'reports' stamp: 'LM 10/20/2022 21:53:25'!
+accountSummary
+	|res|
+	
+	res := OrderedCollection new .
+	transactions do: [:aTransaction| 
+			(aTransaction isKindOf: Deposit) ifTrue: [(res add: 'Depósito por ' , aTransaction value asString ,'.')].
+			(aTransaction isKindOf: Withdraw) ifTrue: [(res add: 'Extracción por ' , aTransaction value asString ,'.')].
+			(aTransaction isKindOf: TransferDeposit ) ifTrue: [(res add: 'Depósito por transferencia de ' , aTransaction value asString ,'.')].
+			(aTransaction isKindOf: TransferWithdraw ) ifTrue: [(res add: 'Extracción por transferencia de ' , aTransaction value asString ,'.')			]
+			].		
+			
+	res add:		('Balance = ' , self balance asString).
+	^res	! !
+
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
 Object subclass: #AccountTransaction
@@ -641,6 +727,11 @@ initializeFor: aValue
 
 	value := aValue ! !
 
+
+!Deposit methodsFor: 'value' stamp: 'LM 10/20/2022 20:06:30'!
+reportText
+
+	^'Depósito por ' , value asString! !
 
 !Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38'!
 value
