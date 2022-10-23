@@ -1,3 +1,117 @@
+!classDefinition: #AccountSummaryTest category: 'Portfolio-Solucion'!
+TestCase subclass: #AccountSummaryTest
+	instanceVariableNames: 'account1 account2 account3 summarizer portfolio1 portfolio2 portfolio3 portfolio4'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test01AccountSummaryOfReceptiveAccountWithNoTransactions
+
+	self assert: (summarizer report: ReceptiveAccount new) equals: (OrderedCollection with: 'Balance = 0').! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test02AccountSummaryOfReceptiveAccountWithOneDeposit
+
+	Deposit register: 50 on: account1.
+		
+	self assert: (summarizer report: account1) equals: ({'Depósito por 50.'. 'Balance = 50'} asOrderedCollection).! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test03AccountSummaryOfReceptiveAccountWithOneWithdrawal
+
+	Withdraw register: 50 on: account1.
+		
+	self assert: (summarizer report: account1) equals: ({'Extracción por 50.'. 'Balance = -50'} asOrderedCollection).! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test04AccountSummaryOfReceptiveAccountWithOneTransferDeposit
+
+	Transfer register: 50 from: ReceptiveAccount new to: account1.
+		
+	self assert: (summarizer report: account1) equals: ({'Depósito por transferencia de 50.'. 'Balance = 50'} asOrderedCollection).! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test05AccountSummaryOfReceptiveAccountWithOneTransferWithdraw
+
+	Transfer register: 50 from: account1 to: ReceptiveAccount new.
+		
+	self assert: (summarizer report: account1) equals: ({'Extracción por transferencia de 50.'. 'Balance = -50'} asOrderedCollection).! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test06AccountSummaryOfReceptiveAccountWithManyTransactions
+	
+	Transfer register: 50 from: account1 to: ReceptiveAccount new.
+	Transfer register: 42 from: ReceptiveAccount new to: account1.
+	Deposit register: 10 on: account1.
+	Withdraw register: 15 on: account1.
+		
+	self 
+		assert: (summarizer report: account1) 
+		equals: ({'Extracción por transferencia de 50.'. 'Depósito por transferencia de 42.'. 'Depósito por 10.'. 'Extracción por 15.'. 'Balance = -13'} asOrderedCollection).! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test07AccountSummaryOfEmptyPortfolio
+
+	self 
+		assert: (summarizer report: portfolio1)
+		equals: ({'Balance = 0'} asOrderedCollection).! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test08AccountSummaryOfPortfolioWithAReceptiveAccount
+
+	Deposit register: 33 on: account1.
+	
+	portfolio1 add: account1.
+		
+	self 
+		assert: (summarizer report: portfolio1)
+		equals: ({'Depósito por 33.'. 'Balance = 33'} asOrderedCollection).! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test09AccountSummaryOfPortfolioWithAPortfolioWithAReceptiveAccount
+
+	Deposit register: 33 on: account1.
+	
+	portfolio2 add: account1.
+	portfolio1 add: portfolio2.
+		
+	self 
+		assert: (summarizer report: portfolio1)
+		equals: ({'Depósito por 33.'. 'Balance = 33'} asOrderedCollection).! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:11:50'!
+test10AccountSummaryOfPortfolioWithManyAccounts
+
+	Deposit register: 33 on: account1.
+	Withdraw register: 10 on: account2.
+	Transfer register: 10 from: account3 to: account2.
+	
+	portfolio2 add: account1.
+	portfolio3 add: portfolio4.
+	portfolio3 add: account3.
+	portfolio4 add: account2.
+	portfolio1 add: portfolio2.	
+	portfolio1 add: portfolio3.
+		
+	self 
+		assert: (summarizer report: portfolio1)
+		equals: ({'Depósito por 33.'. 'Extracción por 10.'. 'Depósito por transferencia de 10.'. 'Extracción por transferencia de 10.'. 'Balance = 23'} asOrderedCollection).! !
+
+
+!AccountSummaryTest methodsFor: 'setUp' stamp: 'LM 10/22/2022 18:25:40'!
+setUp
+
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	account3 _ ReceptiveAccount new.
+	summarizer _ AccountSummarizer new.
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	portfolio4 _ Portfolio new.! !
+
+
 !classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
 TestCase subclass: #PortfolioTest
 	instanceVariableNames: ''
@@ -214,6 +328,31 @@ test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd
 			self assert: portfolioToModify accountsIsEmpty ]! !
 
 
+!classDefinition: #PortfolioTreeSummaryTest category: 'Portfolio-Solucion'!
+TestCase subclass: #PortfolioTreeSummaryTest
+	instanceVariableNames: 'account1 account2 account3 portfolioTreeSummarizer portfolio1 portfolio2 portfolio3 portfolio4'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioTreeSummaryTest methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:54:01'!
+setUp
+
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	account3 _ ReceptiveAccount new.
+	portfolioTreeSummarizer _ PortfolioTreeSummarizer new.
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	portfolio4 _ Portfolio new.! !
+
+!PortfolioTreeSummaryTest methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:53:18'!
+test01EmptyPortfolio
+
+	self assert: (portfolioTreeSummarizer report: portfolio1) equals: (OrderedCollection with: {'Portfolio 1'})! !
+
+
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion'!
 TestCase subclass: #ReceptiveAccountTest
 	instanceVariableNames: ''
@@ -305,90 +444,95 @@ test07AccountKnowsItsTransactions
 ! !
 
 
-!classDefinition: #ReportTest category: 'Portfolio-Solucion'!
-TestCase subclass: #ReportTest
-	instanceVariableNames: 'account1 account2 account3 summarizer portfolio1 portfolio2 portfolio3 portfolio4'
+!classDefinition: #TransferNetCalculatorTest category: 'Portfolio-Solucion'!
+TestCase subclass: #TransferNetCalculatorTest
+	instanceVariableNames: 'account1 account2 account3 transferNetCalculator portfolio1 portfolio2 portfolio3 portfolio4'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 17:51:43'!
-test01AccountSummaryOfReceptiveAccountWithNoTransactions
+!TransferNetCalculatorTest methodsFor: 'setUp' stamp: 'LM 10/23/2022 18:50:02'!
+setUp
 
-	self assert: (summarizer summarize: ReceptiveAccount new) equals: (OrderedCollection with: 'Balance = 0').! !
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	account3 _ ReceptiveAccount new.
+	transferNetCalculator _ TransferNetCalculator new.
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	portfolio4 _ Portfolio new.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
-test02AccountSummaryOfReceptiveAccountWithOneDeposit
+
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:24:36'!
+test01TransferNetOfReceptiveAccountWithNoTransactions
+
+	self assert: (transferNetCalculator report: ReceptiveAccount new) equals: 0.! !
+
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:24:36'!
+test02TransferNetOfReceptiveAccountWithOneTransferDeposit
+
+	Transfer register: 50 from: account2 to: account1.
+	
+	self assert: (transferNetCalculator report: account1) equals: 50.! !
+
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:24:36'!
+test03TransferNetOfReceptiveAccountWithOneTransferWithdraw
+
+	Transfer register: 50 from: account1 to: account2.
+	
+	self assert: (transferNetCalculator report: account1) equals: -50.! !
+
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:24:36'!
+test04TransferNetOfReceptiveAccountWithOneDeposit
 
 	Deposit register: 50 on: account1.
-		
-	self assert: (summarizer summarize: account1) equals: ({'Depósito por 50.'. 'Balance = 50'} asOrderedCollection).! !
+	
+	self assert: (transferNetCalculator report: account1) equals: 0.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
-test03AccountSummaryOfReceptiveAccountWithOneWithdrawal
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:24:36'!
+test05TransferNetOfReceptiveAccountWithOneWithdrawal
 
 	Withdraw register: 50 on: account1.
-		
-	self assert: (summarizer summarize: account1) equals: ({'Extracción por 50.'. 'Balance = -50'} asOrderedCollection).! !
-
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
-test04AccountSummaryOfReceptiveAccountWithOneTransferDeposit
-
-	Transfer register: 50 from: ReceptiveAccount new to: account1.
-		
-	self assert: (summarizer summarize: account1) equals: ({'Depósito por transferencia de 50.'. 'Balance = 50'} asOrderedCollection).! !
-
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
-test05AccountSummaryOfReceptiveAccountWithOneTransferWithdraw
-
-	Transfer register: 50 from: account1 to: ReceptiveAccount new.
-		
-	self assert: (summarizer summarize: account1) equals: ({'Extracción por transferencia de 50.'. 'Balance = -50'} asOrderedCollection).! !
-
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:53'!
-test06AccountSummaryOfReceptiveAccountWithManyTransactions
 	
+	self assert: (transferNetCalculator report: account1) equals: 0.! !
+
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:24:59'!
+test06TransferNetOfReceptiveAccountWithOneManyTransactions
+
 	Transfer register: 50 from: account1 to: ReceptiveAccount new.
 	Transfer register: 42 from: ReceptiveAccount new to: account1.
 	Deposit register: 10 on: account1.
 	Withdraw register: 15 on: account1.
 		
 	self 
-		assert: (summarizer summarize: account1) 
-		equals: ({'Extracción por transferencia de 50.'. 'Depósito por transferencia de 42.'. 'Depósito por 10.'. 'Extracción por 15.'. 'Balance = -13'} asOrderedCollection).! !
+		assert: (transferNetCalculator report: account1) 
+		equals: -8.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:57'!
-test07AccountSummaryOfEmptyPortfolio
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:25:49'!
+test07TransferNetOfEmptyPortfolio
 
-	self 
-		assert: (summarizer summarize: portfolio1)
-		equals: ({'Balance = 0'} asOrderedCollection).! !
+	self assert: (transferNetCalculator report: portfolio1) 		equals: 0.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:17:57'!
-test08AccountSummaryOfPortfolioWithAReceptiveAccount
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:36:38'!
+test08TransferNetOfPortfolioWithAReceptiveAccount
 
-	Deposit register: 33 on: account1.
-	
+	Transfer register: 50 from: account1 to: account2.
 	portfolio1 add: account1.
-		
-	self 
-		assert: (summarizer summarize: portfolio1)
-		equals: ({'Depósito por 33.'. 'Balance = 33'} asOrderedCollection).! !
-
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:18:58'!
-test09AccountSummaryOfPortfolioWithAPortfolioWithAReceptiveAccount
-
-	Deposit register: 33 on: account1.
 	
+	self assert: (transferNetCalculator report: portfolio1) 		equals: -50.! !
+
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:37:18'!
+test09TransferNetOfPortfolioWithAPortfolioWithAReceptiveAccount
+
+	Transfer register: 50 from: account1 to: account2.
 	portfolio2 add: account1.
 	portfolio1 add: portfolio2.
-		
-	self 
-		assert: (summarizer summarize: portfolio1)
-		equals: ({'Depósito por 33.'. 'Balance = 33'} asOrderedCollection).! !
+	
+	self assert: (transferNetCalculator report: portfolio1) 		equals: -50.! !
 
-!ReportTest methodsFor: 'tests' stamp: 'LM 10/22/2022 18:34:02'!
-test10AccountSummaryOfPortfolioWithManyAccounts
+!TransferNetCalculatorTest methodsFor: 'tests' stamp: 'LM 10/23/2022 19:39:31'!
+test10TransferNetOfPortfolioWithManyAccounts
 
 	Deposit register: 33 on: account1.
 	Withdraw register: 10 on: account2.
@@ -401,22 +545,7 @@ test10AccountSummaryOfPortfolioWithManyAccounts
 	portfolio1 add: portfolio2.	
 	portfolio1 add: portfolio3.
 		
-	self 
-		assert: (summarizer summarize: portfolio1)
-		equals: ({'Depósito por 33.'. 'Extracción por 10.'. 'Depósito por transferencia de 10.'. 'Extracción por transferencia de 10.'. 'Balance = 23'} asOrderedCollection).! !
-
-
-!ReportTest methodsFor: 'setUp' stamp: 'LM 10/22/2022 18:25:40'!
-setUp
-
-	account1 _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	account3 _ ReceptiveAccount new.
-	summarizer _ AccountSummarizer new.
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
-	portfolio3 _ Portfolio new.
-	portfolio4 _ Portfolio new.! !
+	self assert: (transferNetCalculator report: portfolio1) 	equals: 0.! !
 
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
@@ -474,7 +603,7 @@ test03EachPartOfATransactionCanReachTheOther
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
-	instanceVariableNames: ''
+	instanceVariableNames: 'name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -518,8 +647,8 @@ accountSummary
 
 	self subclassResponsibility! !
 
-!Account methodsFor: 'reports' stamp: 'LM 10/22/2022 17:50:51'!
-beSummarizedBy: aSummarizer
+!Account methodsFor: 'reports' stamp: 'LM 10/23/2022 19:15:50'!
+beReportedBy: aSummarizer
 
 	self subclassResponsibility! !
 
@@ -636,10 +765,10 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'reports' stamp: 'LM 10/22/2022 18:04:51'!
-beSummarizedBy: aSummarizer
+!Portfolio methodsFor: 'reports' stamp: 'LM 10/23/2022 19:15:50'!
+beReportedBy: aSummarizer
 
-	^aSummarizer summarizePortfolioWithAccounts: accounts andBalance: self balance.! !
+	^aSummarizer reportForPortfolioWithAccounts: accounts andBalance: self balance.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -725,70 +854,10 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'reports' stamp: 'LM 10/22/2022 17:50:18'!
-beSummarizedBy: aSummarizer
+!ReceptiveAccount methodsFor: 'reports' stamp: 'LM 10/23/2022 19:15:50'!
+beReportedBy: aSummarizer
 	
-	^aSummarizer summarizeReceptiveAccountWithTransactions: transactions withBalance: self balance.! !
-
-
-!classDefinition: #AccountSummarizer category: 'Portfolio-Solucion'!
-Object subclass: #AccountSummarizer
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 17:50:03'!
-summarize: anAccount
-
-	^anAccount beSummarizedBy: self.! !
-
-!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 17:59:57'!
-summarizePortfolio: aPortfolio
-
-	|res|
-	
-	res _ OrderedCollection new.
-	
-	res add:		('Balance = ' , aPortfolio balance asString).
-	^res	! !
-
-!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 18:14:45'!
-summarizePortfolioWithAccounts: aCollectionOfAccounts andBalance: aBalance 
-
-	|res|
-	
-	res _ OrderedCollection new.
-	
-	aCollectionOfAccounts do: [:account | res addAllLast: (self summarizeWithoutBalance: account)].
-	
-	res add:		('Balance = ' , aBalance asString).
-	^res	! !
-
-!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 17:45:59'!
-summarizeReceptiveAccountWithTransactions: aCollectionOfTransactions withBalance: aBalance
-
-	|res|
-	
-	res := OrderedCollection new .
-	aCollectionOfTransactions do: [:aTransaction| 
-			(aTransaction isKindOf: Deposit) ifTrue: [(res add: 'Depósito por ' , aTransaction value asString ,'.')].
-			(aTransaction isKindOf: Withdraw) ifTrue: [(res add: 'Extracción por ' , aTransaction value asString ,'.')].
-			(aTransaction isKindOf: TransferDeposit ) ifTrue: [(res add: 'Depósito por transferencia de ' , aTransaction value asString ,'.')].
-			(aTransaction isKindOf: TransferWithdraw ) ifTrue: [(res add: 'Extracción por transferencia de ' , aTransaction value asString ,'.')			]
-			].		
-			
-	res add:		('Balance = ' , aBalance asString).
-	^res	! !
-
-!AccountSummarizer methodsFor: 'as yet unclassified' stamp: 'LM 10/22/2022 18:13:07'!
-summarizeWithoutBalance: anAccount
-	
-	|res|
-
-	res _ 	anAccount beSummarizedBy: self.
-	res removeLast.
-	^res! !
+	^aSummarizer reportForReceptiveAccountWithTransactions: transactions withBalance: self balance.! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -797,6 +866,11 @@ Object subclass: #AccountTransaction
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
+
+!AccountTransaction methodsFor: 'value' stamp: 'LM 10/23/2022 19:10:50'!
+reportTo: aSummarizer
+
+	self subclassResponsibility ! !
 
 !AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25'!
 value 
@@ -816,6 +890,11 @@ AccountTransaction subclass: #InterpersonalTransaction
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
+
+!InterpersonalTransaction methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:10:50'!
+reportTo: aSummarizer
+
+	self subclassResponsibility ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -861,6 +940,11 @@ initializeAsPartOfTransfer: aTransfer
 
 	transfer _ aTransfer.! !
 
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:13:28'!
+reportTo: aSummarizer
+
+	^aSummarizer processTransferDeposit: self! !
+
 !TransferDeposit methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:19:18'!
 setTransfer: aTransfer
 
@@ -899,6 +983,11 @@ initializeAsPartOfTransfer: aTransfer
 
 	transfer _ aTransfer.! !
 
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:13:44'!
+reportTo: aSummarizer
+
+	^aSummarizer processTransferWithdraw: self! !
+
 !TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/20/2022 15:19:22'!
 setTransfer: aTransfer
 
@@ -916,6 +1005,11 @@ AccountTransaction subclass: #PersonalTransaction
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
+
+!PersonalTransaction methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:10:50'!
+reportTo: aSummarizer
+
+	self subclassResponsibility ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -963,6 +1057,12 @@ affectBalance: aBalance
 
 	^aBalance + value ! !
 
+
+!Deposit methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:13:14'!
+reportTo: aSummarizer
+
+	^aSummarizer processDeposit: self! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Deposit class' category: 'Portfolio-Solucion'!
@@ -999,6 +1099,12 @@ affectBalance: aBalance
 
 	^aBalance - value! !
 
+
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:13:56'!
+reportTo: aSummarizer
+
+	^aSummarizer processWithdraw: self! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
@@ -1009,6 +1115,134 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #Reporter category: 'Portfolio-Solucion'!
+Object subclass: #Reporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+
+!classDefinition: #AccountSummarizer category: 'Portfolio-Solucion'!
+Reporter subclass: #AccountSummarizer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummarizer methodsFor: 'summary text' stamp: 'LM 10/23/2022 19:13:14'!
+processDeposit: aDeposit
+
+	^'Depósito por ' , aDeposit value asString ,'.'! !
+
+!AccountSummarizer methodsFor: 'summary text' stamp: 'LM 10/23/2022 19:13:28'!
+processTransferDeposit: aTransferDeposit
+
+	^'Depósito por transferencia de ' , aTransferDeposit value asString , '.'! !
+
+!AccountSummarizer methodsFor: 'summary text' stamp: 'LM 10/23/2022 19:13:44'!
+processTransferWithdraw: aTransferWithdraw
+
+	^'Extracción por transferencia de ' , aTransferWithdraw value asString ,'.'! !
+
+!AccountSummarizer methodsFor: 'summary text' stamp: 'LM 10/23/2022 19:13:56'!
+processWithdraw: aWithdraw
+
+	^'Extracción por ' , aWithdraw value asString ,'.'! !
+
+
+!AccountSummarizer methodsFor: 'report' stamp: 'LM 10/23/2022 19:15:50'!
+report: anAccount
+
+	^anAccount beReportedBy: self.! !
+
+
+!AccountSummarizer methodsFor: 'report - private' stamp: 'LM 10/23/2022 19:29:36'!
+reportForPortfolioWithAccounts: aCollectionOfAccounts andBalance: aBalance 
+
+	|summary|
+	
+	summary _ OrderedCollection new.
+	
+	aCollectionOfAccounts do: [:account | summary addAllLast: (self summarizeWithoutBalance: account)].
+	
+	summary add:		('Balance = ' , aBalance asString).
+	^summary	! !
+
+!AccountSummarizer methodsFor: 'report - private' stamp: 'LM 10/23/2022 19:14:41'!
+reportForReceptiveAccountWithTransactions: aCollectionOfTransactions withBalance: aBalance
+
+	|summary|
+	
+	summary := OrderedCollection new .
+	aCollectionOfTransactions do: [:aTransaction| summary add: (aTransaction reportTo: self)	]
+			.		
+			
+	summary add:		('Balance = ' , aBalance asString).
+	^summary	! !
+
+!AccountSummarizer methodsFor: 'report - private' stamp: 'LM 10/23/2022 19:15:50'!
+summarizeWithoutBalance: anAccount
+	
+	|res|
+
+	res _ 	anAccount beReportedBy: self.
+	res removeLast.
+	^res! !
+
+
+!classDefinition: #PortfolioTreeSummarizer category: 'Portfolio-Solucion'!
+Reporter subclass: #PortfolioTreeSummarizer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+
+!classDefinition: #TransferNetCalculator category: 'Portfolio-Solucion'!
+Reporter subclass: #TransferNetCalculator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:22:05'!
+processDeposit: aDeposit
+
+	^ 0! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:18:45'!
+processTransferDeposit: aTransferDeposit
+
+	^aTransferDeposit value! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:20:55'!
+processTransferWithdraw: aTransferWithdraw
+
+	^ 0 - aTransferWithdraw value! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:22:45'!
+processWithdraw: aWithdraw
+
+	^ 0! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:24:36'!
+report: anAccount
+	
+	^anAccount beReportedBy: self.! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'LM 10/23/2022 19:14:41'!
+reportForReceptiveAccountWithTransactions: aCollectionOfTransactions withBalance:  aBalance
+
+	^aCollectionOfTransactions inject: 0 into: [:netSoFar :aTransaction| netSoFar + (aTransaction reportTo: self)]! !
+
+
+!TransferNetCalculator methodsFor: 'report - private' stamp: 'LM 10/23/2022 19:32:31'!
+reportForPortfolioWithAccounts: aCollectionOfAccounts andBalance: aBalance
+	
+	^aCollectionOfAccounts inject: 0 into: [:netSoFar :anAccount| netSoFar + (anAccount beReportedBy: self)]! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
