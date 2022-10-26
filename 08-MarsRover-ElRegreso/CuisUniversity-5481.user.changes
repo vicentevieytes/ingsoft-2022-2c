@@ -2019,3 +2019,5783 @@ t!
 t!
 t!
 t!
+
+----STARTUP---- (25 October 2022 19:09:35) as /home/vicente/Escritorio/linux64/CuisUniversity-5481.image!
+
+
+----End fileIn of /home/vicente/Escritorio/linux64/MarsRover-WithHeading.st----!
+
+----STARTUP---- (25 October 2022 19:12:19) as /home/vicente/Escritorio/linux64/CuisUniversity-5481.image!
+
+
+----End fileIn of /home/vicente/Escritorio/linux64/MarsRover-WithHeading.st----!
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:14:00'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:14:00'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:14:00'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:14:00'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:14:00'!
+PASSED!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:14:00'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:14:00'!
+FAILURE!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:14:00'!
+FAILURE!
+
+MarsRoverHeadingNorth name asString!
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:15:20'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:15:20'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:15:20'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:15:20'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:15:20'!
+PASSED!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:15:20'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:15:20'!
+FAILURE!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:15:20'!
+FAILURE!
+
+aHeadingType name!
+
+MarsRoverHeadingEast name asString!
+
+aHeadingType name!
+!Logger methodsFor: 'logging' stamp: 'V 10/25/2022 19:17:13' prior: 50552569!
+headingName: aHeadingType
+
+	(aHeadingType class name = MarsRoverHeadingEast name asString) ifTrue: [^'East'].
+	(aHeadingType class name = MarsRoverHeadingNorth name asString) ifTrue:[^'North'].
+	(aHeadingType class name = MarsRoverHeadingWest name asString) ifTrue: [^'West'].
+	(aHeadingType class name = MarsRoverHeadingSouth name asString) ifTrue:[^'South'].! !
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:17:15'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:17:15'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:17:15'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:17:15'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:17:15'!
+PASSED!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:17:15'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:17:15'!
+PASSED!
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:17:16'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:17:16'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:17:16'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:17:16'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:17:16'!
+PASSED!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:17:16'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:17:16'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:17:18'!
+PASSED!
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:24:21'!
+test07LoggerLoggingDirectionsCorrectlyLogsManyRotations
+
+	|logger|
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rllfll'.
+	
+	self assert: logger logs equals: ({'East'. 'North'. 'West'. 'South'. 'East'} asOrderedCollection)! !
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 19:24:22'!
+PASSED!
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:24:22'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:24:22'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:24:22'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:24:22'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:24:22'!
+PASSED!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:24:22'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 19:24:22'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:24:22'!
+PASSED!
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:26:35'!
+test09LoggerLoggingDirectionsCorrectlyStopsLogging
+	
+	 |logger|
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rr'.
+	
+	logger stopLoggingDirections.
+	
+	rover process:'r'.
+	logger startLoggingDirections.
+	rover process:'l'.	
+	self assert: logger logs equals: ({'East'. 'South'. 'South'} asOrderedCollection)! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:26:46'!
+test08LoggerLoggingDirectionsCorrectlyLogsTurningRight
+	
+	 |logger|
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'r'.
+	
+	self assert: logger logs equals: (OrderedCollection with: 'East')! !
+
+!methodRemoval: LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:26:46'!
+test07LoggerLoggingDirectionsCorrectlyLogsTurningRight
+	
+	 |logger|
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'r'.
+	
+	self assert: logger logs equals: (OrderedCollection with: 'East')!
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:27:07' prior: 50553151!
+test09LoggerLoggingDirectionsCorrectlyStopsLogging
+	
+	 |logger|
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rr'.
+	logger stopLoggingDirections.
+	rover process:'r'.
+	logger startLoggingDirections.
+	rover process:'l'.	
+	self assert: logger logs equals: ({'East'. 'South'. 'South'} asOrderedCollection)! !
+
+!classDefinition: #LogTest category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 19:27:32'!
+TestCase subclass: #LogTest
+	instanceVariableNames: 'rover loggerx'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!LogTest methodsFor: 'setUp' stamp: 'V 10/25/2022 19:27:30' prior: 50552303 overrides: 16961394!
+setUp
+
+	rover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	loggerx _ Logger for: rover! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:27:45' prior: 50552308!
+test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions
+	
+	
+	loggerx _ Logger for: rover.
+	loggerx startLoggingPositions.
+	rover process: ''.
+	self assert: loggerx logs equals: OrderedCollection new.  ! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:28:04' prior: 50552317!
+test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections
+	
+	
+	loggerx _ Logger for: rover.
+	loggerx startLoggingDirections.
+	rover process: ''.
+	self assert: loggerx logs equals: OrderedCollection new.  ! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:28:14' prior: 50552326!
+test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions
+	
+	
+	loggerx _ Logger for: rover.
+	loggerx startLoggingDirections.
+	loggerx startLoggingPositions.
+	rover process: ''.
+	self assert: loggerx logs equals: OrderedCollection new.  ! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:28:23' prior: 50552337!
+test04LoggerLoggingPositionsCorrectlyLogsMovingForward
+	
+	
+	
+	loggerx _ Logger for: rover.
+	loggerx startLoggingPositions.
+	
+	rover process: 'f'.
+	
+	self assert: loggerx logs equals: (OrderedCollection with: '1@2' )! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:28:29' prior: 50552346!
+test05LoggerLoggingPositionsCorrectlyLogsManyMovements
+	
+	
+	
+	loggerx _ Logger for: rover.
+	loggerx startLoggingPositions.
+	
+	rover process: 'ffbrfrb'.
+	
+	self assert: loggerx logs equals: {'1@2'. '1@3'. '1@2'. '2@2'. '2@3'} asOrderedCollection ! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:28:40' prior: 50552356!
+test06LoggerLoggingPositionsCorrectlyStoppsLogging
+	
+	
+	
+	loggerx _ Logger for: rover.
+	loggerx startLoggingPositions.
+	
+	rover process: 'f'.
+	
+	loggerx stopLoggingPositions.
+	rover process: 'fff'.
+	
+	loggerx startLoggingPositions.
+	rover process: 'f'. 
+	
+	self assert: loggerx logs equals: {'1@2'. '1@6'} asOrderedCollection ! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:29:07'!
+test07LoggerLoggingDirectionsCorrectlyLogsTurningRight
+	
+	 |logger|
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'r'.
+	
+	self assert: logger logs equals: (OrderedCollection with: 'East')! !
+
+!methodRemoval: LogTest #test08LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:29:07'!
+test08LoggerLoggingDirectionsCorrectlyLogsTurningRight
+	
+	 |logger|
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'r'.
+	
+	self assert: logger logs equals: (OrderedCollection with: 'East')!
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:29:13'!
+test08LoggerLoggingDirectionsCorrectlyLogsManyRotations
+
+	|logger|
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rllfll'.
+	
+	self assert: logger logs equals: ({'East'. 'North'. 'West'. 'South'. 'East'} asOrderedCollection)! !
+
+!methodRemoval: LogTest #test07LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 19:29:13'!
+test07LoggerLoggingDirectionsCorrectlyLogsManyRotations
+
+	|logger|
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rllfll'.
+	
+	self assert: logger logs equals: ({'East'. 'North'. 'West'. 'South'. 'East'} asOrderedCollection)!
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:29:18' prior: 50553297!
+test08LoggerLoggingDirectionsCorrectlyLogsManyRotations
+
+	
+	
+	loggerx _ Logger for: rover.
+	loggerx startLoggingDirections.
+	
+	rover process: 'rllfll'.
+	
+	self assert: loggerx logs equals: ({'East'. 'North'. 'West'. 'South'. 'East'} asOrderedCollection)! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:29:27' prior: 50553184!
+test09LoggerLoggingDirectionsCorrectlyStopsLogging
+	
+	
+	
+	loggerx _ Logger for: rover.
+	loggerx startLoggingDirections.
+	
+	rover process: 'rr'.
+	loggerx stopLoggingDirections.
+	rover process:'r'.
+	loggerx startLoggingDirections.
+	rover process:'l'.	
+	self assert: loggerx logs equals: ({'East'. 'South'. 'South'} asOrderedCollection)! !
+!LogTest methodsFor: 'tests' stamp: 'V 10/25/2022 19:30:29' prior: 50553277!
+test07LoggerLoggingDirectionsCorrectlyLogsTurningRight
+	
+	
+	
+	loggerx _ Logger for: rover.
+	loggerx startLoggingDirections.
+	
+	rover process: 'r'.
+	
+	self assert: loggerx logs equals: (OrderedCollection with: 'East')! !
+
+!classDefinition: #LogTest category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 19:30:37'!
+TestCase subclass: #LogTest
+	instanceVariableNames: 'rover logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553253!
+test05LoggerLoggingPositionsCorrectlyLogsManyMovements
+	
+	
+	
+	logger _ Logger for: rover.
+	logger startLoggingPositions.
+	
+	rover process: 'ffbrfrb'.
+	
+	self assert: logger logs equals: {'1@2'. '1@3'. '1@2'. '2@2'. '2@3'} asOrderedCollection ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553232!
+test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions
+	
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	logger startLoggingPositions.
+	rover process: ''.
+	self assert: logger logs equals: OrderedCollection new.  ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553320!
+test08LoggerLoggingDirectionsCorrectlyLogsManyRotations
+
+	
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rllfll'.
+	
+	self assert: logger logs equals: ({'East'. 'North'. 'West'. 'South'. 'East'} asOrderedCollection)! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553264!
+test06LoggerLoggingPositionsCorrectlyStoppsLogging
+	
+	
+	
+	logger _ Logger for: rover.
+	logger startLoggingPositions.
+	
+	rover process: 'f'.
+	
+	logger stopLoggingPositions.
+	rover process: 'fff'.
+	
+	logger startLoggingPositions.
+	rover process: 'f'. 
+	
+	self assert: logger logs equals: {'1@2'. '1@6'} asOrderedCollection ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553206 overrides: 16961394!
+setUp
+
+	rover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	logger _ Logger for: rover! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553331!
+test09LoggerLoggingDirectionsCorrectlyStopsLogging
+	
+	
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rr'.
+	logger stopLoggingDirections.
+	rover process:'r'.
+	logger startLoggingDirections.
+	rover process:'l'.	
+	self assert: logger logs equals: ({'East'. 'South'. 'South'} asOrderedCollection)! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553212!
+test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions
+	
+	
+	logger _ Logger for: rover.
+	logger startLoggingPositions.
+	rover process: ''.
+	self assert: logger logs equals: OrderedCollection new.  ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553222!
+test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections
+	
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	rover process: ''.
+	self assert: logger logs equals: OrderedCollection new.  ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553243!
+test04LoggerLoggingPositionsCorrectlyLogsMovingForward
+	
+	
+	
+	logger _ Logger for: rover.
+	logger startLoggingPositions.
+	
+	rover process: 'f'.
+	
+	self assert: logger logs equals: (OrderedCollection with: '1@2' )! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:30:37' prior: 50553344!
+test07LoggerLoggingDirectionsCorrectlyLogsTurningRight
+	
+	
+	
+	logger _ Logger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'r'.
+	
+	self assert: logger logs equals: (OrderedCollection with: 'East')! !
+
+!testRun: #LogTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 19:32:20'!
+ERROR!
+
+!testRun: #LogTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 19:32:20'!
+ERROR!
+!Logger methodsFor: 'logging' stamp: 'V 10/25/2022 19:32:28'!
+stopLoggingDirections
+	self shouldBeImplemented.! !
+!Logger methodsFor: 'logging' stamp: 'V 10/25/2022 19:32:59' prior: 50553476!
+stopLoggingDirections
+	loggingDirections _ false.! !
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:33:01'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:33:01'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:33:01'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:33:01'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:33:01'!
+PASSED!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:33:01'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:33:01'!
+PASSED!
+
+!testRun: #LogTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 19:33:01'!
+PASSED!
+
+!testRun: #LogTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 19:33:01'!
+PASSED!
+!MarsRover methodsFor: 'moving' stamp: 'V 10/25/2022 19:45:16' prior: 50552699!
+moveBackward
+	
+	head moveBackward.
+	logger logPosition: position
+	"
+	observers do: [anObserver|  anObserver logPosition: position]
+	
+	positionObservers directionObservers temperatureObservers commandObservers
+	
+	positionObservers do: [aClosure| aClosure value: position]
+	
+	observers do [aClosure | aClosure value: position] --> [aRover|  self logPosition: aRover position]
+	"
+	! !
+
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionObservers directionObservers logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 19:46:41'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionObservers directionObservers logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 19:47:24' prior: 50552642!
+initializeAt: aPosition heading: aHeadingType
+
+	position := aPosition.
+	head := aHeadingType for: self.
+	directionObservers := OrderedCollection new.
+	positionObservers  := OrderedCollection new.
+	
+	logger _ NullLogger new! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 19:47:30'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionSubscriptors directionObservers logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:47:30' prior: 50553550!
+initializeAt: aPosition heading: aHeadingType
+
+	position := aPosition.
+	head := aHeadingType for: self.
+	directionObservers := OrderedCollection new.
+	positionSubscriptors  := OrderedCollection new.
+	
+	logger _ NullLogger new! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 19:47:41'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionSubscriptors directionSubscriptors logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:47:41' prior: 50553570!
+initializeAt: aPosition heading: aHeadingType
+
+	position := aPosition.
+	head := aHeadingType for: self.
+	directionSubscriptors := OrderedCollection new.
+	positionSubscriptors  := OrderedCollection new.
+	
+	logger _ NullLogger new! !
+!Logger methodsFor: 'logging' stamp: 'V 10/25/2022 19:48:31' prior: 50552582!
+startLoggingDirections
+	loggingDirections _ true.
+	! !
+!Logger methodsFor: 'initialization' stamp: 'V 10/25/2022 19:51:06' prior: 50552561!
+initializeFor: aMarsRover
+	
+	loggingPositions _ false.
+	loggingDirections _ false.
+	log := OrderedCollection new.
+	marsRover := aMarsRover.
+	aMarsRover addPositionSubscriptor: self.
+	aMarsRover addDirectionSubscriptor: self.! !
+!Logger methodsFor: 'initialization' stamp: 'V 10/25/2022 19:52:18' prior: 50553605!
+initializeFor: aMarsRover
+	
+	loggingPositions _ false.
+	loggingDirections _ false.
+	log := OrderedCollection new.
+	marsRover := aMarsRover.
+	aMarsRover addPositionSubscriptor: [:aPosition| self logPosition: aPosition].
+	aMarsRover addDirectionSubscriptor: [:aHeadingType| self logPosition: aHeadingType].! !
+!Logger methodsFor: 'initialization' stamp: 'V 10/25/2022 19:52:32' prior: 50553615!
+initializeFor: aMarsRover
+	
+	loggingPositions _ false.
+	loggingDirections _ false.
+	log := OrderedCollection new.
+	marsRover := aMarsRover.
+	aMarsRover addPositionSubscriptor: [:aPosition| self logPosition: aPosition].
+	aMarsRover addDirectionSubscriptor: [:aHeadingType| self logDirection: aHeadingType].! !
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 19:52:57'!
+addPositionSubscriptor: aClosure
+
+	positionSubscriptors add: aClosure .! !
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 19:53:07'!
+addDirectionSubscriptor: aClosure
+
+	directionSubscriptors add: aClosure .! !
+!MarsRover methodsFor: 'moving' stamp: 'V 10/25/2022 19:53:45' prior: 50552708!
+moveForward
+	
+	head moveForward.
+	positionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: position]! !
+!MarsRover methodsFor: 'moving' stamp: 'V 10/25/2022 19:54:03' prior: 50553520!
+moveBackward
+	
+	head moveBackward.
+	positionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: position]
+	"
+	observers do: [anObserver|  anObserver logPosition: position]
+	
+	positionObservers directionObservers temperatureObservers commandObservers
+	
+	positionObservers do: [aClosure| aClosure value: position]
+	
+	observers do [aClosure | aClosure value: position] --> [aRover|  self logPosition: aRover position]
+	"
+	! !
+!MarsRover methodsFor: 'moving' stamp: 'V 10/25/2022 19:54:07' prior: 50553657!
+moveBackward
+	
+	head moveBackward.
+	positionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: position]
+	
+	! !
+!MarsRover methodsFor: 'moving' stamp: 'V 10/25/2022 19:54:40' prior: 50552704!
+moveEast
+	
+	position := position + (1@0).
+	directionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: head]! !
+!MarsRover methodsFor: 'moving' stamp: 'V 10/25/2022 19:54:55' prior: 50553681!
+moveEast
+	
+	position := position + (1@0).
+	! !
+!MarsRover methodsFor: 'heading' stamp: 'V 10/25/2022 19:55:23' prior: 50552669!
+rotateLeft
+	
+	head rotateLeft.
+	directionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: head]! !
+!MarsRover methodsFor: 'heading' stamp: 'V 10/25/2022 19:55:28' prior: 50552673!
+rotateRight
+	
+	head rotateRight.
+	directionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: head]! !
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:55:37'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:55:37'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:55:37'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:55:37'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:55:37'!
+ERROR!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:55:37'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:55:37'!
+ERROR!
+
+!testRun: #LogTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 19:55:37'!
+ERROR!
+
+!testRun: #LogTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 19:55:37'!
+ERROR!
+
+!methodRemoval: MarsRover #setLogger: stamp: 'V 10/25/2022 19:56:49'!
+setLogger: aLogger
+
+	logger _ aLogger!
+
+----SNAPSHOT----(25 October 2022 19:57:03) CuisUniversity-5481.image priorSource: 7059698!
+t!
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:57:27'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:57:27'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:57:27'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:57:27'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:57:27'!
+ERROR!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:57:27'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:57:27'!
+ERROR!
+
+!testRun: #LogTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 19:57:27'!
+ERROR!
+
+!testRun: #LogTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 19:57:27'!
+ERROR!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:57:32'!
+ERROR!
+
+!methodRemoval: NullLogger #logDirection: stamp: 'V 10/25/2022 19:59:05'!
+logDirection: aDirection!
+!Logger methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:59:18'!
+logDirection: aHeadingType.
+
+	loggingDirections ifTrue: [log addLast: (self headingName: aHeadingType)]! !
+!NullLogger methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:59:18'!
+logDirection: aHeadingType! !
+
+!methodRemoval: Logger #logHeading: stamp: 'V 10/25/2022 19:59:18'!
+logHeading: aHeadingType.
+
+	loggingDirections ifTrue: [log addLast: (self headingName: aHeadingType)]!
+
+!methodRemoval: NullLogger #logHeading: stamp: 'V 10/25/2022 19:59:18'!
+logHeading: aHeadingType!
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:59:20'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:59:20'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:59:20'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:59:20'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:59:20'!
+PASSED!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:59:20'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:59:20'!
+PASSED!
+
+!testRun: #LogTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 19:59:20'!
+PASSED!
+
+!testRun: #LogTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 19:59:20'!
+PASSED!
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 19:59:29'!
+PASSED!
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 19:59:29'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 19:59:29'!
+PASSED!
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 19:59:29'!
+PASSED!
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 19:59:29'!
+PASSED!
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 19:59:29'!
+PASSED!
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 19:59:29'!
+PASSED!
+
+!testRun: #LogTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 19:59:29'!
+PASSED!
+
+!testRun: #LogTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 19:59:29'!
+PASSED!
+
+----SNAPSHOT----(25 October 2022 19:59:47) CuisUniversity-5481.image priorSource: 7106942!
+t!
+
+TestCase subclass: #RoverMonitorTest
+	instanceVariableNames: 'rover logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #RoverMonitorTest category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 20:02:47'!
+TestCase subclass: #RoverMonitorTest
+	instanceVariableNames: 'rover logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRenamed: #Logger as: #RoverLogger stamp: 'V 10/25/2022 20:02:55'!
+Smalltalk renameClassNamed: #Logger as: #RoverLogger!
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553410 overrides: 16961394!
+setUp
+
+	rover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	logger _ RoverLogger for: rover! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553460!
+test07LoggerLoggingDirectionsCorrectlyLogsTurningRight
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'r'.
+	
+	self assert: logger logs equals: (OrderedCollection with: 'East')! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553396!
+test06LoggerLoggingPositionsCorrectlyStoppsLogging
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingPositions.
+	
+	rover process: 'f'.
+	
+	logger stopLoggingPositions.
+	rover process: 'fff'.
+	
+	logger startLoggingPositions.
+	rover process: 'f'. 
+	
+	self assert: logger logs equals: {'1@2'. '1@6'} asOrderedCollection ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553430!
+test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingPositions.
+	rover process: ''.
+	self assert: logger logs equals: OrderedCollection new.  ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553373!
+test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	logger startLoggingPositions.
+	rover process: ''.
+	self assert: logger logs equals: OrderedCollection new.  ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553440!
+test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	rover process: ''.
+	self assert: logger logs equals: OrderedCollection new.  ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553362!
+test05LoggerLoggingPositionsCorrectlyLogsManyMovements
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingPositions.
+	
+	rover process: 'ffbrfrb'.
+	
+	self assert: logger logs equals: {'1@2'. '1@3'. '1@2'. '2@2'. '2@3'} asOrderedCollection ! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553416!
+test09LoggerLoggingDirectionsCorrectlyStopsLogging
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rr'.
+	logger stopLoggingDirections.
+	rover process:'r'.
+	logger startLoggingDirections.
+	rover process:'l'.	
+	self assert: logger logs equals: ({'East'. 'South'. 'South'} asOrderedCollection)! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553450!
+test04LoggerLoggingPositionsCorrectlyLogsMovingForward
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingPositions.
+	
+	rover process: 'f'.
+	
+	self assert: logger logs equals: (OrderedCollection with: '1@2' )! !
+!LogTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:02:55' prior: 50553385!
+test08LoggerLoggingDirectionsCorrectlyLogsManyRotations
+
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rllfll'.
+	
+	self assert: logger logs equals: ({'East'. 'North'. 'West'. 'South'. 'East'} asOrderedCollection)! !
+t!
+t!
+t!
+
+!classDefinition: #RoverMonitor category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 20:05:58'!
+Object subclass: #RoverMonitor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!RoverMonitorTest methodsFor: 'no messages' stamp: 'V 10/25/2022 20:05:50'!
+test01PositionCorrectlyChangesAfterOneMovement
+
+	|monitor|
+	
+	rover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	monitor _ RoverMonitor for: rover! !
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:06:37' overrides: 16961394!
+setUp
+
+	rover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.! !
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:07:25' prior: 50554018 overrides: 16961394!
+setUp
+
+	rover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	! !
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:07:37' prior: 50554009!
+test01PositionCorrectlyChangesAfterOneMovement
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover
+	
+	! !
+t!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:09:38'!
+test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence
+
+	|monitor position1 position2|
+	monitor _ RoverMonitor for: rover.
+	
+	position1 _ monitor currentPosition.
+	rover process: ''.
+	position2 _ monitor currentPosition.
+	
+	self assert: position1 equals: position2.
+	! !
+
+!methodRemoval: RoverMonitorTest #test01PositionCorrectlyChangesAfterOneMovement stamp: 'V 10/25/2022 20:09:44'!
+test01PositionCorrectlyChangesAfterOneMovement
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover
+	
+	!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:09:55'!
+ERROR!
+!RoverMonitor class methodsFor: 'initialization' stamp: 'V 10/25/2022 20:10:07'!
+for: aMarsRover 
+	self shouldBeImplemented.! !
+
+!classDefinition: 'RoverMonitor class' category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 20:10:28'!
+RoverMonitor class
+	instanceVariableNames: 'rover'!
+!RoverMonitor class methodsFor: 'initialization' stamp: 'V 10/25/2022 20:10:26' prior: 50554059!
+for: aMarsRover 
+	rover _ aMarsRover .! !
+t!
+t!
+!RoverMonitor class methodsFor: 'initialization' stamp: 'V 10/25/2022 20:11:41' prior: 50554069!
+for: aMarsRover 
+	
+	^self new initializeWith: aMarsRover ! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:11:43'!
+ERROR!
+
+!classDefinition: #RoverMonitor category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 20:11:55'!
+Object subclass: #RoverMonitor
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 20:11:55'!
+initializeWith: aMarsRover 
+	self shouldBeImplemented.
+	marsRover := aMarsRover.! !
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 20:12:03' prior: 50554091!
+initializeWith: aMarsRover 
+	
+	marsRover := aMarsRover.! !
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 20:12:12' prior: 50554097!
+initializeWith: aMarsRover 
+	
+	marsRover := aMarsRover.! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:12:14'!
+ERROR!
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:12:22'!
+currentPosition
+	self shouldBeImplemented.! !
+t!
+
+!classDefinition: #RoverMonitor category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 20:12:38'!
+Object subclass: #RoverMonitor
+	instanceVariableNames: 'marsRover currentPosition'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:12:36' prior: 50554111!
+currentPosition
+	
+	^currentPosition.! !
+t!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:15:23' prior: 50554036!
+test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence
+
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	position1 _ monitor currentPosition.
+	rover process: ''.
+	position2 _ monitor currentPosition.
+	
+	self assert: position1 equals: position2.
+	! !
+t!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:16:59'!
+test01PositionInMonitorCorrectlyChangesAfterMoving
+
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	position1 _ monitor currentPosition.
+	rover process: ''.
+	position2 _ monitor currentPosition.
+	
+	self assert: position1 equals: position2.
+	! !
+
+!methodRemoval: RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:17:05'!
+test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence
+
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	position1 _ monitor currentPosition.
+	rover process: ''.
+	position2 _ monitor currentPosition.
+	
+	self assert: position1 equals: position2.
+	!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:18:14' prior: 50554142!
+test01PositionInMonitorCorrectlyChangesAfterMoving
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'f'.
+	
+	
+	self assert: 1@2 equals: monitor currentPosition. 
+	! !
+
+!testRun: #RoverMonitorTest #test01PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:18:15'!
+ERROR!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:18:30'!
+startMonitoringPosition
+	self shouldBeImplemented.! !
+t!
+
+!classDefinition: #RoverMonitor category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 20:18:53'!
+Object subclass: #RoverMonitor
+	instanceVariableNames: 'marsRover currentPosition monitoringPosition'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:18:50' prior: 50554182!
+startMonitoringPosition
+	
+	monitoringPosition _ true.! !
+
+!testRun: #RoverMonitorTest #test01PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:18:57'!
+FAILURE!
+t!
+t!
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 20:21:16' prior: 50554102!
+initializeWith: aMarsRover 
+	
+	marsRover := aMarsRover.
+	marsRover addPositionSubscriptor: [:aPosition|  self changeCurrentPosition: aPosition]! !
+
+!testRun: #RoverMonitorTest #test01PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:21:21'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test01PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:21:21'!
+ERROR!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:21:35'!
+changeCurrentPosition: aPoint 
+	self shouldBeImplemented.! !
+t!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:22:23' prior: 50554220!
+changeCurrentPosition: aPoint 
+	currentPosition _ aPoint.! !
+t!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:22:46' prior: 50554225!
+changeCurrentPosition: aPosition 
+	currentPosition _ aPosition.! !
+
+!testRun: #RoverMonitorTest #test01PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:22:53'!
+PASSED!
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 20:23:26' prior: 50553645!
+addDirectionSubscriptor: aClosure
+
+	directionSubscriptors add: aClosure.! !
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 20:23:36' prior: 50554239!
+addDirectionSubscriptor: aClosure
+
+	directionSubscriptors add: aClosure.
+	aClosure value: head.! !
+t!
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 20:23:56' prior: 50553640!
+addPositionSubscriptor: aClosure
+
+	positionSubscriptors add: aClosure.
+	aClosure value: position.! !
+
+!testRun: #RoverMonitorTest #test01PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:23:58'!
+PASSED!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:24:39'!
+test02PositionInMonitorCorrectlyChangesAfterMoving
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'f'.
+	
+	
+	self assert: 1@2 equals: monitor currentPosition. 
+	! !
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:25:12'!
+test02PositionDoesNotChangeAfterProcessingEmptyCommandSequence
+
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	position1 _ monitor currentPosition.
+	rover process: ''.
+	position2 _ monitor currentPosition.
+	
+	self assert: position1 equals: position2.
+	! !
+
+!methodRemoval: RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:25:14'!
+test02PositionInMonitorCorrectlyChangesAfterMoving
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'f'.
+	
+	
+	self assert: 1@2 equals: monitor currentPosition. 
+	!
+
+!testRun: #RoverMonitorTest #test02PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:25:16'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:25:19'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:25:19'!
+PASSED!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:25:37'!
+test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence
+
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	position1 _ monitor currentPosition.
+	rover process: ''.
+	position2 _ monitor currentPosition.
+	
+	self assert: position1 equals: position2.
+	! !
+
+!methodRemoval: RoverMonitorTest #test02PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:25:37'!
+test02PositionDoesNotChangeAfterProcessingEmptyCommandSequence
+
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	position1 _ monitor currentPosition.
+	rover process: ''.
+	position2 _ monitor currentPosition.
+	
+	self assert: position1 equals: position2.
+	!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:25:42'!
+test02PositionInMonitorCorrectlyChangesAfterMoving
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'f'.
+	
+	
+	self assert: 1@2 equals: monitor currentPosition. 
+	! !
+
+!methodRemoval: RoverMonitorTest #test01PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:25:42'!
+test01PositionInMonitorCorrectlyChangesAfterMoving
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'f'.
+	
+	
+	self assert: 1@2 equals: monitor currentPosition. 
+	!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:26:04'!
+test03PositionInMonitorCorrectlyChangesAfterManyMoves
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'f'.
+	
+	
+	self assert: 1@2 equals: monitor currentPosition. 
+	! !
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:26:49' prior: 50554354!
+test03PositionInMonitorCorrectlyChangesAfterManyMoves
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'ffrff'.
+	
+	
+	self assert: 3@3 equals: monitor currentPosition. 
+	! !
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:26:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:26:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:26:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:26:50'!
+PASSED!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:28:02' prior: 50554365!
+test03PositionInMonitorCorrectlyChangesAfterManyMoves
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'ffrff'.
+	monitor stopMonitoringPosition.
+	
+	self assert: '' equals: monitor currentPosition. 
+	! !
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:28:11' prior: 50554334!
+test02PositionInMonitorCorrectlyChangesAfterMoving
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'f'.
+	
+	
+	self assert: '1@2' equals: monitor currentPosition. 
+	! !
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:28:30' prior: 50554124!
+currentPosition
+	
+	^currentPosition.! !
+t!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:28:45' prior: 50554230!
+changeCurrentPosition: aPosition 
+	currentPosition _ aPosition.! !
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:28:51' prior: 50554413!
+currentPosition
+	
+	^currentPosition asString.! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:28:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:28:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:28:52'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:28:52'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:29:15'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:29:16'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:29:17'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:29:17'!
+ERROR!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:29:22'!
+stopMonitoringPosition
+	self shouldBeImplemented.! !
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:29:32' prior: 50554457!
+stopMonitoringPosition
+	monitoringPosition _ false.! !
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:29:37'!
+FAILURE!
+t!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:30:31' prior: 50554417!
+changeCurrentPosition: aPosition 
+	
+	monitoringPosition ifTrue: [currentPosition _ aPosition].! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:30:33'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:30:33'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:30:33'!
+ERROR!
+t!
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 20:31:19' prior: 50554205!
+initializeWith: aMarsRover 
+	
+	marsRover := aMarsRover.
+	marsRover addPositionSubscriptor: [:aPosition|  self changeCurrentPosition: aPosition].
+	monitoringPosition _ false.
+! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:31:29'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:31:29'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:31:29'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:31:31'!
+ERROR!
+t!
+
+monitoringPosition!
+t!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:32:59'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:32:59'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:32:59'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:33:00'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:33:17'!
+ERROR!
+t!
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 20:33:46' prior: 50554489!
+initializeWith: aMarsRover 
+
+	monitoringPosition _ false.
+	marsRover := aMarsRover.
+	marsRover addPositionSubscriptor: [:aPosition|  self changeCurrentPosition: aPosition].
+	
+! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:33:47'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:33:47'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:33:47'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:33:47'!
+FAILURE!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:34:18' prior: 50554391!
+test03PositionInMonitorCorrectlyChangesAfterManyMoves
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'ffrff'.
+	monitor stopMonitoringPosition.
+	
+	self assert: '' equals: monitor currentPosition. 
+	! !
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:34:23'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:34:23'!
+FAILURE!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:26:49' prior: 50554559!
+test03PositionInMonitorCorrectlyChangesAfterManyMoves
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'ffrff'.
+	
+	
+	self assert: 3@3 equals: monitor currentPosition. 
+	! !
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:35:29'!
+test04MonitorCorrectlyStopsMonitoringPosition
+	
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'ffrff'.
+	monitor stopMonitoringPosition.
+	
+	self assert: '' equals: monitor currentPosition. 
+	! !
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:35:31'!
+FAILURE!
+t!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:35:46' prior: 50554471!
+changeCurrentPosition: aPosition 
+	
+	currentPosition _ aPosition.! !
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:36:15' prior: 50554422!
+currentPosition
+	
+	monitoringPosition ifTrue: [^currentPosition asString].
+	^''! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:36:16'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:36:16'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:36:16'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:36:16'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:36:16'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:36:29'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:36:29'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:36:29'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:36:29'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:36:29'!
+FAILURE!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:36:44' prior: 50554578!
+test03PositionInMonitorCorrectlyChangesAfterManyMoves
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'ffrff'.
+	
+	
+	self assert: '3@3' equals: monitor currentPosition. 
+	! !
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:36:47'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:36:51'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:36:51'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:36:51'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:36:51'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:36:53'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:36:53'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:36:53'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:36:53'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:37:02'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:37:02'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:37:02'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:37:02'!
+PASSED!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:38:13'!
+test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence
+
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.
+	
+	position1 _ monitor currentDirection.
+	rover process: ''.
+	position2 _ monitor currentDirection.
+	
+	self assert: position1 equals: position2.
+	! !
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:38:16'!
+ERROR!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:38:25'!
+startMonitoringDirection
+	self shouldBeImplemented.! !
+t!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:39:26' prior: 50554730!
+startMonitoringDirection
+	
+	monitoringPosition _ true.! !
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:39:29'!
+ERROR!
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:39:37'!
+currentDirection
+	self shouldBeImplemented.! !
+t!
+
+!classDefinition: #RoverMonitor category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 20:40:05'!
+Object subclass: #RoverMonitor
+	instanceVariableNames: 'marsRover currentPosition monitoringPosition currentDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:40:04' prior: 50554744!
+currentDirection
+	^currentDirection asString. ! !
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:40:08'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:40:08'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:40:08'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:40:08'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:40:08'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:40:08'!
+PASSED!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:40:47'!
+test06DirectionInMonitorCorrrectlyChangesAfterRotating
+
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.
+	
+	position1 _ monitor currentDirection.
+	rover process: ''.
+	position2 _ monitor currentDirection.
+	
+	self assert: position1 equals: position2.
+	! !
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:40:50' prior: 50554786!
+test06DirectionInMonitorCorrrectlyChangesAfterRotating
+
+	|monitor direction1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.
+	
+	direction1 _ monitor currentDirection.
+	rover process: ''.
+	position2 _ monitor currentDirection.
+	
+	self assert: direction1 equals: position2.
+	! !
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:42:30' prior: 50554799!
+test06DirectionInMonitorCorrrectlyChangesAfterRotating
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.
+	
+	rover process:'r'.
+	
+	self assert: 'East' equals: monitor currentDirection.
+	! !
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:42:31'!
+FAILURE!
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:42:45' prior: 50554758!
+currentDirection
+
+	^currentDirection asString. ! !
+t!
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 20:43:29' prior: 50554534!
+initializeWith: aMarsRover 
+
+	monitoringPosition _ false.
+	marsRover := aMarsRover.
+	marsRover addPositionSubscriptor: [:aPosition|  self changeCurrentPosition: aPosition].
+	marsRover addDirectionSubscriptor: [:aHeadingType|  self changeCurrentDirection: aHeadingType].
+	
+! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:43:32'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:43:32'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:43:32'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:43:32'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:43:32'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:43:32'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:43:37'!
+ERROR!
+t!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:43:59'!
+changeCurrentDirection: aMarsRoverHeadingNorth 
+	self shouldBeImplemented.! !
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:44:18' prior: 50554870!
+changeCurrentDirection: aMarsRoverHeadingNorth 
+	
+	currentDirection _ aMarsRoverHeadingNorth.! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:44:30'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:44:33'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:44:35'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:44:35'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:44:35'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:44:36'!
+FAILURE!
+t!
+!Behavior method!
+at: aPosition heading: aHeadingType
+	#_coverageTracker5569382_ markAsExecuted.
+	^ #_coverageTracker5569382_
+		coverAll:
+			{50 to: 62. 74 to: 81}
+		evaluating: [
+			(#_coverageTracker5569382_
+				coverAll:
+					{46 to: 48}
+				evaluating: [
+					(#_coverageTracker5569382_
+						coverAll:
+							{41 to: 44}
+						byLiteralOrPseudoVariable: self) new ])
+				initializeAt:
+					(#_coverageTracker5569382_
+						cover: (64 to: 72)
+						declaredAt: (5 to: 13)
+						by: aPosition)
+				heading:
+					(#_coverageTracker5569382_
+						cover: (83 to: 94)
+						declaredAt: (24 to: 35)
+						by: aHeadingType) ].! !
+!Behavior method!
+initializeAt: aPosition heading: aHeadingType
+	#_coverageTracker5569346_ markAsExecuted.
+	#_coverageTracker5569346_
+		cover: (49 to: 56)
+		declaredAt: (49 to: 56)
+		by:
+			(position _ #_coverageTracker5569346_
+				cover: (61 to: 69)
+				declaredAt: (15 to: 23)
+				by: aPosition).
+	#_coverageTracker5569346_
+		cover: (73 to: 76)
+		declaredAt: (73 to: 76)
+		by:
+			(head _ #_coverageTracker5569346_
+				coverAll:
+					{94 to: 97}
+				evaluating: [
+					(#_coverageTracker5569346_
+						cover: (81 to: 92)
+						declaredAt: (34 to: 45)
+						by: aHeadingType) for:
+						(#_coverageTracker5569346_
+							coverAll:
+								{99 to: 102}
+							byLiteralOrPseudoVariable: self) ]).
+	#_coverageTracker5569346_
+		cover: (106 to: 126)
+		declaredAt: (106 to: 126)
+		by:
+			(directionSubscriptors _ #_coverageTracker5569346_
+				coverAll:
+					{149 to: 151}
+				evaluating: [
+					(#_coverageTracker5569346_
+						coverAll:
+							{131 to: 147}
+						by: OrderedCollection) new ]).
+	#_coverageTracker5569346_
+		cover: (155 to: 174)
+		declaredAt: (155 to: 174)
+		by:
+			(positionSubscriptors _ #_coverageTracker5569346_
+				coverAll:
+					{198 to: 200}
+				evaluating: [
+					(#_coverageTracker5569346_
+						coverAll:
+							{180 to: 196}
+						by: OrderedCollection) new ]).
+	#_coverageTracker5569346_
+		cover: (206 to: 211)
+		declaredAt: (206 to: 211)
+		by:
+			(logger _ #_coverageTracker5569346_
+				coverAll:
+					{226 to: 228}
+				evaluating: [
+					(#_coverageTracker5569346_
+						coverAll:
+							{215 to: 224}
+						by: NullLogger) new ]).! !
+!Behavior method!
+for: aMarsRover
+	#_coverageTracker5569247_ markAsExecuted.
+	^ #_coverageTracker5569247_
+		coverAll:
+			{31 to: 44}
+		evaluating: [
+			(#_coverageTracker5569247_
+				coverAll:
+					{27 to: 29}
+				evaluating: [
+					(#_coverageTracker5569247_
+						coverAll:
+							{22 to: 25}
+						byLiteralOrPseudoVariable: self) new ]) initializeFor:
+				(#_coverageTracker5569247_
+					cover: (46 to: 55)
+					declaredAt: (6 to: 15)
+					by: aMarsRover) ].! !
+!Behavior method!
+initializeFor: aMarsRover
+	#_coverageTracker5569045_ markAsExecuted.
+	#_coverageTracker5569045_
+		cover: (31 to: 39)
+		declaredAt: (31 to: 39)
+		by:
+			(marsRover _ #_coverageTracker5569045_
+				cover: (44 to: 53)
+				declaredAt: (16 to: 25)
+				by: aMarsRover).! !
+!Behavior method!
+for: aMarsRover
+	#_coverageTracker5569168_ markAsExecuted.
+	^ #_coverageTracker5569168_
+		coverAll:
+			{33 to: 46}
+		evaluating: [
+			(#_coverageTracker5569168_
+				coverAll:
+					{29 to: 31}
+				evaluating: [
+					(#_coverageTracker5569168_
+						coverAll:
+							{24 to: 27}
+						byLiteralOrPseudoVariable: self) new ]) initializeFor:
+				(#_coverageTracker5569168_
+					cover: (48 to: 57)
+					declaredAt: (6 to: 15)
+					by: aMarsRover) ].! !
+!Behavior method!
+initializeFor: aMarsRover
+	#_coverageTracker5569222_ markAsExecuted.
+	#_coverageTracker5569222_
+		cover: (30 to: 45)
+		declaredAt: (30 to: 45)
+		by:
+			(loggingPositions _ #_coverageTracker5569222_
+				coverAll:
+					{49 to: 53}
+				byLiteralOrPseudoVariable: false).
+	#_coverageTracker5569222_
+		cover: (57 to: 73)
+		declaredAt: (57 to: 73)
+		by:
+			(loggingDirections _ #_coverageTracker5569222_
+				coverAll:
+					{77 to: 81}
+				byLiteralOrPseudoVariable: false).
+	#_coverageTracker5569222_
+		cover: (85 to: 87)
+		declaredAt: (85 to: 87)
+		by:
+			(log _ #_coverageTracker5569222_
+				coverAll:
+					{110 to: 112}
+				evaluating: [
+					(#_coverageTracker5569222_
+						coverAll:
+							{92 to: 108}
+						by: OrderedCollection) new ]).
+	#_coverageTracker5569222_
+		cover: (116 to: 124)
+		declaredAt: (116 to: 124)
+		by:
+			(marsRover _ #_coverageTracker5569222_
+				cover: (129 to: 138)
+				declaredAt: (16 to: 25)
+				by: aMarsRover).
+	#_coverageTracker5569222_
+		coverAll:
+			{153 to: 175}
+		evaluating: [
+			(#_coverageTracker5569222_
+				cover: (142 to: 151)
+				declaredAt: (16 to: 25)
+				by: aMarsRover) addPositionSubscriptor: [ :aPosition |
+				#_coverageTracker5569222_
+					coverAll:
+						{195 to: 206}
+					evaluating: [
+						(#_coverageTracker5569222_
+							coverAll:
+								{190 to: 193}
+							byLiteralOrPseudoVariable: self) logPosition:
+							(#_coverageTracker5569222_
+								cover: (208 to: 216)
+								declaredAt: (179 to: 187)
+								by: aPosition) ]]].
+	#_coverageTracker5569222_
+		coverAll:
+			{232 to: 255}
+		evaluating: [
+			(#_coverageTracker5569222_
+				cover: (221 to: 230)
+				declaredAt: (16 to: 25)
+				by: aMarsRover) addDirectionSubscriptor: [ :aHeadingType |
+				#_coverageTracker5569222_
+					coverAll:
+						{278 to: 290}
+					evaluating: [
+						(#_coverageTracker5569222_
+							coverAll:
+								{273 to: 276}
+							byLiteralOrPseudoVariable: self) logDirection:
+							(#_coverageTracker5569222_
+								cover: (292 to: 303)
+								declaredAt: (259 to: 270)
+								by: aHeadingType) ]]].! !
+!Behavior method!
+addPositionSubscriptor: aClosure
+	#_coverageTracker5569319_ markAsExecuted.
+	#_coverageTracker5569319_
+		coverAll:
+			{57 to: 60}
+		evaluating: [
+			(#_coverageTracker5569319_
+				cover: (36 to: 55)
+				declaredAt: (36 to: 55)
+				by: positionSubscriptors) add:
+				(#_coverageTracker5569319_
+					cover: (62 to: 69)
+					declaredAt: (25 to: 32)
+					by: aClosure) ].
+	#_coverageTracker5569319_
+		coverAll:
+			{82 to: 87}
+		evaluating: [
+			(#_coverageTracker5569319_
+				cover: (73 to: 80)
+				declaredAt: (25 to: 32)
+				by: aClosure) value:
+				(#_coverageTracker5569319_
+					cover: (89 to: 96)
+					declaredAt: (89 to: 96)
+					by: position) ].! !
+!Behavior method!
+logPosition: aPosition
+	#_coverageTracker5568983_ markAsExecuted.
+	self.
+	#_coverageTracker5568983_
+		coverAll:
+			{44 to: 50}
+		evaluating: [
+			(#_coverageTracker5568983_
+				cover: (27 to: 42)
+				declaredAt: (27 to: 42)
+				by: loggingPositions) ifTrue: [
+				#_coverageTracker5568983_
+					coverAll:
+						{57 to: 64}
+					evaluating: [
+						(#_coverageTracker5568983_
+							cover: (53 to: 55)
+							declaredAt: (53 to: 55)
+							by: log) addLast:
+							(#_coverageTracker5568983_
+								coverAll:
+									{76 to: 83}
+								evaluating: [
+									(#_coverageTracker5568983_
+										cover: (66 to: 74)
+										declaredAt: (14 to: 22)
+										by: aPosition) asString ]) ]]].! !
+!Behavior method!
+addDirectionSubscriptor: aClosure
+	#_coverageTracker5568952_ markAsExecuted.
+	#_coverageTracker5568952_
+		coverAll:
+			{59 to: 62}
+		evaluating: [
+			(#_coverageTracker5568952_
+				cover: (37 to: 57)
+				declaredAt: (37 to: 57)
+				by: directionSubscriptors) add:
+				(#_coverageTracker5568952_
+					cover: (64 to: 71)
+					declaredAt: (26 to: 33)
+					by: aClosure) ].
+	#_coverageTracker5568952_
+		coverAll:
+			{84 to: 89}
+		evaluating: [
+			(#_coverageTracker5568952_
+				cover: (75 to: 82)
+				declaredAt: (26 to: 33)
+				by: aClosure) value:
+				(#_coverageTracker5568952_
+					cover: (91 to: 94)
+					declaredAt: (91 to: 94)
+					by: head) ].! !
+!Behavior method!
+logDirection: aHeadingType
+	#_coverageTracker5569122_ markAsExecuted.
+	#_coverageTracker5569122_
+		coverAll:
+			{72 to: 75}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker5569122_
+		coverAll:
+			{49 to: 55}
+		evaluating: [
+			(#_coverageTracker5569122_
+				cover: (31 to: 47)
+				declaredAt: (31 to: 47)
+				by: loggingDirections) ifTrue: [
+				#_coverageTracker5569122_
+					coverAll:
+						{62 to: 69}
+					evaluating: [
+						(#_coverageTracker5569122_
+							cover: (58 to: 60)
+							declaredAt: (58 to: 60)
+							by: log) addLast:
+							(#_coverageTracker5569122_
+								coverAll:
+									{77 to: 88}
+								evaluating: [
+									self headingName:
+										(#_coverageTracker5569122_
+											cover: (90 to: 101)
+											declaredAt: (15 to: 26)
+											by: aHeadingType) ]) ]]].! !
+!Behavior method!
+startLoggingPositions
+	#_coverageTracker5568966_ markAsExecuted.
+	#_coverageTracker5568966_
+		cover: (24 to: 39)
+		declaredAt: (24 to: 39)
+		by:
+			(loggingPositions _ #_coverageTracker5568966_
+				coverAll:
+					{43 to: 46}
+				byLiteralOrPseudoVariable: true).! !
+!Behavior method!
+process: aSequenceOfCommands
+	#_coverageTracker5569207_ markAsExecuted.
+	#_coverageTracker5569207_
+		coverAll:
+			{52 to: 54}
+		evaluating: [
+			(#_coverageTracker5569207_
+				cover: (32 to: 50)
+				declaredAt: (10 to: 28)
+				by: aSequenceOfCommands) do: [ :aCommand |
+				#_coverageTracker5569207_
+					coverAll:
+						{74 to: 88}
+					evaluating: [
+						(#_coverageTracker5569207_
+							coverAll:
+								{69 to: 72}
+							byLiteralOrPseudoVariable: self) processCommand:
+							(#_coverageTracker5569207_
+								cover: (90 to: 97)
+								declaredAt: (58 to: 65)
+								by: aCommand) ]]].! !
+!Behavior method!
+logs
+	#_coverageTracker5569421_ markAsExecuted.
+	^ #_coverageTracker5569421_
+		cover: (8 to: 10)
+		declaredAt: (8 to: 10)
+		by: log.! !
+
+!testRun: #LogTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+startLoggingDirections
+	#_coverageTracker5569120_ markAsExecuted.
+	#_coverageTracker5569120_
+		cover: (25 to: 41)
+		declaredAt: (25 to: 41)
+		by:
+			(loggingDirections _ #_coverageTracker5569120_
+				coverAll:
+					{45 to: 48}
+				byLiteralOrPseudoVariable: true).! !
+
+!testRun: #LogTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #LogTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+processCommand: aCommand
+	#_coverageTracker5569070_ markAsExecuted.
+	#_coverageTracker5569070_
+		coverAll:
+			{67 to: 73}
+		evaluating: [
+			(#_coverageTracker5569070_
+				coverAll:
+					{39 to: 55}
+				evaluating: [
+					(#_coverageTracker5569070_
+						coverAll:
+							{34 to: 37}
+						byLiteralOrPseudoVariable: self) isForwardCommand:
+						(#_coverageTracker5569070_
+							cover: (57 to: 64)
+							declaredAt: (17 to: 24)
+							by: aCommand) ]) ifTrue: [ ^ #_coverageTracker5569070_
+					coverAll:
+						{84 to: 94}
+					evaluating: [
+						(#_coverageTracker5569070_
+							coverAll:
+								{79 to: 82}
+							byLiteralOrPseudoVariable: self) moveForward ]]].
+	#_coverageTracker5569070_
+		coverAll:
+			{135 to: 141}
+		evaluating: [
+			(#_coverageTracker5569070_
+				coverAll:
+					{106 to: 123}
+				evaluating: [
+					(#_coverageTracker5569070_
+						coverAll:
+							{101 to: 104}
+						byLiteralOrPseudoVariable: self) isBackwardCommand:
+						(#_coverageTracker5569070_
+							cover: (125 to: 132)
+							declaredAt: (17 to: 24)
+							by: aCommand) ]) ifTrue: [ ^ #_coverageTracker5569070_
+					coverAll:
+						{152 to: 163}
+					evaluating: [
+						(#_coverageTracker5569070_
+							coverAll:
+								{147 to: 150}
+							byLiteralOrPseudoVariable: self) moveBackward ]]].
+	#_coverageTracker5569070_
+		coverAll:
+			{207 to: 213}
+		evaluating: [
+			(#_coverageTracker5569070_
+				coverAll:
+					{175 to: 195}
+				evaluating: [
+					(#_coverageTracker5569070_
+						coverAll:
+							{170 to: 173}
+						byLiteralOrPseudoVariable: self) isRotateRightCommand:
+						(#_coverageTracker5569070_
+							cover: (197 to: 204)
+							declaredAt: (17 to: 24)
+							by: aCommand) ]) ifTrue: [ ^ #_coverageTracker5569070_
+					coverAll:
+						{224 to: 234}
+					evaluating: [
+						(#_coverageTracker5569070_
+							coverAll:
+								{219 to: 222}
+							byLiteralOrPseudoVariable: self) rotateRight ]]].
+	#_coverageTracker5569070_
+		coverAll:
+			{277 to: 283}
+		evaluating: [
+			(#_coverageTracker5569070_
+				coverAll:
+					{246 to: 265}
+				evaluating: [
+					(#_coverageTracker5569070_
+						coverAll:
+							{241 to: 244}
+						byLiteralOrPseudoVariable: self) isRotateLeftCommand:
+						(#_coverageTracker5569070_
+							cover: (267 to: 274)
+							declaredAt: (17 to: 24)
+							by: aCommand) ]) ifTrue: [ ^ #_coverageTracker5569070_
+					coverAll:
+						{294 to: 303}
+					evaluating: [
+						(#_coverageTracker5569070_
+							coverAll:
+								{289 to: 292}
+							byLiteralOrPseudoVariable: self) rotateLeft ]]].
+	#_coverageTracker5569070_
+		coverAll:
+			{315 to: 334}
+		evaluating: [
+			(#_coverageTracker5569070_
+				coverAll:
+					{310 to: 313}
+				byLiteralOrPseudoVariable: self) signalInvalidCommand ].! !
+!Behavior method!
+isForwardCommand: aCommand
+	#_coverageTracker5569340_ markAsExecuted.
+	^ #_coverageTracker5569340_
+		coverAll:
+			{40 to: 40}
+		evaluating: [
+			(#_coverageTracker5569340_
+				cover: (31 to: 38)
+				declaredAt: (19 to: 26)
+				by: aCommand) =
+				(#_coverageTracker5569340_
+					coverAll:
+						{42 to: 43}
+					byLiteralOrPseudoVariable: $f) ].! !
+!Behavior method!
+moveForward
+	#_coverageTracker5569324_ markAsExecuted.
+	#_coverageTracker5569324_
+		coverAll:
+			{21 to: 31}
+		evaluating: [
+			(#_coverageTracker5569324_
+				cover: (16 to: 19)
+				declaredAt: (16 to: 19)
+				by: head) moveForward ].
+	#_coverageTracker5569324_
+		coverAll:
+			{56 to: 58}
+		evaluating: [
+			(#_coverageTracker5569324_
+				cover: (35 to: 54)
+				declaredAt: (35 to: 54)
+				by: positionSubscriptors) do: [ :aSubscriptorClosure |
+				#_coverageTracker5569324_
+					coverAll:
+						{103 to: 108}
+					evaluating: [
+						(#_coverageTracker5569324_
+							cover: (83 to: 101)
+							declaredAt: (62 to: 80)
+							by: aSubscriptorClosure) value:
+							(#_coverageTracker5569324_
+								cover: (110 to: 117)
+								declaredAt: (110 to: 117)
+								by: position) ]]].! !
+!Behavior method!
+moveForward
+	#_coverageTracker5569417_ markAsExecuted.
+	^ #_coverageTracker5569417_
+		coverAll:
+			{27 to: 35}
+		evaluating: [
+			(#_coverageTracker5569417_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveNorth ].! !
+!Behavior method!
+moveNorth
+	#_coverageTracker5569058_ markAsExecuted.
+	#_coverageTracker5569058_
+		cover: (26 to: 33)
+		declaredAt: (14 to: 21)
+		by:
+			(position _ #_coverageTracker5569058_
+				coverAll:
+					{35 to: 35}
+				evaluating: [
+					(#_coverageTracker5569058_
+						cover: (14 to: 21)
+						declaredAt: (14 to: 21)
+						by: position) +
+						(#_coverageTracker5569058_
+							coverAll:
+								{39 to: 39}
+							evaluating: [
+								(#_coverageTracker5569058_
+									coverAll:
+										{38 to: 38}
+									byLiteralOrPseudoVariable: 0) @
+									(#_coverageTracker5569058_
+										coverAll:
+											{40 to: 40}
+										byLiteralOrPseudoVariable: 1) ]) ]).! !
+
+!testRun: #LogTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+isBackwardCommand: aCommand
+	#_coverageTracker5569377_ markAsExecuted.
+	^ #_coverageTracker5569377_
+		coverAll:
+			{41 to: 41}
+		evaluating: [
+			(#_coverageTracker5569377_
+				cover: (32 to: 39)
+				declaredAt: (20 to: 27)
+				by: aCommand) =
+				(#_coverageTracker5569377_
+					coverAll:
+						{43 to: 44}
+					byLiteralOrPseudoVariable: $b) ].! !
+!Behavior method!
+moveBackward
+	#_coverageTracker5569033_ markAsExecuted.
+	#_coverageTracker5569033_
+		coverAll:
+			{22 to: 33}
+		evaluating: [
+			(#_coverageTracker5569033_
+				cover: (17 to: 20)
+				declaredAt: (17 to: 20)
+				by: head) moveBackward ].
+	#_coverageTracker5569033_
+		coverAll:
+			{58 to: 60}
+		evaluating: [
+			(#_coverageTracker5569033_
+				cover: (37 to: 56)
+				declaredAt: (37 to: 56)
+				by: positionSubscriptors) do: [ :aSubscriptorClosure |
+				#_coverageTracker5569033_
+					coverAll:
+						{105 to: 110}
+					evaluating: [
+						(#_coverageTracker5569033_
+							cover: (85 to: 103)
+							declaredAt: (64 to: 82)
+							by: aSubscriptorClosure) value:
+							(#_coverageTracker5569033_
+								cover: (112 to: 119)
+								declaredAt: (112 to: 119)
+								by: position) ]]].! !
+!Behavior method!
+moveBackward
+	#_coverageTracker5569002_ markAsExecuted.
+	^ #_coverageTracker5569002_
+		coverAll:
+			{28 to: 36}
+		evaluating: [
+			(#_coverageTracker5569002_
+				cover: (18 to: 26)
+				declaredAt: (18 to: 26)
+				by: marsRover) moveSouth ].! !
+!Behavior method!
+moveSouth
+	#_coverageTracker5568998_ markAsExecuted.
+	#_coverageTracker5568998_
+		cover: (26 to: 33)
+		declaredAt: (14 to: 21)
+		by:
+			(position _ #_coverageTracker5568998_
+				coverAll:
+					{35 to: 35}
+				evaluating: [
+					(#_coverageTracker5568998_
+						cover: (14 to: 21)
+						declaredAt: (14 to: 21)
+						by: position) +
+						(#_coverageTracker5568998_
+							coverAll:
+								{39 to: 39}
+							evaluating: [
+								(#_coverageTracker5568998_
+									coverAll:
+										{38 to: 38}
+									byLiteralOrPseudoVariable: 0) @
+									(#_coverageTracker5568998_
+										coverAll:
+											{40 to: 41}
+										byLiteralOrPseudoVariable: -1) ]) ]).! !
+!Behavior method!
+isRotateRightCommand: aCommand
+	#_coverageTracker5569213_ markAsExecuted.
+	^ #_coverageTracker5569213_
+		coverAll:
+			{44 to: 44}
+		evaluating: [
+			(#_coverageTracker5569213_
+				cover: (35 to: 42)
+				declaredAt: (23 to: 30)
+				by: aCommand) =
+				(#_coverageTracker5569213_
+					coverAll:
+						{46 to: 47}
+					byLiteralOrPseudoVariable: $r) ].! !
+!Behavior method!
+rotateRight
+	#_coverageTracker5569413_ markAsExecuted.
+	#_coverageTracker5569413_
+		coverAll:
+			{21 to: 31}
+		evaluating: [
+			(#_coverageTracker5569413_
+				cover: (16 to: 19)
+				declaredAt: (16 to: 19)
+				by: head) rotateRight ].
+	#_coverageTracker5569413_
+		coverAll:
+			{57 to: 59}
+		evaluating: [
+			(#_coverageTracker5569413_
+				cover: (35 to: 55)
+				declaredAt: (35 to: 55)
+				by: directionSubscriptors) do: [ :aSubscriptorClosure |
+				#_coverageTracker5569413_
+					coverAll:
+						{104 to: 109}
+					evaluating: [
+						(#_coverageTracker5569413_
+							cover: (84 to: 102)
+							declaredAt: (63 to: 81)
+							by: aSubscriptorClosure) value:
+							(#_coverageTracker5569413_
+								cover: (111 to: 114)
+								declaredAt: (16 to: 19)
+								by: head) ]]].! !
+!Behavior method!
+rotateRight
+	#_coverageTracker5569211_ markAsExecuted.
+	^ #_coverageTracker5569211_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker5569211_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) headEast ].! !
+!Behavior method!
+headEast
+	#_coverageTracker5569280_ markAsExecuted.
+	#_coverageTracker5569280_
+		cover: (13 to: 16)
+		declaredAt: (13 to: 16)
+		by:
+			(head _ #_coverageTracker5569280_
+				coverAll:
+					{42 to: 45}
+				evaluating: [
+					(#_coverageTracker5569280_
+						coverAll:
+							{21 to: 40}
+						by: MarsRoverHeadingEast) for:
+						(#_coverageTracker5569280_
+							coverAll:
+								{47 to: 50}
+							byLiteralOrPseudoVariable: self) ]).! !
+!Behavior method!
+moveForward
+	#_coverageTracker5569201_ markAsExecuted.
+	^ #_coverageTracker5569201_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker5569201_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveEast ].! !
+!Behavior method!
+moveEast
+	#_coverageTracker5569116_ markAsExecuted.
+	#_coverageTracker5569116_
+		cover: (25 to: 32)
+		declaredAt: (13 to: 20)
+		by:
+			(position _ #_coverageTracker5569116_
+				coverAll:
+					{34 to: 34}
+				evaluating: [
+					(#_coverageTracker5569116_
+						cover: (13 to: 20)
+						declaredAt: (13 to: 20)
+						by: position) +
+						(#_coverageTracker5569116_
+							coverAll:
+								{38 to: 38}
+							evaluating: [
+								(#_coverageTracker5569116_
+									coverAll:
+										{37 to: 37}
+									byLiteralOrPseudoVariable: 1) @
+									(#_coverageTracker5569116_
+										coverAll:
+											{39 to: 39}
+										byLiteralOrPseudoVariable: 0) ]) ]).! !
+!Behavior method!
+rotateRight
+	#_coverageTracker5569188_ markAsExecuted.
+	^ #_coverageTracker5569188_
+		coverAll:
+			{27 to: 35}
+		evaluating: [
+			(#_coverageTracker5569188_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) headSouth ].! !
+!Behavior method!
+headSouth
+	#_coverageTracker5569027_ markAsExecuted.
+	#_coverageTracker5569027_
+		cover: (14 to: 17)
+		declaredAt: (14 to: 17)
+		by:
+			(head _ #_coverageTracker5569027_
+				coverAll:
+					{44 to: 47}
+				evaluating: [
+					(#_coverageTracker5569027_
+						coverAll:
+							{22 to: 42}
+						by: MarsRoverHeadingSouth) for:
+						(#_coverageTracker5569027_
+							coverAll:
+								{49 to: 52}
+							byLiteralOrPseudoVariable: self) ]).! !
+!Behavior method!
+moveBackward
+	#_coverageTracker5569419_ markAsExecuted.
+	^ #_coverageTracker5569419_
+		coverAll:
+			{28 to: 36}
+		evaluating: [
+			(#_coverageTracker5569419_
+				cover: (18 to: 26)
+				declaredAt: (18 to: 26)
+				by: marsRover) moveNorth ].! !
+
+!testRun: #LogTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+stopLoggingPositions
+	#_coverageTracker5569191_ markAsExecuted.
+	#_coverageTracker5569191_
+		cover: (23 to: 38)
+		declaredAt: (23 to: 38)
+		by:
+			(loggingPositions _ #_coverageTracker5569191_
+				coverAll:
+					{42 to: 46}
+				byLiteralOrPseudoVariable: false).! !
+
+!testRun: #LogTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+headingName: aHeadingType
+	#_coverageTracker5569139_ markAsExecuted.
+	#_coverageTracker5569139_
+		coverAll:
+			{92 to: 98}
+		evaluating: [
+			(#_coverageTracker5569139_
+				coverAll:
+					{54 to: 54}
+				evaluating: [
+					(#_coverageTracker5569139_
+						coverAll:
+							{49 to: 52}
+						evaluating: [
+							(#_coverageTracker5569139_
+								coverAll:
+									{43 to: 47}
+								evaluating: [
+									(#_coverageTracker5569139_
+										cover: (30 to: 41)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker5569139_
+							coverAll:
+								{82 to: 89}
+							evaluating: [
+								(#_coverageTracker5569139_
+									coverAll:
+										{77 to: 80}
+									evaluating: [
+										(#_coverageTracker5569139_
+											coverAll:
+												{56 to: 75}
+											by: MarsRoverHeadingEast) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker5569139_
+					coverAll:
+						{102 to: 107}
+					byLiteralOrPseudoVariable: 'East' ]].
+	#_coverageTracker5569139_
+		coverAll:
+			{176 to: 182}
+		evaluating: [
+			(#_coverageTracker5569139_
+				coverAll:
+					{137 to: 137}
+				evaluating: [
+					(#_coverageTracker5569139_
+						coverAll:
+							{132 to: 135}
+						evaluating: [
+							(#_coverageTracker5569139_
+								coverAll:
+									{126 to: 130}
+								evaluating: [
+									(#_coverageTracker5569139_
+										cover: (113 to: 124)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker5569139_
+							coverAll:
+								{166 to: 173}
+							evaluating: [
+								(#_coverageTracker5569139_
+									coverAll:
+										{161 to: 164}
+									evaluating: [
+										(#_coverageTracker5569139_
+											coverAll:
+												{139 to: 159}
+											by: MarsRoverHeadingNorth) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker5569139_
+					coverAll:
+						{185 to: 191}
+					byLiteralOrPseudoVariable: 'North' ]].
+	#_coverageTracker5569139_
+		coverAll:
+			{259 to: 265}
+		evaluating: [
+			(#_coverageTracker5569139_
+				coverAll:
+					{221 to: 221}
+				evaluating: [
+					(#_coverageTracker5569139_
+						coverAll:
+							{216 to: 219}
+						evaluating: [
+							(#_coverageTracker5569139_
+								coverAll:
+									{210 to: 214}
+								evaluating: [
+									(#_coverageTracker5569139_
+										cover: (197 to: 208)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker5569139_
+							coverAll:
+								{249 to: 256}
+							evaluating: [
+								(#_coverageTracker5569139_
+									coverAll:
+										{244 to: 247}
+									evaluating: [
+										(#_coverageTracker5569139_
+											coverAll:
+												{223 to: 242}
+											by: MarsRoverHeadingWest) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker5569139_
+					coverAll:
+						{269 to: 274}
+					byLiteralOrPseudoVariable: 'West' ]].
+	#_coverageTracker5569139_
+		coverAll:
+			{343 to: 349}
+		evaluating: [
+			(#_coverageTracker5569139_
+				coverAll:
+					{304 to: 304}
+				evaluating: [
+					(#_coverageTracker5569139_
+						coverAll:
+							{299 to: 302}
+						evaluating: [
+							(#_coverageTracker5569139_
+								coverAll:
+									{293 to: 297}
+								evaluating: [
+									(#_coverageTracker5569139_
+										cover: (280 to: 291)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker5569139_
+							coverAll:
+								{333 to: 340}
+							evaluating: [
+								(#_coverageTracker5569139_
+									coverAll:
+										{328 to: 331}
+									evaluating: [
+										(#_coverageTracker5569139_
+											coverAll:
+												{306 to: 326}
+											by: MarsRoverHeadingSouth) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker5569139_
+					coverAll:
+						{352 to: 358}
+					byLiteralOrPseudoVariable: 'South' ]].! !
+
+!testRun: #LogTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+isRotateLeftCommand: aCommand
+	#_coverageTracker5569386_ markAsExecuted.
+	^ #_coverageTracker5569386_
+		coverAll:
+			{43 to: 43}
+		evaluating: [
+			(#_coverageTracker5569386_
+				cover: (34 to: 41)
+				declaredAt: (22 to: 29)
+				by: aCommand) =
+				(#_coverageTracker5569386_
+					coverAll:
+						{45 to: 46}
+					byLiteralOrPseudoVariable: $l) ].! !
+!Behavior method!
+rotateLeft
+	#_coverageTracker5568971_ markAsExecuted.
+	#_coverageTracker5568971_
+		coverAll:
+			{20 to: 29}
+		evaluating: [
+			(#_coverageTracker5568971_
+				cover: (15 to: 18)
+				declaredAt: (15 to: 18)
+				by: head) rotateLeft ].
+	#_coverageTracker5568971_
+		coverAll:
+			{55 to: 57}
+		evaluating: [
+			(#_coverageTracker5568971_
+				cover: (33 to: 53)
+				declaredAt: (33 to: 53)
+				by: directionSubscriptors) do: [ :aSubscriptorClosure |
+				#_coverageTracker5568971_
+					coverAll:
+						{102 to: 107}
+					evaluating: [
+						(#_coverageTracker5568971_
+							cover: (82 to: 100)
+							declaredAt: (61 to: 79)
+							by: aSubscriptorClosure) value:
+							(#_coverageTracker5568971_
+								cover: (109 to: 112)
+								declaredAt: (15 to: 18)
+								by: head) ]]].! !
+!Behavior method!
+rotateLeft
+	#_coverageTracker5569388_ markAsExecuted.
+	^ #_coverageTracker5569388_
+		coverAll:
+			{26 to: 34}
+		evaluating: [
+			(#_coverageTracker5569388_
+				cover: (16 to: 24)
+				declaredAt: (16 to: 24)
+				by: marsRover) headNorth ].! !
+!Behavior method!
+headNorth
+	#_coverageTracker5569112_ markAsExecuted.
+	#_coverageTracker5569112_
+		cover: (14 to: 17)
+		declaredAt: (14 to: 17)
+		by:
+			(head _ #_coverageTracker5569112_
+				coverAll:
+					{44 to: 47}
+				evaluating: [
+					(#_coverageTracker5569112_
+						coverAll:
+							{22 to: 42}
+						by: MarsRoverHeadingNorth) for:
+						(#_coverageTracker5569112_
+							coverAll:
+								{49 to: 52}
+							byLiteralOrPseudoVariable: self) ]).! !
+!Behavior method!
+rotateLeft
+	#_coverageTracker5568948_ markAsExecuted.
+	^ #_coverageTracker5568948_
+		coverAll:
+			{26 to: 33}
+		evaluating: [
+			(#_coverageTracker5568948_
+				cover: (16 to: 24)
+				declaredAt: (16 to: 24)
+				by: marsRover) headWest ].! !
+!Behavior method!
+headWest
+	#_coverageTracker5569180_ markAsExecuted.
+	#_coverageTracker5569180_
+		cover: (13 to: 16)
+		declaredAt: (13 to: 16)
+		by:
+			(head _ #_coverageTracker5569180_
+				coverAll:
+					{42 to: 45}
+				evaluating: [
+					(#_coverageTracker5569180_
+						coverAll:
+							{21 to: 40}
+						by: MarsRoverHeadingWest) for:
+						(#_coverageTracker5569180_
+							coverAll:
+								{47 to: 50}
+							byLiteralOrPseudoVariable: self) ]).! !
+!Behavior method!
+moveForward
+	#_coverageTracker5569004_ markAsExecuted.
+	^ #_coverageTracker5569004_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker5569004_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveWest ].! !
+!Behavior method!
+moveWest
+	#_coverageTracker5569062_ markAsExecuted.
+	#_coverageTracker5569062_
+		cover: (25 to: 32)
+		declaredAt: (13 to: 20)
+		by:
+			(position _ #_coverageTracker5569062_
+				coverAll:
+					{34 to: 34}
+				evaluating: [
+					(#_coverageTracker5569062_
+						cover: (13 to: 20)
+						declaredAt: (13 to: 20)
+						by: position) +
+						(#_coverageTracker5569062_
+							coverAll:
+								{39 to: 39}
+							evaluating: [
+								(#_coverageTracker5569062_
+									coverAll:
+										{37 to: 38}
+									byLiteralOrPseudoVariable: -1) @
+									(#_coverageTracker5569062_
+										coverAll:
+											{40 to: 40}
+										byLiteralOrPseudoVariable: 0) ]) ]).! !
+!Behavior method!
+rotateLeft
+	#_coverageTracker5569014_ markAsExecuted.
+	^ #_coverageTracker5569014_
+		coverAll:
+			{26 to: 34}
+		evaluating: [
+			(#_coverageTracker5569014_
+				cover: (16 to: 24)
+				declaredAt: (16 to: 24)
+				by: marsRover) headSouth ].! !
+!Behavior method!
+rotateLeft
+	#_coverageTracker5569249_ markAsExecuted.
+	^ #_coverageTracker5569249_
+		coverAll:
+			{26 to: 33}
+		evaluating: [
+			(#_coverageTracker5569249_
+				cover: (16 to: 24)
+				declaredAt: (16 to: 24)
+				by: marsRover) headEast ].! !
+
+!testRun: #LogTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+stopLoggingDirections
+	#_coverageTracker5569380_ markAsExecuted.
+	#_coverageTracker5569380_
+		cover: (24 to: 40)
+		declaredAt: (24 to: 40)
+		by:
+			(loggingDirections _ #_coverageTracker5569380_
+				coverAll:
+					{44 to: 48}
+				byLiteralOrPseudoVariable: false).! !
+!Behavior method!
+rotateRight
+	#_coverageTracker5569317_ markAsExecuted.
+	^ #_coverageTracker5569317_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker5569317_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) headWest ].! !
+
+!testRun: #LogTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+isAt: aPosition heading: aHeadingType
+	#_coverageTracker5569282_ markAsExecuted.
+	^ #_coverageTracker5569282_
+		coverAll:
+			{63 to: 66}
+		evaluating: [
+			(#_coverageTracker5569282_
+				coverAll:
+					{51 to: 51}
+				evaluating: [
+					(#_coverageTracker5569282_
+						cover: (42 to: 49)
+						declaredAt: (42 to: 49)
+						by: position) =
+						(#_coverageTracker5569282_
+							cover: (53 to: 61)
+							declaredAt: (7 to: 15)
+							by: aPosition) ]) and: [
+				#_coverageTracker5569282_
+					coverAll:
+						{75 to: 84}
+					evaluating: [
+						(#_coverageTracker5569282_
+							cover: (70 to: 73)
+							declaredAt: (70 to: 73)
+							by: head) isHeading:
+							(#_coverageTracker5569282_
+								cover: (86 to: 97)
+								declaredAt: (26 to: 37)
+								by: aHeadingType) ]]].! !
+!Behavior method!
+isHeading: aHeadingType
+	#_coverageTracker5569218_ markAsExecuted.
+	^ #_coverageTracker5569218_
+		coverAll:
+			{33 to: 41}
+		evaluating: [
+			(#_coverageTracker5569218_
+				coverAll:
+					{28 to: 31}
+				byLiteralOrPseudoVariable: self) isKindOf:
+				(#_coverageTracker5569218_
+					cover: (43 to: 54)
+					declaredAt: (12 to: 23)
+					by: aHeadingType) ].! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+signalInvalidCommand
+	#_coverageTracker5569253_ markAsExecuted.
+	#_coverageTracker5569253_
+		coverAll:
+			{30 to: 35}
+		evaluating: [
+			(#_coverageTracker5569253_
+				coverAll:
+					{25 to: 28}
+				byLiteralOrPseudoVariable: self) error:
+				(#_coverageTracker5569253_
+					coverAll:
+						{42 to: 71}
+					evaluating: [
+						(#_coverageTracker5569253_
+							coverAll:
+								{37 to: 40}
+							byLiteralOrPseudoVariable: self) invalidCommandErrorDescription ]) ].! !
+!Behavior method!
+invalidCommandErrorDescription
+	#_coverageTracker5569278_ markAsExecuted.
+	^ #_coverageTracker5569278_
+		coverAll:
+			{36 to: 52}
+		byLiteralOrPseudoVariable: 'Invalid command'.! !
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+moveBackward
+	#_coverageTracker5569066_ markAsExecuted.
+	^ #_coverageTracker5569066_
+		coverAll:
+			{28 to: 35}
+		evaluating: [
+			(#_coverageTracker5569066_
+				cover: (18 to: 26)
+				declaredAt: (18 to: 26)
+				by: marsRover) moveWest ].! !
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+moveForward
+	#_coverageTracker5569245_ markAsExecuted.
+	^ #_coverageTracker5569245_
+		coverAll:
+			{27 to: 35}
+		evaluating: [
+			(#_coverageTracker5569245_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveSouth ].! !
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+moveBackward
+	#_coverageTracker5569251_ markAsExecuted.
+	^ #_coverageTracker5569251_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker5569251_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveEast ].! !
+!Behavior method!
+rotateRight
+	#_coverageTracker5569344_ markAsExecuted.
+	^ #_coverageTracker5569344_
+		coverAll:
+			{27 to: 35}
+		evaluating: [
+			(#_coverageTracker5569344_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) headNorth ].! !
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+for: aMarsRover
+	#_coverageTracker5569186_ markAsExecuted.
+	^ #_coverageTracker5569186_
+		coverAll:
+			{31 to: 45}
+		evaluating: [
+			(#_coverageTracker5569186_
+				coverAll:
+					{27 to: 29}
+				evaluating: [
+					(#_coverageTracker5569186_
+						coverAll:
+							{22 to: 25}
+						byLiteralOrPseudoVariable: self) new ]) initializeWith:
+				(#_coverageTracker5569186_
+					cover: (47 to: 56)
+					declaredAt: (6 to: 15)
+					by: aMarsRover) ].! !
+!Behavior method!
+initializeWith: aMarsRover
+	#_coverageTracker5569267_ markAsExecuted.
+	#_coverageTracker5569267_
+		cover: (31 to: 48)
+		declaredAt: (31 to: 48)
+		by:
+			(monitoringPosition _ #_coverageTracker5569267_
+				coverAll:
+					{52 to: 56}
+				byLiteralOrPseudoVariable: false).
+	#_coverageTracker5569267_
+		cover: (60 to: 68)
+		declaredAt: (60 to: 68)
+		by:
+			(marsRover _ #_coverageTracker5569267_
+				cover: (73 to: 82)
+				declaredAt: (17 to: 26)
+				by: aMarsRover).
+	#_coverageTracker5569267_
+		coverAll:
+			{96 to: 118}
+		evaluating: [
+			(#_coverageTracker5569267_
+				cover: (86 to: 94)
+				declaredAt: (60 to: 68)
+				by: marsRover) addPositionSubscriptor: [ :aPosition |
+				#_coverageTracker5569267_
+					coverAll:
+						{139 to: 160}
+					evaluating: [
+						(#_coverageTracker5569267_
+							coverAll:
+								{134 to: 137}
+							byLiteralOrPseudoVariable: self) changeCurrentPosition:
+							(#_coverageTracker5569267_
+								cover: (162 to: 170)
+								declaredAt: (122 to: 130)
+								by: aPosition) ]]].
+	#_coverageTracker5569267_
+		coverAll:
+			{185 to: 208}
+		evaluating: [
+			(#_coverageTracker5569267_
+				cover: (175 to: 183)
+				declaredAt: (60 to: 68)
+				by: marsRover) addDirectionSubscriptor: [ :aHeadingType |
+				#_coverageTracker5569267_
+					coverAll:
+						{232 to: 254}
+					evaluating: [
+						(#_coverageTracker5569267_
+							coverAll:
+								{227 to: 230}
+							byLiteralOrPseudoVariable: self) changeCurrentDirection:
+							(#_coverageTracker5569267_
+								cover: (256 to: 267)
+								declaredAt: (212 to: 223)
+								by: aHeadingType) ]]].! !
+!Behavior method!
+changeCurrentPosition: aPosition
+	#_coverageTracker5569216_ markAsExecuted.
+	#_coverageTracker5569216_
+		cover: (38 to: 52)
+		declaredAt: (38 to: 52)
+		by:
+			(currentPosition _ #_coverageTracker5569216_
+				cover: (56 to: 64)
+				declaredAt: (24 to: 32)
+				by: aPosition).! !
+!Behavior method!
+changeCurrentDirection: aMarsRoverHeadingNorth
+	#_coverageTracker5569031_ markAsExecuted.
+	#_coverageTracker5569031_
+		cover: (52 to: 67)
+		declaredAt: (52 to: 67)
+		by:
+			(currentDirection _ #_coverageTracker5569031_
+				cover: (71 to: 92)
+				declaredAt: (25 to: 46)
+				by: aMarsRoverHeadingNorth).! !
+!Behavior method!
+startMonitoringPosition
+	#_coverageTracker5568944_ markAsExecuted.
+	#_coverageTracker5568944_
+		cover: (28 to: 45)
+		declaredAt: (28 to: 45)
+		by:
+			(monitoringPosition _ #_coverageTracker5568944_
+				coverAll:
+					{49 to: 52}
+				byLiteralOrPseudoVariable: true).! !
+!Behavior method!
+currentPosition
+	#_coverageTracker5569205_ markAsExecuted.
+	#_coverageTracker5569205_
+		coverAll:
+			{39 to: 45}
+		evaluating: [
+			(#_coverageTracker5569205_
+				cover: (20 to: 37)
+				declaredAt: (20 to: 37)
+				by: monitoringPosition) ifTrue: [ ^ #_coverageTracker5569205_
+					coverAll:
+						{65 to: 72}
+					evaluating: [
+						(#_coverageTracker5569205_
+							cover: (49 to: 63)
+							declaredAt: (49 to: 63)
+							by: currentPosition) asString ]]].
+	^ #_coverageTracker5569205_
+		coverAll:
+			{78 to: 79}
+		byLiteralOrPseudoVariable: ''.! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+stopMonitoringPosition
+	#_coverageTracker5569276_ markAsExecuted.
+	#_coverageTracker5569276_
+		cover: (25 to: 42)
+		declaredAt: (25 to: 42)
+		by:
+			(monitoringPosition _ #_coverageTracker5569276_
+				coverAll:
+					{46 to: 50}
+				byLiteralOrPseudoVariable: false).! !
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+!Behavior method!
+startMonitoringDirection
+	#_coverageTracker5568950_ markAsExecuted.
+	#_coverageTracker5568950_
+		cover: (29 to: 46)
+		declaredAt: (29 to: 46)
+		by:
+			(monitoringPosition _ #_coverageTracker5568950_
+				coverAll:
+					{50 to: 53}
+				byLiteralOrPseudoVariable: true).! !
+!Behavior method!
+currentDirection
+	#_coverageTracker5568946_ markAsExecuted.
+	^ #_coverageTracker5568946_
+		coverAll:
+			{38 to: 45}
+		evaluating: [
+			(#_coverageTracker5568946_
+				cover: (21 to: 36)
+				declaredAt: (21 to: 36)
+				by: currentDirection) asString ].! !
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:45:08'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:45:08'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:45:08'!
+FAILURE!
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 20:45:34' prior: 50553590!
+initializeAt: aPosition heading: aHeadingType
+
+	position := aPosition.
+	head := aHeadingType for: self.
+	directionSubscriptors := OrderedCollection new.
+	positionSubscriptors  := OrderedCollection new.
+	
+	! !
+
+!classRemoval: #NullLogger stamp: 'V 10/25/2022 20:45:44'!
+Object subclass: #NullLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionSubscriptors directionSubscriptors'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 20:45:48'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionSubscriptors directionSubscriptors'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+t!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:45:51'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:45:51'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:45:51'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:45:51'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:45:51'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:45:51'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:45:51'!
+FAILURE!
+
+!classRenamed: #LogTest as: #RoverLoggerTest stamp: 'V 10/25/2022 20:46:15'!
+Smalltalk renameClassNamed: #LogTest as: #RoverLoggerTest!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:46:33'!
+headingName: aHeadingType
+
+	(aHeadingType class name = MarsRoverHeadingEast name asString) ifTrue: [^'East'].
+	(aHeadingType class name = MarsRoverHeadingNorth name asString) ifTrue:[^'North'].
+	(aHeadingType class name = MarsRoverHeadingWest name asString) ifTrue: [^'West'].
+	(aHeadingType class name = MarsRoverHeadingSouth name asString) ifTrue:[^'South'].! !
+t!
+t!
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:48:49' prior: 50554826!
+currentDirection
+
+	^self headingName: currentDirection. ! !
+t!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:48:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:48:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:48:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:48:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:48:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:48:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:48:53'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:48:53'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:48:53'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:48:53'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:48:53'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:48:53'!
+PASSED!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:49:55'!
+test07DirectionInMonitorCorrrectlyChangesAfterManyRotations
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.
+	
+	rover process:'rllfl'.
+	
+	self assert: 'South' equals: monitor currentDirection.
+	! !
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 20:49:56'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:49:56'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:49:56'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:49:56'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:49:56'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:49:56'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:49:56'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 20:49:56'!
+PASSED!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:50:40'!
+test08MonitorCorrrectlyStopsMonitoringDirections
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.	
+	rover process:'rllfl'.
+	monitor stopMonitoringDirection. 
+	
+	self assert: '' equals: monitor currentDirection.
+	! !
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 20:50:42'!
+ERROR!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:50:50'!
+stopMonitoringDirection
+	self shouldBeImplemented.! !
+t!
+
+!classDefinition: #RoverMonitor category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 20:51:08'!
+Object subclass: #RoverMonitor
+	instanceVariableNames: 'marsRover currentPosition monitoringPosition currentDirection monitoringDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:51:05' prior: 50556383!
+stopMonitoringDirection
+	
+	monitoringDirection _ false
+	! !
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 20:51:15'!
+FAILURE!
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:51:49' prior: 50556275!
+currentDirection
+
+	monitoringDirection ifTrue:[ ^self headingName: currentDirection.].
+	^''! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:51:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:51:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:51:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:51:50'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:51:50'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:51:50'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 20:51:50'!
+ERROR!
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 20:51:50'!
+PASSED!
+t!
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 20:52:12' prior: 50554831!
+initializeWith: aMarsRover 
+
+	monitoringPosition _ false.
+	monitoringDirection _ false.
+	marsRover := aMarsRover.
+	marsRover addPositionSubscriptor: [:aPosition|  self changeCurrentPosition: aPosition].
+	marsRover addDirectionSubscriptor: [:aHeadingType|  self changeCurrentDirection: aHeadingType].
+	
+! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:52:13'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:52:13'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:52:13'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:52:13'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:52:13'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:52:13'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 20:52:13'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 20:52:13'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:52:46'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:52:46'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:52:46'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:52:46'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:52:46'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:52:46'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 20:52:46'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 20:52:46'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:52:48'!
+FAILURE!
+t!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:53:43'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:53:43'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:53:43'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:53:43'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:53:43'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:53:43'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 20:53:43'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 20:53:43'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:53:45'!
+FAILURE!
+t!
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:54:04' prior: 50554735!
+startMonitoringDirection
+	
+	monitoringDirection _ true.! !
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:54:06'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:54:11'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:54:11'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:54:11'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:54:11'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:54:11'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:54:11'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 20:54:11'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 20:54:11'!
+PASSED!
+t!
+t!
+t!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:57:00'!
+test09MonitorCorrrectlyMonitorsBothDirectionAndPosition
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.	
+	rover process:'llff'. 
+	
+	self assert: 'South' equals: monitor currentDirection.
+	self assert: 	'-1@1' equals: monitor currentPosition.! !
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 20:57:01'!
+FAILURE!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:57:19' prior: 50556600!
+test09MonitorCorrrectlyMonitorsBothDirectionAndPosition
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.	
+	monitor startMonitoringPosition.
+	rover process:'llff'. 
+	
+	self assert: 'South' equals: monitor currentDirection.
+	self assert: 	'-1@1' equals: monitor currentPosition.! !
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 20:57:19'!
+FAILURE!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:57:28' prior: 50556616!
+test09MonitorCorrrectlyMonitorsBothDirectionAndPosition
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.	
+	monitor startMonitoringPosition.
+	rover process:'llff'. 
+	
+	self assert: 'South' equals: monitor currentDirection.
+	self assert: 	'1@/1' equals: monitor currentPosition.! !
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:57:30' prior: 50556633!
+test09MonitorCorrrectlyMonitorsBothDirectionAndPosition
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.	
+	monitor startMonitoringPosition.
+	rover process:'llff'. 
+	
+	self assert: 'South' equals: monitor currentDirection.
+	self assert: 	'1@-1' equals: monitor currentPosition.! !
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 20:57:30'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 20:57:35'!
+FAILURE!
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 20:57:43'!
+FAILURE!
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:57:51' prior: 50556646!
+test09MonitorCorrrectlyMonitorsBothDirectionAndPosition
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.	
+	monitor startMonitoringPosition.
+	rover process:'llff'. 
+	
+	self assert: 'South' equals: monitor currentDirection.
+	self assert: 	'1@ -1' equals: monitor currentPosition.! !
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 20:57:52'!
+PASSED!
+t!
+t!
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:59:08'!
+test10LoggerCorrectlyLogsBothPositionsAndDirections
+	
+	
+	logger startLoggingDirections.
+	logger startLoggingPositions.
+	rover process: 'rff'.
+		
+	self assert: logger logs equals: ({'East'. 'South'. 'South'} asOrderedCollection)! !
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:59:52' prior: 50556723!
+test10LoggerCorrectlyLogsBothPositionsAndDirections
+	
+	
+	logger startLoggingDirections.
+	logger startLoggingPositions.
+	rover process: 'rffl'.
+		
+	self assert: logger logs equals: ({'East'. '2@1'. '3@1'. 'North'} asOrderedCollection)! !
+
+!testRun: #RoverLoggerTest #test10LoggerCorrectlyLogsBothPositionsAndDirections stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test10LoggerCorrectlyLogsBothPositionsAndDirections stamp: 'V 10/25/2022 20:59:53'!
+PASSED!
+t!
+!Behavior method!
+at: aPosition heading: aHeadingType
+	#_coverageTracker6473061_ markAsExecuted.
+	^ #_coverageTracker6473061_
+		coverAll:
+			{50 to: 62. 74 to: 81}
+		evaluating: [
+			(#_coverageTracker6473061_
+				coverAll:
+					{46 to: 48}
+				evaluating: [
+					(#_coverageTracker6473061_
+						coverAll:
+							{41 to: 44}
+						byLiteralOrPseudoVariable: self) new ])
+				initializeAt:
+					(#_coverageTracker6473061_
+						cover: (64 to: 72)
+						declaredAt: (5 to: 13)
+						by: aPosition)
+				heading:
+					(#_coverageTracker6473061_
+						cover: (83 to: 94)
+						declaredAt: (24 to: 35)
+						by: aHeadingType) ].! !
+!Behavior method!
+initializeAt: aPosition heading: aHeadingType
+	#_coverageTracker6472996_ markAsExecuted.
+	#_coverageTracker6472996_
+		cover: (49 to: 56)
+		declaredAt: (49 to: 56)
+		by:
+			(position _ #_coverageTracker6472996_
+				cover: (61 to: 69)
+				declaredAt: (15 to: 23)
+				by: aPosition).
+	#_coverageTracker6472996_
+		cover: (73 to: 76)
+		declaredAt: (73 to: 76)
+		by:
+			(head _ #_coverageTracker6472996_
+				coverAll:
+					{94 to: 97}
+				evaluating: [
+					(#_coverageTracker6472996_
+						cover: (81 to: 92)
+						declaredAt: (34 to: 45)
+						by: aHeadingType) for:
+						(#_coverageTracker6472996_
+							coverAll:
+								{99 to: 102}
+							byLiteralOrPseudoVariable: self) ]).
+	#_coverageTracker6472996_
+		cover: (106 to: 126)
+		declaredAt: (106 to: 126)
+		by:
+			(directionSubscriptors _ #_coverageTracker6472996_
+				coverAll:
+					{149 to: 151}
+				evaluating: [
+					(#_coverageTracker6472996_
+						coverAll:
+							{131 to: 147}
+						by: OrderedCollection) new ]).
+	#_coverageTracker6472996_
+		cover: (155 to: 174)
+		declaredAt: (155 to: 174)
+		by:
+			(positionSubscriptors _ #_coverageTracker6472996_
+				coverAll:
+					{198 to: 200}
+				evaluating: [
+					(#_coverageTracker6472996_
+						coverAll:
+							{180 to: 196}
+						by: OrderedCollection) new ]).! !
+!Behavior method!
+for: aMarsRover
+	#_coverageTracker6473011_ markAsExecuted.
+	^ #_coverageTracker6473011_
+		coverAll:
+			{31 to: 44}
+		evaluating: [
+			(#_coverageTracker6473011_
+				coverAll:
+					{27 to: 29}
+				evaluating: [
+					(#_coverageTracker6473011_
+						coverAll:
+							{22 to: 25}
+						byLiteralOrPseudoVariable: self) new ]) initializeFor:
+				(#_coverageTracker6473011_
+					cover: (46 to: 55)
+					declaredAt: (6 to: 15)
+					by: aMarsRover) ].! !
+!Behavior method!
+initializeFor: aMarsRover
+	#_coverageTracker6472804_ markAsExecuted.
+	#_coverageTracker6472804_
+		cover: (31 to: 39)
+		declaredAt: (31 to: 39)
+		by:
+			(marsRover _ #_coverageTracker6472804_
+				cover: (44 to: 53)
+				declaredAt: (16 to: 25)
+				by: aMarsRover).! !
+!Behavior method!
+process: aSequenceOfCommands
+	#_coverageTracker6473088_ markAsExecuted.
+	#_coverageTracker6473088_
+		coverAll:
+			{52 to: 54}
+		evaluating: [
+			(#_coverageTracker6473088_
+				cover: (32 to: 50)
+				declaredAt: (10 to: 28)
+				by: aSequenceOfCommands) do: [ :aCommand |
+				#_coverageTracker6473088_
+					coverAll:
+						{74 to: 88}
+					evaluating: [
+						(#_coverageTracker6473088_
+							coverAll:
+								{69 to: 72}
+							byLiteralOrPseudoVariable: self) processCommand:
+							(#_coverageTracker6473088_
+								cover: (90 to: 97)
+								declaredAt: (58 to: 65)
+								by: aCommand) ]]].! !
+!Behavior method!
+isAt: aPosition heading: aHeadingType
+	#_coverageTracker6472783_ markAsExecuted.
+	^ #_coverageTracker6472783_
+		coverAll:
+			{63 to: 66}
+		evaluating: [
+			(#_coverageTracker6472783_
+				coverAll:
+					{51 to: 51}
+				evaluating: [
+					(#_coverageTracker6472783_
+						cover: (42 to: 49)
+						declaredAt: (42 to: 49)
+						by: position) =
+						(#_coverageTracker6472783_
+							cover: (53 to: 61)
+							declaredAt: (7 to: 15)
+							by: aPosition) ]) and: [
+				#_coverageTracker6472783_
+					coverAll:
+						{75 to: 84}
+					evaluating: [
+						(#_coverageTracker6472783_
+							cover: (70 to: 73)
+							declaredAt: (70 to: 73)
+							by: head) isHeading:
+							(#_coverageTracker6472783_
+								cover: (86 to: 97)
+								declaredAt: (26 to: 37)
+								by: aHeadingType) ]]].! !
+!Behavior method!
+isHeading: aHeadingType
+	#_coverageTracker6473007_ markAsExecuted.
+	^ #_coverageTracker6473007_
+		coverAll:
+			{33 to: 41}
+		evaluating: [
+			(#_coverageTracker6473007_
+				coverAll:
+					{28 to: 31}
+				byLiteralOrPseudoVariable: self) isKindOf:
+				(#_coverageTracker6473007_
+					cover: (43 to: 54)
+					declaredAt: (12 to: 23)
+					by: aHeadingType) ].! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+processCommand: aCommand
+	#_coverageTracker6472827_ markAsExecuted.
+	#_coverageTracker6472827_
+		coverAll:
+			{67 to: 73}
+		evaluating: [
+			(#_coverageTracker6472827_
+				coverAll:
+					{39 to: 55}
+				evaluating: [
+					(#_coverageTracker6472827_
+						coverAll:
+							{34 to: 37}
+						byLiteralOrPseudoVariable: self) isForwardCommand:
+						(#_coverageTracker6472827_
+							cover: (57 to: 64)
+							declaredAt: (17 to: 24)
+							by: aCommand) ]) ifTrue: [ ^ #_coverageTracker6472827_
+					coverAll:
+						{84 to: 94}
+					evaluating: [
+						(#_coverageTracker6472827_
+							coverAll:
+								{79 to: 82}
+							byLiteralOrPseudoVariable: self) moveForward ]]].
+	#_coverageTracker6472827_
+		coverAll:
+			{135 to: 141}
+		evaluating: [
+			(#_coverageTracker6472827_
+				coverAll:
+					{106 to: 123}
+				evaluating: [
+					(#_coverageTracker6472827_
+						coverAll:
+							{101 to: 104}
+						byLiteralOrPseudoVariable: self) isBackwardCommand:
+						(#_coverageTracker6472827_
+							cover: (125 to: 132)
+							declaredAt: (17 to: 24)
+							by: aCommand) ]) ifTrue: [ ^ #_coverageTracker6472827_
+					coverAll:
+						{152 to: 163}
+					evaluating: [
+						(#_coverageTracker6472827_
+							coverAll:
+								{147 to: 150}
+							byLiteralOrPseudoVariable: self) moveBackward ]]].
+	#_coverageTracker6472827_
+		coverAll:
+			{207 to: 213}
+		evaluating: [
+			(#_coverageTracker6472827_
+				coverAll:
+					{175 to: 195}
+				evaluating: [
+					(#_coverageTracker6472827_
+						coverAll:
+							{170 to: 173}
+						byLiteralOrPseudoVariable: self) isRotateRightCommand:
+						(#_coverageTracker6472827_
+							cover: (197 to: 204)
+							declaredAt: (17 to: 24)
+							by: aCommand) ]) ifTrue: [ ^ #_coverageTracker6472827_
+					coverAll:
+						{224 to: 234}
+					evaluating: [
+						(#_coverageTracker6472827_
+							coverAll:
+								{219 to: 222}
+							byLiteralOrPseudoVariable: self) rotateRight ]]].
+	#_coverageTracker6472827_
+		coverAll:
+			{277 to: 283}
+		evaluating: [
+			(#_coverageTracker6472827_
+				coverAll:
+					{246 to: 265}
+				evaluating: [
+					(#_coverageTracker6472827_
+						coverAll:
+							{241 to: 244}
+						byLiteralOrPseudoVariable: self) isRotateLeftCommand:
+						(#_coverageTracker6472827_
+							cover: (267 to: 274)
+							declaredAt: (17 to: 24)
+							by: aCommand) ]) ifTrue: [ ^ #_coverageTracker6472827_
+					coverAll:
+						{294 to: 303}
+					evaluating: [
+						(#_coverageTracker6472827_
+							coverAll:
+								{289 to: 292}
+							byLiteralOrPseudoVariable: self) rotateLeft ]]].
+	#_coverageTracker6472827_
+		coverAll:
+			{315 to: 334}
+		evaluating: [
+			(#_coverageTracker6472827_
+				coverAll:
+					{310 to: 313}
+				byLiteralOrPseudoVariable: self) signalInvalidCommand ].! !
+!Behavior method!
+isForwardCommand: aCommand
+	#_coverageTracker6472854_ markAsExecuted.
+	^ #_coverageTracker6472854_
+		coverAll:
+			{40 to: 40}
+		evaluating: [
+			(#_coverageTracker6472854_
+				cover: (31 to: 38)
+				declaredAt: (19 to: 26)
+				by: aCommand) =
+				(#_coverageTracker6472854_
+					coverAll:
+						{42 to: 43}
+					byLiteralOrPseudoVariable: $f) ].! !
+!Behavior method!
+moveForward
+	#_coverageTracker6473071_ markAsExecuted.
+	#_coverageTracker6473071_
+		coverAll:
+			{21 to: 31}
+		evaluating: [
+			(#_coverageTracker6473071_
+				cover: (16 to: 19)
+				declaredAt: (16 to: 19)
+				by: head) moveForward ].
+	#_coverageTracker6473071_
+		coverAll:
+			{56 to: 58}
+		evaluating: [
+			(#_coverageTracker6473071_
+				cover: (35 to: 54)
+				declaredAt: (35 to: 54)
+				by: positionSubscriptors) do: [ :aSubscriptorClosure |
+				#_coverageTracker6473071_
+					coverAll:
+						{103 to: 108}
+					evaluating: [
+						(#_coverageTracker6473071_
+							cover: (83 to: 101)
+							declaredAt: (62 to: 80)
+							by: aSubscriptorClosure) value:
+							(#_coverageTracker6473071_
+								cover: (110 to: 117)
+								declaredAt: (110 to: 117)
+								by: position) ]]].! !
+!Behavior method!
+moveForward
+	#_coverageTracker6473142_ markAsExecuted.
+	^ #_coverageTracker6473142_
+		coverAll:
+			{27 to: 35}
+		evaluating: [
+			(#_coverageTracker6473142_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveNorth ].! !
+!Behavior method!
+moveNorth
+	#_coverageTracker6472758_ markAsExecuted.
+	#_coverageTracker6472758_
+		cover: (26 to: 33)
+		declaredAt: (14 to: 21)
+		by:
+			(position _ #_coverageTracker6472758_
+				coverAll:
+					{35 to: 35}
+				evaluating: [
+					(#_coverageTracker6472758_
+						cover: (14 to: 21)
+						declaredAt: (14 to: 21)
+						by: position) +
+						(#_coverageTracker6472758_
+							coverAll:
+								{39 to: 39}
+							evaluating: [
+								(#_coverageTracker6472758_
+									coverAll:
+										{38 to: 38}
+									byLiteralOrPseudoVariable: 0) @
+									(#_coverageTracker6472758_
+										coverAll:
+											{40 to: 40}
+										byLiteralOrPseudoVariable: 1) ]) ]).! !
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+isBackwardCommand: aCommand
+	#_coverageTracker6472966_ markAsExecuted.
+	^ #_coverageTracker6472966_
+		coverAll:
+			{41 to: 41}
+		evaluating: [
+			(#_coverageTracker6472966_
+				cover: (32 to: 39)
+				declaredAt: (20 to: 27)
+				by: aCommand) =
+				(#_coverageTracker6472966_
+					coverAll:
+						{43 to: 44}
+					byLiteralOrPseudoVariable: $b) ].! !
+!Behavior method!
+moveBackward
+	#_coverageTracker6473092_ markAsExecuted.
+	#_coverageTracker6473092_
+		coverAll:
+			{22 to: 33}
+		evaluating: [
+			(#_coverageTracker6473092_
+				cover: (17 to: 20)
+				declaredAt: (17 to: 20)
+				by: head) moveBackward ].
+	#_coverageTracker6473092_
+		coverAll:
+			{58 to: 60}
+		evaluating: [
+			(#_coverageTracker6473092_
+				cover: (37 to: 56)
+				declaredAt: (37 to: 56)
+				by: positionSubscriptors) do: [ :aSubscriptorClosure |
+				#_coverageTracker6473092_
+					coverAll:
+						{105 to: 110}
+					evaluating: [
+						(#_coverageTracker6473092_
+							cover: (85 to: 103)
+							declaredAt: (64 to: 82)
+							by: aSubscriptorClosure) value:
+							(#_coverageTracker6473092_
+								cover: (112 to: 119)
+								declaredAt: (112 to: 119)
+								by: position) ]]].! !
+!Behavior method!
+moveBackward
+	#_coverageTracker6472777_ markAsExecuted.
+	^ #_coverageTracker6472777_
+		coverAll:
+			{28 to: 36}
+		evaluating: [
+			(#_coverageTracker6472777_
+				cover: (18 to: 26)
+				declaredAt: (18 to: 26)
+				by: marsRover) moveSouth ].! !
+!Behavior method!
+moveSouth
+	#_coverageTracker6472708_ markAsExecuted.
+	#_coverageTracker6472708_
+		cover: (26 to: 33)
+		declaredAt: (14 to: 21)
+		by:
+			(position _ #_coverageTracker6472708_
+				coverAll:
+					{35 to: 35}
+				evaluating: [
+					(#_coverageTracker6472708_
+						cover: (14 to: 21)
+						declaredAt: (14 to: 21)
+						by: position) +
+						(#_coverageTracker6472708_
+							coverAll:
+								{39 to: 39}
+							evaluating: [
+								(#_coverageTracker6472708_
+									coverAll:
+										{38 to: 38}
+									byLiteralOrPseudoVariable: 0) @
+									(#_coverageTracker6472708_
+										coverAll:
+											{40 to: 41}
+										byLiteralOrPseudoVariable: -1) ]) ]).! !
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+isRotateRightCommand: aCommand
+	#_coverageTracker6472689_ markAsExecuted.
+	^ #_coverageTracker6472689_
+		coverAll:
+			{44 to: 44}
+		evaluating: [
+			(#_coverageTracker6472689_
+				cover: (35 to: 42)
+				declaredAt: (23 to: 30)
+				by: aCommand) =
+				(#_coverageTracker6472689_
+					coverAll:
+						{46 to: 47}
+					byLiteralOrPseudoVariable: $r) ].! !
+!Behavior method!
+rotateRight
+	#_coverageTracker6473185_ markAsExecuted.
+	#_coverageTracker6473185_
+		coverAll:
+			{21 to: 31}
+		evaluating: [
+			(#_coverageTracker6473185_
+				cover: (16 to: 19)
+				declaredAt: (16 to: 19)
+				by: head) rotateRight ].
+	#_coverageTracker6473185_
+		coverAll:
+			{57 to: 59}
+		evaluating: [
+			(#_coverageTracker6473185_
+				cover: (35 to: 55)
+				declaredAt: (35 to: 55)
+				by: directionSubscriptors) do: [ :aSubscriptorClosure |
+				#_coverageTracker6473185_
+					coverAll:
+						{104 to: 109}
+					evaluating: [
+						(#_coverageTracker6473185_
+							cover: (84 to: 102)
+							declaredAt: (63 to: 81)
+							by: aSubscriptorClosure) value:
+							(#_coverageTracker6473185_
+								cover: (111 to: 114)
+								declaredAt: (16 to: 19)
+								by: head) ]]].! !
+!Behavior method!
+rotateRight
+	#_coverageTracker6472968_ markAsExecuted.
+	^ #_coverageTracker6472968_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker6472968_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) headEast ].! !
+!Behavior method!
+headEast
+	#_coverageTracker6472702_ markAsExecuted.
+	#_coverageTracker6472702_
+		cover: (13 to: 16)
+		declaredAt: (13 to: 16)
+		by:
+			(head _ #_coverageTracker6472702_
+				coverAll:
+					{42 to: 45}
+				evaluating: [
+					(#_coverageTracker6472702_
+						coverAll:
+							{21 to: 40}
+						by: MarsRoverHeadingEast) for:
+						(#_coverageTracker6472702_
+							coverAll:
+								{47 to: 50}
+							byLiteralOrPseudoVariable: self) ]).! !
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+isRotateLeftCommand: aCommand
+	#_coverageTracker6472729_ markAsExecuted.
+	^ #_coverageTracker6472729_
+		coverAll:
+			{43 to: 43}
+		evaluating: [
+			(#_coverageTracker6472729_
+				cover: (34 to: 41)
+				declaredAt: (22 to: 29)
+				by: aCommand) =
+				(#_coverageTracker6472729_
+					coverAll:
+						{45 to: 46}
+					byLiteralOrPseudoVariable: $l) ].! !
+!Behavior method!
+rotateLeft
+	#_coverageTracker6473125_ markAsExecuted.
+	#_coverageTracker6473125_
+		coverAll:
+			{20 to: 29}
+		evaluating: [
+			(#_coverageTracker6473125_
+				cover: (15 to: 18)
+				declaredAt: (15 to: 18)
+				by: head) rotateLeft ].
+	#_coverageTracker6473125_
+		coverAll:
+			{55 to: 57}
+		evaluating: [
+			(#_coverageTracker6473125_
+				cover: (33 to: 53)
+				declaredAt: (33 to: 53)
+				by: directionSubscriptors) do: [ :aSubscriptorClosure |
+				#_coverageTracker6473125_
+					coverAll:
+						{102 to: 107}
+					evaluating: [
+						(#_coverageTracker6473125_
+							cover: (82 to: 100)
+							declaredAt: (61 to: 79)
+							by: aSubscriptorClosure) value:
+							(#_coverageTracker6473125_
+								cover: (109 to: 112)
+								declaredAt: (15 to: 18)
+								by: head) ]]].! !
+!Behavior method!
+rotateLeft
+	#_coverageTracker6472706_ markAsExecuted.
+	^ #_coverageTracker6472706_
+		coverAll:
+			{26 to: 33}
+		evaluating: [
+			(#_coverageTracker6472706_
+				cover: (16 to: 24)
+				declaredAt: (16 to: 24)
+				by: marsRover) headWest ].! !
+!Behavior method!
+headWest
+	#_coverageTracker6472775_ markAsExecuted.
+	#_coverageTracker6472775_
+		cover: (13 to: 16)
+		declaredAt: (13 to: 16)
+		by:
+			(head _ #_coverageTracker6472775_
+				coverAll:
+					{42 to: 45}
+				evaluating: [
+					(#_coverageTracker6472775_
+						coverAll:
+							{21 to: 40}
+						by: MarsRoverHeadingWest) for:
+						(#_coverageTracker6472775_
+							coverAll:
+								{47 to: 50}
+							byLiteralOrPseudoVariable: self) ]).! !
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+signalInvalidCommand
+	#_coverageTracker6472961_ markAsExecuted.
+	#_coverageTracker6472961_
+		coverAll:
+			{30 to: 35}
+		evaluating: [
+			(#_coverageTracker6472961_
+				coverAll:
+					{25 to: 28}
+				byLiteralOrPseudoVariable: self) error:
+				(#_coverageTracker6472961_
+					coverAll:
+						{42 to: 71}
+					evaluating: [
+						(#_coverageTracker6472961_
+							coverAll:
+								{37 to: 40}
+							byLiteralOrPseudoVariable: self) invalidCommandErrorDescription ]) ].! !
+!Behavior method!
+invalidCommandErrorDescription
+	#_coverageTracker6473100_ markAsExecuted.
+	^ #_coverageTracker6473100_
+		coverAll:
+			{36 to: 52}
+		byLiteralOrPseudoVariable: 'Invalid command'.! !
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+moveForward
+	#_coverageTracker6472947_ markAsExecuted.
+	^ #_coverageTracker6472947_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker6472947_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveEast ].! !
+!Behavior method!
+moveEast
+	#_coverageTracker6473102_ markAsExecuted.
+	#_coverageTracker6473102_
+		cover: (25 to: 32)
+		declaredAt: (13 to: 20)
+		by:
+			(position _ #_coverageTracker6473102_
+				coverAll:
+					{34 to: 34}
+				evaluating: [
+					(#_coverageTracker6473102_
+						cover: (13 to: 20)
+						declaredAt: (13 to: 20)
+						by: position) +
+						(#_coverageTracker6473102_
+							coverAll:
+								{38 to: 38}
+							evaluating: [
+								(#_coverageTracker6473102_
+									coverAll:
+										{37 to: 37}
+									byLiteralOrPseudoVariable: 1) @
+									(#_coverageTracker6473102_
+										coverAll:
+											{39 to: 39}
+										byLiteralOrPseudoVariable: 0) ]) ]).! !
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+moveBackward
+	#_coverageTracker6472856_ markAsExecuted.
+	^ #_coverageTracker6472856_
+		coverAll:
+			{28 to: 35}
+		evaluating: [
+			(#_coverageTracker6472856_
+				cover: (18 to: 26)
+				declaredAt: (18 to: 26)
+				by: marsRover) moveWest ].! !
+!Behavior method!
+moveWest
+	#_coverageTracker6472754_ markAsExecuted.
+	#_coverageTracker6472754_
+		cover: (25 to: 32)
+		declaredAt: (13 to: 20)
+		by:
+			(position _ #_coverageTracker6472754_
+				coverAll:
+					{34 to: 34}
+				evaluating: [
+					(#_coverageTracker6472754_
+						cover: (13 to: 20)
+						declaredAt: (13 to: 20)
+						by: position) +
+						(#_coverageTracker6472754_
+							coverAll:
+								{39 to: 39}
+							evaluating: [
+								(#_coverageTracker6472754_
+									coverAll:
+										{37 to: 38}
+									byLiteralOrPseudoVariable: -1) @
+									(#_coverageTracker6472754_
+										coverAll:
+											{40 to: 40}
+										byLiteralOrPseudoVariable: 0) ]) ]).! !
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+rotateRight
+	#_coverageTracker6472941_ markAsExecuted.
+	^ #_coverageTracker6472941_
+		coverAll:
+			{27 to: 35}
+		evaluating: [
+			(#_coverageTracker6472941_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) headSouth ].! !
+!Behavior method!
+headSouth
+	#_coverageTracker6472945_ markAsExecuted.
+	#_coverageTracker6472945_
+		cover: (14 to: 17)
+		declaredAt: (14 to: 17)
+		by:
+			(head _ #_coverageTracker6472945_
+				coverAll:
+					{44 to: 47}
+				evaluating: [
+					(#_coverageTracker6472945_
+						coverAll:
+							{22 to: 42}
+						by: MarsRoverHeadingSouth) for:
+						(#_coverageTracker6472945_
+							coverAll:
+								{49 to: 52}
+							byLiteralOrPseudoVariable: self) ]).! !
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+rotateLeft
+	#_coverageTracker6473140_ markAsExecuted.
+	^ #_coverageTracker6473140_
+		coverAll:
+			{26 to: 34}
+		evaluating: [
+			(#_coverageTracker6473140_
+				cover: (16 to: 24)
+				declaredAt: (16 to: 24)
+				by: marsRover) headNorth ].! !
+!Behavior method!
+headNorth
+	#_coverageTracker6472802_ markAsExecuted.
+	#_coverageTracker6472802_
+		cover: (14 to: 17)
+		declaredAt: (14 to: 17)
+		by:
+			(head _ #_coverageTracker6472802_
+				coverAll:
+					{44 to: 47}
+				evaluating: [
+					(#_coverageTracker6472802_
+						coverAll:
+							{22 to: 42}
+						by: MarsRoverHeadingNorth) for:
+						(#_coverageTracker6472802_
+							coverAll:
+								{49 to: 52}
+							byLiteralOrPseudoVariable: self) ]).! !
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+moveForward
+	#_coverageTracker6473009_ markAsExecuted.
+	^ #_coverageTracker6473009_
+		coverAll:
+			{27 to: 35}
+		evaluating: [
+			(#_coverageTracker6473009_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveSouth ].! !
+!Behavior method!
+moveBackward
+	#_coverageTracker6473192_ markAsExecuted.
+	^ #_coverageTracker6473192_
+		coverAll:
+			{28 to: 36}
+		evaluating: [
+			(#_coverageTracker6473192_
+				cover: (18 to: 26)
+				declaredAt: (18 to: 26)
+				by: marsRover) moveNorth ].! !
+!Behavior method!
+rotateLeft
+	#_coverageTracker6473024_ markAsExecuted.
+	^ #_coverageTracker6473024_
+		coverAll:
+			{26 to: 33}
+		evaluating: [
+			(#_coverageTracker6473024_
+				cover: (16 to: 24)
+				declaredAt: (16 to: 24)
+				by: marsRover) headEast ].! !
+!Behavior method!
+rotateRight
+	#_coverageTracker6473100_ markAsExecuted.
+	^ #_coverageTracker6473100_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker6473100_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) headWest ].! !
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+moveForward
+	#_coverageTracker6472779_ markAsExecuted.
+	^ #_coverageTracker6472779_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker6472779_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveWest ].! !
+!Behavior method!
+moveBackward
+	#_coverageTracker6473028_ markAsExecuted.
+	^ #_coverageTracker6473028_
+		coverAll:
+			{27 to: 34}
+		evaluating: [
+			(#_coverageTracker6473028_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) moveEast ].! !
+!Behavior method!
+rotateLeft
+	#_coverageTracker6472800_ markAsExecuted.
+	^ #_coverageTracker6472800_
+		coverAll:
+			{26 to: 34}
+		evaluating: [
+			(#_coverageTracker6472800_
+				cover: (16 to: 24)
+				declaredAt: (16 to: 24)
+				by: marsRover) headSouth ].! !
+!Behavior method!
+rotateRight
+	#_coverageTracker6473121_ markAsExecuted.
+	^ #_coverageTracker6473121_
+		coverAll:
+			{27 to: 35}
+		evaluating: [
+			(#_coverageTracker6473121_
+				cover: (17 to: 25)
+				declaredAt: (17 to: 25)
+				by: marsRover) headNorth ].! !
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+for: aMarsRover
+	#_coverageTracker6472924_ markAsExecuted.
+	^ #_coverageTracker6472924_
+		coverAll:
+			{33 to: 46}
+		evaluating: [
+			(#_coverageTracker6472924_
+				coverAll:
+					{29 to: 31}
+				evaluating: [
+					(#_coverageTracker6472924_
+						coverAll:
+							{24 to: 27}
+						byLiteralOrPseudoVariable: self) new ]) initializeFor:
+				(#_coverageTracker6472924_
+					cover: (48 to: 57)
+					declaredAt: (6 to: 15)
+					by: aMarsRover) ].! !
+!Behavior method!
+initializeFor: aMarsRover
+	#_coverageTracker6472972_ markAsExecuted.
+	#_coverageTracker6472972_
+		cover: (30 to: 45)
+		declaredAt: (30 to: 45)
+		by:
+			(loggingPositions _ #_coverageTracker6472972_
+				coverAll:
+					{49 to: 53}
+				byLiteralOrPseudoVariable: false).
+	#_coverageTracker6472972_
+		cover: (57 to: 73)
+		declaredAt: (57 to: 73)
+		by:
+			(loggingDirections _ #_coverageTracker6472972_
+				coverAll:
+					{77 to: 81}
+				byLiteralOrPseudoVariable: false).
+	#_coverageTracker6472972_
+		cover: (85 to: 87)
+		declaredAt: (85 to: 87)
+		by:
+			(log _ #_coverageTracker6472972_
+				coverAll:
+					{110 to: 112}
+				evaluating: [
+					(#_coverageTracker6472972_
+						coverAll:
+							{92 to: 108}
+						by: OrderedCollection) new ]).
+	#_coverageTracker6472972_
+		cover: (116 to: 124)
+		declaredAt: (116 to: 124)
+		by:
+			(marsRover _ #_coverageTracker6472972_
+				cover: (129 to: 138)
+				declaredAt: (16 to: 25)
+				by: aMarsRover).
+	#_coverageTracker6472972_
+		coverAll:
+			{153 to: 175}
+		evaluating: [
+			(#_coverageTracker6472972_
+				cover: (142 to: 151)
+				declaredAt: (16 to: 25)
+				by: aMarsRover) addPositionSubscriptor: [ :aPosition |
+				#_coverageTracker6472972_
+					coverAll:
+						{195 to: 206}
+					evaluating: [
+						(#_coverageTracker6472972_
+							coverAll:
+								{190 to: 193}
+							byLiteralOrPseudoVariable: self) logPosition:
+							(#_coverageTracker6472972_
+								cover: (208 to: 216)
+								declaredAt: (179 to: 187)
+								by: aPosition) ]]].
+	#_coverageTracker6472972_
+		coverAll:
+			{232 to: 255}
+		evaluating: [
+			(#_coverageTracker6472972_
+				cover: (221 to: 230)
+				declaredAt: (16 to: 25)
+				by: aMarsRover) addDirectionSubscriptor: [ :aHeadingType |
+				#_coverageTracker6472972_
+					coverAll:
+						{278 to: 290}
+					evaluating: [
+						(#_coverageTracker6472972_
+							coverAll:
+								{273 to: 276}
+							byLiteralOrPseudoVariable: self) logDirection:
+							(#_coverageTracker6472972_
+								cover: (292 to: 303)
+								declaredAt: (259 to: 270)
+								by: aHeadingType) ]]].! !
+!Behavior method!
+addPositionSubscriptor: aClosure
+	#_coverageTracker6472725_ markAsExecuted.
+	#_coverageTracker6472725_
+		coverAll:
+			{57 to: 60}
+		evaluating: [
+			(#_coverageTracker6472725_
+				cover: (36 to: 55)
+				declaredAt: (36 to: 55)
+				by: positionSubscriptors) add:
+				(#_coverageTracker6472725_
+					cover: (62 to: 69)
+					declaredAt: (25 to: 32)
+					by: aClosure) ].
+	#_coverageTracker6472725_
+		coverAll:
+			{82 to: 87}
+		evaluating: [
+			(#_coverageTracker6472725_
+				cover: (73 to: 80)
+				declaredAt: (25 to: 32)
+				by: aClosure) value:
+				(#_coverageTracker6472725_
+					cover: (89 to: 96)
+					declaredAt: (89 to: 96)
+					by: position) ].! !
+!Behavior method!
+logPosition: aPosition
+	#_coverageTracker6472737_ markAsExecuted.
+	self.
+	#_coverageTracker6472737_
+		coverAll:
+			{44 to: 50}
+		evaluating: [
+			(#_coverageTracker6472737_
+				cover: (27 to: 42)
+				declaredAt: (27 to: 42)
+				by: loggingPositions) ifTrue: [
+				#_coverageTracker6472737_
+					coverAll:
+						{57 to: 64}
+					evaluating: [
+						(#_coverageTracker6472737_
+							cover: (53 to: 55)
+							declaredAt: (53 to: 55)
+							by: log) addLast:
+							(#_coverageTracker6472737_
+								coverAll:
+									{76 to: 83}
+								evaluating: [
+									(#_coverageTracker6472737_
+										cover: (66 to: 74)
+										declaredAt: (14 to: 22)
+										by: aPosition) asString ]) ]]].! !
+!Behavior method!
+addDirectionSubscriptor: aClosure
+	#_coverageTracker6472860_ markAsExecuted.
+	#_coverageTracker6472860_
+		coverAll:
+			{59 to: 62}
+		evaluating: [
+			(#_coverageTracker6472860_
+				cover: (37 to: 57)
+				declaredAt: (37 to: 57)
+				by: directionSubscriptors) add:
+				(#_coverageTracker6472860_
+					cover: (64 to: 71)
+					declaredAt: (26 to: 33)
+					by: aClosure) ].
+	#_coverageTracker6472860_
+		coverAll:
+			{84 to: 89}
+		evaluating: [
+			(#_coverageTracker6472860_
+				cover: (75 to: 82)
+				declaredAt: (26 to: 33)
+				by: aClosure) value:
+				(#_coverageTracker6472860_
+					cover: (91 to: 94)
+					declaredAt: (91 to: 94)
+					by: head) ].! !
+!Behavior method!
+logDirection: aHeadingType
+	#_coverageTracker6472878_ markAsExecuted.
+	#_coverageTracker6472878_
+		coverAll:
+			{72 to: 75}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker6472878_
+		coverAll:
+			{49 to: 55}
+		evaluating: [
+			(#_coverageTracker6472878_
+				cover: (31 to: 47)
+				declaredAt: (31 to: 47)
+				by: loggingDirections) ifTrue: [
+				#_coverageTracker6472878_
+					coverAll:
+						{62 to: 69}
+					evaluating: [
+						(#_coverageTracker6472878_
+							cover: (58 to: 60)
+							declaredAt: (58 to: 60)
+							by: log) addLast:
+							(#_coverageTracker6472878_
+								coverAll:
+									{77 to: 88}
+								evaluating: [
+									self headingName:
+										(#_coverageTracker6472878_
+											cover: (90 to: 101)
+											declaredAt: (15 to: 26)
+											by: aHeadingType) ]) ]]].! !
+!Behavior method!
+startLoggingPositions
+	#_coverageTracker6472723_ markAsExecuted.
+	#_coverageTracker6472723_
+		cover: (24 to: 39)
+		declaredAt: (24 to: 39)
+		by:
+			(loggingPositions _ #_coverageTracker6472723_
+				coverAll:
+					{43 to: 46}
+				byLiteralOrPseudoVariable: true).! !
+!Behavior method!
+logs
+	#_coverageTracker6473194_ markAsExecuted.
+	^ #_coverageTracker6473194_
+		cover: (8 to: 10)
+		declaredAt: (8 to: 10)
+		by: log.! !
+
+!testRun: #RoverLoggerTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+startLoggingDirections
+	#_coverageTracker6472866_ markAsExecuted.
+	#_coverageTracker6472866_
+		cover: (25 to: 41)
+		declaredAt: (25 to: 41)
+		by:
+			(loggingDirections _ #_coverageTracker6472866_
+				coverAll:
+					{45 to: 48}
+				byLiteralOrPseudoVariable: true).! !
+
+!testRun: #RoverLoggerTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+stopLoggingPositions
+	#_coverageTracker6472939_ markAsExecuted.
+	#_coverageTracker6472939_
+		cover: (23 to: 38)
+		declaredAt: (23 to: 38)
+		by:
+			(loggingPositions _ #_coverageTracker6472939_
+				coverAll:
+					{42 to: 46}
+				byLiteralOrPseudoVariable: false).! !
+
+!testRun: #RoverLoggerTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+headingName: aHeadingType
+	#_coverageTracker6472887_ markAsExecuted.
+	#_coverageTracker6472887_
+		coverAll:
+			{92 to: 98}
+		evaluating: [
+			(#_coverageTracker6472887_
+				coverAll:
+					{54 to: 54}
+				evaluating: [
+					(#_coverageTracker6472887_
+						coverAll:
+							{49 to: 52}
+						evaluating: [
+							(#_coverageTracker6472887_
+								coverAll:
+									{43 to: 47}
+								evaluating: [
+									(#_coverageTracker6472887_
+										cover: (30 to: 41)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker6472887_
+							coverAll:
+								{82 to: 89}
+							evaluating: [
+								(#_coverageTracker6472887_
+									coverAll:
+										{77 to: 80}
+									evaluating: [
+										(#_coverageTracker6472887_
+											coverAll:
+												{56 to: 75}
+											by: MarsRoverHeadingEast) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker6472887_
+					coverAll:
+						{102 to: 107}
+					byLiteralOrPseudoVariable: 'East' ]].
+	#_coverageTracker6472887_
+		coverAll:
+			{176 to: 182}
+		evaluating: [
+			(#_coverageTracker6472887_
+				coverAll:
+					{137 to: 137}
+				evaluating: [
+					(#_coverageTracker6472887_
+						coverAll:
+							{132 to: 135}
+						evaluating: [
+							(#_coverageTracker6472887_
+								coverAll:
+									{126 to: 130}
+								evaluating: [
+									(#_coverageTracker6472887_
+										cover: (113 to: 124)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker6472887_
+							coverAll:
+								{166 to: 173}
+							evaluating: [
+								(#_coverageTracker6472887_
+									coverAll:
+										{161 to: 164}
+									evaluating: [
+										(#_coverageTracker6472887_
+											coverAll:
+												{139 to: 159}
+											by: MarsRoverHeadingNorth) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker6472887_
+					coverAll:
+						{185 to: 191}
+					byLiteralOrPseudoVariable: 'North' ]].
+	#_coverageTracker6472887_
+		coverAll:
+			{259 to: 265}
+		evaluating: [
+			(#_coverageTracker6472887_
+				coverAll:
+					{221 to: 221}
+				evaluating: [
+					(#_coverageTracker6472887_
+						coverAll:
+							{216 to: 219}
+						evaluating: [
+							(#_coverageTracker6472887_
+								coverAll:
+									{210 to: 214}
+								evaluating: [
+									(#_coverageTracker6472887_
+										cover: (197 to: 208)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker6472887_
+							coverAll:
+								{249 to: 256}
+							evaluating: [
+								(#_coverageTracker6472887_
+									coverAll:
+										{244 to: 247}
+									evaluating: [
+										(#_coverageTracker6472887_
+											coverAll:
+												{223 to: 242}
+											by: MarsRoverHeadingWest) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker6472887_
+					coverAll:
+						{269 to: 274}
+					byLiteralOrPseudoVariable: 'West' ]].
+	#_coverageTracker6472887_
+		coverAll:
+			{343 to: 349}
+		evaluating: [
+			(#_coverageTracker6472887_
+				coverAll:
+					{304 to: 304}
+				evaluating: [
+					(#_coverageTracker6472887_
+						coverAll:
+							{299 to: 302}
+						evaluating: [
+							(#_coverageTracker6472887_
+								coverAll:
+									{293 to: 297}
+								evaluating: [
+									(#_coverageTracker6472887_
+										cover: (280 to: 291)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker6472887_
+							coverAll:
+								{333 to: 340}
+							evaluating: [
+								(#_coverageTracker6472887_
+									coverAll:
+										{328 to: 331}
+									evaluating: [
+										(#_coverageTracker6472887_
+											coverAll:
+												{306 to: 326}
+											by: MarsRoverHeadingSouth) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker6472887_
+					coverAll:
+						{352 to: 358}
+					byLiteralOrPseudoVariable: 'South' ]].! !
+
+!testRun: #RoverLoggerTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+stopLoggingDirections
+	#_coverageTracker6473119_ markAsExecuted.
+	#_coverageTracker6473119_
+		cover: (24 to: 40)
+		declaredAt: (24 to: 40)
+		by:
+			(loggingDirections _ #_coverageTracker6473119_
+				coverAll:
+					{44 to: 48}
+				byLiteralOrPseudoVariable: false).! !
+
+!testRun: #RoverLoggerTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test10LoggerCorrectlyLogsBothPositionsAndDirections stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+for: aMarsRover
+	#_coverageTracker6473067_ markAsExecuted.
+	^ #_coverageTracker6473067_
+		coverAll:
+			{31 to: 45}
+		evaluating: [
+			(#_coverageTracker6473067_
+				coverAll:
+					{27 to: 29}
+				evaluating: [
+					(#_coverageTracker6473067_
+						coverAll:
+							{22 to: 25}
+						byLiteralOrPseudoVariable: self) new ]) initializeWith:
+				(#_coverageTracker6473067_
+					cover: (47 to: 56)
+					declaredAt: (6 to: 15)
+					by: aMarsRover) ].! !
+!Behavior method!
+initializeWith: aMarsRover
+	#_coverageTracker6473032_ markAsExecuted.
+	#_coverageTracker6473032_
+		cover: (31 to: 48)
+		declaredAt: (31 to: 48)
+		by:
+			(monitoringPosition _ #_coverageTracker6473032_
+				coverAll:
+					{52 to: 56}
+				byLiteralOrPseudoVariable: false).
+	#_coverageTracker6473032_
+		cover: (60 to: 78)
+		declaredAt: (60 to: 78)
+		by:
+			(monitoringDirection _ #_coverageTracker6473032_
+				coverAll:
+					{82 to: 86}
+				byLiteralOrPseudoVariable: false).
+	#_coverageTracker6473032_
+		cover: (90 to: 98)
+		declaredAt: (90 to: 98)
+		by:
+			(marsRover _ #_coverageTracker6473032_
+				cover: (103 to: 112)
+				declaredAt: (17 to: 26)
+				by: aMarsRover).
+	#_coverageTracker6473032_
+		coverAll:
+			{126 to: 148}
+		evaluating: [
+			(#_coverageTracker6473032_
+				cover: (116 to: 124)
+				declaredAt: (90 to: 98)
+				by: marsRover) addPositionSubscriptor: [ :aPosition |
+				#_coverageTracker6473032_
+					coverAll:
+						{169 to: 190}
+					evaluating: [
+						(#_coverageTracker6473032_
+							coverAll:
+								{164 to: 167}
+							byLiteralOrPseudoVariable: self) changeCurrentPosition:
+							(#_coverageTracker6473032_
+								cover: (192 to: 200)
+								declaredAt: (152 to: 160)
+								by: aPosition) ]]].
+	#_coverageTracker6473032_
+		coverAll:
+			{215 to: 238}
+		evaluating: [
+			(#_coverageTracker6473032_
+				cover: (205 to: 213)
+				declaredAt: (90 to: 98)
+				by: marsRover) addDirectionSubscriptor: [ :aHeadingType |
+				#_coverageTracker6473032_
+					coverAll:
+						{262 to: 284}
+					evaluating: [
+						(#_coverageTracker6473032_
+							coverAll:
+								{257 to: 260}
+							byLiteralOrPseudoVariable: self) changeCurrentDirection:
+							(#_coverageTracker6473032_
+								cover: (286 to: 297)
+								declaredAt: (242 to: 253)
+								by: aHeadingType) ]]].! !
+!Behavior method!
+changeCurrentPosition: aPosition
+	#_coverageTracker6473183_ markAsExecuted.
+	#_coverageTracker6473183_
+		cover: (38 to: 52)
+		declaredAt: (38 to: 52)
+		by:
+			(currentPosition _ #_coverageTracker6473183_
+				cover: (56 to: 64)
+				declaredAt: (24 to: 32)
+				by: aPosition).! !
+!Behavior method!
+changeCurrentDirection: aMarsRoverHeadingNorth
+	#_coverageTracker6473026_ markAsExecuted.
+	#_coverageTracker6473026_
+		cover: (52 to: 67)
+		declaredAt: (52 to: 67)
+		by:
+			(currentDirection _ #_coverageTracker6473026_
+				cover: (71 to: 92)
+				declaredAt: (25 to: 46)
+				by: aMarsRoverHeadingNorth).! !
+!Behavior method!
+startMonitoringPosition
+	#_coverageTracker6472762_ markAsExecuted.
+	#_coverageTracker6472762_
+		cover: (28 to: 45)
+		declaredAt: (28 to: 45)
+		by:
+			(monitoringPosition _ #_coverageTracker6472762_
+				coverAll:
+					{49 to: 52}
+				byLiteralOrPseudoVariable: true).! !
+!Behavior method!
+currentPosition
+	#_coverageTracker6473057_ markAsExecuted.
+	#_coverageTracker6473057_
+		coverAll:
+			{39 to: 45}
+		evaluating: [
+			(#_coverageTracker6473057_
+				cover: (20 to: 37)
+				declaredAt: (20 to: 37)
+				by: monitoringPosition) ifTrue: [ ^ #_coverageTracker6473057_
+					coverAll:
+						{65 to: 72}
+					evaluating: [
+						(#_coverageTracker6473057_
+							cover: (49 to: 63)
+							declaredAt: (49 to: 63)
+							by: currentPosition) asString ]]].
+	^ #_coverageTracker6473057_
+		coverAll:
+			{78 to: 79}
+		byLiteralOrPseudoVariable: ''.! !
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+stopMonitoringPosition
+	#_coverageTracker6473123_ markAsExecuted.
+	#_coverageTracker6473123_
+		cover: (25 to: 42)
+		declaredAt: (25 to: 42)
+		by:
+			(monitoringPosition _ #_coverageTracker6473123_
+				coverAll:
+					{46 to: 50}
+				byLiteralOrPseudoVariable: false).! !
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+startMonitoringDirection
+	#_coverageTracker6473055_ markAsExecuted.
+	#_coverageTracker6473055_
+		cover: (29 to: 47)
+		declaredAt: (29 to: 47)
+		by:
+			(monitoringDirection _ #_coverageTracker6473055_
+				coverAll:
+					{51 to: 54}
+				byLiteralOrPseudoVariable: true).! !
+!Behavior method!
+currentDirection
+	#_coverageTracker6472928_ markAsExecuted.
+	#_coverageTracker6472928_
+		coverAll:
+			{40 to: 46}
+		evaluating: [
+			(#_coverageTracker6472928_
+				cover: (20 to: 38)
+				declaredAt: (20 to: 38)
+				by: monitoringDirection) ifTrue: [ ^ #_coverageTracker6472928_
+					coverAll:
+						{55 to: 66}
+					evaluating: [
+						(#_coverageTracker6472928_
+							coverAll:
+								{50 to: 53}
+							byLiteralOrPseudoVariable: self) headingName:
+							(#_coverageTracker6472928_
+								cover: (68 to: 83)
+								declaredAt: (68 to: 83)
+								by: currentDirection) ]]].
+	^ #_coverageTracker6472928_
+		coverAll:
+			{90 to: 91}
+		byLiteralOrPseudoVariable: ''.! !
+!Behavior method!
+headingName: aHeadingType
+	#_coverageTracker6473146_ markAsExecuted.
+	#_coverageTracker6473146_
+		coverAll:
+			{92 to: 98}
+		evaluating: [
+			(#_coverageTracker6473146_
+				coverAll:
+					{54 to: 54}
+				evaluating: [
+					(#_coverageTracker6473146_
+						coverAll:
+							{49 to: 52}
+						evaluating: [
+							(#_coverageTracker6473146_
+								coverAll:
+									{43 to: 47}
+								evaluating: [
+									(#_coverageTracker6473146_
+										cover: (30 to: 41)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker6473146_
+							coverAll:
+								{82 to: 89}
+							evaluating: [
+								(#_coverageTracker6473146_
+									coverAll:
+										{77 to: 80}
+									evaluating: [
+										(#_coverageTracker6473146_
+											coverAll:
+												{56 to: 75}
+											by: MarsRoverHeadingEast) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker6473146_
+					coverAll:
+						{102 to: 107}
+					byLiteralOrPseudoVariable: 'East' ]].
+	#_coverageTracker6473146_
+		coverAll:
+			{176 to: 182}
+		evaluating: [
+			(#_coverageTracker6473146_
+				coverAll:
+					{137 to: 137}
+				evaluating: [
+					(#_coverageTracker6473146_
+						coverAll:
+							{132 to: 135}
+						evaluating: [
+							(#_coverageTracker6473146_
+								coverAll:
+									{126 to: 130}
+								evaluating: [
+									(#_coverageTracker6473146_
+										cover: (113 to: 124)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker6473146_
+							coverAll:
+								{166 to: 173}
+							evaluating: [
+								(#_coverageTracker6473146_
+									coverAll:
+										{161 to: 164}
+									evaluating: [
+										(#_coverageTracker6473146_
+											coverAll:
+												{139 to: 159}
+											by: MarsRoverHeadingNorth) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker6473146_
+					coverAll:
+						{185 to: 191}
+					byLiteralOrPseudoVariable: 'North' ]].
+	#_coverageTracker6473146_
+		coverAll:
+			{259 to: 265}
+		evaluating: [
+			(#_coverageTracker6473146_
+				coverAll:
+					{221 to: 221}
+				evaluating: [
+					(#_coverageTracker6473146_
+						coverAll:
+							{216 to: 219}
+						evaluating: [
+							(#_coverageTracker6473146_
+								coverAll:
+									{210 to: 214}
+								evaluating: [
+									(#_coverageTracker6473146_
+										cover: (197 to: 208)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker6473146_
+							coverAll:
+								{249 to: 256}
+							evaluating: [
+								(#_coverageTracker6473146_
+									coverAll:
+										{244 to: 247}
+									evaluating: [
+										(#_coverageTracker6473146_
+											coverAll:
+												{223 to: 242}
+											by: MarsRoverHeadingWest) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker6473146_
+					coverAll:
+						{269 to: 274}
+					byLiteralOrPseudoVariable: 'West' ]].
+	#_coverageTracker6473146_
+		coverAll:
+			{343 to: 349}
+		evaluating: [
+			(#_coverageTracker6473146_
+				coverAll:
+					{304 to: 304}
+				evaluating: [
+					(#_coverageTracker6473146_
+						coverAll:
+							{299 to: 302}
+						evaluating: [
+							(#_coverageTracker6473146_
+								coverAll:
+									{293 to: 297}
+								evaluating: [
+									(#_coverageTracker6473146_
+										cover: (280 to: 291)
+										declaredAt: (14 to: 25)
+										by: aHeadingType) class ]) name ]) =
+						(#_coverageTracker6473146_
+							coverAll:
+								{333 to: 340}
+							evaluating: [
+								(#_coverageTracker6473146_
+									coverAll:
+										{328 to: 331}
+									evaluating: [
+										(#_coverageTracker6473146_
+											coverAll:
+												{306 to: 326}
+											by: MarsRoverHeadingSouth) name ]) asString ]) ]) ifTrue: [ ^ #_coverageTracker6473146_
+					coverAll:
+						{352 to: 358}
+					byLiteralOrPseudoVariable: 'South' ]].! !
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+!Behavior method!
+stopMonitoringDirection
+	#_coverageTracker6473098_ markAsExecuted.
+	#_coverageTracker6473098_
+		cover: (28 to: 46)
+		declaredAt: (28 to: 46)
+		by:
+			(monitoringDirection _ #_coverageTracker6473098_
+				coverAll:
+					{50 to: 54}
+				byLiteralOrPseudoVariable: false).! !
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 21:00:12'!
+PASSED!
+t!
+t!
+t!
+
+Object subclass: #RoverObserver
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #RoverObserver category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 21:03:31'!
+Object subclass: #RoverObserver
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRenamed: #RoverObserver as: #RoverSubscriptor stamp: 'V 10/25/2022 21:03:53'!
+Smalltalk renameClassNamed: #RoverObserver as: #RoverSubscriptor!
+t!
+
+RoverSubscriptor subclass: #RoverMonitor
+	instanceVariableNames: 'marsRover currentPosition monitoringPosition currentDirection monitoringDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+RoverSubscriptor subclass: #RoverMonitor
+	instanceVariableNames: ' currentPosition monitoringPosition currentDirection monitoringDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #RoverMonitor category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 21:04:49'!
+RoverSubscriptor subclass: #RoverMonitor
+	instanceVariableNames: 'currentPosition monitoringPosition currentDirection monitoringDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+t!
+
+RoverSubscriptor subclass: #RoverLogger
+	instanceVariableNames: 'loggingPositions loggingDirections log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #RoverLogger category: 'MarsRover-WithHeading' stamp: 'V 10/25/2022 21:05:05'!
+RoverSubscriptor subclass: #RoverLogger
+	instanceVariableNames: 'loggingPositions loggingDirections log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!RoverSubscriptor class methodsFor: 'instance creation' stamp: 'V 10/25/2022 21:05:17'!
+for: aMarsRover 
+	
+	
+	^self new initializeFor: aMarsRover ! !
+
+!methodRemoval: RoverLogger class #for: stamp: 'V 10/25/2022 21:05:17'!
+for: aMarsRover 
+	
+	
+	^self new initializeFor: aMarsRover !
+!RoverSubscriptor class methodsFor: 'initialization' stamp: 'V 10/25/2022 21:05:31' prior: 50558293!
+for: aMarsRover 
+	
+	^self new initializeWith: aMarsRover ! !
+
+!methodRemoval: RoverMonitor class #for: stamp: 'V 10/25/2022 21:05:31'!
+for: aMarsRover 
+	
+	^self new initializeWith: aMarsRover !
+!RoverSubscriptor methodsFor: 'no messages' stamp: 'V 10/25/2022 21:05:51'!
+initializeFor: aRover
+
+	self subclassResponsibility.! !
+t!
+!RoverSubscriptor methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 21:06:03'!
+initializeWith: aRover
+
+	self subclassResponsibility.! !
+t!
+
+!methodRemoval: RoverSubscriptor #initializeWith: stamp: 'V 10/25/2022 21:07:34'!
+initializeWith: aRover
+
+	self subclassResponsibility.!
+t!
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 21:08:01' overrides: 50558312!
+initializeFor: aMarsRover 
+
+	monitoringPosition _ false.
+	monitoringDirection _ false.
+	marsRover := aMarsRover.
+	marsRover addPositionSubscriptor: [:aPosition|  self changeCurrentPosition: aPosition].
+	marsRover addDirectionSubscriptor: [:aHeadingType|  self changeCurrentDirection: aHeadingType].
+	
+! !
+
+!methodRemoval: RoverMonitor #initializeWith: stamp: 'V 10/25/2022 21:08:01'!
+initializeWith: aMarsRover 
+
+	monitoringPosition _ false.
+	monitoringDirection _ false.
+	marsRover := aMarsRover.
+	marsRover addPositionSubscriptor: [:aPosition|  self changeCurrentPosition: aPosition].
+	marsRover addDirectionSubscriptor: [:aHeadingType|  self changeCurrentDirection: aHeadingType].
+	
+!
+t!
+!RoverSubscriptor class methodsFor: 'initialization' stamp: 'V 10/25/2022 21:09:13' prior: 50558303!
+for: aMarsRover 
+	
+	^self new initializeFor: aMarsRover ! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test10LoggerCorrectlyLogsBothPositionsAndDirections stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 21:09:17'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 21:09:20'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test02PositionInMonitorCorrectlyChangesAfterMoving stamp: 'V 10/25/2022 21:09:20'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test03PositionInMonitorCorrectlyChangesAfterManyMoves stamp: 'V 10/25/2022 21:09:20'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test04MonitorCorrectlyStopsMonitoringPosition stamp: 'V 10/25/2022 21:09:20'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence stamp: 'V 10/25/2022 21:09:20'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test06DirectionInMonitorCorrrectlyChangesAfterRotating stamp: 'V 10/25/2022 21:09:20'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test07DirectionInMonitorCorrrectlyChangesAfterManyRotations stamp: 'V 10/25/2022 21:09:20'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test08MonitorCorrrectlyStopsMonitoringDirections stamp: 'V 10/25/2022 21:09:20'!
+PASSED!
+
+!testRun: #RoverMonitorTest #test09MonitorCorrrectlyMonitorsBothDirectionAndPosition stamp: 'V 10/25/2022 21:09:20'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test04LoggerLoggingPositionsCorrectlyLogsMovingForward stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test05LoggerLoggingPositionsCorrectlyLogsManyMovements stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test06LoggerLoggingPositionsCorrectlyStoppsLogging stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test07LoggerLoggingDirectionsCorrectlyLogsTurningRight stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test08LoggerLoggingDirectionsCorrectlyLogsManyRotations stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test09LoggerLoggingDirectionsCorrectlyStopsLogging stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+!testRun: #RoverLoggerTest #test10LoggerCorrectlyLogsBothPositionsAndDirections stamp: 'V 10/25/2022 21:09:21'!
+PASSED!
+
+----SNAPSHOT----(25 October 2022 21:09:40) CuisUniversity-5481.image priorSource: 7111080!
+t!
+t!
+
+----SNAPSHOT----(25 October 2022 21:10:55) CuisUniversity-5481.image priorSource: 7261133!
+t!
+t!
+
+----SNAPSHOT----(25 October 2022 21:11:18) CuisUniversity-5481.image priorSource: 7261225!
+t!
+
+----QUIT----(25 October 2022 21:11:28) CuisUniversity-5481.image priorSource: 7261317!

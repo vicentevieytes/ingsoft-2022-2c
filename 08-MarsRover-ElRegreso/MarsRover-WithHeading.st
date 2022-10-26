@@ -1,123 +1,3 @@
-!classDefinition: #LogTest category: 'MarsRover-WithHeading'!
-TestCase subclass: #LogTest
-	instanceVariableNames: 'rover'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'MarsRover-WithHeading'!
-!LogTest commentStamp: '<historical>' prior: 0!
-t!
-
-
-!LogTest methodsFor: 'headings' stamp: 'MV 10/24/2022 20:17:42'!
-east
-
-	^MarsRoverHeadingEast.! !
-
-!LogTest methodsFor: 'headings' stamp: 'MV 10/24/2022 20:17:45'!
-north
-
-	^MarsRoverHeadingNorth .! !
-
-!LogTest methodsFor: 'headings' stamp: 'MV 10/24/2022 20:17:56'!
-south
-
-	^MarsRoverHeadingSouth .! !
-
-!LogTest methodsFor: 'headings' stamp: 'MV 10/24/2022 20:17:50'!
-west
-
-	^MarsRoverHeadingWest .! !
-
-
-!LogTest methodsFor: 'setUp' stamp: 'MV 10/24/2022 20:17:19'!
-setUp
-
-	rover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.! !
-
-
-!LogTest methodsFor: 'tests' stamp: 'MV 10/24/2022 20:53:10'!
-test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions
-	|logger|
-	
-	logger _ Logger for: rover.
-	logger startLoggingPositions.
-	rover process: ''.
-	self assert: logger logs equals: OrderedCollection new.  ! !
-
-!LogTest methodsFor: 'tests' stamp: 'MV 10/24/2022 20:52:55'!
-test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections
-	|logger|
-	
-	logger _ Logger for: rover.
-	logger startLoggingDirections.
-	rover process: ''.
-	self assert: logger logs equals: OrderedCollection new.  ! !
-
-!LogTest methodsFor: 'tests' stamp: 'MV 10/24/2022 20:53:27'!
-test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions
-	|logger|
-	
-	logger _ Logger for: rover.
-	logger startLoggingDirections.
-	logger startLoggingPositions.
-	rover process: ''.
-	self assert: logger logs equals: OrderedCollection new.  ! !
-
-!LogTest methodsFor: 'tests' stamp: 'MV 10/24/2022 21:24:35'!
-test04LoggerLoggingPositionsCorrectlyLogsMovingForward
-	
-	|logger|
-	
-	logger _ Logger for: rover.
-	logger startLoggingPositions.
-	
-	rover process: 'f'.
-	
-	self assert: logger logs equals: (OrderedCollection with: '1@2' )! !
-
-!LogTest methodsFor: 'tests' stamp: 'MV 10/24/2022 21:28:23'!
-test05LoggerLoggingPositionsCorrectlyLogsManyMovements
-	
-	|logger|
-	
-	logger _ Logger for: rover.
-	logger startLoggingPositions.
-	
-	rover process: 'ffbrfrb'.
-	
-	self assert: logger logs equals: {'1@2'. '1@3'. '1@2'. '2@2'. '2@3'} asOrderedCollection ! !
-
-!LogTest methodsFor: 'tests' stamp: 'MV 10/24/2022 21:31:15'!
-test06LoggerLoggingPositionsCorrectlyStoppsLogging
-	
-	|logger|
-	
-	logger _ Logger for: rover.
-	logger startLoggingPositions.
-	
-	rover process: 'f'.
-	
-	logger stopLoggingPositions.
-	rover process: 'fff'.
-	
-	logger startLoggingPositions.
-	rover process: 'f'. 
-	
-	self assert: logger logs equals: {'1@2'. '1@6'} asOrderedCollection ! !
-
-!LogTest methodsFor: 'tests' stamp: 'MV 10/24/2022 21:32:47'!
-test07LoggerLoggingDirectionsCorrectlyLogsTurningRight
-	
-	 |logger|
-	
-	logger _ Logger for: rover.
-	logger startLoggingDirections.
-	
-	rover process: 'r'.
-	
-	self assert: logger logs equals: (OrderedCollection with: 'East')! !
-
-
 !classDefinition: #MarsRoverTest category: 'MarsRover-WithHeading'!
 TestCase subclass: #MarsRoverTest
 	instanceVariableNames: ''
@@ -323,76 +203,305 @@ assertIsAt: newPosition heading: newHeadingType afterProcessing: commands whenSt
 	self assert: (marsRover isAt: newPosition heading: newHeadingType)! !
 
 
-!classDefinition: #Logger category: 'MarsRover-WithHeading'!
-Object subclass: #Logger
-	instanceVariableNames: 'marsRover loggingPositions loggingDirections log'
+!classDefinition: #RoverLoggerTest category: 'MarsRover-WithHeading'!
+TestCase subclass: #RoverLoggerTest
+	instanceVariableNames: 'rover logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!RoverLoggerTest commentStamp: '<historical>' prior: 0!
+t!
+
+
+!RoverLoggerTest methodsFor: 'headings' stamp: 'MV 10/24/2022 20:17:42'!
+east
+
+	^MarsRoverHeadingEast.! !
+
+!RoverLoggerTest methodsFor: 'headings' stamp: 'MV 10/24/2022 20:17:45'!
+north
+
+	^MarsRoverHeadingNorth .! !
+
+!RoverLoggerTest methodsFor: 'headings' stamp: 'MV 10/24/2022 20:17:56'!
+south
+
+	^MarsRoverHeadingSouth .! !
+
+!RoverLoggerTest methodsFor: 'headings' stamp: 'MV 10/24/2022 20:17:50'!
+west
+
+	^MarsRoverHeadingWest .! !
+
+
+!RoverLoggerTest methodsFor: 'setUp' stamp: 'V 10/25/2022 20:02:55'!
+setUp
+
+	rover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	logger _ RoverLogger for: rover! !
+
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:02:55'!
+test01NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingPositions
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingPositions.
+	rover process: ''.
+	self assert: logger logs equals: OrderedCollection new.  ! !
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:02:55'!
+test02NewRoverHasNoLogsAfterProcessingEmptyWhenLoggingDirections
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	rover process: ''.
+	self assert: logger logs equals: OrderedCollection new.  ! !
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:02:55'!
+test03NewMarsRoverHasNoLogsAfterProcessingEmptyWhenLoggingBothDirectionsAndPositions
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	logger startLoggingPositions.
+	rover process: ''.
+	self assert: logger logs equals: OrderedCollection new.  ! !
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:02:55'!
+test04LoggerLoggingPositionsCorrectlyLogsMovingForward
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingPositions.
+	
+	rover process: 'f'.
+	
+	self assert: logger logs equals: (OrderedCollection with: '1@2' )! !
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:02:55'!
+test05LoggerLoggingPositionsCorrectlyLogsManyMovements
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingPositions.
+	
+	rover process: 'ffbrfrb'.
+	
+	self assert: logger logs equals: {'1@2'. '1@3'. '1@2'. '2@2'. '2@3'} asOrderedCollection ! !
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:02:55'!
+test06LoggerLoggingPositionsCorrectlyStoppsLogging
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingPositions.
+	
+	rover process: 'f'.
+	
+	logger stopLoggingPositions.
+	rover process: 'fff'.
+	
+	logger startLoggingPositions.
+	rover process: 'f'. 
+	
+	self assert: logger logs equals: {'1@2'. '1@6'} asOrderedCollection ! !
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:02:55'!
+test07LoggerLoggingDirectionsCorrectlyLogsTurningRight
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'r'.
+	
+	self assert: logger logs equals: (OrderedCollection with: 'East')! !
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:02:55'!
+test08LoggerLoggingDirectionsCorrectlyLogsManyRotations
+
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rllfll'.
+	
+	self assert: logger logs equals: ({'East'. 'North'. 'West'. 'South'. 'East'} asOrderedCollection)! !
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:02:55'!
+test09LoggerLoggingDirectionsCorrectlyStopsLogging
+	
+	
+	
+	logger _ RoverLogger for: rover.
+	logger startLoggingDirections.
+	
+	rover process: 'rr'.
+	logger stopLoggingDirections.
+	rover process:'r'.
+	logger startLoggingDirections.
+	rover process:'l'.	
+	self assert: logger logs equals: ({'East'. 'South'. 'South'} asOrderedCollection)! !
+
+!RoverLoggerTest methodsFor: 'tests' stamp: 'V 10/25/2022 20:59:52'!
+test10LoggerCorrectlyLogsBothPositionsAndDirections
+	
+	
+	logger startLoggingDirections.
+	logger startLoggingPositions.
+	rover process: 'rffl'.
+		
+	self assert: logger logs equals: ({'East'. '2@1'. '3@1'. 'North'} asOrderedCollection)! !
+
+
+!classDefinition: #RoverMonitorTest category: 'MarsRover-WithHeading'!
+TestCase subclass: #RoverMonitorTest
+	instanceVariableNames: 'rover logger'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!Logger methodsFor: 'initialization' stamp: 'MV 10/24/2022 21:41:25'!
-initializeFor: aMarsRover
-	
-	loggingPositions _ false.
-	loggingDirections _ false.
-	log := OrderedCollection new.
-	marsRover := aMarsRover.
-	aMarsRover setLogger: self.! !
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:07:25'!
+setUp
 
-
-!Logger methodsFor: 'logging' stamp: 'MV 10/24/2022 21:59:19'!
-headingName: aHeadingType
-
-	(aHeadingType name = MarsRoverHeadingEast name asString) ifTrue: [^'East'].
-	(aHeadingType name = MarsRoverHeadingNorth name asString) ifTrue:[^'North'].
-	(aHeadingType name = MarsRoverHeadingWest name asString) ifTrue: [^'West'].
-	(aHeadingType name = MarsRoverHeadingSouth name asString) ifTrue:[^'South'].! !
-
-!Logger methodsFor: 'logging' stamp: 'MV 10/24/2022 21:42:23'!
-startLoggingDirections
-	loggingDirections _ true.! !
-
-!Logger methodsFor: 'logging' stamp: 'MV 10/24/2022 21:13:04'!
-startLoggingPositions
-	loggingPositions _ true 
+	rover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	! !
 
-!Logger methodsFor: 'logging' stamp: 'MV 10/24/2022 21:31:03'!
-stopLoggingPositions
-	loggingPositions _ false.! !
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:25:37'!
+test01PositionDoesNotChangeAfterProcessingEmptyCommandSequence
 
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	position1 _ monitor currentPosition.
+	rover process: ''.
+	position2 _ monitor currentPosition.
+	
+	self assert: position1 equals: position2.
+	! !
 
-!Logger methodsFor: 'accessing' stamp: 'MV 10/24/2022 21:24:16'!
-logs
-	^log.! !
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:28:11'!
+test02PositionInMonitorCorrectlyChangesAfterMoving
 
-
-!Logger methodsFor: 'as yet unclassified' stamp: 'MV 10/24/2022 21:50:33'!
-logHeading: aHeadingType.
-
-	loggingDirections ifTrue: [log addLast: (self headingName: aHeadingType)]! !
-
-!Logger methodsFor: 'as yet unclassified' stamp: 'MV 10/24/2022 21:23:21'!
-logPosition: aPosition.
-
-	loggingPositions ifTrue: [log addLast: aPosition asString]! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Logger class' category: 'MarsRover-WithHeading'!
-Logger class
-	instanceVariableNames: ''!
-
-!Logger class methodsFor: 'instance creation' stamp: 'MV 10/24/2022 20:24:12'!
-for: aMarsRover 
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'f'.
 	
 	
-	^self new initializeFor: aMarsRover ! !
+	self assert: '1@2' equals: monitor currentPosition. 
+	! !
+
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:36:44'!
+test03PositionInMonitorCorrectlyChangesAfterManyMoves
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'ffrff'.
+	
+	
+	self assert: '3@3' equals: monitor currentPosition. 
+	! !
+
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:35:29'!
+test04MonitorCorrectlyStopsMonitoringPosition
+	
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringPosition.
+	
+	rover process: 'ffrff'.
+	monitor stopMonitoringPosition.
+	
+	self assert: '' equals: monitor currentPosition. 
+	! !
+
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:38:13'!
+test05DirectionDoesNotChangeAfterProcessingEmptyCommandSequence
+
+	|monitor position1 position2|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.
+	
+	position1 _ monitor currentDirection.
+	rover process: ''.
+	position2 _ monitor currentDirection.
+	
+	self assert: position1 equals: position2.
+	! !
+
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:42:30'!
+test06DirectionInMonitorCorrrectlyChangesAfterRotating
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.
+	
+	rover process:'r'.
+	
+	self assert: 'East' equals: monitor currentDirection.
+	! !
+
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:49:55'!
+test07DirectionInMonitorCorrrectlyChangesAfterManyRotations
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.
+	
+	rover process:'rllfl'.
+	
+	self assert: 'South' equals: monitor currentDirection.
+	! !
+
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:50:40'!
+test08MonitorCorrrectlyStopsMonitoringDirections
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.	
+	rover process:'rllfl'.
+	monitor stopMonitoringDirection. 
+	
+	self assert: '' equals: monitor currentDirection.
+	! !
+
+!RoverMonitorTest methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 20:57:51'!
+test09MonitorCorrrectlyMonitorsBothDirectionAndPosition
+
+	|monitor|
+	
+	monitor _ RoverMonitor for: rover.
+	monitor startMonitoringDirection.	
+	monitor startMonitoringPosition.
+	rover process:'llff'. 
+	
+	self assert: 'South' equals: monitor currentDirection.
+	self assert: 	'1@ -1' equals: monitor currentPosition.! !
 
 
 !classDefinition: #MarsRover category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'position head logger'
+	instanceVariableNames: 'position head positionSubscriptors directionSubscriptors'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
@@ -408,17 +517,27 @@ signalInvalidCommand
 	self error: self invalidCommandErrorDescription ! !
 
 
-!MarsRover methodsFor: 'initialization' stamp: 'MV 10/24/2022 21:18:53'!
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 20:23:36'!
+addDirectionSubscriptor: aClosure
+
+	directionSubscriptors add: aClosure.
+	aClosure value: head.! !
+
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 20:23:56'!
+addPositionSubscriptor: aClosure
+
+	positionSubscriptors add: aClosure.
+	aClosure value: position.! !
+
+!MarsRover methodsFor: 'initialization' stamp: 'V 10/25/2022 20:45:34'!
 initializeAt: aPosition heading: aHeadingType
 
 	position := aPosition.
 	head := aHeadingType for: self.
-	logger _ NullLogger new! !
-
-!MarsRover methodsFor: 'initialization' stamp: 'MV 10/24/2022 20:56:24'!
-setLogger: aLogger
-
-	logger _ aLogger! !
+	directionSubscriptors := OrderedCollection new.
+	positionSubscriptors  := OrderedCollection new.
+	
+	! !
 
 
 !MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:02'!
@@ -441,17 +560,17 @@ headWest
 	
 	head := MarsRoverHeadingWest for: self ! !
 
-!MarsRover methodsFor: 'heading' stamp: 'MV 10/24/2022 21:36:39'!
+!MarsRover methodsFor: 'heading' stamp: 'V 10/25/2022 19:55:23'!
 rotateLeft
 	
 	head rotateLeft.
-	logger logHeading: head! !
+	directionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: head]! !
 
-!MarsRover methodsFor: 'heading' stamp: 'MV 10/24/2022 21:36:43'!
+!MarsRover methodsFor: 'heading' stamp: 'V 10/25/2022 19:55:28'!
 rotateRight
 	
 	head rotateRight.
-	logger logHeading: head! !
+	directionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: head]! !
 
 
 !MarsRover methodsFor: 'testing' stamp: 'HAW 10/7/2021 20:16:32'!
@@ -480,24 +599,25 @@ isRotateRightCommand: aCommand
 	^aCommand = $r! !
 
 
-!MarsRover methodsFor: 'moving' stamp: 'MV 10/24/2022 21:21:13'!
+!MarsRover methodsFor: 'moving' stamp: 'V 10/25/2022 19:54:07'!
 moveBackward
 	
 	head moveBackward.
-	logger logPosition: position
+	positionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: position]
+	
 	! !
 
-!MarsRover methodsFor: 'moving' stamp: 'MV 10/24/2022 21:02:27'!
+!MarsRover methodsFor: 'moving' stamp: 'V 10/25/2022 19:54:55'!
 moveEast
 	
-	position := position + (1@0)
+	position := position + (1@0).
 	! !
 
-!MarsRover methodsFor: 'moving' stamp: 'MV 10/24/2022 21:21:28'!
+!MarsRover methodsFor: 'moving' stamp: 'V 10/25/2022 19:53:45'!
 moveForward
 	
 	head moveForward.
-	logger logPosition: position! !
+	positionSubscriptors do: [:aSubscriptorClosure| aSubscriptorClosure value: position]! !
 
 !MarsRover methodsFor: 'moving' stamp: 'HAW 8/22/2019 12:13:12'!
 moveNorth
@@ -715,18 +835,166 @@ rotateRight
 	^marsRover headNorth! !
 
 
-!classDefinition: #NullLogger category: 'MarsRover-WithHeading'!
-Object subclass: #NullLogger
-	instanceVariableNames: ''
+!classDefinition: #RoverSubscriptor category: 'MarsRover-WithHeading'!
+Object subclass: #RoverSubscriptor
+	instanceVariableNames: 'marsRover'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!NullLogger methodsFor: 'as yet unclassified' stamp: 'MV 10/24/2022 21:38:01'!
-logDirection: aDirection! !
+!RoverSubscriptor methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 21:05:51'!
+initializeFor: aRover
 
-!NullLogger methodsFor: 'as yet unclassified' stamp: 'MV 10/24/2022 21:38:28'!
-logHeading: aHeadingType! !
+	self subclassResponsibility.! !
 
-!NullLogger methodsFor: 'as yet unclassified' stamp: 'MV 10/24/2022 21:37:51'!
-logPosition: aPosition! !
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'RoverSubscriptor class' category: 'MarsRover-WithHeading'!
+RoverSubscriptor class
+	instanceVariableNames: ''!
+
+
+!RoverSubscriptor class methodsFor: 'initialization' stamp: 'V 10/25/2022 21:09:13'!
+for: aMarsRover 
+	
+	^self new initializeFor: aMarsRover ! !
+
+
+!classDefinition: #RoverLogger category: 'MarsRover-WithHeading'!
+RoverSubscriptor subclass: #RoverLogger
+	instanceVariableNames: 'loggingPositions loggingDirections log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!RoverLogger methodsFor: 'initialization' stamp: 'V 10/25/2022 19:52:32'!
+initializeFor: aMarsRover
+	
+	loggingPositions _ false.
+	loggingDirections _ false.
+	log := OrderedCollection new.
+	marsRover := aMarsRover.
+	aMarsRover addPositionSubscriptor: [:aPosition| self logPosition: aPosition].
+	aMarsRover addDirectionSubscriptor: [:aHeadingType| self logDirection: aHeadingType].! !
+
+
+!RoverLogger methodsFor: 'logging' stamp: 'V 10/25/2022 19:48:31'!
+startLoggingDirections
+	loggingDirections _ true.
+	! !
+
+!RoverLogger methodsFor: 'logging' stamp: 'MV 10/24/2022 21:13:04'!
+startLoggingPositions
+	loggingPositions _ true 
+	! !
+
+!RoverLogger methodsFor: 'logging' stamp: 'V 10/25/2022 19:32:59'!
+stopLoggingDirections
+	loggingDirections _ false.! !
+
+!RoverLogger methodsFor: 'logging' stamp: 'MV 10/24/2022 21:31:03'!
+stopLoggingPositions
+	loggingPositions _ false.! !
+
+
+!RoverLogger methodsFor: 'accessing' stamp: 'MV 10/24/2022 21:24:16'!
+logs
+	^log.! !
+
+
+!RoverLogger methodsFor: 'log text generation' stamp: 'V 10/25/2022 19:17:13'!
+headingName: aHeadingType
+
+	(aHeadingType class name = MarsRoverHeadingEast name asString) ifTrue: [^'East'].
+	(aHeadingType class name = MarsRoverHeadingNorth name asString) ifTrue:[^'North'].
+	(aHeadingType class name = MarsRoverHeadingWest name asString) ifTrue: [^'West'].
+	(aHeadingType class name = MarsRoverHeadingSouth name asString) ifTrue:[^'South'].! !
+
+
+!RoverLogger methodsFor: 'as yet unclassified' stamp: 'V 10/25/2022 19:59:18'!
+logDirection: aHeadingType.
+
+	loggingDirections ifTrue: [log addLast: (self headingName: aHeadingType)]! !
+
+!RoverLogger methodsFor: 'as yet unclassified' stamp: 'MV 10/24/2022 21:23:21'!
+logPosition: aPosition.
+
+	loggingPositions ifTrue: [log addLast: aPosition asString]! !
+
+
+!classDefinition: #RoverMonitor category: 'MarsRover-WithHeading'!
+RoverSubscriptor subclass: #RoverMonitor
+	instanceVariableNames: 'currentPosition monitoringPosition currentDirection monitoringDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!RoverMonitor methodsFor: 'initialization' stamp: 'V 10/25/2022 21:08:01'!
+initializeFor: aMarsRover 
+
+	monitoringPosition _ false.
+	monitoringDirection _ false.
+	marsRover := aMarsRover.
+	marsRover addPositionSubscriptor: [:aPosition|  self changeCurrentPosition: aPosition].
+	marsRover addDirectionSubscriptor: [:aHeadingType|  self changeCurrentDirection: aHeadingType].
+	
+! !
+
+
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:51:49'!
+currentDirection
+
+	monitoringDirection ifTrue:[ ^self headingName: currentDirection.].
+	^''! !
+
+!RoverMonitor methodsFor: 'accessing' stamp: 'V 10/25/2022 20:36:15'!
+currentPosition
+	
+	monitoringPosition ifTrue: [^currentPosition asString].
+	^''! !
+
+
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:44:18'!
+changeCurrentDirection: aMarsRoverHeadingNorth 
+	
+	currentDirection _ aMarsRoverHeadingNorth.! !
+
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:35:46'!
+changeCurrentPosition: aPosition 
+	
+	currentPosition _ aPosition.! !
+
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:54:04'!
+startMonitoringDirection
+	
+	monitoringDirection _ true.! !
+
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:18:50'!
+startMonitoringPosition
+	
+	monitoringPosition _ true.! !
+
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:51:05'!
+stopMonitoringDirection
+	
+	monitoringDirection _ false
+	! !
+
+!RoverMonitor methodsFor: 'monitoring' stamp: 'V 10/25/2022 20:29:32'!
+stopMonitoringPosition
+	monitoringPosition _ false.! !
+
+
+!RoverMonitor methodsFor: 'log text generation' stamp: 'V 10/25/2022 20:46:33'!
+headingName: aHeadingType
+
+	(aHeadingType class name = MarsRoverHeadingEast name asString) ifTrue: [^'East'].
+	(aHeadingType class name = MarsRoverHeadingNorth name asString) ifTrue:[^'North'].
+	(aHeadingType class name = MarsRoverHeadingWest name asString) ifTrue: [^'West'].
+	(aHeadingType class name = MarsRoverHeadingSouth name asString) ifTrue:[^'South'].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'RoverMonitor class' category: 'MarsRover-WithHeading'!
+RoverMonitor class
+	instanceVariableNames: 'rover'!
