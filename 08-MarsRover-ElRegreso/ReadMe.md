@@ -1,0 +1,1 @@
+Agregamos la clase DistanceMeasurer sólo como ejemplo simple para mostrar la extensibilidad
