@@ -1,0 +1,889 @@
+
+
+----QUIT----(26 October 2022 08:07:27) CuisUniversity-5510.image priorSource: 2900072!
+
+----STARTUP---- (26 October 2022 08:07:28) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5510.image!
+
+
+----QUIT----(26 October 2022 08:07:28) CuisUniversity-5510.image priorSource: 7154921!
+
+----STARTUP---- (27 October 2022 20:47:22) as /home/lautaro/Desktop/linux64/CuisUniversity-5510.image!
+
+
+Object subclass: #Carrito
+
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+!classDefinition: #Carrito category: 'TusLibros-Iteration-1' stamp: 'VV 10/27/2022 20:49:54'!
+Object subclass: #Carrito
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+TestSuite subclass: #CarritoTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+!classDefinition: #CarritoTests category: 'TusLibros-Iteration-1' stamp: 'VV 10/27/2022 20:50:41'!
+TestSuite subclass: #CarritoTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+!CarritoTests methodsFor: 'no messages' stamp: 'VV 10/27/2022 20:51:57'!
+test01newCarritoIsEmpty
+
+	self assert: Carrito new isEmpty ! !
+
+TestCase subclass: #CarritoTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+!classDefinition: #CarritoTests category: 'TusLibros-Iteration-1' stamp: 'VV 10/27/2022 20:52:29'!
+TestCase subclass: #CarritoTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 20:52:34'!
+ERROR!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 20:52:34'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 20:52:41'!
+isEmpty
+	self shouldBeImplemented.! !
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 20:52:58' prior: 50555301!
+isEmpty
+
+	^true.! !
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 20:53:01'!
+PASSED!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 20:53:03'!
+PASSED!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 20:54:09'!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito|
+		! !
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 20:55:03' prior: 50555314!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Carrito new.
+	! !
+
+!classDefinition: #Libro category: 'TusLibros-Iteration-1' stamp: 'VV 10/27/2022 21:00:50'!
+Object subclass: #Libro
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:00:44' prior: 50555319!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Carrito new.
+	libro _ Libro isbn: '0321146530'.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: OrderedCollection new.! !
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:00:56'!
+ERROR!
+!Libro class methodsFor: 'instance creation' stamp: 'VV 10/27/2022 21:01:07'!
+isbn: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeIsbn: aString ! !
+!Libro class methodsFor: 'instance creation' stamp: 'VV 10/27/2022 21:01:49' prior: 50555345!
+isbn: anIsbn
+	
+	^self new initializeIsbn: anIsbn! !
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:01:52'!
+ERROR!
+
+!classDefinition: #Libro category: 'TusLibros-Iteration-1' stamp: 'VV 10/27/2022 21:02:03'!
+Object subclass: #Libro
+	instanceVariableNames: 'isbn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+!Libro methodsFor: 'initialization' stamp: 'VV 10/27/2022 21:02:03'!
+initializeIsbn: anIsbn 
+	self shouldBeImplemented.
+	isbn := anIsbn.! !
+!Libro methodsFor: 'initialization' stamp: 'VV 10/27/2022 21:02:13' prior: 50555368!
+initializeIsbn: anIsbn
+
+
+	isbn := anIsbn.! !
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:02:15'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:02:26'!
+addToCart: libro 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Carrito category: 'TusLibros-Iteration-1' stamp: 'VV 10/27/2022 21:02:51'!
+Object subclass: #Carrito
+	instanceVariableNames: 'libros'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:02:48' prior: 50555380!
+addToCart: libro 
+	
+	libros add: libro! !
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:02:54'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:03:54' overrides: 16920235!
+initialize
+
+	libros _ OrderedCollection new.! !
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:04:10'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:04:10'!
+ERROR!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:04:10'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:04:20'!
+libros
+	self shouldBeImplemented.
+	^libros! !
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:04:26' prior: 50555413!
+libros
+	
+	^libros! !
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:04:29'!
+FAILURE!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:05:04' prior: 50555332!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Carrito new.
+	libro _ Libro isbn: '0321146530'.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: (OrderedCollection with: libro).! !
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:05:05'!
+PASSED!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:05:05'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:05:05'!
+PASSED!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:14:53'!
+test03cannotAddToCartBookThatIsNotInTheCatalog
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog:(OrderedCollection new).
+	
+	libro _ Libro isbn: '0321146530'.
+	
+	[carrito addToCart: libro. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Carrito bookNotInCatalogErrorMessage. 
+		self assert: carrito isEmpty.
+		]
+	
+	 
+	
+	
+	! !
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:14:57'!
+ERROR!
+!Carrito class methodsFor: 'instance creation' stamp: 'VV 10/27/2022 21:15:05'!
+withCatalog: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithCatalog: anOrderedCollection ! !
+!Carrito class methodsFor: 'instance creation' stamp: 'VV 10/27/2022 21:15:29' prior: 50555462!
+withCatalog: aCatalog 
+	
+	^self new initializeWithCatalog: aCatalog ! !
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:15:31'!
+ERROR!
+
+!classDefinition: #Carrito category: 'TusLibros-Iteration-1' stamp: 'VV 10/27/2022 21:15:42'!
+Object subclass: #Carrito
+	instanceVariableNames: 'libros catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+!Carrito methodsFor: 'initialization' stamp: 'VV 10/27/2022 21:15:42'!
+initializeWithCatalog: aCatalog 
+	self shouldBeImplemented.
+	catalog := aCatalog.! !
+!Carrito methodsFor: 'initialization' stamp: 'VV 10/27/2022 21:15:48' prior: 50555487!
+initializeWithCatalog: aCatalog 
+	
+	catalog := aCatalog.! !
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:15:52'!
+FAILURE!
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:18:02' prior: 50555392!
+addToCart: aLibro 
+	
+	(catalog includes: aLibro isbn) ifTrue:[libros add: aLibro]! !
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:18:05'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:18:05'!
+ERROR!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:18:05'!
+ERROR!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:18:08'!
+ERROR!
+!Libro methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:18:15'!
+isbn
+	self shouldBeImplemented.
+	^isbn! !
+!Libro methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:18:20' prior: 50555520!
+isbn
+
+	^isbn! !
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:18:23'!
+ERROR!
+
+!methodRemoval: Carrito #initialize stamp: 'VV 10/27/2022 21:18:52'!
+initialize
+
+	libros _ OrderedCollection new.!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:19:22' prior: 50555279!
+test01newCarritoIsEmpty
+
+	self assert: (Carrito withCatalog: OrderedCollection new) isEmpty ! !
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:19:22'!
+PASSED!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:19:22'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:19:22'!
+ERROR!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:19:22'!
+FAILURE!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:20:22' prior: 50555425!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog: (OrderedCollection with: '0321146530').
+	libro _ Libro isbn: '0321146530'.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: (OrderedCollection with: libro).! !
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:20:24'!
+ERROR!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:20:43'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:20:43'!
+ERROR!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:20:43'!
+FAILURE!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:20:53'!
+ERROR!
+!Carrito methodsFor: 'initialization' stamp: 'VV 10/27/2022 21:21:16' prior: 50555493!
+initializeWithCatalog: aCatalog 
+	
+	libros := OrderedCollection new.
+	catalog := aCatalog.! !
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:21:19'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:21:19'!
+PASSED!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:21:19'!
+FAILURE!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:21:19'!
+FAILURE!
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:22:34' prior: 50555502!
+addToCart: aLibro 
+	
+	(catalog includes: aLibro isbn) ifFalse: [self error: self class ].
+	libros add: aLibro! !
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:22:41' prior: 50555601!
+addToCart: aLibro 
+	
+	(catalog includes: aLibro isbn) ifFalse: [self error: self class bookNotInCatalogErrorMessage].
+	libros add: aLibro! !
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:22:42'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:22:42'!
+PASSED!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:22:42'!
+ERROR!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:22:42'!
+ERROR!
+!Carrito class methodsFor: 'errorMessage' stamp: 'VV 10/27/2022 21:23:04'!
+bookNotInCatalogErrorMessage
+	self shouldBeImplemented.! !
+!Carrito class methodsFor: 'errorMessage' stamp: 'VV 10/27/2022 21:23:22' prior: 50555628!
+bookNotInCatalogErrorMessage
+	
+	^'Cannot add book that is not in catalog'! !
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:23:26'!
+FAILURE!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:23:31'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:23:31'!
+PASSED!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:23:31'!
+PASSED!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:29:20'!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog:(OrderedCollection with: '0321146530').
+	
+	libro _ Libro isbn: '0321146530'.
+	
+	carrito addToCart: '0321146530' ammount: 2.
+	 
+	self assert: carrito libros equals: {'0321146530'. '0321146530'} asOrderedCollection.
+	
+	! !
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:29:30' prior: 50555652!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog:(OrderedCollection with: '0321146530').
+	
+	libro _ Libro isbn: '0321146530'.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {'0321146530'. '0321146530'} asOrderedCollection.
+	
+	! !
+
+!testRun: #CarritoTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:29:36'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:29:44'!
+addToCart: libro ammount: aString 
+	self shouldBeImplemented.! !
+
+----SNAPSHOT----(27 October 2022 21:32:03) CuisUniversity-5510.image priorSource: 7155150!
+
+----End fileIn of /home/lautaro/Desktop/linux64/Packages/TerseGuide.pck.st----!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:33:07'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:33:08'!
+PASSED!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:33:08'!
+PASSED!
+
+!testRun: #CarritoTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:33:08'!
+ERROR!
+
+!testRun: #CarritoTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:33:08'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:34:12' prior: 50555681!
+addToCart: libro ammount: aNaturalNumber 
+	
+	aNaturalNumber timesRepeat: [self addToCart: libro]! !
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:34:13'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:34:13'!
+PASSED!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:34:13'!
+PASSED!
+
+!testRun: #CarritoTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:34:13'!
+FAILURE!
+
+!testRun: #CarritoTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:34:13'!
+FAILURE!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:34:39'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:34:39'!
+PASSED!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:34:39'!
+PASSED!
+
+!testRun: #CarritoTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:34:39'!
+FAILURE!
+
+!testRun: #CarritoTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:34:39'!
+FAILURE!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:35:17' prior: 50555665!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog:(OrderedCollection with: '0321146530').
+	
+	libro _ Libro isbn: '0321146530'.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+
+!testRun: #CarritoTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:35:18'!
+PASSED!
+
+!testRun: #CarritoTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:35:18'!
+PASSED!
+
+!testRun: #CarritoTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:35:18'!
+PASSED!
+
+!testRun: #CarritoTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:35:18'!
+PASSED!
+
+!testRun: #CarritoTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:35:18'!
+PASSED!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:23'!
+test05addToCatalogAllowsCartToAddNewBookInCatalog
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog:(OrderedCollection new).
+	
+	libro _ Libro isbn: '0321146530'.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+
+!classRenamed: #Libro as: #Book stamp: 'VV 10/27/2022 21:37:33'!
+Smalltalk renameClassNamed: #Libro as: #Book!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:33' prior: 50555554!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog: (OrderedCollection with: '0321146530').
+	libro _ Book isbn: '0321146530'.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: (OrderedCollection with: libro).! !
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:33' prior: 50558665!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog:(OrderedCollection with: '0321146530').
+	
+	libro _ Book isbn: '0321146530'.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:33' prior: 50555444!
+test03cannotAddToCartBookThatIsNotInTheCatalog
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: '0321146530'.
+	
+	[carrito addToCart: libro. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Carrito bookNotInCatalogErrorMessage. 
+		self assert: carrito isEmpty.
+		]
+	
+	 
+	
+	
+	! !
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:33' prior: 50558694!
+test05addToCatalogAllowsCartToAddNewBookInCatalog
+
+	|carrito libro|
+	
+	carrito _ Carrito withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: '0321146530'.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+
+!classRenamed: #Carrito as: #Cart stamp: 'VV 10/27/2022 21:37:43'!
+Smalltalk renameClassNamed: #Carrito as: #Cart!
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:43' prior: 50558722!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: '0321146530').
+	
+	libro _ Book isbn: '0321146530'.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:43' prior: 50555535!
+test01newCarritoIsEmpty
+
+	self assert: (Cart withCatalog: OrderedCollection new) isEmpty ! !
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:43' prior: 50558710!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog: (OrderedCollection with: '0321146530').
+	libro _ Book isbn: '0321146530'.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: (OrderedCollection with: libro).! !
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:43' prior: 50558735!
+test03cannotAddToCartBookThatIsNotInTheCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: '0321146530'.
+	
+	[carrito addToCart: libro. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Cart bookNotInCatalogErrorMessage. 
+		self assert: carrito isEmpty.
+		]
+	
+	 
+	
+	
+	! !
+!CarritoTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:37:43' prior: 50558750!
+test05addToCatalogAllowsCartToAddNewBookInCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: '0321146530'.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+
+!classRenamed: #CarritoTests as: #CartTests stamp: 'VV 10/27/2022 21:37:55'!
+Smalltalk renameClassNamed: #CarritoTests as: #CartTests!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:39:37' prior: 50558812!
+test05addToCatalogAllowsCartToAddNewBookInCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: '0321146530'.
+	
+	
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+
+TestCase subclass: #CartTests
+	instanceVariableNames: 'isbn1'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+!classDefinition: #CartTests category: 'TusLibros-Iteration-1' stamp: 'VV 10/27/2022 21:40:03'!
+TestCase subclass: #CartTests
+	instanceVariableNames: 'isbn1'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:40:15' overrides: 16961394!
+setUp
+
+	isbn1 _ ''! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:40:24' prior: 50558851 overrides: 16961394!
+setUp
+
+	isbn1 _ '0321146530'! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:40:45' prior: 50558785!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog: (OrderedCollection with: isbn1).
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: (OrderedCollection with: libro).! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:41:08' prior: 50558797!
+test03cannotAddToCartBookThatIsNotInTheCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: isbn1.
+	
+	[carrito addToCart: libro. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Cart bookNotInCatalogErrorMessage. 
+		self assert: carrito isEmpty.
+		]
+	
+	 
+	
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:41:14' prior: 50558766!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book isbn: '0321146530'.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:41:17' prior: 50558885!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:41:28' prior: 50558828!
+test05addToCatalogAllowsCartToAddNewBookInCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: isbn1.
+	
+	
+	 
+	self assert: carrito libros equals: {libro. libro} asOrderedCollection.
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:43:11' prior: 50558909!
+test05addToCatalogAllowsCartToAddNewBookInCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCatalog: libro isbn.
+	
+	 
+	self assert: (carrito addToCart: libro)	 libros equals: {libro} asOrderedCollection.
+	
+	! !
+
+!testRun: #CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'VV 10/27/2022 21:43:21'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:43:47'!
+addToCatalog: aString 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'accessing' stamp: 'VV 10/27/2022 21:44:11' prior: 50558935!
+addToCatalog: anIsbn 
+	
+	catalog add: anIsbn.! !
+
+!testRun: #CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'VV 10/27/2022 21:44:13'!
+PASSED!
+
+!testRun: #CartTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:44:13'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:44:13'!
+PASSED!
+
+!testRun: #CartTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:44:13'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:44:13'!
+PASSED!
+
+!testRun: #CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'VV 10/27/2022 21:44:13'!
+PASSED!
+
+!testRun: #CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'VV 10/27/2022 21:44:18'!
+PASSED!
+
+!testRun: #CartTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:44:18'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:44:18'!
+PASSED!
+
+!testRun: #CartTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:44:18'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:44:18'!
+PASSED!
+
+!testRun: #CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'VV 10/27/2022 21:44:18'!
+PASSED!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:47:15' prior: 50558920!
+test05addToCatalogAllowsCartToAddNewBookInCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	libro _ Book isbn: isbn1.
+	carrito addToCatalog: libro isbn.
+	
+	self assert: (carrito addToCart: libro)	 libros equals: {libro} asOrderedCollection.
+	
+	! !
+!Cart methodsFor: 'initialization' stamp: 'VV 10/27/2022 21:48:44' prior: 50555582!
+initializeWithCatalog: aCatalog 
+	
+	libros := OrderedCollection new.
+	aCatalog do: [:anIsbn| self addToCatalog: anIsbn ].! !
+
+!testRun: #CartTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:48:47'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:48:47'!
+ERROR!
+
+!testRun: #CartTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:48:47'!
+FAILURE!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:48:47'!
+ERROR!
+
+!testRun: #CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'VV 10/27/2022 21:48:47'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'VV 10/27/2022 21:49:40' prior: 50558997!
+initializeWithCatalog: aCatalog 
+	
+	libros := OrderedCollection new.
+	catalog _ OrderedCollection new.
+	aCatalog do: [:anIsbn| self addToCatalog: anIsbn ].
+	! !
+
+!testRun: #CartTests #test01newCarritoIsEmpty stamp: 'VV 10/27/2022 21:49:41'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/27/2022 21:49:41'!
+PASSED!
+
+!testRun: #CartTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/27/2022 21:49:41'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/27/2022 21:49:41'!
+PASSED!
+
+!testRun: #CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'VV 10/27/2022 21:49:41'!
+PASSED!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'VV 10/27/2022 21:52:30'!
+test05addToCatalogOfInvalidIsbnRaisesError
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	
+	! !
+
+----SNAPSHOT----(27 October 2022 21:52:53) CuisUniversity-5510.image priorSource: 7169120!
+
+!testRun: #CartTests #test01newCarritoIsEmpty stamp: 'VV 10/28/2022 18:58:53'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'VV 10/28/2022 18:58:53'!
+PASSED!
+
+!testRun: #CartTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'VV 10/28/2022 18:58:53'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'VV 10/28/2022 18:58:53'!
+PASSED!
+
+!testRun: #CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'VV 10/28/2022 18:58:53'!
+PASSED!
+
+!testRun: #CartTests #test05addToCatalogOfInvalidIsbnRaisesError stamp: 'VV 10/28/2022 18:58:53'!
+PASSED!
+
+----QUIT----(28 October 2022 18:59:04) CuisUniversity-5510.image priorSource: 7276796!
