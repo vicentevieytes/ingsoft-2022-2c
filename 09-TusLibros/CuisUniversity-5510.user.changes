@@ -887,3 +887,1389 @@ PASSED!
 PASSED!
 
 ----QUIT----(28 October 2022 18:59:04) CuisUniversity-5510.image priorSource: 7276796!
+
+----STARTUP---- (29 October 2022 17:36:51) as C:\Lautaro Disco C\Programas Varios\CuisUniversity\CuisUniversity-5510.image!
+
+
+----End fileIn of C:\Lautaro Disco C\Programas Varios\CuisUniversity\TusLibros-Iteration-1.st----!
+
+----SNAPSHOT----(29 October 2022 17:37:15) CuisUniversity-5510.image priorSource: 7155150!
+
+!methodRemoval: CartTests #test05addToCatalogOfInvalidIsbnRaisesError stamp: 'LM 10/29/2022 17:37:25'!
+test05addToCatalogOfInvalidIsbnRaisesError
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	
+	!
+
+!testRun: #CartTests #test01newCarritoIsEmpty stamp: 'LM 10/29/2022 17:37:33'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:37:33'!
+PASSED!
+
+!testRun: #CartTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:37:33'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:37:33'!
+PASSED!
+
+!testRun: #CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'LM 10/29/2022 17:37:33'!
+PASSED!
+
+!methodRemoval: Cart #addToCatalog: stamp: 'LM 10/29/2022 17:40:42'!
+addToCatalog: anIsbn 
+	
+	catalog add: anIsbn.!
+
+!methodRemoval: CartTests #test05addToCatalogAllowsCartToAddNewBookInCatalog stamp: 'LM 10/29/2022 17:40:46'!
+test05addToCatalogAllowsCartToAddNewBookInCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	libro _ Book isbn: isbn1.
+	carrito addToCatalog: libro isbn.
+	
+	self assert: (carrito addToCart: libro)	 libros equals: {libro} asOrderedCollection.
+	
+	!
+!Cart methodsFor: 'initialization' stamp: 'LM 10/29/2022 17:41:25' prior: 50555400!
+initializeWithCatalog: aCatalog 
+	
+	libros _ Bag new.
+	catalog _ aCatalog
+	! !
+
+!testRun: #CartTests #test01newCarritoIsEmpty stamp: 'LM 10/29/2022 17:41:26'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:41:26'!
+FAILURE!
+
+!testRun: #CartTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:41:26'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:41:26'!
+FAILURE!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:41:28'!
+FAILURE!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:41:35' prior: 50555279!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog: (OrderedCollection with: isbn1).
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: (Bag with: libro).! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:41:40' prior: 50555304!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:41:44'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:41:44'!
+PASSED!
+
+!testRun: #CartTests #test01newCarritoIsEmpty stamp: 'LM 10/29/2022 17:41:47'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:41:47'!
+PASSED!
+
+!testRun: #CartTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:41:47'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:41:47'!
+PASSED!
+
+----SNAPSHOT----(29 October 2022 17:41:49) CuisUniversity-5510.image priorSource: 7160880!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:41:58'!
+PASSED!
+
+{libro. libro} asBag!
+!Cart methodsFor: 'accessing' stamp: 'LM 10/29/2022 17:42:35' prior: 50555377!
+addToCart: aLibro 
+	
+	(catalog includes: aLibro isbn) ifFalse: [self error: self class bookNotInCatalogErrorMessage].
+	
+	libros add: aLibro! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:45:01' prior: 50555493!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog: (OrderedCollection with: isbn1).
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: (Bag with: libro).
+	self deny: carrito isEmpty! !
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:45:15'!
+FAILURE!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:45:37'!
+test01newCartIsEmpty
+
+	self assert: (Cart withCatalog: OrderedCollection new) isEmpty ! !
+
+!methodRemoval: CartTests #test01newCarritoIsEmpty stamp: 'LM 10/29/2022 17:45:37'!
+test01newCarritoIsEmpty
+
+	self assert: (Cart withCatalog: OrderedCollection new) isEmpty !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:45:56'!
+test03cartIsNotEmptyAfterAddToCart
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog: (OrderedCollection with: isbn1).
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro.
+	self deny: carrito isEmpty! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:46:02'!
+test04cannotAddToCartBookThatIsNotInTheCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: isbn1.
+	
+	[carrito addToCart: libro. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Cart bookNotInCatalogErrorMessage. 
+		self assert: carrito isEmpty.
+		]
+	
+	 
+	
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:46:05'!
+test05addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:46:11' prior: 50555550!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog: (OrderedCollection with: isbn1).
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: (Bag with: libro).! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:46:22'!
+test07addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+
+!methodRemoval: CartTests #test07addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:46:30'!
+test07addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	!
+
+!methodRemoval: CartTests #test03cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:46:44'!
+test03cannotAddToCartBookThatIsNotInTheCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: isbn1.
+	
+	[carrito addToCart: libro. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Cart bookNotInCatalogErrorMessage. 
+		self assert: carrito isEmpty.
+		]
+	
+	 
+	
+	
+	!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:46:53'!
+test06addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+
+!methodRemoval: CartTests #test05addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:46:53'!
+test05addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book isbn: isbn1.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:46:57'!
+test05cannotAddToCartBookThatIsNotInTheCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: isbn1.
+	
+	[carrito addToCart: libro. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Cart bookNotInCatalogErrorMessage. 
+		self assert: carrito isEmpty.
+		]
+	
+	 
+	
+	
+	! !
+
+!methodRemoval: CartTests #test04cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:46:57'!
+test04cannotAddToCartBookThatIsNotInTheCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book isbn: isbn1.
+	
+	[carrito addToCart: libro. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Cart bookNotInCatalogErrorMessage. 
+		self assert: carrito isEmpty.
+		]
+	
+	 
+	
+	
+	!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 17:46:59'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:46:59'!
+PASSED!
+
+!testRun: #CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 17:46:59'!
+FAILURE!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:46:59'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:46:59'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:46:59'!
+PASSED!
+
+!testRun: #CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 17:46:59'!
+FAILURE!
+!Cart methodsFor: 'accessing' stamp: 'LM 10/29/2022 17:47:08' prior: 50555394!
+isEmpty
+
+	^libros isEmpty.! !
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 17:47:10'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:47:10'!
+PASSED!
+
+!testRun: #CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 17:47:10'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:47:10'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:47:10'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:47:10'!
+PASSED!
+!Book methodsFor: 'initialization' stamp: 'LM 10/29/2022 17:48:50'!
+initializeWithIsbn: anIsbn
+
+
+	isbn := anIsbn.! !
+!Book class methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:48:50' prior: 50555361!
+isbn: anIsbn
+	
+	^self new initializeWithIsbn: anIsbn! !
+
+!methodRemoval: Book #initializeIsbn: stamp: 'LM 10/29/2022 17:48:50'!
+initializeIsbn: anIsbn
+
+
+	isbn := anIsbn.!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 17:48:51'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:48:51'!
+PASSED!
+
+!testRun: #CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 17:48:51'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:48:51'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:48:51'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:48:51'!
+PASSED!
+!Book class methodsFor: 'instance creation' stamp: 'LM 10/29/2022 17:49:03'!
+withIsbn: anIsbn
+	
+	^self new initializeWithIsbn: anIsbn! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:49:03' prior: 50555575!
+test03cartIsNotEmptyAfterAddToCart
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog: (OrderedCollection with: isbn1).
+	libro _ Book withIsbn: isbn1.
+	
+	carrito addToCart: libro.
+	self deny: carrito isEmpty! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:49:03' prior: 50555657!
+test06addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:49:03' prior: 50555504!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	carrito addToCart: libro ammount: 2.
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:49:03' prior: 50555610!
+test02addToCartCorrectlyAddsSingleBook
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog: (OrderedCollection with: isbn1).
+	libro _ Book withIsbn: isbn1.
+	
+	carrito addToCart: libro.
+	self assert: carrito libros equals: (Bag with: libro).! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:49:03' prior: 50555680!
+test05cannotAddToCartBookThatIsNotInTheCatalog
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection new).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	[carrito addToCart: libro. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Cart bookNotInCatalogErrorMessage. 
+		self assert: carrito isEmpty.
+		]
+	
+	 
+	
+	
+	! !
+
+!methodRemoval: Book class #isbn: stamp: 'LM 10/29/2022 17:49:03'!
+isbn: anIsbn
+	
+	^self new initializeWithIsbn: anIsbn!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 17:49:04'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:49:04'!
+PASSED!
+
+!testRun: #CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 17:49:04'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:49:04'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:49:04'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:49:04'!
+PASSED!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:50:30'!
+test07cannotAddBookWithAnAmmountLessThanOne
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	"[carrito addToCart: libro ammount: 0.] should: []".
+	
+	
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+
+----End fileIn of C:\Lautaro Disco C\Programas Varios\CuisUniversity\Packages\TerseGuide.pck.st----!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:53:08' prior: 50555873!
+test07cannotAddBookWithAnAmmountLessThanOne
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	[carrito addToCart: libro ammount: 0.] should: Error 
+		withErrorDo: [:anError| self assert: anError messageText = 11111].
+	
+	
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+
+----End fileIn of D:\Lautaro disco D\Estudios\Inge1\Repo nuestro\ingsoft-2022-2c\03-Stack\Stack-Exercise.st----!
+
+!classRemoval: #SentenceFinderByPrefix stamp: 'LM 10/29/2022 17:54:07'!
+Object subclass: #SentenceFinderByPrefix
+	instanceVariableNames: 'backupStack foundSentences'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classRemoval: #OOStackNullElement stamp: 'LM 10/29/2022 17:54:07'!
+Object subclass: #OOStackNullElement
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classRemoval: #OOStackElement stamp: 'LM 10/29/2022 17:54:08'!
+Object subclass: #OOStackElement
+	instanceVariableNames: 'elementValue previous'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classRemoval: #OOStack stamp: 'LM 10/29/2022 17:54:08'!
+Object subclass: #OOStack
+	instanceVariableNames: 'stackTop size'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classRemoval: #SentenceFinderByPrefixTest stamp: 'LM 10/29/2022 17:54:08'!
+TestCase subclass: #SentenceFinderByPrefixTest
+	instanceVariableNames: 'sentenceFinder aStack aStackBackup winter_is_coming Winter_is_here winning_is_everything The_winds_of_Winter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classRemoval: #OOStackTest stamp: 'LM 10/29/2022 17:54:09'!
+TestCase subclass: #OOStackTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:54:51' prior: 50558806!
+test07cannotAddBookWithAnAmmountLessThanOne
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	self  should: [carrito addToCart: libro ammount: 0]
+		fail: Error 
+		withExceptionDo: [:anError| self assert: anError messageText = 11111].
+	
+	
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:54:58' prior: 50559412!
+test07cannotAddBookWithAnAmmountLessThanOne
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	self  should: [carrito addToCart: libro ammount: 0]
+		raise: Error 
+		withExceptionDo: [:anError| self assert: anError messageText = 11111].
+	
+	
+	 
+	self assert: carrito libros equals: {libro. libro} asBag
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 17:55:57' prior: 50559427!
+test07cannotAddBookWithAnAmmountLessThanOne
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	self  should: [carrito addToCart: libro ammount: 0]
+		raise: Error 
+		withExceptionDo: [:anError| self assert: anError messageText = Cart canNotAddLessThanOneBookErrorMessage].	
+	
+	! !
+
+!testRun: #CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 17:56:01'!
+FAILURE!
+!Cart methodsFor: 'accessing' stamp: 'LM 10/29/2022 17:56:49' prior: 50555384!
+addToCart: libro ammount: aNaturalNumber 
+	
+	(aNaturalNumber < 1) ifTrue: [self class canNotAddLessThanOneBookErrorMessage].
+	
+	aNaturalNumber timesRepeat: [self addToCart: libro]! !
+!Cart methodsFor: 'accessing' stamp: 'LM 10/29/2022 17:56:59' prior: 50559459!
+addToCart: libro ammount: aNaturalNumber 
+	
+	(aNaturalNumber < 1) ifTrue: [self error: self class canNotAddLessThanOneBookErrorMessage].
+	
+	aNaturalNumber timesRepeat: [self addToCart: libro]! !
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 17:57:00'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:57:00'!
+PASSED!
+
+!testRun: #CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 17:57:00'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:57:00'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:57:00'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:57:00'!
+PASSED!
+
+!testRun: #CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 17:57:00'!
+ERROR!
+
+!testRun: #CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 17:57:00'!
+ERROR!
+!Cart class methodsFor: 'errorMessage' stamp: 'LM 10/29/2022 17:57:05'!
+canNotAddLessThanOneBookErrorMessage
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'errorMessage' stamp: 'LM 10/29/2022 17:57:36' prior: 50559503!
+canNotAddLessThanOneBookErrorMessage
+	
+	^'Can not add less than one book'! !
+
+!testRun: #CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 17:57:38'!
+FAILURE!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 17:57:45'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 17:57:45'!
+PASSED!
+
+!testRun: #CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 17:57:45'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:57:45'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 17:57:45'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 17:57:45'!
+PASSED!
+
+!testRun: #CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 17:57:45'!
+PASSED!
+
+TestCase subclass: #CartTests
+	instanceVariableNames: 'isbn1 libro1 carrito'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+TestCase subclass: #CartTests
+	instanceVariableNames: 'isbn1 libro1 carritox'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+!classDefinition: #CartTests category: 'TusLibros-Iteration-1' stamp: 'LM 10/29/2022 17:59:53'!
+TestCase subclass: #CartTests
+	instanceVariableNames: 'isbn1 libro1 carritox'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+!CartTests methodsFor: 'setUp' stamp: 'LM 10/29/2022 18:00:14' prior: 50555269 overrides: 16961394!
+setUp
+
+	isbn1 _ '0321146530'.
+	libro1 _ Book withIsbn: isbn1.! !
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:00:30'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:00:30'!
+PASSED!
+
+!testRun: #CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:00:30'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:00:30'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:00:30'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:00:30'!
+PASSED!
+
+!testRun: #CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:00:30'!
+PASSED!
+
+TestCase subclass: #CartTests
+	instanceVariableNames: 'isbn1 libro1 cartWithEmptyCatalog cartWithBook1InCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+!classDefinition: #CartTests category: 'TusLibros-Iteration-1' stamp: 'LM 10/29/2022 18:02:33'!
+TestCase subclass: #CartTests
+	instanceVariableNames: 'isbn1 libro1 cartWithEmptyCatalog cartWithBook1InCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+
+!classDefinition: #CartTests category: 'TusLibros-Iteration-1' stamp: 'LM 10/29/2022 18:02:36'!
+TestCase subclass: #CartTests
+	instanceVariableNames: 'isbn1 book1 cartWithEmptyCatalog cartWithBook1InCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:02:36' prior: 50559558 overrides: 16961394!
+setUp
+
+	isbn1 _ '0321146530'.
+	book1 _ Book withIsbn: isbn1.! !
+!CartTests methodsFor: 'setUp' stamp: 'LM 10/29/2022 18:02:59' prior: 50559611 overrides: 16961394!
+setUp
+
+	isbn1 _ '0321146530'.
+	book1 _ Book withIsbn: isbn1.
+	cartWithEmptyCatalog _ Cart withCatalog: 1.
+	cartWithBook1InCatalog ! !
+!CartTests methodsFor: 'setUp' stamp: 'LM 10/29/2022 18:03:31' prior: 50559617 overrides: 16961394!
+setUp
+
+	isbn1 _ '0321146530'.
+	book1 _ Book withIsbn: isbn1.
+	cartWithEmptyCatalog _ Cart withCatalog: (OrderedCollection new).
+	cartWithBook1InCatalog _ Cart withCatalog: (OrderedCollection with: isbn1)! !
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:04:11' prior: 50555825!
+test02addToCartCorrectlyAddsSingleBook
+
+	cartWithBook1InCatalog addToCart: book1.
+	self assert: cartWithBook1InCatalog libros equals: (Bag with: book1).! !
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:04:16'!
+PASSED!
+
+!testRun: #CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:04:16'!
+PASSED!
+
+!testRun: #CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:04:16'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:04:16'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:04:16'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:04:16'!
+PASSED!
+
+!testRun: #CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:04:16'!
+PASSED!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:04:38' prior: 50555791!
+test03cartIsNotEmptyAfterAddToCart
+
+	cartWithBook1InCatalog addToCart: book1.
+	self deny: cartWithBook1InCatalog isEmpty! !
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:04:44'!
+test03addToCartCorrectlyAddsSingleBook
+
+	cartWithBook1InCatalog addToCart: book1.
+	self assert: cartWithBook1InCatalog libros equals: (Bag with: book1).! !
+
+!methodRemoval: CartTests #test02addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:04:44'!
+test02addToCartCorrectlyAddsSingleBook
+
+	cartWithBook1InCatalog addToCart: book1.
+	self assert: cartWithBook1InCatalog libros equals: (Bag with: book1).!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:04:49'!
+test02cartIsNotEmptyAfterAddToCart
+
+	cartWithBook1InCatalog addToCart: book1.
+	self deny: cartWithBook1InCatalog isEmpty! !
+
+!methodRemoval: CartTests #test03cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:04:49'!
+test03cartIsNotEmptyAfterAddToCart
+
+	cartWithBook1InCatalog addToCart: book1.
+	self deny: cartWithBook1InCatalog isEmpty!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:05:08'!
+PASSED!
+
+!testRun: #CartTests #test02cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:05:08'!
+PASSED!
+
+!testRun: #CartTests #test03addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:05:08'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:05:08'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:05:08'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:05:08'!
+PASSED!
+
+!testRun: #CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:05:08'!
+PASSED!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:05:35' prior: 50555813!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	cartWithBook1InCatalog addToCart: book1 ammount: 2.
+	 
+	self assert: cartWithBook1InCatalog libros equals: {book1. book1} asBag
+	
+	! !
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:05:51' prior: 50555836!
+test05cannotAddToCartBookThatIsNotInTheCatalog
+
+	[cartWithEmptyCatalog addToCart: book1. self fail.] on: Error do: [:anError|
+		
+		self assert: anError messageText equals: Cart bookNotInCatalogErrorMessage. 
+		self assert: cartWithEmptyCatalog isEmpty.
+		]
+	
+	 
+	
+	
+	! !
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:05:51'!
+PASSED!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:05:51'!
+PASSED!
+
+!testRun: #CartTests #test02cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:05:51'!
+PASSED!
+
+!testRun: #CartTests #test03addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:05:51'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:05:51'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:05:51'!
+PASSED!
+
+!testRun: #CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:05:51'!
+PASSED!
+
+!testRun: #CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:05:52'!
+PASSED!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:06:09' prior: 50555801!
+test06addToCartCorrectlyAddsManyOfTheSameBook
+
+	cartWithBook1InCatalog addToCart: book1 ammount: 2.
+	 
+	self assert: cartWithBook1InCatalog libros equals: {book1. book1} asBag
+	
+	! !
+
+!methodRemoval: CartTests #test06addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:06:18'!
+test06addToCartCorrectlyAddsManyOfTheSameBook
+
+	cartWithBook1InCatalog addToCart: book1 ammount: 2.
+	 
+	self assert: cartWithBook1InCatalog libros equals: {book1. book1} asBag
+	
+	!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:06:25'!
+test06cannotAddBookWithAnAmmountLessThanOne
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	self  should: [carrito addToCart: libro ammount: 0]
+		raise: Error 
+		withExceptionDo: [:anError| self assert: anError messageText = Cart canNotAddLessThanOneBookErrorMessage].	
+	
+	! !
+
+!methodRemoval: CartTests #test07cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:06:25'!
+test07cannotAddBookWithAnAmmountLessThanOne
+
+	|carrito libro|
+	
+	carrito _ Cart withCatalog:(OrderedCollection with: isbn1).
+	
+	libro _ Book withIsbn: isbn1.
+	
+	self  should: [carrito addToCart: libro ammount: 0]
+		raise: Error 
+		withExceptionDo: [:anError| self assert: anError messageText = Cart canNotAddLessThanOneBookErrorMessage].	
+	
+	!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:06:40' prior: 50559786!
+test06cannotAddBookWithAnAmmountLessThanOne
+
+	self  should: [cartWithBook1InCatalog addToCart: book1 ammount: 0]
+		raise: Error 
+		withExceptionDo: [:anError| self assert: anError messageText = Cart canNotAddLessThanOneBookErrorMessage].	
+	
+	! !
+
+({'manzana'.'banana'. 'banana'} asBag)!
+
+self remove: 'banana'!
+
+self remove: 'banana'!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:13:00'!
+test07removingABookCorrectlyRemovesEveryApparitionOfThatBook
+	
+	
+	
+	! !
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:13:50' prior: 50559827!
+test07removingABookCorrectlyRemovesEveryApparitionOfThatBook
+	
+	cartWithBook1InCatalog add: book1 amount: 2.
+	
+	
+	
+	! !
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:14:25' prior: 50559832!
+test07removingABookCorrectlyRemovesEveryApparitionOfThatBook
+	
+	cartWithBook1InCatalog addToCart: book1 amount: 2.
+	
+	cartWithBook1InCatalog remove: book1.
+	
+	self assert: cartWithBook1InCatalog books isEmpty.
+	
+	
+	! !
+!Cart methodsFor: 'accessing' stamp: 'LM 10/29/2022 18:14:45'!
+books
+	
+	^libros! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:14:45' prior: 50559671!
+test03addToCartCorrectlyAddsSingleBook
+
+	cartWithBook1InCatalog addToCart: book1.
+	self assert: cartWithBook1InCatalog books equals: (Bag with: book1).! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:14:45' prior: 50559722!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	cartWithBook1InCatalog addToCart: book1 ammount: 2.
+	 
+	self assert: cartWithBook1InCatalog books equals: {book1. book1} asBag
+	
+	! !
+
+!methodRemoval: Cart #libros stamp: 'LM 10/29/2022 18:14:45'!
+libros
+	
+	^libros!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:14:57' prior: 50559839!
+test07removingABookCorrectlyRemovesEveryApparitionOfThatBook
+	
+	cartWithBook1InCatalog addToCart: book1 amount: 2.
+	
+	cartWithBook1InCatalog remove: book1.
+	
+	self assert: cartWithBook1InCatalog isEmpty.
+	
+	
+	! !
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:15:01'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'LM 10/29/2022 18:15:11'!
+addToCart: libro amount: aNaturalNumber 
+	
+	(aNaturalNumber < 1) ifTrue: [self error: self class canNotAddLessThanOneBookErrorMessage].
+	
+	aNaturalNumber timesRepeat: [self addToCart: libro]! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:15:11' prior: 50559860!
+test04addToCartCorrectlyAddsManyOfTheSameBook
+
+	cartWithBook1InCatalog addToCart: book1 amount: 2.
+	 
+	self assert: cartWithBook1InCatalog books equals: {book1. book1} asBag
+	
+	! !
+!CartTests methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:15:11' prior: 50559814!
+test06cannotAddBookWithAnAmmountLessThanOne
+
+	self  should: [cartWithBook1InCatalog addToCart: book1 amount: 0]
+		raise: Error 
+		withExceptionDo: [:anError| self assert: anError messageText = Cart canNotAddLessThanOneBookErrorMessage].	
+	
+	! !
+
+!methodRemoval: Cart #addToCart:ammount: stamp: 'LM 10/29/2022 18:15:11'!
+addToCart: libro ammount: aNaturalNumber 
+	
+	(aNaturalNumber < 1) ifTrue: [self error: self class canNotAddLessThanOneBookErrorMessage].
+	
+	aNaturalNumber timesRepeat: [self addToCart: libro]!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:15:13'!
+PASSED!
+
+!testRun: #CartTests #test02cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:15:13'!
+PASSED!
+
+!testRun: #CartTests #test03addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:15:13'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:15:13'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:15:13'!
+PASSED!
+
+!testRun: #CartTests #test06cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:15:13'!
+PASSED!
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:15:13'!
+ERROR!
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:15:13'!
+ERROR!
+!Cart methodsFor: 'removing' stamp: 'LM 10/29/2022 18:15:19'!
+remove: book1 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'removing' stamp: 'LM 10/29/2022 18:15:48' prior: 50559947!
+remove: book1 
+	
+	^libros remove: book1.! !
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:15:50'!
+FAILURE!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:15:52'!
+PASSED!
+
+!testRun: #CartTests #test02cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:15:52'!
+PASSED!
+
+!testRun: #CartTests #test03addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:15:52'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:15:52'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:15:52'!
+PASSED!
+
+!testRun: #CartTests #test06cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:15:52'!
+PASSED!
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:15:52'!
+FAILURE!
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:15:52'!
+FAILURE!
+
+!classDefinition: #Cart category: 'TusLibros-Iteration-1' stamp: 'LM 10/29/2022 18:16:03'!
+Object subclass: #Cart
+	instanceVariableNames: 'booksInCart catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Iteration-1'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:16:03' prior: 50555542!
+addToCart: aLibro 
+	
+	(catalog includes: aLibro isbn) ifFalse: [self error: self class bookNotInCatalogErrorMessage].
+	
+	booksInCart add: aLibro! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:16:03' prior: 50559951!
+remove: book1 
+	
+	^booksInCart remove: book1.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:16:03' prior: 50559848!
+books
+	
+	^booksInCart! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:16:03' prior: 50555471!
+initializeWithCatalog: aCatalog 
+	
+	booksInCart _ Bag new.
+	catalog _ aCatalog
+	! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 10/29/2022 18:16:03' prior: 50555730!
+isEmpty
+
+	^booksInCart isEmpty.! !
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:16:08'!
+FAILURE!
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:16:08'!
+FAILURE!
+
+({'manzana'.'banana'. 'banana'} asBag)!
+
+self remove: 'banana'!
+
+self remove: 'banana'!
+
+self remove: 'manzana'!
+
+self isEmpty!
+
+self isEmpty!
+
+({'manzana'.'banana'. 'banana'} asBag)!
+
+self remove: 'banana'!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:20:29'!
+test07removingABookRemovesOneApparitionOfThatBook
+	
+	cartWithBook1InCatalog addToCart: book1 amount: 2.
+	
+	cartWithBook1InCatalog remove: book1.
+	
+	self assert: cartWithBook1InCatalog books equals: {book1} asBag.
+	
+	! !
+
+!testRun: #CartTests #test07removingABookRemovesOneApparitionOfThatBook stamp: 'LM 10/29/2022 18:20:30'!
+PASSED!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:20:30'!
+PASSED!
+
+!testRun: #CartTests #test02cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:20:30'!
+PASSED!
+
+!testRun: #CartTests #test03addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:20:30'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:20:30'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:20:30'!
+PASSED!
+
+!testRun: #CartTests #test06cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:20:30'!
+PASSED!
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:20:30'!
+FAILURE!
+
+!testRun: #CartTests #test07removingABookRemovesOneApparitionOfThatBook stamp: 'LM 10/29/2022 18:20:30'!
+PASSED!
+
+!testRun: #CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:20:30'!
+FAILURE!
+
+!methodRemoval: CartTests #test07removingABookCorrectlyRemovesEveryApparitionOfThatBook stamp: 'LM 10/29/2022 18:20:36'!
+test07removingABookCorrectlyRemovesEveryApparitionOfThatBook
+	
+	cartWithBook1InCatalog addToCart: book1 amount: 2.
+	
+	cartWithBook1InCatalog remove: book1.
+	
+	self assert: cartWithBook1InCatalog isEmpty.
+	
+	
+	!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:20:38'!
+PASSED!
+
+!testRun: #CartTests #test02cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:20:38'!
+PASSED!
+
+!testRun: #CartTests #test03addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:20:38'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:20:38'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:20:38'!
+PASSED!
+
+!testRun: #CartTests #test06cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:20:38'!
+PASSED!
+
+!testRun: #CartTests #test07removingABookRemovesOneApparitionOfThatBook stamp: 'LM 10/29/2022 18:20:38'!
+PASSED!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:23:45'!
+test08canNotRemoveAbsentBook
+	
+	self should: [cartWithBook1InCatalog remove: book1.]
+		raise: Error
+		withExceptionDo: [:anError| 				self assert: anError messageText = Cart canNotRemoveAbsentBook.
+								self assert: cartWithBook1InCatalog isEmpty]
+	
+	
+	
+	! !
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:24:28' prior: 50559902!
+test06cannotAddBookWithAnAmmountLessThanOne
+
+	self  should: [cartWithBook1InCatalog addToCart: book1 amount: 0]
+		raise: Error 
+		withExceptionDo: [:anError| self assert: anError messageText = Cart canNotAddLessThanOneBookErrorMessage.
+								self assert: cartWithBook1InCatalog isEmpty].	
+	
+	! !
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:24:48' prior: 50559731!
+test05cannotAddToCartBookThatIsNotInTheCatalog
+
+	self should: [cartWithEmptyCatalog addToCart: book1.] raise: Error withExceptionDo: [:anError|
+		
+		self assert: anError messageText equals: Cart bookNotInCatalogErrorMessage. 
+		self assert: cartWithEmptyCatalog isEmpty.
+		]
+	
+	 
+	
+	
+	! !
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:24:50'!
+PASSED!
+
+!testRun: #CartTests #test06cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:24:51'!
+PASSED!
+
+!testRun: #CartTests #test07removingABookRemovesOneApparitionOfThatBook stamp: 'LM 10/29/2022 18:24:53'!
+PASSED!
+
+!testRun: #CartTests #test08canNotRemoveAbsentBook stamp: 'LM 10/29/2022 18:24:58'!
+ERROR!
+
+!testRun: #CartTests #test08canNotRemoveAbsentBook stamp: 'LM 10/29/2022 18:24:58'!
+ERROR!
+!Cart class methodsFor: 'errorMessage' stamp: 'LM 10/29/2022 18:25:18'!
+canNotRemoveAbsentBook
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'errorMessage' stamp: 'LM 10/29/2022 18:25:34' prior: 50560163!
+canNotRemoveAbsentBook
+	
+	^'Can not remove absent book'! !
+
+!testRun: #CartTests #test08canNotRemoveAbsentBook stamp: 'LM 10/29/2022 18:25:41'!
+FAILURE!
+
+!testRun: #CartTests #test08canNotRemoveAbsentBook stamp: 'LM 10/29/2022 18:25:41'!
+FAILURE!
+!Cart methodsFor: 'removing' stamp: 'LM 10/29/2022 18:26:13' prior: 50560002!
+remove: book1 
+	
+	^booksInCart remove: book1 ifAbsent: [self error: self class canNotRemoveAbsentBook]! !
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:26:18'!
+PASSED!
+
+!testRun: #CartTests #test02cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:26:18'!
+PASSED!
+
+!testRun: #CartTests #test03addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:26:18'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:26:18'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:26:18'!
+PASSED!
+
+!testRun: #CartTests #test06cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:26:18'!
+PASSED!
+
+!testRun: #CartTests #test07removingABookRemovesOneApparitionOfThatBook stamp: 'LM 10/29/2022 18:26:18'!
+PASSED!
+
+!testRun: #CartTests #test08canNotRemoveAbsentBook stamp: 'LM 10/29/2022 18:26:18'!
+PASSED!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:28:25'!
+test09removeAllOfABookCorrectlyRemovesAllOccurrencesOfThatBook
+	
+	cartWithBook1InCatalog addToCart: book1 amount: 2.
+	
+	cartWithBook1InCatalog removeAllOf: book1.
+	
+	self assert: cartWithBook1InCatalog isEmpty
+	
+	
+	! !
+
+!testRun: #CartTests #test09removeAllOfABookCorrectlyRemovesAllOccurrencesOfThatBook stamp: 'LM 10/29/2022 18:28:27'!
+ERROR!
+!Cart methodsFor: 'removing' stamp: 'LM 10/29/2022 18:28:31'!
+removeAllOf: book1 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'removing' stamp: 'LM 10/29/2022 18:30:00' prior: 50560224!
+removeAllOf: book1 
+	
+	(booksInCart occurrencesOf: book1) timesRepeat: [self remove: book1]! !
+
+!testRun: #CartTests #test09removeAllOfABookCorrectlyRemovesAllOccurrencesOfThatBook stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test01newCartIsEmpty stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test02cartIsNotEmptyAfterAddToCart stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test03addToCartCorrectlyAddsSingleBook stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test04addToCartCorrectlyAddsManyOfTheSameBook stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test05cannotAddToCartBookThatIsNotInTheCatalog stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test06cannotAddBookWithAnAmmountLessThanOne stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test07removingABookRemovesOneApparitionOfThatBook stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test08canNotRemoveAbsentBook stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test09removeAllOfABookCorrectlyRemovesAllOccurrencesOfThatBook stamp: 'LM 10/29/2022 18:30:04'!
+PASSED!
+
+!testRun: #CartTests #test09removeAllOfABookCorrectlyRemovesAllOccurrencesOfThatBook stamp: 'LM 10/29/2022 18:30:06'!
+PASSED!
+
+----SNAPSHOT----(29 October 2022 18:30:09) CuisUniversity-5510.image priorSource: 7164280!
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:30:49' prior: 50559686!
+test02cartIsNotEmptyAfterAddToCart
+
+	cartWithBook1InCatalog addToCart: book1.
+	
+	self deny: cartWithBook1InCatalog isEmpty! !
+!CartTests methodsFor: 'tests' stamp: 'LM 10/29/2022 18:30:52' prior: 50559852!
+test03addToCartCorrectlyAddsSingleBook
+
+	cartWithBook1InCatalog addToCart: book1.
+	
+	self assert: cartWithBook1InCatalog books equals: (Bag with: book1).! !
+
+----SNAPSHOT----(29 October 2022 18:31:20) CuisUniversity-5510.image priorSource: 7315858!
+
+----QUIT----(29 October 2022 18:31:57) CuisUniversity-5510.image priorSource: 7316412!
