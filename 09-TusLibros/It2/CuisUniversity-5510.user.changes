@@ -1,0 +1,1751 @@
+
+
+----QUIT----(26 October 2022 08:07:27) CuisUniversity-5510.image priorSource: 2900072!
+
+----STARTUP---- (26 October 2022 08:07:28) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5510.image!
+
+
+----QUIT----(26 October 2022 08:07:28) CuisUniversity-5510.image priorSource: 7154921!
+
+----STARTUP---- (31 October 2022 18:08:08) as /home/clinux01/Escritorio/linux64/CuisUniversity-5510.image!
+
+
+----End fileIn of /home/clinux01/Escritorio/linux64/TusLibros-18.st----!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 18:09:50'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 18:09:50'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 18:09:50'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 18:09:50'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 18:09:50'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 18:09:50'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 18:09:50'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 18:09:50'!
+PASSED!
+
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'MV 10/31/2022 18:10:59'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 18:11:06'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'no messages' stamp: 'MV 10/31/2022 18:17:20'!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [Cashier new checkout]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: Cashier purchases isEmpty.]! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 18:17:48' prior: 50555486!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [Cashier new checkout: Cart new]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: Cashier purchases isEmpty.]! !
+
+TestCase subclass: #CartTest
+	instanceVariableNames: 'emptyCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'MV 10/31/2022 18:18:18'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'emptyCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #CartTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'MV 10/31/2022 18:18:22'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 18:18:52'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'MV 10/31/2022 18:18:57'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 18:19:10' overrides: 16961394!
+setUp
+	emptyCartWithEmptyCatalog _ Cart acceptingItemsOf: OrderedCollection new.! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 18:19:12'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 18:19:12'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:19:54' prior: 50555497!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [Cashier new checkout: emptyCartWithEmptyCatalog ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: Cashier purchases isEmpty.]! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 18:19:57'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:20:28' prior: 50555567!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [Cashier new checkout: emptyCartWithEmptyCatalog ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: Cashier purchases isEmpty.]! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 18:20:28'!
+ERROR!
+!Cashier methodsFor: 'no messages' stamp: 'MV 10/31/2022 18:20:53'!
+checkout: aCart
+
+	! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 18:21:21' prior: 50555597!
+checkout: aCart
+
+	self error: self class emptyCartErrorMessage.! !
+!Cashier class methodsFor: 'no messages' stamp: 'MV 10/31/2022 18:21:44'!
+emptyCartErrorMessage
+	
+	^'Can not checkout an empty cart'! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 18:21:46'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 18:21:46'!
+ERROR!
+!Cashier class methodsFor: 'accessing' stamp: 'MV 10/31/2022 18:21:57'!
+purchases
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'accessing' stamp: 'MV 10/31/2022 18:22:07' prior: 50555617!
+purchases
+	^OrderedCollection new.! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 18:22:10'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 18:22:11'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:23:35'!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	self should: [Cashier new checkout: emptyCartWithEmptyCatalog ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: Cashier purchases isEmpty.]! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:26:57' prior: 50555632!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cashier _ Cashier withPriceList: ''! !
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Packages/TerseGuide.pck.st----!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:28:34' prior: 50555644!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+"	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( OrderedCollection with: ''): Argument expected ->.
+	cashier _ Cashier withPriceList: "! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:31:56' prior: 50558570!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->20)! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:35:58' prior: 50558579!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->(20*'peso'))! !
+
+20 * 'peso'!
+
+20 * peso!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:41:37' prior: 50558589!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+"
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->(20*peso)).
+	cashier checkout: cart withCard: Card numbered: '1111 1111 1111 1111' expiring: Date 
+	self assert: "! !
+
+!classDefinition: #Card category: 'TusLibros' stamp: 'MV 10/31/2022 18:56:08'!
+Object subclass: #Card
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:56:03' prior: 50558600!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->(20*peso)).
+	cashier checkout: cart withCard: (Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026)). 
+	self assert: cashier includes: 'aValidBook: 20 pesos. Total: 20 pesos'! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 18:58:46' prior: 50558620!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->(20*peso)).
+	cashier checkout: cart withCard: (Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026)). 
+	self assert: cashier purchases equals: (OrderedCollection with: 'aValidBook: 20 pesos. Total: 20 pesos').! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 18:58:48'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'MV 10/31/2022 18:59:09'!
+withPriceList: aDictionary 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithPriceList: aDictionary ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'MV 10/31/2022 18:59:16' prior: 50558657!
+withPriceList: aDictionary 
+
+	^self new initializeWithPriceList: aDictionary ! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 18:59:18'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'MV 10/31/2022 18:59:27'!
+Object subclass: #Cashier
+	instanceVariableNames: 'dictionary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'MV 10/31/2022 18:59:27'!
+initializeWithPriceList: aDictionary 
+	self shouldBeImplemented.
+	dictionary := aDictionary.! !
+!Cashier methodsFor: 'initialization' stamp: 'MV 10/31/2022 18:59:34' prior: 50558681!
+initializeWithPriceList: aDictionary 
+	
+	dictionary := aDictionary.! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'MV 10/31/2022 19:00:16'!
+Object subclass: #Cashier
+	instanceVariableNames: 'bookPrices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:00:16' prior: 50558687!
+initializeWithPriceList: aDictionary 
+	
+	bookPrices := aDictionary.! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:00:20'!
+ERROR!
+!Card class methodsFor: 'instance creation' stamp: 'MV 10/31/2022 19:00:25'!
+numbered: aString expiring: aMonth 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNumbered: aString expiring: aMonth ! !
+!Card class methodsFor: 'instance creation' stamp: 'MV 10/31/2022 19:00:36' prior: 50558708!
+numbered: aString expiring: aMonth 
+
+	^self new initializeNumbered: aString expiring: aMonth ! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:00:37'!
+ERROR!
+
+!classDefinition: #Card category: 'TusLibros' stamp: 'MV 10/31/2022 19:00:44'!
+Object subclass: #Card
+	instanceVariableNames: 'string'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Card category: 'TusLibros' stamp: 'MV 10/31/2022 19:00:44'!
+Object subclass: #Card
+	instanceVariableNames: 'string month'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Card methodsFor: 'initialization' stamp: 'MV 10/31/2022 19:00:44'!
+initializeNumbered: aString expiring: aMonth 
+	self shouldBeImplemented.
+	string := aString.
+	month := aMonth.! !
+!Card methodsFor: 'initialization' stamp: 'MV 10/31/2022 19:00:57' prior: 50558739!
+initializeNumbered: aString expiring: aMonth 
+	
+	string := aString.
+	month := aMonth.! !
+
+!classDefinition: #Card category: 'TusLibros' stamp: 'MV 10/31/2022 19:01:07'!
+Object subclass: #Card
+	instanceVariableNames: 'cardNumber month'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Card methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:01:07' prior: 50558746!
+initializeNumbered: aString expiring: aMonth 
+	
+	cardNumber := aString.
+	month := aMonth.! !
+
+!classDefinition: #Card category: 'TusLibros' stamp: 'MV 10/31/2022 19:01:17'!
+Object subclass: #Card
+	instanceVariableNames: 'cardNumber expiringMonth'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Card methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:01:17' prior: 50558759!
+initializeNumbered: aString expiring: aMonth 
+	
+	cardNumber := aString.
+	expiringMonth := aMonth.! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:01:21'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 19:01:33'!
+checkout: cart withCard: aString 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'MV 10/31/2022 19:03:43'!
+Object subclass: #Cashier
+	instanceVariableNames: 'bookPrices purchases'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 19:03:56' prior: 50558781!
+checkout: cart withCard: aCard
+
+	|total|
+	
+	total := self totalPriceOf: cart.
+	self debit: total from: aCard.
+	
+	purchases add: (self purchaseStringFrom: cart)! !
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 19:04:22' prior: 50558793!
+checkout: aCart withCard: aCard
+
+	|total|
+	
+	total := self totalPriceOf: aCart.
+	self debit: total from: aCard.
+	
+	purchases add: (self purchaseStringFrom: aCart)! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:04:31'!
+ERROR!
+!Cashier methodsFor: 'totalPrice' stamp: 'MV 10/31/2022 19:05:04'!
+totalPriceOf: aCart 
+	self shouldBeImplemented.! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 19:07:42'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog card'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'MV 10/31/2022 19:07:41' prior: 50555555 overrides: 16961394!
+setUp
+	emptyCartWithEmptyCatalog _ Cart acceptingItemsOf: OrderedCollection new.
+	card _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026).! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 19:07:51' prior: 50558636!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->(20*peso)).
+	cashier checkout: cart withCard: (card). 
+	self assert: cashier purchases equals: (OrderedCollection with: 'aValidBook: 20 pesos. Total: 20 pesos').! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 19:07:57'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog nonExpiredCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:07:57' prior: 50558825 overrides: 16961394!
+setUp
+	emptyCartWithEmptyCatalog _ Cart acceptingItemsOf: OrderedCollection new.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026).! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:07:57' prior: 50558833!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->(20*peso)).
+	cashier checkout: cart withCard: (nonExpiredCard). 
+	self assert: cashier purchases equals: (OrderedCollection with: 'aValidBook: 20 pesos. Total: 20 pesos').! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 19:08:49' prior: 50555582!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [Cashier new checkout: emptyCartWithEmptyCatalog withCard: 	nonExpiredCard ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: Cashier purchases isEmpty.]! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:08:54'!
+FAILURE!
+
+!methodRemoval: Cashier #totalPriceOf: stamp: 'MV 10/31/2022 19:09:41'!
+totalPriceOf: aCart 
+	self shouldBeImplemented.!
+
+----SNAPSHOT----(31 October 2022 19:09:44) CuisUniversity-5510.image priorSource: 7155150!
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 19:11:59' prior: 50558801!
+checkout: aCart withCard: aCard
+
+	|total|
+	
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	purchases add: (aCart purchaseStringFrom: bookPrices)! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:12:04'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:12:04'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:12:07'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:13:11'!
+totalPriceFromPriceList: bookPrices 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 19:13:25' prior: 50558904!
+checkout: aCart withCard: aCard
+
+	|total|
+	
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	purchases add: (self purchaseStringFrom: aCart)! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:13:27'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:13:27'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:13:30'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:17:41' prior: 50558923!
+totalPriceFromPriceList: bookPrices 
+	
+	^items sum: [:aBook| bookPrices at: aBook ifAbsent: (self error: Cashier bookNotInPriceListErrorMessage)]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 19:17:46'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 19:17:46'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 19:17:46'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 19:17:46'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 19:17:46'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 19:17:46'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 19:17:46'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 19:17:46'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:17:49'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:17:49'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:17:52'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 19:18:51' prior: 50558881!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [(Cashier withPriceList: Dictionary new) checkout: emptyCartWithEmptyCatalog withCard: 	nonExpiredCard ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: Cashier purchases isEmpty.]! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:18:52'!
+FAILURE!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:19:59'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:20:18' prior: 50555601!
+checkout: aCart
+
+	! !
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 19:20:36' prior: 50558928!
+checkout: aCart withCard: aCard
+
+	|total|
+	aCart ifEmpty: [self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	purchases add: (self purchaseStringFrom: aCart)! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:20:38'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:20:38'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:20:42'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 19:20:58' prior: 50559016!
+checkout: aCart withCard: aCard
+
+	|total|
+	aCart ifEmpty: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	purchases add: (self purchaseStringFrom: aCart)! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:20:59'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:20:59'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:21:01'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 19:21:37' prior: 50559037!
+checkout: aCart withCard: aCard
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	purchases add: (self purchaseStringFrom: aCart)! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:21:38'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:21:38'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:21:38'!
+ERROR!
+!Cashier class methodsFor: 'errorMessage' stamp: 'MV 10/31/2022 19:21:54'!
+bookNotInPriceListErrorMessage
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'errorMessage' stamp: 'MV 10/31/2022 19:22:18' prior: 50559079!
+bookNotInPriceListErrorMessage
+	
+	^'Can not checkout items that are not in the price list'! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:22:20'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:22:24'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:22:24'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:22:24'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:22:43'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:22:44'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:22:44'!
+ERROR!
+
+aBook!
+
+bookPrices!
+
+aBook!
+
+bookPrices at: aBook!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:24:14'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:26:15' prior: 50558947!
+totalPriceFromPriceList: bookPrices 
+	
+	^items sum: [:aBook| bookPrices at: aBook ifAbsent: [self error: Cashier bookNotInPriceListErrorMessage]]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 19:26:17'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 19:26:17'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 19:26:17'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 19:26:17'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 19:26:17'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 19:26:17'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 19:26:17'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 19:26:17'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:26:19'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:26:19'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:26:19'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:36:25'!
+debit: total from: aCard 
+	self shouldBeImplemented.! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:36:31'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:36:31'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:36:31'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:36:46' prior: 50559162!
+debit: total from: aCard 
+	! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:36:50'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:37:29'!
+purchaseStringFrom: aCart 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 19:41:23' prior: 50559058!
+checkout: aCart withCard: aCard
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	purchases add: (aCart purchaseStringWithPrices: bookPrices).! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 19:41:26'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:41:26'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 19:41:26'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:41:47'!
+purchaseStringWithPrices: bookPrices 
+	self shouldBeImplemented.! !
+
+|bag|!
+
+|bag|!
+
+|bag|!
+
+bag  {'item'. 'item'. 'item'. 'calabaza'} asBag!
+
+bag  {'item'. 'item'. 'item'. 'calabaza'} asBag!
+
+|bag numero| !
+
+|bag numero| 
+
+bag  {'item'. 'item'. 'item'. 'calabaza'} asBag.
+
+numero  0.
+!
+
+numero!
+
+numero!
+
+numero  0.!
+
+numero!
+
+bag do: [:anItem| numero  numero +1]!
+
+numero!
+
+{'a'.'a'.'b'.'c'.} asBag sortedElements !
+
+{'a'.'a'.'b'.'c'.} asBag sortedElements asDictionary!
+
+{'a'.'a'.'b'.'c'.} asBag asDictionary!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 19:55:30'!
+purchaseStringWithPrices: bookPrices andCashier: aCashier
+	|purchaseString|
+	
+	items sortedElements asDictionary associationsDo: [:anAssociation| purchaseString _ purchaseString , (aCashier stringLine: anAssociation)].! !
+
+
+|number|
+number  1!
+
+number!
+
+number  1!
+
+number  1!
+
+number  1!
+
+number  1!
+
+number  1!
+
+number  1!
+
+number  1!
+
+number  1!
+
+number  1!
+
+number  1!
+
+{'a'->2. 'v'->1} asSortedCollection associationsDo: [number  number+1]!
+
+{'a'->2. 'v'->1} asSortedCollection associationsDo: [:assoc | number  assoc value]!
+
+number!
+
+{'a'->2. 'v'->1} asSortedCollection associationsDo: [:assoc | number  number + assoc value]!
+
+number!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 20:00:24' prior: 50559230!
+purchaseStringWithPrices: bookPrices andCashier: aCashier
+	|purchaseString|
+	
+	items sortedElements associationsDo: [:anAssociation| purchaseString _ purchaseString , (aCashier stringLine: anAssociation)].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 20:02:46' prior: 50559254!
+purchaseStringWithPrices: bookPrices andCashier: aCashier
+	|purchaseString|
+	
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString _ purchaseString , (aCashier stringLineFromItems: anAssociation priced: (bookPrices at: anAssociation key))].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 20:02:57' prior: 50559264!
+purchaseStringWithPrices: bookPrices andCashier: aCashier
+	|purchaseString|
+	
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString _ purchaseString , (aCashier stringLineFromItems: anAssociation priced: (bookPrices at: anAssociation key))].
+	^purchaseString.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 20:03:10' prior: 50559275!
+purchaseStringWithPrices: bookPrices andCashier: aCashier
+	|purchaseString|
+	purchaseString _ ''.
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString _ purchaseString , (aCashier stringLineFromItems: anAssociation priced: (bookPrices at: anAssociation key))].
+	^purchaseString.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 20:03:11'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 20:03:11'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 20:03:11'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 20:03:11'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 20:03:11'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 20:03:11'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 20:03:11'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 20:03:11'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 20:13:34'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 20:13:34'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'MV 10/31/2022 20:14:21'!
+Object subclass: #Cashier
+	instanceVariableNames: 'bookPrices salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 20:14:21' prior: 50559189!
+checkout: aCart withCard: aCard
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	salesBook add: (aCart purchaseStringWithPrices: bookPrices).! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 20:59:47'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 20:59:48'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 20:59:48'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 21:00:45' prior: 50559339!
+checkout: aCart withCard: aCard
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	salesBook add: (aCart purchaseStringWithPrices: bookPrices andCashier: self).! !
+
+!methodRemoval: Cart #purchaseStringWithPrices: stamp: 'MV 10/31/2022 21:00:49'!
+purchaseStringWithPrices: bookPrices 
+	self shouldBeImplemented.!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:00:53'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:00:53'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:00:53'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'MV 10/31/2022 21:01:38' prior: 50555289!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	items := Bag new.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 21:01:38'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 21:01:38'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:01:38'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 21:01:38'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 21:01:38'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 21:01:38'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 21:01:38'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 21:01:38'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 21:01:41'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 21:01:41'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:01:41'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 21:01:41'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 21:01:41'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 21:01:41'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 21:01:41'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 21:01:41'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:01:44'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:01:44'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:01:44'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:08:35' prior: 50559119!
+totalPriceFromPriceList: bookPrices 
+	|totalPrice bookValue|
+	totalPrice _ 0.
+	items sortedElements associationsDo: [:anAssociation|
+		bookValue _ bookPrices at: anAssociation key ifAbsent: [self error: Cashier bookNotInPriceListErrorMessage].
+		totalPrice _ totalPrice + ((anAssociation value) * (bookValue))]. 
+	^totalPrice ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 21:08:40'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 21:08:40'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:08:40'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 21:08:40'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 21:08:40'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 21:08:40'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 21:08:40'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 21:08:40'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:08:42'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:08:42'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:08:42'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:08:50'!
+stringLineFromItems: anAssociation priced: aString 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:12:19' prior: 50559504!
+stringLineFromItems: anAssociation priced: aString 
+	
+	^anAssociation value asString , ' of ' , anAssociation key , ' for ' , aString .! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:12:22'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:12:43' prior: 50559510!
+stringLineFromItems: anAssociation priced: aString 
+	
+	^anAssociation value asString , ' of ' , anAssociation key , ' for ' , aString asString .! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:12:59' prior: 50559521!
+stringLineFromItems: anAssociation priced: aPrice 
+	
+	^anAssociation value asString , ' of ' , anAssociation key , ' for ' , aPrice asString .! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:13:01'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 21:14:24'!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	aSalesBook add: (aCart purchaseStringWithPrices: bookPrices andCashier: self).! !
+
+!methodRemoval: Cashier #checkout:withCard: stamp: 'MV 10/31/2022 21:14:28'!
+checkout: aCart withCard: aCard
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	salesBook add: (aCart purchaseStringWithPrices: bookPrices andCashier: self).!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:14:47' prior: 50558991!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [(Cashier withPriceList: Dictionary new) checkout: emptyCartWithEmptyCatalog withCard: 	nonExpiredCard andRecordAt: OrderedCollection new ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: Cashier purchases isEmpty.]! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:15:12' prior: 50558866!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->(20*peso)).
+	cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: OrderedCollection new. 
+	self assert: cashier purchases equals: (OrderedCollection with: 'aValidBook: 20 pesos. Total: 20 pesos').! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:15:17'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:15:17'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:15:17'!
+ERROR!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 21:15:44'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog nonExpiredCard salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'MV 10/31/2022 21:15:43' prior: 50558857 overrides: 16961394!
+setUp
+	emptyCartWithEmptyCatalog _ Cart acceptingItemsOf: OrderedCollection new.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026).
+	salesBook _ OrderedCollection new.! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:15:52' prior: 50559564!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [(Cashier withPriceList: Dictionary new) checkout: emptyCartWithEmptyCatalog withCard: 	nonExpiredCard andRecordAt: salesBook ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: Cashier purchases isEmpty.]! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:15:59' prior: 50559625!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [(Cashier withPriceList: Dictionary new) checkout: emptyCartWithEmptyCatalog withCard: 	nonExpiredCard andRecordAt: salesBook ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: salesBook isEmpty.]! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:16:33' prior: 50559579!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->(20*peso)).
+	cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: '1 of aValidBook for 20 pesos').! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:16:35'!
+FAILURE!
+
+peso!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:18:28' prior: 50559653!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Array with: 'aValidBook').
+	cart add: 'aValidBook'.
+	cashier _ Cashier withPriceList: (Dictionary with: 'aValidBook'->(20*peso)).
+	cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: '1 of aValidBook for 20 * pesos').! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:18:29'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:18:29'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:18:29'!
+PASSED!
+!CartTest methodsFor: 'support' stamp: 'MV 10/31/2022 21:20:29' prior: 50555428!
+defaultCatalog
+	
+	^ Dictionary with: (self itemSellByTheStore)->1*peso.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 21:20:31'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 21:20:31'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:20:31'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 21:20:31'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 21:20:31'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 21:20:31'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 21:20:31'!
+ERROR!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 21:20:31'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 21:20:37'!
+ERROR!
+!CartTest methodsFor: 'support' stamp: 'MV 10/31/2022 21:20:59' prior: 50559698!
+defaultCatalog
+	
+	^ Dictionary with: (self itemSellByTheStore)->(1*peso).! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 21:21:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 21:21:03'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:21:03'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 21:21:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 21:21:03'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 21:21:03'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 21:21:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 21:21:03'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:21:08'!
+ERROR!
+
+self includes: 'validBook'!
+
+self keys includes: 'validBook'!
+!Cart methodsFor: 'assertions' stamp: 'MV 10/31/2022 21:22:32' prior: 50555276!
+assertIsValidItem: anItem
+
+	(catalog keys includes: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:22:33'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 21:22:37'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 21:22:37'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:22:37'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 21:22:37'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 21:22:37'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 21:22:37'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 21:22:37'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 21:22:37'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:22:57'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:22:57'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:22:57'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:23:51' prior: 50559672!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook'->(20*peso)).
+	cart add: 'aValidBook'.
+	cashier _ Cashier new.
+	cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: '1 of aValidBook for 20 * pesos').! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:23:52'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:23:58'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:24:35' prior: 50559455!
+totalPriceFromPriceList: bookPrices 
+	|totalPrice bookValue|
+	totalPrice _ 0.
+	items sortedElements associationsDo: [:anAssociation|
+		bookValue _ catalog at: anAssociation key ifAbsent: [self error: Cashier bookNotInPriceListErrorMessage].
+		totalPrice _ totalPrice + ((anAssociation value) * (bookValue))]. 
+	^totalPrice ! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:24:38'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:25:06' prior: 50559287!
+purchaseStringWithPrices: bookPrices andCashier: aCashier
+	|purchaseString|
+	purchaseString _ ''.
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString _ purchaseString , (aCashier stringLineFromItems: anAssociation priced: (catalog at: anAssociation key))].
+	^purchaseString.! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:25:09'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:25:09'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:25:09'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:26:51'!
+andCashier: aCashier
+	|purchaseString|
+	purchaseString _ ''.
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString _ purchaseString , (aCashier stringLineFromItems: anAssociation priced: (catalog at: anAssociation key))].
+	^purchaseString.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:26:51' prior: 50559540!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	aSalesBook add: (aCart andCashier: self).! !
+
+!methodRemoval: Cart #purchaseStringWithPrices:andCashier: stamp: 'MV 10/31/2022 21:26:51'!
+purchaseStringWithPrices: bookPrices andCashier: aCashier
+	|purchaseString|
+	purchaseString _ ''.
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString _ purchaseString , (aCashier stringLineFromItems: anAssociation priced: (catalog at: anAssociation key))].
+	^purchaseString.!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:27:39'!
+purchaseStringsForCashier: aCashier
+	|purchaseString|
+	purchaseString _ ''.
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString _ purchaseString , (aCashier stringLineFromItems: anAssociation priced: (catalog at: anAssociation key))].
+	^purchaseString.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:27:39' prior: 50559886!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList: bookPrices. 
+	self debit: total from: aCard.
+	
+	aSalesBook add: (aCart purchaseStringsForCashier: self).! !
+
+!methodRemoval: Cart #andCashier: stamp: 'MV 10/31/2022 21:27:39'!
+andCashier: aCashier
+	|purchaseString|
+	purchaseString _ ''.
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString _ purchaseString , (aCashier stringLineFromItems: anAssociation priced: (catalog at: anAssociation key))].
+	^purchaseString.!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:28:23' prior: 50559909!
+purchaseStringsForCashier: aCashier
+	|purchaseString|
+	purchaseString _ OrderedCollection new.
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString add: (aCashier stringLineFromItems: anAssociation priced: (catalog at: anAssociation key))].
+	^purchaseString.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 21:28:25'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 21:28:25'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:28:25'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 21:28:25'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 21:28:25'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 21:28:25'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 21:28:25'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 21:28:25'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:28:27'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:28:27'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:28:27'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:28:59' prior: 50559814!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cashier cart|
+	
+	cart _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook'->(20*peso)).
+	cart add: 'aValidBook'.
+	cashier _ Cashier new.
+	cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '1 of aValidBook for 20 * pesos')).! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:29:00'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:29:00'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:29:00'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:30:34'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:30:34'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:30:34'!
+PASSED!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'MV 10/31/2022 21:30:58'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalogWIthPrices items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:30:58' prior: 50559835!
+totalPriceFromPriceList: bookPrices 
+	|totalPrice bookValue|
+	totalPrice _ 0.
+	items sortedElements associationsDo: [:anAssociation|
+		bookValue _ catalogWIthPrices at: anAssociation key ifAbsent: [self error: Cashier bookNotInPriceListErrorMessage].
+		totalPrice _ totalPrice + ((anAssociation value) * (bookValue))]. 
+	^totalPrice ! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:30:58' prior: 50559768!
+assertIsValidItem: anItem
+
+	(catalogWIthPrices keys includes: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:30:58' prior: 50559944!
+purchaseStringsForCashier: aCashier
+	|purchaseString|
+	purchaseString _ OrderedCollection new.
+	items sortedElements associationsDo: [:anAssociation|
+		purchaseString add: (aCashier stringLineFromItems: anAssociation priced: (catalogWIthPrices at: anAssociation key))].
+	^purchaseString.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:30:58' prior: 50559388!
+initializeAcceptingItemsOf: aCatalog
+
+	catalogWIthPrices := aCatalog.
+	items := Bag new.! !
+!Card methodsFor: 'initialization' stamp: 'MV 10/31/2022 21:32:47'!
+initializeNumbered: aString expiring: aMonth ownedBy: aName  
+	
+	cardNumber := aString.
+	expiringMonth := aMonth.! !
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:32:47' prior: 50558717!
+numbered: aString expiring: aMonth 
+
+	^self new initializeNumbered: aString expiring: aMonth ownedBy: aName ! !
+
+!methodRemoval: Card #initializeNumbered:expiring: stamp: 'MV 10/31/2022 21:32:47'!
+initializeNumbered: aString expiring: aMonth 
+	
+	cardNumber := aString.
+	expiringMonth := aMonth.!
+!Card class methodsFor: 'instance creation' stamp: 'MV 10/31/2022 21:33:54'!
+numbered: aString expiring: aMonth ownedBy: aName  
+
+	^self new initializeNumbered: aString expiring: aMonth ownedBy: aName ! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:33:54' prior: 50559615 overrides: 16961394!
+setUp
+	emptyCartWithEmptyCatalog _ Cart acceptingItemsOf: OrderedCollection new.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: aName.
+	salesBook _ OrderedCollection new.! !
+
+!methodRemoval: Card class #numbered:expiring: stamp: 'MV 10/31/2022 21:33:54'!
+numbered: aString expiring: aMonth 
+
+	^self new initializeNumbered: aString expiring: aMonth ownedBy: aName !
+!CashierTest methodsFor: 'setup' stamp: 'MV 10/31/2022 21:34:13' prior: 50560100 overrides: 16961394!
+setUp
+	emptyCartWithEmptyCatalog _ Cart acceptingItemsOf: OrderedCollection new.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:34:15'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:34:15'!
+PASSED!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 21:34:43'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog nonExpiredCard salesBook cashierx'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'MV 10/31/2022 21:34:42' prior: 50560117 overrides: 16961394!
+setUp
+	emptyCartWithEmptyCatalog _ Cart acceptingItemsOf: OrderedCollection new.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashierx _ Cashier new. ! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:35:01' prior: 50559639!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [(cashierx) checkout: emptyCartWithEmptyCatalog withCard: 	nonExpiredCard andRecordAt: salesBook ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: salesBook isEmpty.]! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:35:14' prior: 50559992!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cart|
+	
+	cart _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook'->(20*peso)).
+	cart add: 'aValidBook'.
+	
+	cashierx checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '1 of aValidBook for 20 * pesos')).! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 21:35:38'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog nonExpiredCard salesBook cashier'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:35:38' prior: 50560143 overrides: 16961394!
+setUp
+	emptyCartWithEmptyCatalog _ Cart acceptingItemsOf: OrderedCollection new.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:35:38' prior: 50560154!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [(cashier) checkout: emptyCartWithEmptyCatalog withCard: 	nonExpiredCard andRecordAt: salesBook ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: salesBook isEmpty.]! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:35:38' prior: 50560167!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cart|
+	
+	cart _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook'->(20*peso)).
+	cart add: 'aValidBook'.
+	
+	cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '1 of aValidBook for 20 * pesos')).! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:39:21'!
+test03canCorrectlyCheckoutCartWithManyBooks
+
+	|cart|
+	
+	cart _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso)).
+	cart add: 2 of: 'aValidBook1'.
+	cart add: 'aValidBook2'.
+	
+	cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos') with: 'Total: 60 * pesos').! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:39:41' prior: 50560216!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	|cart|
+	
+	cart _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook'->(20*peso)).
+	cart add: 'aValidBook'.
+	
+	cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '1 of aValidBook for 20 * pesos' with: 'Total: 20 * pesos')).! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:40:12' prior: 50560056!
+purchaseStringsForCashier: aCashier
+	|purchases|
+	purchases _ OrderedCollection new.
+	items sortedElements associationsDo: [:anAssociation|
+		purchases add: (aCashier stringLineFromItems: anAssociation priced: (catalogWIthPrices at: anAssociation key))].
+	^purchases.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:40:48' prior: 50560263!
+purchaseStringsForCashier: aCashier
+	|purchases|
+	purchases _ OrderedCollection new.
+	items sortedElements associationsDo: [:anAssociation|
+		purchases add: (aCashier stringLineFromItems: anAssociation priced: (catalogWIthPrices at: anAssociation key))].
+	"purchases add: 'Total: ', self totalPriceFromPriceList: ."
+	^purchases.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:40:57'!
+totalPriceFromPriceList 
+	|totalPrice bookValue|
+	totalPrice _ 0.
+	items sortedElements associationsDo: [:anAssociation|
+		bookValue _ catalogWIthPrices at: anAssociation key ifAbsent: [self error: Cashier bookNotInPriceListErrorMessage].
+		totalPrice _ totalPrice + ((anAssociation value) * (bookValue))]. 
+	^totalPrice ! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:40:57' prior: 50559921!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPriceFromPriceList. 
+	self debit: total from: aCard.
+	
+	aSalesBook add: (aCart purchaseStringsForCashier: self).! !
+
+!methodRemoval: Cart #totalPriceFromPriceList: stamp: 'MV 10/31/2022 21:40:57'!
+totalPriceFromPriceList: bookPrices 
+	|totalPrice bookValue|
+	totalPrice _ 0.
+	items sortedElements associationsDo: [:anAssociation|
+		bookValue _ catalogWIthPrices at: anAssociation key ifAbsent: [self error: Cashier bookNotInPriceListErrorMessage].
+		totalPrice _ totalPrice + ((anAssociation value) * (bookValue))]. 
+	^totalPrice !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:41:15'!
+totalPrice 
+	|totalPrice bookValue|
+	totalPrice _ 0.
+	items sortedElements associationsDo: [:anAssociation|
+		bookValue _ catalogWIthPrices at: anAssociation key ifAbsent: [self error: Cashier bookNotInPriceListErrorMessage].
+		totalPrice _ totalPrice + ((anAssociation value) * (bookValue))]. 
+	^totalPrice ! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:41:15' prior: 50560302!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPrice. 
+	self debit: total from: aCard.
+	
+	aSalesBook add: (aCart purchaseStringsForCashier: self).! !
+
+!methodRemoval: Cart #totalPriceFromPriceList stamp: 'MV 10/31/2022 21:41:15'!
+totalPriceFromPriceList 
+	|totalPrice bookValue|
+	totalPrice _ 0.
+	items sortedElements associationsDo: [:anAssociation|
+		bookValue _ catalogWIthPrices at: anAssociation key ifAbsent: [self error: Cashier bookNotInPriceListErrorMessage].
+		totalPrice _ totalPrice + ((anAssociation value) * (bookValue))]. 
+	^totalPrice !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:41:26' prior: 50560275!
+purchaseStringsForCashier: aCashier
+	|purchases|
+	purchases _ OrderedCollection new.
+	items sortedElements associationsDo: [:anAssociation|
+		purchases add: (aCashier stringLineFromItems: anAssociation priced: (catalogWIthPrices at: anAssociation key))].
+	purchases add: 'Total: ', self totalPrice .
+	^purchases.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 21:41:29'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 21:41:29'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 21:41:29'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 21:41:29'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 21:41:29'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 21:41:29'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 21:41:29'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 21:41:29'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:41:31'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:41:31'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 21:41:31'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:41:34'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:41:43' prior: 50560363!
+purchaseStringsForCashier: aCashier
+	|purchases|
+	purchases _ OrderedCollection new.
+	items sortedElements associationsDo: [:anAssociation|
+		purchases add: (aCashier stringLineFromItems: anAssociation priced: (catalogWIthPrices at: anAssociation key))].
+	purchases add: 'Total: ', self totalPrice asString .
+	^purchases.! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:41:44'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 21:41:46'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:43:50' prior: 50560230!
+test03canCorrectlyCheckoutCartWithManyBooks
+
+	|cart|
+	
+	cart _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso)).
+	cart add: 2 of: 'aValidBook1'.
+	cart add: 'aValidBook2'.
+	
+	cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos')).! !
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 21:43:50'!
+FAILURE!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:44:49'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:44:49'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 21:44:49'!
+FAILURE!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 21:44:49'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 21:46:10' prior: 50559529!
+stringLineFromItems: anAssociation priced: aPrice 
+	
+	^anAssociation value asString , ' of ' , anAssociation key , ' for ' , (aPrice * anAssociation value) asString .! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:46:21'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:46:21'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 21:46:21'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 21:49:20'!
+test04salesBookStoresSeveralPurchases
+
+	|cart1 cart2|
+	
+	cart1 _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso)).
+	cart1 add: 2 of: 'aValidBook1'.
+	cart1 add: 'aValidBook2'.
+	
+	cart2 _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso)).
+	cart2 add: 1 of: 'aValidBook1'.
+	cart2 add: 3 of: 'aValidBook2'.
+	
+	cashier checkout: cart1 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	cashier checkout: cart2 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos') with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: '3 of aValidBook2 for 60 * pesos' with: 'Total: 80 * pesos')).! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 21:49:23'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 21:49:23'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 21:49:23'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 21:49:23'!
+PASSED!
+
+----SNAPSHOT----(31 October 2022 21:49:47) CuisUniversity-5510.image priorSource: 7271993!
