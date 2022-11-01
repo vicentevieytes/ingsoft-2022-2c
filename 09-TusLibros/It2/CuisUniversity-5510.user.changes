@@ -1749,3 +1749,3617 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(31 October 2022 21:49:47) CuisUniversity-5510.image priorSource: 7271993!
+
+----STARTUP---- (31 October 2022 23:38:06) as C:\Lautaro Disco C\Programas Varios\CuisUniversity\CuisUniversity-5510.image!
+
+
+----End fileIn of C:\Lautaro Disco C\Programas Varios\CuisUniversity\TusLibros.st----!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:38:38'!
+PASSED!
+
+----End fileIn of C:\Lautaro Disco C\Programas Varios\CuisUniversity\TusLibros.st----!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:39:39' prior: 50555851!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [cashier checkout: emptyCartWithEmptyCatalog withCard: 	nonExpiredCard andRecordAt: salesBook ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: salesBook isEmpty.]! !
+!CashierTest methodsFor: 'setup' stamp: 'MV 10/31/2022 23:40:42' prior: 50555840 overrides: 16961394!
+setUp
+	
+	emptyCartWithEmptyCatalog _ Cart acceptingItemsOf: OrderedCollection new.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 23:41:37'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'emptyCartWithEmptyCatalog nonExpiredCard salesBook cashier cartx'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'MV 10/31/2022 23:41:36' prior: 50556163 overrides: 16961394!
+setUp
+	
+	cartx _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso)).
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'nonExpiredCard salesBook cashier cartx'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 23:41:42'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'nonExpiredCard salesBook cashier cartx'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:41:49' prior: 50556149!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [cashier checkout: cartx withCard: 	nonExpiredCard andRecordAt: salesBook ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: salesBook isEmpty.]! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:41:55' prior: 50555864!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	cartx _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook'->(20*peso)).
+	cartx add: 'aValidBook'.
+	
+	cashier checkout: cartx withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '1 of aValidBook for 20 * pesos' with: 'Total: 20 * pesos')).! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:42:02' prior: 50556221!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	cartx add: 'aValidBook'.
+	
+	cashier checkout: cartx withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '1 of aValidBook for 20 * pesos' with: 'Total: 20 * pesos')).! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:42:06' prior: 50555879!
+test03canCorrectlyCheckoutCartWithManyBooks
+
+	cartx add: 2 of: 'aValidBook1'.
+	cartx add: 'aValidBook2'.
+	
+	cashier checkout: cartx withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos')).! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:42:47' prior: 50555897!
+test04salesBookStoresSeveralPurchases
+
+	|cart2|
+	
+	cartx add: 2 of: 'aValidBook1'.
+	cartx add: 'aValidBook2'.
+	
+	cart2 _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso)).
+	cart2 add: 1 of: 'aValidBook1'.
+	cart2 add: 3 of: 'aValidBook2'.
+	
+	cashier checkout: cartx withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	cashier checkout: cart2 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos') with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: '3 of aValidBook2 for 60 * pesos' with: 'Total: 80 * pesos')).! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:43:10' prior: 50556263!
+test04salesBookStoresSeveralPurchases
+
+	|cart2|
+	
+	cart2 _ cartx copy.
+	
+	cartx add: 2 of: 'aValidBook1'.
+	cartx add: 'aValidBook2'.
+	
+	
+	cart2 add: 1 of: 'aValidBook1'.
+	cart2 add: 3 of: 'aValidBook2'.
+	
+	cashier checkout: cartx withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	cashier checkout: cart2 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos') with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: '3 of aValidBook2 for 60 * pesos' with: 'Total: 80 * pesos')).! !
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:43:10'!
+FAILURE!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 23:43:26'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:43:27'!
+ERROR!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:43:27'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:43:44' prior: 50556236!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	cartx add: 'aValidBook1'.
+	
+	cashier checkout: cartx withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: 'Total: 20 * pesos')).! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:43:45'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 23:43:45'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:43:45'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 23:43:45'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:43:45'!
+FAILURE!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:43:45'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:43:47'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 23:43:48'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:43:50'!
+FAILURE!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:43:50'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:42:47' prior: 50556290!
+test04salesBookStoresSeveralPurchases
+
+	|cart2|
+	
+	cartx add: 2 of: 'aValidBook1'.
+	cartx add: 'aValidBook2'.
+	
+	cart2 _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso)).
+	cart2 add: 1 of: 'aValidBook1'.
+	cart2 add: 3 of: 'aValidBook2'.
+	
+	cashier checkout: cartx withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	cashier checkout: cart2 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos') with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: '3 of aValidBook2 for 60 * pesos' with: 'Total: 80 * pesos')).! !
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:44:55'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 23:44:55'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:44:55'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 23:44:55'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:44:55'!
+PASSED!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 23:45:07'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'nonExpiredCard salesBook cashier cart1'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 23:45:07' prior: 50556184 overrides: 16961394!
+setUp
+	
+	cart1 _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso)).
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 23:45:07' prior: 50556209!
+test01checkoutOfEmptyCartThrowsAnException
+
+	self should: [cashier checkout: cart1 withCard: 	nonExpiredCard andRecordAt: salesBook ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier emptyCartErrorMessage.
+							   self assert: salesBook isEmpty.]! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 23:45:07' prior: 50556248!
+test03canCorrectlyCheckoutCartWithManyBooks
+
+	cart1 add: 2 of: 'aValidBook1'.
+	cart1 add: 'aValidBook2'.
+	
+	cashier checkout: cart1 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos')).! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 23:45:07' prior: 50556328!
+test02canCorrectlyCheckoutCartWithOnlyOneBook
+
+	cart1 add: 'aValidBook1'.
+	
+	cashier checkout: cart1 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: 'Total: 20 * pesos')).! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 23:45:07' prior: 50556374!
+test04salesBookStoresSeveralPurchases
+
+	|cart2|
+	
+	cart1 add: 2 of: 'aValidBook1'.
+	cart1 add: 'aValidBook2'.
+	
+	cart2 _ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso)).
+	cart2 add: 1 of: 'aValidBook1'.
+	cart2 add: 3 of: 'aValidBook2'.
+	
+	cashier checkout: cart1 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	cashier checkout: cart2 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos') with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: '3 of aValidBook2 for 60 * pesos' with: 'Total: 80 * pesos')).! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:45:34'!
+createCart
+
+	^ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso))! !
+!CashierTest methodsFor: 'setup' stamp: 'MV 10/31/2022 23:45:34' prior: 50556427 overrides: 16961394!
+setUp
+	
+	cart1 _ self createCart.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:45:34' prior: 50556481!
+test04salesBookStoresSeveralPurchases
+
+	|cart2|
+	
+	cart1 add: 2 of: 'aValidBook1'.
+	cart1 add: 'aValidBook2'.
+	
+	cart2 _ self createCart.
+	cart2 add: 1 of: 'aValidBook1'.
+	cart2 add: 3 of: 'aValidBook2'.
+	
+	cashier checkout: cart1 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	cashier checkout: cart2 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos') with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: '3 of aValidBook2 for 60 * pesos' with: 'Total: 80 * pesos')).! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:46:32' prior: 50556524!
+test04salesBookStoresSeveralPurchases
+
+	|cart2x|
+	
+	cart1 add: 2 of: 'aValidBook1'.
+	cart1 add: 'aValidBook2'.
+	
+	cart2x _ self createCart.
+	cart2x add: 1 of: 'aValidBook1'.
+	cart2x add: 3 of: 'aValidBook2'.
+	
+	cashier checkout: cart1 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	cashier checkout: cart2x withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos') with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: '3 of aValidBook2 for 60 * pesos' with: 'Total: 80 * pesos')).! !
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'nonExpiredCard salesBook cashier cart1 cart2'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MV 10/31/2022 23:46:35'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'nonExpiredCard salesBook cashier cart1 cart2'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'MV 10/31/2022 23:46:41' prior: 50556514 overrides: 16961394!
+setUp
+	
+	cart1 _ self createCart.
+	cart2 _ self createCart.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:46:49' prior: 50556548!
+test04salesBookStoresSeveralPurchases
+
+	cart1 add: 2 of: 'aValidBook1'.
+	cart1 add: 'aValidBook2'.
+	
+	cart2 add: 1 of: 'aValidBook1'.
+	cart2 add: 3 of: 'aValidBook2'.
+	
+	cashier checkout: cart1 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	cashier checkout: cart2 withCard: (nonExpiredCard) andRecordAt: salesBook . 
+	
+	self assert: salesBook equals: (OrderedCollection with: (OrderedCollection with: '2 of aValidBook1 for 40 * pesos' with: '1 of aValidBook2 for 20 * pesos' with: 'Total: 60 * pesos') with: (OrderedCollection with: '1 of aValidBook1 for 20 * pesos' with: '3 of aValidBook2 for 60 * pesos' with: 'Total: 80 * pesos')).! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 23:46:54'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:46:54'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 23:46:54'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:46:54'!
+PASSED!
+
+!methodRemoval: Cashier #checkout: stamp: 'MV 10/31/2022 23:47:04'!
+checkout: aCart
+
+	!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 23:47:07'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:47:07'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 23:47:07'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:47:07'!
+PASSED!
+
+!methodRemoval: Cashier #purchaseStringFrom: stamp: 'MV 10/31/2022 23:47:54'!
+purchaseStringFrom: aCart 
+	self shouldBeImplemented.!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MV 10/31/2022 23:49:14' prior: 50556028!
+purchaseStringsForCashier: aCashier
+	
+	|purchases|
+	
+	purchases _ OrderedCollection new.
+	items sortedElements associationsDo: [:anAssociation|
+		purchases add: (aCashier stringLineFromItems: anAssociation priced: (catalogWIthPrices at: anAssociation key))].
+	purchases add: 'Total: ', self totalPrice asString .
+	^purchases.! !
+!Card class methodsFor: 'instance creation' stamp: 'MV 10/31/2022 23:51:01' prior: 50555953!
+numbered: aString expiring: aMonth ownedBy: aName  
+
+	^self new initializeNumbered: aString expiring: aMonth ownedBy: aName ! !
+
+TestCase subclass: #CardTest
+	instanceVariableNames: 'card'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CardTest category: 'TusLibros' stamp: 'MV 10/31/2022 23:51:20'!
+TestCase subclass: #CardTest
+	instanceVariableNames: 'card'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CardTest methodsFor: 'nil' stamp: 'MV 10/31/2022 23:51:30' overrides: 16961394!
+setUp! !
+!CardTest methodsFor: 'nil' stamp: 'MV 10/31/2022 23:52:45'!
+test01! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:54:00'!
+test05canNotCheckOutWithExpiredCard
+
+	
+	
+
+	
+	self should: [cashier checkout: cart1 withCard: (nonExpiredCard) andRecordAt: salesBook]
+
+! !
+!CashierTest methodsFor: 'setup' stamp: 'MV 10/31/2022 23:54:36' prior: 50556587 overrides: 16961394!
+setUp
+	
+	cart1 _ self createCart.
+	cart2 _ self createCart.
+	nonExpiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:57:22' prior: 50556693!
+test05canNotCheckOutWithExpiredCard
+
+	|expiredCard|
+	
+	expiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2001) ownedBy: 'Clamidio'.
+	
+	self should: [cashier checkout: cart1 withCard: (expiredCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| 
+								self assert: anError errorMessage equals: Cashier expiredCardErrorMessage.
+								self assert: salesBook isEmpty]
+
+! !
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 10/31/2022 23:57:25'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:57:39' prior: 50556711!
+test05canNotCheckOutWithExpiredCard
+
+	|expiredCard|
+	
+	expiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2001) ownedBy: 'Clamidio'.
+	
+	self should: [cashier checkout: cart1 withCard: (expiredCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| 
+								self assert: anError messageText equals: Cashier expiredCardErrorMessage.
+								self assert: salesBook isEmpty]
+
+! !
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 10/31/2022 23:57:40'!
+ERROR!
+!Cashier class methodsFor: 'errorMessage' stamp: 'MV 10/31/2022 23:57:46'!
+expiredCardErrorMessage
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'errorMessage' stamp: 'MV 10/31/2022 23:58:04' prior: 50556750!
+expiredCardErrorMessage
+	
+	^'Can not do checkout with expired card'! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 23:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 23:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 10/31/2022 23:58:13'!
+FAILURE!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 10/31/2022 23:58:13'!
+FAILURE!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 10/31/2022 23:58:25'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 10/31/2022 23:58:25'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 10/31/2022 23:58:25'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 10/31/2022 23:58:25'!
+PASSED!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 10/31/2022 23:58:25'!
+FAILURE!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 10/31/2022 23:58:25'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'MV 10/31/2022 23:59:06' prior: 50556731!
+test05canNotCheckOutWithExpiredCard
+
+	|expiredCard|
+	
+	expiredCard _ Card numbered: '1111 1111 1111 1111' expiring: (Month month: 1 year: 2001) ownedBy: 'Clamidio'.
+	cart1 add: 'aValidBook1'.
+	
+	self should: [cashier checkout: cart1 withCard: (expiredCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| 
+								self assert: anError messageText equals: Cashier expiredCardErrorMessage.
+								self assert: salesBook isEmpty]
+
+! !
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 10/31/2022 23:59:07'!
+FAILURE!
+
+----SNAPSHOT----(31 October 2022 23:59:19) CuisUniversity-5510.image priorSource: 7155150!
+!Cashier methodsFor: 'checkout' stamp: 'MV 10/31/2022 23:59:30' prior: 50556105!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	total := aCart totalPrice. 
+	self debit: total from: aCard.
+	
+	aSalesBook add: (aCart purchaseStringsForCashier: self).! !
+!Cashier methodsFor: 'checkout' stamp: 'MV 11/1/2022 00:00:38' prior: 50556823!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	aCard isExpiredOn: Date today ifTrue: [^self error: self class expiredCardErrorMessage ].
+	
+	total := aCart totalPrice. 
+	self debit: total from: aCard.
+	
+	aSalesBook add: (aCart purchaseStringsForCashier: self).! !
+!Cashier methodsFor: 'checkout' stamp: 'MV 11/1/2022 00:00:47' prior: 50556834!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	(aCard isExpiredOn: Date today) ifTrue: [^self error: self class expiredCardErrorMessage ].
+	
+	total := aCart totalPrice. 
+	self debit: total from: aCard.
+	
+	aSalesBook add: (aCart purchaseStringsForCashier: self).! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:00:49'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:00:49'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:00:49'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:00:49'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:00:49'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:00:53'!
+ERROR!
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:01:03'!
+isExpiredOn: aString 
+	self shouldBeImplemented.! !
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:02:21' prior: 50556882!
+isExpiredOn: aDate 
+	
+	expiringMonth < aDate! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:02:22'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:02:25'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:02:25'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:02:25'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:02:25'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:02:25'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:02:26'!
+ERROR!
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:04:05' prior: 50556887!
+isExpiredOn: aDate 
+	
+	expiringMonth < aDate! !
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:04:20' prior: 50556915!
+isExpiredOn: aDate 
+	
+	expiringMonth < aDate asMonth! !
+
+!testRun: #CardTest #test01 stamp: 'MV 11/1/2022 00:04:21'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:04:23'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:04:23'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:04:23'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:04:23'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:04:23'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:04:25'!
+ERROR!
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:04:43' prior: 50556919!
+isExpiredOn: aDate 
+	
+	expiringMonth < aDate month! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:04:44'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:04:44'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:04:44'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:04:44'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:04:44'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:04:45'!
+ERROR!
+
+self month!
+
+self month!
+
+Month new!
+
+Month month: 6 year: 1950!
+
+self duration!
+
+self duration days!
+
+Date year: self year month: self month day: 1!
+
+Date year: self yearNumber month: self monthIndex day: 1!
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:11:25' prior: 50556946!
+isExpiredOn: aDate 
+	
+	Date year: expiringMonth month: expiringMonth monthIndex day: 1 < aDate month! !
+
+!testRun: #CardTest #test01 stamp: 'MV 11/1/2022 00:11:26'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:11:28'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:11:28'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:11:28'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:11:28'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:11:28'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:11:31'!
+ERROR!
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:11:44' prior: 50556977!
+isExpiredOn: aDate 
+	
+	Date year: expiringMonth yearNumber month: expiringMonth monthIndex day: 1 < aDate month! !
+
+!testRun: #CardTest #test01 stamp: 'MV 11/1/2022 00:11:44'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:11:46'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:11:46'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:11:46'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:11:46'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:11:46'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:11:47'!
+ERROR!
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:11:57' prior: 50557005!
+isExpiredOn: aDate 
+	
+	Date year: expiringMonth yearNumber month: expiringMonth monthIndex day: 1 < aDate! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:11:59'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:11:59'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:11:59'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:11:59'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:11:59'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:12:01'!
+ERROR!
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:12:10' prior: 50557034!
+isExpiredOn: aDate 
+	
+	(Date year: expiringMonth yearNumber month: expiringMonth monthIndex day: 1) < aDate! !
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:12:10'!
+ERROR!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:12:13'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:12:13'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:12:13'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:12:13'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:12:13'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:12:15'!
+ERROR!
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 00:12:27' prior: 50557060!
+isExpiredOn: aDate 
+	
+	^(Date year: expiringMonth yearNumber month: expiringMonth monthIndex day: 1) < aDate! !
+
+!testRun: #CardTest #test01 stamp: 'MV 11/1/2022 00:12:28'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:12:31'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:12:31'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:12:31'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:12:31'!
+PASSED!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:12:31'!
+PASSED!
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:20:30'!
+test01cardsNumberMustBe16CharactersLong
+
+	self should: [Card numbered: '1'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card class incorrectCardNumberErrorMessage].! !
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:20:47'!
+test02cardsNumberMustBeAllDigits
+
+	self should: [Card numbered: 'aaaa aaaa aaaa aaaa'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card class incorrectCardNumberErrorMessage].! !
+
+!methodRemoval: CardTest #test01 stamp: 'MV 11/1/2022 00:20:49'!
+test01!
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:21:49' prior: 50557115!
+test01cardsNumberMustBe16CharactersLong
+
+	self should: [Card numbered: '1'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card class incorrectCardNumberErrorMessage].
+		
+	self should: [Card numbered: '1111111111111111111111'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card class incorrectCardNumberErrorMessage].! !
+!CashierTest methodsFor: 'setup' stamp: 'MV 11/1/2022 00:22:04' prior: 50556701 overrides: 16961394!
+setUp
+	
+	cart1 _ self createCart.
+	cart2 _ self createCart.
+	nonExpiredCard _ Card numbered: '1111111111111111' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 11/1/2022 00:22:36' prior: 50556800!
+test05canNotCheckOutWithExpiredCard
+
+	|expiredCard|
+	
+	expiredCard _ Card numbered: '1111222233334444' expiring: (Month month: 1 year: 2001) ownedBy: 'Clamidio'.
+	cart1 add: 'aValidBook1'.
+	
+	self should: [cashier checkout: cart1 withCard: (expiredCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| 
+								self assert: anError messageText equals: Cashier expiredCardErrorMessage.
+								self assert: salesBook isEmpty]
+
+! !
+!CashierTest methodsFor: 'setup' stamp: 'MV 11/1/2022 00:22:52' prior: 50557160 overrides: 16961394!
+setUp
+	
+	cart1 _ self createCart.
+	cart2 _ self createCart.
+	nonExpiredCard _ Card numbered: '1111222233334444' expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:22:53'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:22:53'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:22:53'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:22:53'!
+PASSED!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:22:53'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/1/2022 00:22:54'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/1/2022 00:22:54'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/1/2022 00:22:54'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/1/2022 00:22:54'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/1/2022 00:22:54'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/1/2022 00:22:54'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/1/2022 00:22:54'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/1/2022 00:22:54'!
+PASSED!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:22:55'!
+FAILURE!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:22:55'!
+FAILURE!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:22:59'!
+FAILURE!
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:23:57' prior: 50556669!
+numbered: aString expiring: aMonth ownedBy: aName  
+
+	(aString length = 16) ifFalse: [self error: self class invalidCardNumberErrorMessage].
+	
+	^self new initializeNumbered: aString expiring: aMonth ownedBy: aName ! !
+!Card class methodsFor: 'nil' stamp: 'MV 11/1/2022 00:24:27'!
+invalidCardNumberErrorMessage
+
+	^'Card number must be 16 digits long'! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:24:37'!
+ERROR!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:24:37'!
+ERROR!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:24:38'!
+ERROR!
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:24:54' prior: 50557140!
+test01cardsNumberMustBe16CharactersLong
+
+	self should: [Card numbered: '1'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card class invalidCardNumberErrorMessage ].
+		
+	self should: [Card numbered: '1111111111111111111111'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card class invalidCardNumberErrorMessage ].! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:24:57'!
+ERROR!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:24:57'!
+ERROR!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:24:58'!
+ERROR!
+
+!testRun: #DecompilerTests #testDecompilerInClassesAAtoAM stamp: 'MV 11/1/2022 00:25:44'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesANtoAZ stamp: 'MV 11/1/2022 00:25:45'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesBAtoBM stamp: 'MV 11/1/2022 00:25:46'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesBNtoBZ stamp: 'MV 11/1/2022 00:25:46'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesCAtoCM stamp: 'MV 11/1/2022 00:25:48'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesCNtoCZ stamp: 'MV 11/1/2022 00:25:48'!
+FAILURE!
+
+!testRun: #DecompilerTests #testDecompilerInClassesCNtoCZ stamp: 'MV 11/1/2022 00:25:48'!
+FAILURE!
+
+!testRun: #DecompilerTests #testDecompilerInClassesCNtoCZ stamp: 'MV 11/1/2022 00:25:48'!
+FAILURE!
+
+!testRun: #DecompilerTests #testDecompilerInClassesCNtoCZ stamp: 'MV 11/1/2022 00:25:48'!
+FAILURE!
+
+!testRun: #DecompilerTests #testDecompilerInClassesCNtoCZ stamp: 'MV 11/1/2022 00:25:50'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesDAtoDM stamp: 'MV 11/1/2022 00:25:51'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesDNtoDZ stamp: 'MV 11/1/2022 00:25:51'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesEAtoEM stamp: 'MV 11/1/2022 00:25:51'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesENtoEZ stamp: 'MV 11/1/2022 00:25:52'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesFAtoFM stamp: 'MV 11/1/2022 00:25:54'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesFNtoFZ stamp: 'MV 11/1/2022 00:25:54'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesGAtoGM stamp: 'MV 11/1/2022 00:25:54'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesGNtoGZ stamp: 'MV 11/1/2022 00:25:55'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesHAtoHM stamp: 'MV 11/1/2022 00:25:55'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesHNtoHZ stamp: 'MV 11/1/2022 00:25:55'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesIAtoIM stamp: 'MV 11/1/2022 00:25:55'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesINtoIZ stamp: 'MV 11/1/2022 00:25:57'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesJAtoJM stamp: 'MV 11/1/2022 00:25:57'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesJNtoJZ stamp: 'MV 11/1/2022 00:25:57'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesKAtoKM stamp: 'MV 11/1/2022 00:25:57'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesKNtoKZ stamp: 'MV 11/1/2022 00:25:57'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesLAtoLM stamp: 'MV 11/1/2022 00:25:58'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesLNtoLZ stamp: 'MV 11/1/2022 00:25:58'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesMAtoMM stamp: 'MV 11/1/2022 00:25:59'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesMNtoMZ stamp: 'MV 11/1/2022 00:26:00'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesNAtoNM stamp: 'MV 11/1/2022 00:26:00'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesNNtoNZ stamp: 'MV 11/1/2022 00:26:00'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesOAtoOM stamp: 'MV 11/1/2022 00:26:00'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesONtoOZ stamp: 'MV 11/1/2022 00:26:00'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesPAtoPM stamp: 'MV 11/1/2022 00:26:01'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesPNtoPZ stamp: 'MV 11/1/2022 00:26:02'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesQAtoQM stamp: 'MV 11/1/2022 00:26:02'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesQNtoQZ stamp: 'MV 11/1/2022 00:26:02'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesRAtoRM stamp: 'MV 11/1/2022 00:26:03'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesRNtoRZ stamp: 'MV 11/1/2022 00:26:03'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesSAtoSM stamp: 'MV 11/1/2022 00:26:05'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesSNtoSZ stamp: 'MV 11/1/2022 00:26:06'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesTAtoTM stamp: 'MV 11/1/2022 00:26:07'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesTNtoTZ stamp: 'MV 11/1/2022 00:26:08'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesUAtoUM stamp: 'MV 11/1/2022 00:26:08'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesUNtoUZ stamp: 'MV 11/1/2022 00:26:08'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesVAtoVM stamp: 'MV 11/1/2022 00:26:08'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesVNtoVZ stamp: 'MV 11/1/2022 00:26:08'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesWAtoWM stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesWNtoWZ stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesXAtoXM stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesXNtoXZ stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesYAtoYM stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesYNtoYZ stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesZAtoZM stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesZNtoZZ stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!testRun: #DecompilerTests #testRemoteTemp stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!testRun: #ParseNodeEnumeratorTest #testItEnumeratesAllTheParseNodesPresentInAMethodNode stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:09'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:09'!
+m1 ^ 2! !
+
+!testRun: #ExtractToTemporaryTest #test01NewVariableCanNotBeEmpty stamp: 'MV 11/1/2022 00:26:09'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:09'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:09'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:09'!
+m1 ^ 2! !
+
+!testRun: #ExtractToTemporaryTest #test02NewVariableHasToBeValid stamp: 'MV 11/1/2022 00:26:10'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:10'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:10'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:10'!
+m1 | new | ^ 2! !
+
+!testRun: #ExtractToTemporaryTest #test03NewVariableNameCanNotBeDefinedInMethod stamp: 'MV 11/1/2022 00:26:10'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:11'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:11'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:11'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: 'new'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:11'!
+m1 ^ 78! !
+
+!testRun: #ExtractToTemporaryTest #test04FailsIfNewTemporaryIsEqualToInstanceVariableInClass stamp: 'MV 11/1/2022 00:26:11'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:11'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: 'new'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:11'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToRefactorSuperclass category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:11'!
+RefactoringClassTestData subclass: #ClassToRefactorSuperclass
+	instanceVariableNames: 'new'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:11'!
+m1 ^ 78! !
+
+!testRun: #ExtractToTemporaryTest #test05FailsIfNewTemporaryIsEqualToInstanceVariableInAnySuperclass stamp: 'MV 11/1/2022 00:26:11'!
+PASSED!
+
+!classRemoval: #ClassToRefactorSuperclass stamp: 'MV 11/1/2022 00:26:12'!
+RefactoringClassTestData subclass: #ClassToRefactorSuperclass
+	instanceVariableNames: 'new'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:12'!
+AnObsoleteClassToRefactorSuperclass subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:12'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:12'!
+m1 ^ 1! !
+
+!testRun: #ExtractToTemporaryTest #test06SourceCodeToExtractCanNotIncludeReturn stamp: 'MV 11/1/2022 00:26:12'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:12'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:12'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:12'!
+m1 ^ 1! !
+
+!testRun: #ExtractToTemporaryTest #test07SourceCodeToExtractCanNotBeEmpty stamp: 'MV 11/1/2022 00:26:13'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:13'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:13'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:13'!
+m1 ^ 1 + 3! !
+
+!testRun: #ExtractToTemporaryTest #test08SourceCodeToExtractCanNotHaveSyntaxErrors stamp: 'MV 11/1/2022 00:26:13'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:13'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:13'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:13'!
+m1 1+2. 3+4! !
+
+!testRun: #ExtractToTemporaryTest #test09SourceCodeToExtractHasToBeOneStatement stamp: 'MV 11/1/2022 00:26:14'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:14'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:14'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:14'!
+m1 ^ 1! !
+
+!testRun: #ExtractToTemporaryTest #test10FailsIfIntervalToExtractIsBeforeMethodSourceCodeBoundaries stamp: 'MV 11/1/2022 00:26:14'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:15'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:15'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:15'!
+m1 ^ 1! !
+
+!testRun: #ExtractToTemporaryTest #test11FailsIfIntervalToExtractIsAfterMethodSourceCodeBoundaries stamp: 'MV 11/1/2022 00:26:15'!
+PASSED!
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:26:15' prior: 50557250!
+numbered: aString expiring: aMonth ownedBy: aName  
+
+	(aString size = 16) ifFalse: [self error: self class invalidCardNumberErrorMessage].
+	
+	^self new initializeNumbered: aString expiring: aMonth ownedBy: aName ! !
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:15'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:15'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:15'!
+m1
+
+	^ 42! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:15' prior: 50557798!
+m1
+
+	| new |
+	new _ 42.
+	^ new! !
+
+!testRun: #ExtractToTemporaryTest #test12ItIsPossibleToExtractASingleLiteralFromAMethodWithoutAnyTempsOrArguments stamp: 'MV 11/1/2022 00:26:15'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:16'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:16'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:16'!
+m1
+
+	| four |
+	four _ 4.
+	^ four + 2! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:16' prior: 50557828!
+m1
+
+	| four two |
+	four _ 4.
+	two _ 2.
+	^ four + two! !
+
+!testRun: #ExtractToTemporaryTest #test13ItIsPossibleToExtractASingleExpressionFromAMethodThatHasAlreadyOtherTemporary stamp: 'MV 11/1/2022 00:26:16'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:16'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:16'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:16'!
+m1
+
+	| |
+	^ 3 factorial! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:16' prior: 50557860!
+m1
+
+	| f |
+	f _ 3 factorial.
+	^ f! !
+
+!testRun: #ExtractToTemporaryTest #test14ItIsPossibleToExtractASingleExpressionFromAMethodThatHasAnEmptyTemporariesDeclaration stamp: 'MV 11/1/2022 00:26:16'!
+PASSED!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:26:17'!
+ERROR!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:26:17'!
+ERROR!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:17'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:17'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:17'!
+m1
+
+	^ 42! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:17' prior: 50557898!
+m1
+
+	| new |
+	new := 42.
+	^ new! !
+
+!testRun: #ExtractToTemporaryTest #test15ItIsPossibleToExtractCodeAndGenerateAssignmentUsingAnsiAssignmentStyle stamp: 'MV 11/1/2022 00:26:17'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:18'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:18'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:18'!
+m1
+
+	^ [ self m2 ]! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:18' prior: 50557928!
+m1
+
+	^ [ | new |
+	new _ self m2 ]! !
+
+!testRun: #ExtractToTemporaryTest #test16ItIsPossibleToExtractASingleLiteralFromABlockWithoutAnyTempsOrArguments stamp: 'MV 11/1/2022 00:26:18'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:18'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:18'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:18'!
+m1 ^ 1! !
+
+!testRun: #ExtractToTemporaryTest #test17CannotExtractPartOfMethodName stamp: 'MV 11/1/2022 00:26:18'!
+PASSED!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:26:18'!
+ERROR!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:19'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:19'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:19'!
+m1 ^ self m2! !
+
+!testRun: #ExtractToTemporaryTest #test18CannotExtractPartOfMessageSend stamp: 'MV 11/1/2022 00:26:19'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:19'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:19'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:19'!
+m1
+
+	^ 42! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:19' prior: 50558010!
+m1
+
+	| new |
+	new _ 42.
+	^ new! !
+
+!testRun: #ExtractToTemporaryTest #test19ItIsPossibleToExtractAnIntervalWithSomeExtraSpaces stamp: 'MV 11/1/2022 00:26:19'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:20'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:20'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:20'!
+m1
+
+	^ []! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:20' prior: 50558039!
+m1
+
+	| new |
+	new _ [].
+	^ new! !
+
+!testRun: #ExtractToTemporaryTest #test20ItIsPossibleToExtractAnEmptyBlock stamp: 'MV 11/1/2022 00:26:20'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:20'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:20'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:20'!
+m1 | existing | existing := 2! !
+
+!testRun: #ExtractToTemporaryTest #test21CannotExtractLeftSideOfAssignment stamp: 'MV 11/1/2022 00:26:20'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:21'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:21'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:21'!
+m1
+
+	^ 3 factorial; yourself! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:21' prior: 50558093!
+m1
+
+	| new |
+	new _ 3 factorial; yourself.
+	^ new! !
+
+!testRun: #ExtractToTemporaryTest #test22ItIsPossibleToExtractACascadeExpression stamp: 'MV 11/1/2022 00:26:21'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:22'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:22'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:22'!
+m1 ^ 2! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:22' prior: 50558124!
+m1 ^ 2! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:22' prior: 50558128!
+m1 ^ 2! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:22' prior: 50558132!
+m1 ^ 2! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:22' prior: 50558136!
+m1 ^ 2! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:22' prior: 50558140!
+m1 ^ 2! !
+
+!testRun: #ExtractToTemporaryTest #test23CannotUseAReservedNameAsTheNewTemporaryVariable stamp: 'MV 11/1/2022 00:26:22'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:22'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:22'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:22'!
+m1
+
+	self run! !
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:22' prior: 50558169!
+m1
+
+	| action |
+	action _ self run! !
+
+!testRun: #ExtractToTemporaryTest #test24WhenExtractingAnEntireStatementItOnlyGeneratesTheVariableAssignment stamp: 'MV 11/1/2022 00:26:22'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:23'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #ClassToDoExtractTemporary category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:23'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!ClassToDoExtractTemporary methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:23'!
+m1: arg ^ self! !
+
+!testRun: #ExtractToTemporaryTest #test25CannotExtractArgumentNamesFromMethodSignature stamp: 'MV 11/1/2022 00:26:23'!
+PASSED!
+
+!classRemoval: #ClassToDoExtractTemporary stamp: 'MV 11/1/2022 00:26:23'!
+RefactoringClassTestData subclass: #ClassToDoExtractTemporary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:23'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:23'!
+griffle [ | goo var1 | var1 := 1. goo := 1. ^goo + var1 ]! !
+
+!testRun: #CompilerTest #testAddsMoreThanOneUndeclaredVariableCorrectlyInBlock stamp: 'MV 11/1/2022 00:26:23'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:24'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:24'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:24'!
+griffle [|var1 goo | var1 := 1.goo := 1.^ goo + var1]! !
+
+!testRun: #CompilerTest #testAddsUndeclaredVariableCorrectlyInBlockWhenNoSpaceBetweenLastOneAndPipe stamp: 'MV 11/1/2022 00:26:24'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:24'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:24'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:24'!
+griffle [ :var1 | | goo | goo := 1.^ goo + var1]! !
+
+!testRun: #CompilerTest #testAddsUndeclaredVariableCorrectlyInBlockWhenTheresAnArgumentAlready stamp: 'MV 11/1/2022 00:26:24'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:25'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:25'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:25'!
+griffle [ :var1 | | goo | goo := 1.^ goo + var1]! !
+
+!testRun: #CompilerTest #testAddsUndeclaredVariableCorrectlyInBlockWhenTheresArgumentsAndTempDeclarationPipesWithNoTemps stamp: 'MV 11/1/2022 00:26:25'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:25'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:25'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:25'!
+griffle | var1 |
+var1 := 1. [ | goo | goo := 1. ^goo + var1 ]! !
+
+!testRun: #CompilerTest #testAddsUndeclaredVariableCorrectlyInMethodAndInBlock stamp: 'MV 11/1/2022 00:26:25'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:26'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:26'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:26'!
+griffle |var1 goo | var1 := 1.goo := 1.^ goo + var1! !
+
+!testRun: #CompilerTest #testAddsUndeclaredVariableCorrectlyInMethodWhenNoSpaceBetweenLastOneAndPipe stamp: 'MV 11/1/2022 00:26:26'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:26'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:26'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:26'!
+griffle [|goo| goo := 1. ^goo ]. [ | goo1 |goo1:=1.^ goo1]! !
+
+!testRun: #CompilerTest #testAddsUndeclaredVariableInRightBlock stamp: 'MV 11/1/2022 00:26:26'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:27'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:27'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:27'!
+griffle [ :var1 | | foo goo | foo := 2. goo := 1.^ goo + var1 + foo ]! !
+
+!testRun: #CompilerTest #testAddsUndeclaredVariableWithAnArgumentAndTempAlreadyInBlock stamp: 'MV 11/1/2022 00:26:27'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:27'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!testRun: #CompilerTest #testCanNotDefineVarsInsideBackTick stamp: 'MV 11/1/2022 00:26:27'!
+PASSED!
+
+!testRun: #CompilerTest #testCanNotHaveMoreThanOneExpressionInsideBackTick stamp: 'MV 11/1/2022 00:26:28'!
+PASSED!
+
+!testRun: #CompilerTest #testCanNotHaveReturnInsideBackTick stamp: 'MV 11/1/2022 00:26:28'!
+PASSED!
+
+!testRun: #CompilerTest #testCanNotReferenceSelfInsideBackTick stamp: 'MV 11/1/2022 00:26:28'!
+PASSED!
+
+!testRun: #CompilerTest #testCanNotReferenceSuperInsideBackTick stamp: 'MV 11/1/2022 00:26:28'!
+PASSED!
+
+!testRun: #CompilerTest #testCanNotReferenceTempVarsInsideBackTick stamp: 'MV 11/1/2022 00:26:29'!
+PASSED!
+
+!testRun: #CompilerTest #testCanNotReferenceThisContextInsideBackTick stamp: 'MV 11/1/2022 00:26:29'!
+PASSED!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:29'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:29'!
+griffle [  ]. [ | goo | ]! !
+
+!testRun: #CompilerTest #testDoesNotConfusesVariablesWithSameNameOfDifferentBlocksWhenRemoving stamp: 'MV 11/1/2022 00:26:29'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:30'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:30'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:30'!
+griffle | goo |! !
+
+!testRun: #CompilerTest #testDoesNotRemoveUnusedVariableIfSaidSo stamp: 'MV 11/1/2022 00:26:30'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:30'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:30'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:30'!
+griffle | a | a := 1. ^a! !
+
+!testRun: #CompilerTest #testKeepsVariableDefinitionWhenThereAreUsedTemporaries stamp: 'MV 11/1/2022 00:26:31'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:31'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:31'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:31'!
+griffle [  ]! !
+
+!testRun: #CompilerTest #testRemovesUnusedVariablesFromBlocks stamp: 'MV 11/1/2022 00:26:31'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:31'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:31'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:31'!
+griffle ! !
+
+!testRun: #CompilerTest #testRemovesVariableDefinitionWhenNoMoreUnusedTemporaries stamp: 'MV 11/1/2022 00:26:32'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:32'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:32'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:32'!
+griffle [ | goo | goo := 1.^ goo ]! !
+
+!testRun: #CompilerTest #testReusesBlockTempDeclarationWhenEmptyForUndeclaredVariable stamp: 'MV 11/1/2022 00:26:32'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:32'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:32'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+!CompilerTestDataClass__ methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:32'!
+griffle | goo | goo := 1.^ goo! !
+
+!testRun: #CompilerTest #testReusesMethodTempDeclarationWhenEmptyForUndeclaredVariable stamp: 'MV 11/1/2022 00:26:33'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:33'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:33'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!testRun: #CompilerTest #testUndeclaredVariableIsSignaledForUndeclaredVariables stamp: 'MV 11/1/2022 00:26:33'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:33'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:33'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!testRun: #CompilerTest #testUndefinedVariableIsSignaledForVariablesDefinedButNotInitialized stamp: 'MV 11/1/2022 00:26:33'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:34'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:34'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!testRun: #CompilerTest #testUnknownSelectorIsSignalForMessagesSendNotImplemented stamp: 'MV 11/1/2022 00:26:34'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:34'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!classDefinition: #CompilerTestDataClass__ category: '__Refactoring-TestData__' stamp: 'MV 11/1/2022 00:26:34'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!testRun: #CompilerTest #testUnusedVariableIsSignaledForUnusedVariables stamp: 'MV 11/1/2022 00:26:34'!
+PASSED!
+
+!classRemoval: #CompilerTestDataClass__ stamp: 'MV 11/1/2022 00:26:35'!
+RefactoringClassTestData subclass: #CompilerTestDataClass__
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '__Refactoring-TestData__'!
+
+!testRun: #ClosureCompilerTest #testBlockDoitDecompilation stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testBlockNumbering stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testBlockNumberingForInjectInto stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testDebuggerTempAccess stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testInjectIntoDecompilationsEncoderForV3PlusClosures stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testInjectIntoDecompiledDebugs stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testInlineBlockCollectionEM1 stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testInlineBlockCollectionLR1 stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testInlineBlockCollectionLR2 stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testInlineBlockCollectionLR3 stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testInlineBlockCollectionSD1 stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testSourceRangeAccessForClosureBytecodeInjectInto stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testSourceRangeAccessForInjectInto stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClosureCompilerTest #testTempNameAccessForInjectInto stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ParserTest #testItGeneratesATempDeclarationNodeForEachTempInABlock stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ParserTest #testItGeneratesATempDeclarationNodeForEachTempInAMethod stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ParserTest #testItGeneratesAnEmptyTempsDeclarationNodeForAMethodWithoutTemps stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ParserTest #testMulticharBinarySelectors stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ParserTest #testRangesAreOkWhenReturningAVariableWithoutSpaceAfterThat stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ScannerTest #testLiteralSymbols stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test01TryingToTrimAnAlreadyTrimmedIntervalThatRepresentsASmalltalkExpressionDoesNotChangeTheOriginalInterval stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test02StartingAndEndingSeparatorsAreTrimmed stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test03StartingAndEndingDotsAreTrimmed stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test04GroupsOfParenthesesAreTrimmed stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test05GroupsOfParenthesesIncludingSeparatorsAreTrimmed stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test06AnIntervalThatDoesNotHaveCharactersToExpandRemainsTheSame stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test07AnIntervalEnclosedByParenthesesCanBeExpanded stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test08AnIntervalWithParenthesesOnJustOneSideCannotBeExpanded stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test09AnIntervalEnclosedByBackticksCanBeExpanded stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test10AnIntervalEnclosedMultipleBackticksAndParenthesesCanBeExpanded stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test11AsSourceCodeIntervalMessageDoesNotCreateANewSourceCodeIntervalInstance stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test12AnIntervalEndingOnDotExpandsUntilStartOfNextStatementOnSameLine stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test13AnIntervalEndingBeforeDotExpandsUntilStartOfNextStatementOnSameLine stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test14AnIntervalEndingOnEndOfTemporariesDeclarationExpandsUntilStartOfNextStatement stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test15AnIntervalEndingOnLastStatemenWithoutDottIsNotExpanded stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test16AnIntervalEndingOnLastStatemenWithDotIsNotExpanded stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test17AnIntervalEndingBeforeStatementEndCannotBeExpanded stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test18AnIntervalEndingAfterLastStatementCannotBeExpanded stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test19AnIntervalEndingAfterSourceCodeEndIsNotExpanded stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test20AnIntervalEndingExpandsUntilStartOfNextStatementOnNextLine stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test21ExpandIntervalToEndOfStatement stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #SourceCodeIntervalTest #test22ExpandIntervalToEndOfStatementWhenNoDotIsPresent stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #BlockNodeTest #testItDoesNotSendsAGivenMessageToSelfWhenTheBlockIsEmpty stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #BlockNodeTest #testItSendsAGivenMessageToSelfWhenItContainsAnStatementWithAMessageSendToSelf stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #MessageNodeTest #testItDoesNotSendTheMessageToSelfWhenTheReceiverIsNotSelf stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #MessageNodeTest #testItDoesNotSendTheMessageToSelfWhenTheReceiverIsSelfButTheSelectorIsDifferent stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #MessageNodeTest #testItSendsTheMessageToSelfWhenTheReceiverIsSelf stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ReturnNodeTest #test01isImplicitSelfReturnInReturnsTrueWithMethodWithOutAnySourceCode stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ReturnNodeTest #test02isImplicitSelfReturnInReturnsTrueWithMethodReferencingSelf stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ReturnNodeTest #test03isImplicitSelfReturnInReturnsFalseWithMethodReturningSelf stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #VariableNodeTest #testItDoesNotReferencesSelfWhenTheVariableNameIsNotSelf stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #VariableNodeTest #testItReferencesSelfWhenTheVariableNameIsSelf stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test01isAtSuperclassWhenIndexIsInSuperclass stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test02isNotAtSuperclassWhenIndexIsOutsideSuperclass stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test03isAtClassNameWhenIndexIsInClassName stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test04isNotAtClassNameWhenIndexIsOutsideClassName stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test05isAtInstanceVariablesWhenIndexIsInInstanceVariablesString stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test06isNotAtInstanceVariablesWhenIndexIsOutsideInstanceVariablesString stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test07CanAccessSuperclass stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test08isAtCategoryWhenIndexIsInCategoryString stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test09isNotAtCategoryWhenIndexIsOutsideCategoryString stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test10InstanceVariablesIsTheSecondParameter stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #ClassDefinitionNodeAnalyzerTest #test11CategoryIsTheFifthParameter stamp: 'MV 11/1/2022 00:26:35'!
+PASSED!
+
+!testRun: #DecompilerTests #testDecompilerInClassesCNtoCZ stamp: 'MV 11/1/2022 00:26:35'!
+FAILURE!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:26:46'!
+ERROR!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:26:46'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/1/2022 00:26:46'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:26:47'!
+PASSED!
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:26:57' prior: 50557126!
+test02cardsNumberMustBeAllDigits
+
+	self should: [Card numbered: 'aaaa aaaa aaaa aaaa'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card incorrectCardNumberErrorMessage].! !
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:27:02' prior: 50557274!
+test01cardsNumberMustBe16CharactersLong
+
+	self should: [Card numbered: '1'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card invalidCardNumberErrorMessage ].
+		
+	self should: [Card numbered: '1111111111111111111111'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card invalidCardNumberErrorMessage ].! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:27:04'!
+FAILURE!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:27:04'!
+ERROR!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:27:07'!
+FAILURE!
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:27:21' prior: 50557771!
+numbered: aString expiring: aMonth ownedBy: aName  
+
+	(aString size = 16) ifFalse: [self error: self invalidCardNumberErrorMessage].
+	
+	^self new initializeNumbered: aString expiring: aMonth ownedBy: aName ! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:27:22'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:27:22'!
+ERROR!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:27:22'!
+ERROR!
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:27:30' prior: 50558998!
+test02cardsNumberMustBeAllDigits
+
+	self should: [Card numbered: 'aaaa aaaa aaaa aaaa'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card invalidCardNumberErrorMessage ].! !
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:27:33' prior: 50559058!
+test02cardsNumberMustBeAllDigits
+
+	self should: [Card numbered: 'aaaa aaaa aaaa aaaa'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio' ]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card invalidCardNumberErrorMessage].! !
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:27:35' prior: 50559070!
+test02cardsNumberMustBeAllDigits
+
+	self should: [Card numbered: 'aaaa aaaa aaaa aaaa'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio']
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card invalidCardNumberErrorMessage].! !
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:27:36'!
+PASSED!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:27:39'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:27:39'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/1/2022 00:27:39'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/1/2022 00:27:39'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/1/2022 00:27:39'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:27:40'!
+PASSED!
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:28:38'!
+test03cardsNameCanNotBeEmpty
+
+	self should: [Card numbered: '1111222233334444'expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio']
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card emptyNameErrorMessage].! !
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:28:48' prior: 50559082!
+test02cardsNumberMustBeAllDigits
+
+	self should: [Card numbered: 'aaaaaaaaaaaaaaaa'  expiring: (Month month: 2 year: 2024 ) ownedBy: 'Falsulio']
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card invalidCardNumberErrorMessage].! !
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:28:49'!
+FAILURE!
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:30:57' prior: 50559039!
+numbered: aString expiring: aMonth ownedBy: aName  
+
+	(aString size = 16 and: (aString isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	
+	^self new initializeNumbered: aString expiring: aMonth ownedBy: aName ! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:30:59'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/1/2022 00:30:59'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:31:02'!
+ERROR!
+!Card class methodsFor: 'error message' stamp: 'MV 11/1/2022 00:31:12'!
+emptyNameErrorMessage
+	self shouldBeImplemented.! !
+!Card class methodsFor: 'error message' stamp: 'MV 11/1/2022 00:31:34' prior: 50559217!
+emptyNameErrorMessage
+	
+	^'Card name can not be empty'! !
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:31:35'!
+FAILURE!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:31:38'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/1/2022 00:31:38'!
+PASSED!
+!CashierTest methodsFor: 'setup' stamp: 'MV 11/1/2022 00:31:55' prior: 50557188 overrides: 16961394!
+setUp
+	
+	cart1 _ self createCart.
+	cart2 _ self createCart.
+	nonExpiredCard _ Card numbered: 1111222233334444 expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!CashierTest methodsFor: 'tests' stamp: 'MV 11/1/2022 00:32:00' prior: 50557170!
+test05canNotCheckOutWithExpiredCard
+
+	|expiredCard|
+	
+	expiredCard _ Card numbered: 1111222233334444 expiring: (Month month: 1 year: 2001) ownedBy: 'Clamidio'.
+	cart1 add: 'aValidBook1'.
+	
+	self should: [cashier checkout: cart1 withCard: (expiredCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| 
+								self assert: anError messageText equals: Cashier expiredCardErrorMessage.
+								self assert: salesBook isEmpty]
+
+! !
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:32:16' prior: 50559170!
+numbered: anInteger expiring: aMonth ownedBy: aName  
+
+	(anInteger size = 16 and: (anInteger isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	
+	^self new initializeNumbered: anInteger expiring: aMonth ownedBy: aName ! !
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:32:27' prior: 50559292!
+numbered: anInteger expiring: aMonth ownedBy: aName  
+
+	(anInteger asString size = 16 and: (anInteger isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	
+	^self new initializeNumbered: anInteger expiring: aMonth ownedBy: aName ! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:32:28'!
+PASSED!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:32:30'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 00:32:30'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:32:30'!
+FAILURE!
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:33:31' prior: 50559303!
+numbered: anInteger expiring: aMonth ownedBy: aNameString  
+
+	(anInteger asString size = 16 and: (anInteger isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	aNameString isEmpty ifTrue: [self error: self emptyNameErrorMessage].
+	
+	^self new initializeNumbered: anInteger expiring: aMonth ownedBy: aNameString ! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:34:20'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:34:20'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:34:20'!
+FAILURE!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:34:20'!
+FAILURE!
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:34:49' prior: 50559144!
+test03cardsNameCanNotBeEmpty
+
+	self should: [Card numbered: 1111222233334444 expiring: (Month month: 2 year: 2024 ) ownedBy: '']
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card emptyNameErrorMessage].! !
+!Card class methodsFor: 'error message' stamp: 'MV 11/1/2022 00:35:09' prior: 50557259!
+invalidCardNumberErrorMessage
+
+	^'Card number must be a 16 digits long number'! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:35:11'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:35:11'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:35:11'!
+PASSED!
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:36:13' prior: 50559372!
+numbered: anInteger expiring: aMonth ownedBy: aNameString  
+
+	(anInteger asString size = 16 and: (anInteger isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	aNameString isEmpty ifTrue: [self error: self emptyNameErrorMessage].
+	
+	^self new initializeNumbered: anInteger expiring: aMonth ownedBy: aNameString ! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:36:14'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:36:14'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:36:14'!
+PASSED!
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:38:01'!
+test04cardsNameCanNotBeAllSpaces
+
+	self should: [Card numbered: 1111222233334444 expiring: (Month month: 2 year: 2024 ) ownedBy: '    ']
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card emptyNameErrorMessage].! !
+!Card class methodsFor: 'error message' stamp: 'MV 11/1/2022 00:38:16'!
+invalidNameErrorMessage
+	
+	^'Card name can not be empty'! !
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:38:16' prior: 50559424!
+numbered: anInteger expiring: aMonth ownedBy: aNameString  
+
+	(anInteger asString size = 16 and: (anInteger isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	aNameString isEmpty ifTrue: [self error: self invalidNameErrorMessage].
+	
+	^self new initializeNumbered: anInteger expiring: aMonth ownedBy: aNameString ! !
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:38:16' prior: 50559398!
+test03cardsNameCanNotBeEmpty
+
+	self should: [Card numbered: 1111222233334444 expiring: (Month month: 2 year: 2024 ) ownedBy: '']
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card invalidNameErrorMessage].! !
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:38:16' prior: 50559447!
+test04cardsNameCanNotBeAllSpaces
+
+	self should: [Card numbered: 1111222233334444 expiring: (Month month: 2 year: 2024 ) ownedBy: '    ']
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card invalidNameErrorMessage].! !
+
+!methodRemoval: Card class #emptyNameErrorMessage stamp: 'MV 11/1/2022 00:38:16'!
+emptyNameErrorMessage
+	
+	^'Card name can not be empty'!
+!Card class methodsFor: 'error message' stamp: 'MV 11/1/2022 00:38:37' prior: 50559458!
+invalidNameErrorMessage
+	
+	^'Card name can not be empty, nor contain only spaces, nor contain invalid characters'! !
+!Card class methodsFor: 'error message' stamp: 'MV 11/1/2022 00:38:52' prior: 50559504!
+invalidNameErrorMessage
+	
+	^'Card name can not be empty, nor contain only spaces, nor contain invalid characters'! !
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:39:02'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:39:02'!
+FAILURE!
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:39:28' prior: 50559463!
+numbered: anInteger expiring: aMonth ownedBy: aNameString  
+
+	(anInteger asString size = 16 and: (anInteger isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	(self isValidName: aNameString) ifTrue: [self error: self invalidNameErrorMessage].
+	
+	^self new initializeNumbered: anInteger expiring: aMonth ownedBy: aNameString ! !
+!Card class methodsFor: 'nil' stamp: 'MV 11/1/2022 00:39:46'!
+isValidName: aNameString
+
+	! !
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:41:25' prior: 50559538!
+isValidName: aNameString
+
+	(aNameString isEmpty or: (aNameString occurrencesOf: ' ' = aNameString size)) not! !
+
+'amongys ' occurrencesOf: ' '!
+
+'am ongys ' occurrencesOf: ' '!
+
+'am ongys '!
+
+'am ongys ' occurrencesOf: $a!
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:43:13' prior: 50559542!
+isValidName: aNameString
+
+	(aNameString isEmpty or: (aNameString occurrencesOf: ' 'first = aNameString size)) not! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:43:14'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:43:14'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:43:14'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:43:14'!
+FAILURE!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:43:23'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:43:23'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:43:23'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:43:23'!
+FAILURE!
+
+'am ongys ' occurrencesOf: ' ' first!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:43:50'!
+FAILURE!
+
+'am ongys ' occurrencesOf: ' ' first!
+
+' ' first!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:44:57'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:44:57'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:44:57'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:44:57'!
+FAILURE!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:44:58'!
+FAILURE!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:45:17'!
+PASSED!
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:45:26' prior: 50559552!
+isValidName: aNameString
+
+	^(aNameString isEmpty or: (aNameString occurrencesOf: ' 'first = aNameString size)) not! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:45:26'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:45:26'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:45:26'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:45:26'!
+FAILURE!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:45:28'!
+FAILURE!
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:45:46' prior: 50559607!
+isValidName: aNameString
+
+	^(aNameString isEmpty or: (aNameString occurrencesOf: ' 'first = aNameString size)) not not! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:45:47'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:45:47'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:45:47'!
+PASSED!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:45:47'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:45:47'!
+FAILURE!
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:46:50' prior: 50559629!
+isValidName: aNameString
+
+	^(aNameString isEmpty not and: (aNameString occurrencesOf: ' 'first = aNameString size) not)! !
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:46:53' prior: 50559651!
+isValidName: aNameString
+
+	^aNameString isEmpty not and: (aNameString occurrencesOf: ' 'first = aNameString size) not! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:46:54'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:46:54'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:46:54'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:46:54'!
+FAILURE!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:46:55'!
+FAILURE!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:48:17'!
+FAILURE!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:48:36'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:48:36'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:48:36'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:48:36'!
+FAILURE!
+
+----SNAPSHOT----(1 November 2022 00:48:39) CuisUniversity-5510.image priorSource: 7205420!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:48:43'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:48:43'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:48:43'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:48:43'!
+FAILURE!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:48:51'!
+FAILURE!
+
+aNameString isEmpty not and: (aNameString occurrencesOf: ' 'first = aNameString size) not!
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:50:25' prior: 50559658!
+isValidName: aNameString
+
+	^aNameString isEmpty not and: ((aNameString occurrencesOf: ' 'first) = aNameString size) not! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:50:29'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:50:29'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:50:29'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:50:29'!
+FAILURE!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:50:32'!
+FAILURE!
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:51:04' prior: 50559524!
+numbered: anInteger expiring: aMonth ownedBy: aNameString  
+
+	(anInteger asString size = 16 and: (anInteger isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	(self isValidName: aNameString) ifFalse: [self error: self invalidNameErrorMessage].
+	
+	^self new initializeNumbered: anInteger expiring: aMonth ownedBy: aNameString ! !
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:51:05'!
+PASSED!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:51:06'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:51:06'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:51:06'!
+PASSED!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:51:06'!
+PASSED!
+
+----SNAPSHOT----(1 November 2022 00:51:10) CuisUniversity-5510.image priorSource: 7297394!
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:52:24'!
+nameIsAllSpaces: aNameString
+
+	^ (aNameString occurrencesOf: ' 'first) = aNameString size! !
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:52:24' prior: 50559716!
+isValidName: aNameString
+
+	^aNameString isEmpty not and: (self nameIsAllSpaces: aNameString) not! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:52:49'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:52:49'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:52:49'!
+PASSED!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:52:49'!
+PASSED!
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:54:35' prior: 50559776!
+isValidName: aNameString
+
+	^( aNameString isEmpty or: (self nameIsAllSpaces: aNameString) or: (self nameContainsInvalidCharacters: aNameString) ) not! !
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:54:42'!
+isInvalidName: aNameString
+
+	^aNameString isEmpty or: (self nameIsAllSpaces: aNameString) or: (self nameContainsInvalidCharacters: aNameString)! !
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:54:48' prior: 50559738!
+numbered: anInteger expiring: aMonth ownedBy: aNameString  
+
+	(anInteger asString size = 16 and: (anInteger isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	(self isValidName: aNameString) ifTrue: [self error: self invalidNameErrorMessage].
+	
+	^self new initializeNumbered: anInteger expiring: aMonth ownedBy: aNameString ! !
+!Card class methodsFor: 'instance creation' stamp: 'MV 11/1/2022 00:54:55' prior: 50559811!
+numbered: anInteger expiring: aMonth ownedBy: aNameString  
+
+	(anInteger asString size = 16 and: (anInteger isKindOf: Integer) )ifFalse: [self error: self invalidCardNumberErrorMessage].
+	(self isInvalidName: aNameString) ifTrue: [self error: self invalidNameErrorMessage].
+	
+	^self new initializeNumbered: anInteger expiring: aMonth ownedBy: aNameString ! !
+
+!methodRemoval: Card class #isValidName: stamp: 'MV 11/1/2022 00:54:57'!
+isValidName: aNameString
+
+	^( aNameString isEmpty or: (self nameIsAllSpaces: aNameString) or: (self nameContainsInvalidCharacters: aNameString) ) not!
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:58:09'!
+nameContainsInvalidCharacters: aNameString
+
+	'/*{}+-[].,-_^?¿!!%$#"/~`' do: [:invalidCharacter| (aNameString occurrencesOf: invalidCharacter > 0) ifTrue: []]! !
+!CardTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:58:37'!
+test05cardsNameCanNotContainInvalidCharacters
+
+	self should: [Card numbered: 1111222233334444 expiring: (Month month: 2 year: 2024 ) ownedBy: '/*/-_-~']
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Card invalidNameErrorMessage].! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:58:41'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:58:41'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:58:41'!
+FAILURE!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:58:41'!
+FAILURE!
+
+!testRun: #CardTest #test05cardsNameCanNotContainInvalidCharacters stamp: 'MV 11/1/2022 00:58:41'!
+FAILURE!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:58:43'!
+FAILURE!
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:59:38' prior: 50559847!
+nameContainsInvalidCharacters: aNameString
+
+	'/*{}+-[].,-_^?¿!!%$#"/~`' do: [:invalidCharacter| (aNameString contains: invalidCharacter) ifTrue: [^true]].
+	^false.! !
+!Card class methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 00:59:47' prior: 50559885!
+nameContainsInvalidCharacters: aNameString
+
+	'/*{}+-[].,-_^?¿!!%$#"/~`' do: [:invalidCharacter| (aNameString includes: invalidCharacter) ifTrue: [^true]].
+	^false.! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 00:59:47'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 00:59:47'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 00:59:47'!
+PASSED!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 00:59:47'!
+PASSED!
+
+!testRun: #CardTest #test05cardsNameCanNotContainInvalidCharacters stamp: 'MV 11/1/2022 00:59:47'!
+PASSED!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 01:00:20'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 01:00:20'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 01:00:20'!
+PASSED!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 01:00:20'!
+PASSED!
+
+!testRun: #CardTest #test05cardsNameCanNotContainInvalidCharacters stamp: 'MV 11/1/2022 01:00:20'!
+PASSED!
+
+TestCase subclass: #InterfaceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InterfaceTest category: 'TusLibros' stamp: 'MV 11/1/2022 01:13:36'!
+TestCase subclass: #InterfaceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfaceTest methodsFor: 'no messages' stamp: 'MV 11/1/2022 01:17:09'!
+test01canNotDebitIfCardHasNoMoney
+
+	
+	
+	! !
+
+!classDefinition: #InterfaceTest category: 'TusLibros' stamp: 'MV 11/1/2022 01:17:57'!
+TestCase subclass: #InterfaceTest
+	instanceVariableNames: 'cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InterfaceTest category: 'TusLibros' stamp: 'MV 11/1/2022 01:17:58'!
+TestCase subclass: #InterfaceTest
+	instanceVariableNames: 'cart nonExpiredCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InterfaceTest category: 'TusLibros' stamp: 'MV 11/1/2022 01:17:59'!
+TestCase subclass: #InterfaceTest
+	instanceVariableNames: 'cart nonExpiredCard salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InterfaceTest category: 'TusLibros' stamp: 'MV 11/1/2022 01:17:59'!
+TestCase subclass: #InterfaceTest
+	instanceVariableNames: 'cart nonExpiredCard salesBook cashier'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 01:17:56' overrides: 16961394!
+setUp
+	
+	cart _ self createCart.
+	nonExpiredCard _ Card numbered: 1111222233334444 expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 01:18:09'!
+createCart
+
+	^ Cart acceptingItemsOf:( Dictionary with: 'aValidBook1'->(20*peso) with: 'aValidBook2'->(20*peso))! !
+
+!classDefinition: #MPInterface category: 'TusLibros' stamp: 'MV 11/1/2022 01:21:22'!
+Object subclass: #MPInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:21:12' prior: 50559944!
+test01canNotDebitIfCardHasNoMoney
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface cardHasNoCreditErrorMessage.
+							   self assert: salesBook isEmpty]	
+	! !
+!MPInterface class methodsFor: 'no messages' stamp: 'MV 11/1/2022 01:21:38'!
+cardHasNoCreditErrorMessage
+
+	^'Card has no credit'! !
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:21:55'!
+test01canNotDebitIfCardHasNoCredit
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface cardHasNoCreditErrorMessage.
+							   self assert: salesBook isEmpty]	
+	! !
+
+!methodRemoval: InterfaceTest #test01canNotDebitIfCardHasNoMoney stamp: 'MV 11/1/2022 01:21:55'!
+test01canNotDebitIfCardHasNoMoney
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: (nonExpiredCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface cardHasNoCreditErrorMessage.
+							   self assert: salesBook isEmpty]	
+	!
+
+!classDefinition: #InterfaceTest category: 'TusLibros' stamp: 'MV 11/1/2022 01:23:06'!
+TestCase subclass: #InterfaceTest
+	instanceVariableNames: 'cart nonExpiredCard salesBook cashier validCardWithNoCredit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfaceTest methodsFor: 'setUp' stamp: 'MV 11/1/2022 01:23:05' prior: 50559979 overrides: 16961394!
+setUp
+	
+	cart _ self createCart.
+	nonExpiredCard _ Card numbered: 1111222233334444 expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	validCardWithNoCredit _ Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2026) ownedBy: 'Ignatius J R'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:23:20' prior: 50560018!
+test01canNotDebitIfCardHasNoCredit
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: (validCardWithNoCredit) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface cardHasNoCreditErrorMessage.
+							   self assert: salesBook isEmpty]	
+	! !
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:23:30'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:23:30'!
+FAILURE!
+
+!methodRemoval: Cashier #debit:from: stamp: 'MV 11/1/2022 01:23:38'!
+debit: total from: aCard 
+	!
+!Cashier methodsFor: 'checkout' stamp: 'MV 11/1/2022 01:23:53' prior: 50556848!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	(aCard isExpiredOn: Date today) ifTrue: [^self error: self class expiredCardErrorMessage ].
+	
+	total := aCart totalPrice. 
+	MPInterface debit: total from: aCard.
+	
+	aSalesBook add: (aCart purchaseStringsForCashier: self).! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CardTest #test05cardsNameCanNotContainInvalidCharacters stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 01:23:58'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 01:23:58'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 01:23:58'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 01:23:58'!
+PASSED!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:23:58'!
+FAILURE!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 01:24:00'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'MV 11/1/2022 01:24:28' prior: 50560090!
+checkout: aCart withCard: aCard andRecordAt: aSalesBook
+
+	|total|
+	
+	(aCart isEmpty) ifTrue: [^self error: self class emptyCartErrorMessage].
+	(aCard isExpiredOn: Date today) ifTrue: [^self error: self class expiredCardErrorMessage ].
+	
+	total := aCart totalPrice. 
+	MPInterface new debit: total from: aCard.
+	
+	aSalesBook add: (aCart purchaseStringsForCashier: self).! !
+
+!testRun: #CashierTest #test01checkoutOfEmptyCartThrowsAnException stamp: 'MV 11/1/2022 01:24:42'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 01:24:42'!
+ERROR!
+
+!testRun: #CashierTest #test03canCorrectlyCheckoutCartWithManyBooks stamp: 'MV 11/1/2022 01:24:42'!
+ERROR!
+
+!testRun: #CashierTest #test04salesBookStoresSeveralPurchases stamp: 'MV 11/1/2022 01:24:42'!
+ERROR!
+
+!testRun: #CashierTest #test05canNotCheckOutWithExpiredCard stamp: 'MV 11/1/2022 01:24:42'!
+PASSED!
+
+!testRun: #CashierTest #test02canCorrectlyCheckoutCartWithOnlyOneBook stamp: 'MV 11/1/2022 01:24:44'!
+ERROR!
+!MPInterface methodsFor: 'debit' stamp: 'MV 11/1/2022 01:24:50'!
+debit: total from: aCard 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MPInterface category: 'TusLibros' stamp: 'MV 11/1/2022 01:26:57'!
+Object subclass: #MPInterface
+	instanceVariableNames: 'stolenCards'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MPInterface category: 'TusLibros' stamp: 'MV 11/1/2022 01:26:59'!
+Object subclass: #MPInterface
+	instanceVariableNames: 'stolenCards cardsWithNoCredit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MPInterface methodsFor: 'debit' stamp: 'MV 11/1/2022 01:26:56' prior: 50560202!
+debit: total from: aCard 
+	
+	(stolenCards includes: aCard) ifTrue: [self error: self class stolenCardErrorMessage].
+	(cardsWithNoCredit includes: aCard) ifTrue: [self error: self class noCreditErrorMessage].
+	! !
+!MPInterface methodsFor: 'nil' stamp: 'MV 11/1/2022 01:29:56' overrides: 16920235!
+initialize
+
+	cardsWithNoCredit _ Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2026) ownedBy: 'Ignatius J R'.
+	stolenCards _ Card numbered: 1234567891234567 expiring: (Month month: 1 year: 2026) ownedBy: 'Elsa Payo'.! !
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:30:03'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:30:03'!
+FAILURE!
+!MPInterface methodsFor: 'initialization' stamp: 'MV 11/1/2022 01:30:46' prior: 50560231 overrides: 16920235!
+initialize
+
+	cardsWithNoCredit _ OrderedCollection with: (Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2026) ownedBy: 'Ignatius J R').
+	stolenCards _ OrderedCollection with: (Card numbered: 1234567891234567 expiring: (Month month: 1 year: 2026) ownedBy: 'Elsa Payo').! !
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:30:47'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:30:47'!
+FAILURE!
+!InterfaceTest methodsFor: 'setUp' stamp: 'MV 11/1/2022 01:31:19' prior: 50560054 overrides: 16961394!
+setUp
+	
+	cart _ self createCart.
+	nonExpiredCard _ Card numbered: 1111222233334444 expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	validCardWithNoCredit _ Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2026) ownedBy: 'Ignatius J R'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!MPInterface methodsFor: 'initialization' stamp: 'MV 11/1/2022 01:31:31' prior: 50560249 overrides: 16920235!
+initialize
+
+	cardsWithNoCredit _ OrderedCollection with: (Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2026) ownedBy: 'Ignatius J R').
+	stolenCards _ OrderedCollection with: (Card numbered: 1234567891234567 expiring: (Month month: 1 year: 2026) ownedBy: 'Elsa Payo').! !
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:31:32'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:31:32'!
+FAILURE!
+!Card methodsFor: 'nil' stamp: 'MV 11/1/2022 01:32:20' overrides: 16901772!
+= aCard
+
+		! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 01:32:47' prior: 50560300 overrides: 16901772!
+= aCard
+
+	cardNumber = aCard cardNumber! !
+!Card methodsFor: 'accessing' stamp: 'MV 11/1/2022 01:32:58'!
+cardNumber
+
+	^cardNumber ! !
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:33:00'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:33:00'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:33:18'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:33:18'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:33:53'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:33:53'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:33:55'!
+PASSED!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:33:56'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:33:56'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:34:47'!
+FAILURE!
+!Card methodsFor: 'as yet unclassified' stamp: 'MV 11/1/2022 01:35:02' prior: 50560304 overrides: 16901772!
+= aCard
+
+	^cardNumber = aCard cardNumber! !
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 01:35:03'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 01:35:03'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 01:35:03'!
+PASSED!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 01:35:03'!
+PASSED!
+
+!testRun: #CardTest #test05cardsNameCanNotContainInvalidCharacters stamp: 'MV 11/1/2022 01:35:03'!
+PASSED!
+
+!testRun: #CardTest #test01cardsNumberMustBe16CharactersLong stamp: 'MV 11/1/2022 01:35:05'!
+PASSED!
+
+!testRun: #CardTest #test02cardsNumberMustBeAllDigits stamp: 'MV 11/1/2022 01:35:05'!
+PASSED!
+
+!testRun: #CardTest #test03cardsNameCanNotBeEmpty stamp: 'MV 11/1/2022 01:35:05'!
+PASSED!
+
+!testRun: #CardTest #test04cardsNameCanNotBeAllSpaces stamp: 'MV 11/1/2022 01:35:05'!
+PASSED!
+
+!testRun: #CardTest #test05cardsNameCanNotContainInvalidCharacters stamp: 'MV 11/1/2022 01:35:05'!
+PASSED!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:35:06'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:35:06'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:35:11'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:35:11'!
+FAILURE!
+!MPInterface class methodsFor: 'error message' stamp: 'MV 11/1/2022 01:35:51'!
+noCreditErrorMessage
+	
+	^'Card has no credit'! !
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:36:13' prior: 50560067!
+test01canNotDebitIfCardHasNoCredit
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: (validCardWithNoCredit) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface noCreditErrorMessage.
+							   self assert: salesBook isEmpty]	
+	! !
+
+!methodRemoval: MPInterface class #cardHasNoCreditErrorMessage stamp: 'MV 11/1/2022 01:36:19'!
+cardHasNoCreditErrorMessage
+
+	^'Card has no credit'!
+!MPInterface class methodsFor: 'error message' stamp: 'MV 11/1/2022 01:36:38'!
+stolenCardErrorMessage
+
+	^'Card is a stolen card'! !
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:36:40'!
+PASSED!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:36:42'!
+PASSED!
+
+!classDefinition: #InterfaceTest category: 'TusLibros' stamp: 'MV 11/1/2022 01:37:05'!
+TestCase subclass: #InterfaceTest
+	instanceVariableNames: 'cart nonExpiredCard salesBook cashier validCardWithNoCredit validStolenCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:37:04'!
+test02canNotDebitIfCardIsStolen
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: (validStolenCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface noCreditErrorMessage.
+							   self assert: salesBook isEmpty]	
+	! !
+!InterfaceTest methodsFor: 'setUp' stamp: 'MV 11/1/2022 01:37:29' prior: 50560268 overrides: 16961394!
+setUp
+	
+	cart _ self createCart.
+	nonExpiredCard _ Card numbered: 1111222233334444 expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	validCardWithNoCredit _ Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2026) ownedBy: 'Ignatius J R'.
+	validStolenCard _ Card numbered: 1234567891234567 expiring: (Month month: 1 year: 2026) ownedBy: 'Elsa Payo'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:37:35' prior: 50560436!
+test02canNotDebitIfCardIsStolen
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: (validStolenCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface stolenCardErrorMessage .
+							   self assert: salesBook isEmpty]	
+	! !
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:37:36' prior: 50560467!
+test02canNotDebitIfCardIsStolen
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: (validStolenCard) andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface stolenCardErrorMessage.
+							   self assert: salesBook isEmpty]	
+	! !
+
+!testRun: #InterfaceTest #test02canNotDebitIfCardIsStolen stamp: 'MV 11/1/2022 01:37:36'!
+PASSED!
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:37:36'!
+PASSED!
+
+!testRun: #InterfaceTest #test02canNotDebitIfCardIsStolen stamp: 'MV 11/1/2022 01:37:36'!
+PASSED!
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:39:11'!
+test03canDebitIfCardIsNotStolenAndItHasCredit
+
+	cart add: 'aValidBook1'.
+	cashier checkout: cart withCard: (validCardWithNoCredit ) andRecordAt: salesBook.
+	
+	self deny: salesBook isEmpty
+	! !
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:39:22' prior: 50560502!
+test03canDebitIfCardIsNotStolenAndItHasCredit
+
+	cart add: 'aValidBook1'.
+	cashier checkout: cart withCard: nonExpiredCard andRecordAt: salesBook.
+	
+	self deny: salesBook isEmpty
+	! !
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:39:26' prior: 50560480!
+test02canNotDebitIfCardIsStolen
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: validStolenCard andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface stolenCardErrorMessage.
+							   self assert: salesBook isEmpty]	
+	! !
+!InterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:39:30' prior: 50560398!
+test01canNotDebitIfCardHasNoCredit
+
+	cart add: 'aValidBook1'.
+	self should: [cashier checkout: cart withCard: validCardWithNoCredit andRecordAt: salesBook]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: MPInterface noCreditErrorMessage.
+							   self assert: salesBook isEmpty]	
+	! !
+!MPInterface methodsFor: 'debit' stamp: 'MV 11/1/2022 01:40:21' prior: 50560221!
+debit: total from: aCard 
+	
+	(stolenCards includes: aCard) ifTrue: [self error: self class stolenCardErrorMessage].
+	(cardsWithNoCredit includes: aCard) ifTrue: [self error: self class noCreditErrorMessage].! !
+
+!testRun: #InterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:40:23'!
+PASSED!
+
+!testRun: #InterfaceTest #test02canNotDebitIfCardIsStolen stamp: 'MV 11/1/2022 01:40:23'!
+PASSED!
+
+!testRun: #InterfaceTest #test03canDebitIfCardIsNotStolenAndItHasCredit stamp: 'MV 11/1/2022 01:40:23'!
+PASSED!
+
+!classRenamed: #InterfaceTest as: #MPInterfaceTest stamp: 'MV 11/1/2022 01:40:33'!
+Smalltalk renameClassNamed: #InterfaceTest as: #MPInterfaceTest!
+
+!classDefinition: #MPInterfaceTest category: 'TusLibros' stamp: 'MV 11/1/2022 01:42:41'!
+TestCase subclass: #MPInterfaceTest
+	instanceVariableNames: 'cart nonExpiredCard salesBook cashier validCardWithNoCredit validStolenCard expiredStolenCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MPInterfaceTest methodsFor: 'tests' stamp: 'MV 11/1/2022 01:42:40'!
+test04MPInterfaceIsNotContactedIfCardIsExpired
+
+	cart add: 'aValidBook1'.
+	
+	self should: [cashier checkout: cart withCard: expiredStolenCard andRecordAt: salesBook.]
+		raise: Error
+		withExceptionDo: [:anError| self assert: anError messageText equals: Cashier expiredCardErrorMessage]
+	! !
+!MPInterfaceTest methodsFor: 'setUp' stamp: 'MV 11/1/2022 01:43:02' prior: 50560450 overrides: 16961394!
+setUp
+	
+	cart _ self createCart.
+	nonExpiredCard _ Card numbered: 1111222233334444 expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	validCardWithNoCredit _ Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2026) ownedBy: 'Ignatius J R'.
+	validStolenCard _ Card numbered: 1234567891234567 expiring: (Month month: 1 year: 2026) ownedBy: 'Elsa Payo'.
+	expiredStolenCard _ Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2006) ownedBy: 'Elsa Payo'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+!MPInterfaceTest methodsFor: 'setUp' stamp: 'MV 11/1/2022 01:43:07' prior: 50560593 overrides: 16961394!
+setUp
+	
+	cart _ self createCart.
+	nonExpiredCard _ Card numbered: 1111222233334444 expiring: (Month month: 1 year: 2026) ownedBy: 'Clamidio'.
+	validCardWithNoCredit _ Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2026) ownedBy: 'Ignatius J R'.
+	validStolenCard _ Card numbered: 1234567891234567 expiring: (Month month: 1 year: 2026) ownedBy: 'Elsa Payo'.
+	expiredStolenCard _ Card numbered: 6666999966669999 expiring: (Month month: 1 year: 2003) ownedBy: 'Elsa Payo'.
+	salesBook _ OrderedCollection new.
+	cashier _ Cashier new. ! !
+
+!testRun: #MPInterfaceTest #test01canNotDebitIfCardHasNoCredit stamp: 'MV 11/1/2022 01:43:09'!
+PASSED!
+
+!testRun: #MPInterfaceTest #test02canNotDebitIfCardIsStolen stamp: 'MV 11/1/2022 01:43:09'!
+PASSED!
+
+!testRun: #MPInterfaceTest #test03canDebitIfCardIsNotStolenAndItHasCredit stamp: 'MV 11/1/2022 01:43:09'!
+PASSED!
+
+!testRun: #MPInterfaceTest #test04MPInterfaceIsNotContactedIfCardIsExpired stamp: 'MV 11/1/2022 01:43:09'!
+PASSED!
+
+----SNAPSHOT----(1 November 2022 01:43:52) CuisUniversity-5510.image priorSource: 7299711!
