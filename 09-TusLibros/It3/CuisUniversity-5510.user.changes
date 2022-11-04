@@ -1,0 +1,1809 @@
+
+
+----QUIT----(26 October 2022 08:07:27) CuisUniversity-5510.image priorSource: 2900072!
+
+----STARTUP---- (26 October 2022 08:07:28) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5510.image!
+
+
+----QUIT----(26 October 2022 08:07:28) CuisUniversity-5510.image priorSource: 7154921!
+
+----STARTUP---- (3 November 2022 19:09:56) as /home/clinux01/Descargas/linux64/CuisUniversity-5510.image!
+
+
+----End fileIn of /home/clinux01/Descargas/linux64/TusLibros-33.st----!
+
+----SNAPSHOT----(3 November 2022 19:10:44) CuisUniversity-5510.image priorSource: 7155150!
+
+----SNAPSHOT----(3 November 2022 19:10:58) CuisUniversity-5510.image priorSource: 7173052!
+
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'MV 11/3/2022 19:31:48'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'no messages' stamp: 'MV 11/3/2022 19:32:18'!
+test01createCartReturnsCartIdOfEmptyCart
+
+	! !
+
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'MV 11/3/2022 19:32:40'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 19:33:08' overrides: 16961394!
+setUp
+
+	testObjectsFactory _ StoreTestObjectsFactory new.! !
+
+!classDefinition: #InternalRestInterface category: 'TusLibros' stamp: 'MV 11/3/2022 19:41:36'!
+Object subclass: #InternalRestInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 19:41:30' prior: 50555828!
+test01createCartReturnsCartIdOfEmptyCart
+
+	|internalRestInterface cartId | 
+	
+	internalRestInterface _ InternalRestInterface new.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId forUser: 'usuario' authenticatedWith: 'contraseña') isEmpty.
+	
+	
+
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 19:43:13' prior: 50555859!
+test01createCartReturnsCartIdOfEmptyCart
+
+	|internalRestInterface cartId| 
+	
+	internalRestInterface _ InternalRestInterface new.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId forUser: 'usuario' authenticatedWith: 'contraseña') isEmpty.
+	
+	
+
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 19:45:18' prior: 50555874!
+test01createCartReturnsCartIdOfEmptyCart
+
+	|internalRestInterface cartId| 
+	
+	internalRestInterface _ InternalRestInterface new.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId) isEmpty.
+	
+	
+
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 19:45:26' prior: 50555889!
+test01createCartReturnsCartIdOfEmptyCart
+
+	|internalRestInterface cartId| 
+	
+	internalRestInterface _ InternalRestInterface new.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId) isEmpty.
+	
+	
+
+	! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 19:45:47'!
+ERROR!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 19:46:54'!
+createCartFor: aString authenticatedWith: aString2 
+	self shouldBeImplemented.! !
+
+Object subclass: #InternalRestInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InternalRestInterface category: 'TusLibros' stamp: 'MV 11/3/2022 19:50:40'!
+Object subclass: #InternalRestInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 19:52:15' prior: 50555918!
+createCartFor: aString authenticatedWith: aString2 
+	
+	|cart|
+	
+	cart _ Cart acceptingItemsOf: OrderedCollection new.! !
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 19:52:55' prior: 50555936!
+createCartFor: aString authenticatedWith: aString2 
+	
+	|cart|
+	
+	cart _ Cart acceptingItemsOf: Dictionary new.! !
+
+!classDefinition: #InternalRestInterface category: 'TusLibros' stamp: 'MV 11/3/2022 19:53:31'!
+Object subclass: #InternalRestInterface
+	instanceVariableNames: 'cartIds'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 19:53:30' prior: 50555943!
+createCartFor: aString authenticatedWith: aString2 
+	
+	|cart|
+	
+	cart _ Cart acceptingItemsOf: Dictionary new.
+	
+	cartIds add: 1->cart.! !
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 19:53:49' prior: 50555958!
+createCartFor: aString authenticatedWith: aString2 
+	
+	|cart|
+	
+	cart _ Cart acceptingItemsOf: Dictionary new.
+	
+	cartIds add: 1->cart.
+	
+	^1.! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 19:53:56'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 19:53:56'!
+ERROR!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 19:54:31' overrides: 16920235!
+initialize 
+
+	cartIds _ Dictionary new.! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 19:54:32'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 19:54:32'!
+ERROR!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 19:54:37'!
+listCart: cartId 
+	self shouldBeImplemented.! !
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 19:55:56' prior: 50555992!
+listCart: cartId 
+	
+	|cart|
+	
+	cart
+	! !
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 19:56:32' prior: 50555997!
+listCart: cartId 
+	
+	|cart|
+	
+	cart _ cartIds at: cartId.
+	
+	
+	! !
+!Cart methodsFor: 'queries' stamp: 'MV 11/3/2022 20:02:18'!
+listOfItemsForInterface: anInterface! !
+!Cart methodsFor: 'queries' stamp: 'MV 11/3/2022 20:03:59' prior: 50556006!
+listOfItemsForInterface: anInterface
+	
+	items inject: '' into: [:anItem :itemsSoFar| ] ! !
+
+----End fileIn of /home/clinux01/Descargas/linux64/Packages/TerseGuide.pck.st----!
+!Cart methodsFor: 'queries' stamp: 'MV 11/3/2022 20:06:34' prior: 50556010!
+listOfItemsForInterface: anInterface
+	|returnedString|
+	
+	items do: [:anItem| returnedString _  returnedString , ' ', anItem].
+	^returnedString 
+	! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/3/2022 20:08:45'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/3/2022 20:08:45'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/3/2022 20:08:45'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/3/2022 20:08:45'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/3/2022 20:08:45'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/3/2022 20:08:45'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/3/2022 20:08:45'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/3/2022 20:08:45'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/3/2022 20:08:48'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/3/2022 20:08:48'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/3/2022 20:08:48'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/3/2022 20:08:48'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/3/2022 20:08:48'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/3/2022 20:08:48'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/3/2022 20:08:48'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/3/2022 20:08:48'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MV 11/3/2022 20:08:50'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MV 11/3/2022 20:08:50'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MV 11/3/2022 20:08:50'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MV 11/3/2022 20:08:50'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MV 11/3/2022 20:08:50'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MV 11/3/2022 20:08:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 20:08:52'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 20:08:52'!
+ERROR!
+
+{2. 2. 2. 3} asOrderedCollection occurrencesOf: 2!
+!Cart methodsFor: 'initialization' stamp: 'MV 11/3/2022 20:11:15' prior: 50555289!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	items := Bag new.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/3/2022 20:11:16'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/3/2022 20:11:16'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/3/2022 20:11:16'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/3/2022 20:11:16'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/3/2022 20:11:16'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/3/2022 20:11:16'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/3/2022 20:11:16'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/3/2022 20:11:16'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/3/2022 20:11:18'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/3/2022 20:11:18'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/3/2022 20:11:18'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/3/2022 20:11:18'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/3/2022 20:11:18'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/3/2022 20:11:18'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/3/2022 20:11:18'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/3/2022 20:11:18'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MV 11/3/2022 20:11:34'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MV 11/3/2022 20:11:34'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MV 11/3/2022 20:11:34'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MV 11/3/2022 20:11:34'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MV 11/3/2022 20:11:34'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MV 11/3/2022 20:11:34'!
+FAILURE!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MV 11/3/2022 20:11:48'!
+ERROR!
+
+numero  1!
+
+numero  1!
+
+{2. 2. 2. 3.} asBag associationsDo: [:anAssociation| numero  numero + anAssociation key.]!
+
+{2. 2. 2. 3.} asBag sortedElements !
+!Cart methodsFor: 'initialization' stamp: 'MV 11/3/2022 20:16:41' prior: 50559022!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	items := OrderedCollection new.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/3/2022 20:16:42'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/3/2022 20:16:42'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/3/2022 20:16:42'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/3/2022 20:16:42'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/3/2022 20:16:42'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/3/2022 20:16:42'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/3/2022 20:16:42'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/3/2022 20:16:42'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MV 11/3/2022 20:16:44'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MV 11/3/2022 20:16:44'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MV 11/3/2022 20:16:44'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MV 11/3/2022 20:16:44'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MV 11/3/2022 20:16:44'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MV 11/3/2022 20:16:44'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/3/2022 20:16:45'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/3/2022 20:16:45'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/3/2022 20:16:45'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/3/2022 20:16:45'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/3/2022 20:16:45'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/3/2022 20:16:45'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/3/2022 20:16:45'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/3/2022 20:16:45'!
+PASSED!
+
+{2. 2. 2. 3.} asBag asDictionary!
+
+{2. 2. 2. 3.} asBag asDictionary!
+
+{2.2.2.2.3} asBag do: []!
+
+{2.2.2.2.3} asBag do: [:anItem|]!
+
+res  0!
+
+{2.2.2.2.3} asBag do: [:anItem| res  res + anItem]!
+
+res!
+
+res  0!
+
+{2. 2. 2. 2. 3} asBag do: [:anItem| res  res + anItem]!
+
+res!
+!Cart methodsFor: 'queries' stamp: 'MV 11/3/2022 20:23:19' prior: 50558935!
+listOfItemsForInterface: anInterface
+	|returnedString|
+	returnedString _ ''.
+	items asBag sortedElements associationsDo: [:anAssociation| returnedString _  returnedString , ' ', anAssociation key, ' ', anAssociation value].
+	^returnedString 
+	! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/3/2022 20:40:24'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/3/2022 20:40:24'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/3/2022 20:40:24'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/3/2022 20:40:24'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/3/2022 20:40:24'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/3/2022 20:40:24'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/3/2022 20:40:24'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/3/2022 20:40:24'!
+PASSED!
+!Cart methodsFor: 'queries' stamp: 'MV 11/3/2022 20:40:35'!
+listOfItemsForInterface
+	|returnedString|
+	returnedString _ ''.
+	items asBag sortedElements associationsDo: [:anAssociation| returnedString _  returnedString , ' ', anAssociation key, ' ', anAssociation value].
+	^returnedString 
+	! !
+
+!methodRemoval: Cart #listOfItemsForInterface: stamp: 'MV 11/3/2022 20:41:24'!
+listOfItemsForInterface: anInterface
+	|returnedString|
+	returnedString _ ''.
+	items asBag sortedElements associationsDo: [:anAssociation| returnedString _  returnedString , ' ', anAssociation key, ' ', anAssociation value].
+	^returnedString 
+	!
+!Cart methodsFor: 'queries' stamp: 'MV 11/3/2022 20:41:44' prior: 50559226!
+listOfItemsForInterface
+	|returnedString|
+	returnedString _ ''.
+	items asBag sortedElements associationsDo: [:anAssociation| returnedString _  returnedString , ' ', anAssociation key, ' ', anAssociation value , '|'].
+	^returnedString 
+	! !
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 20:42:24' prior: 50556002!
+listCart: cartId 
+	
+	^ (cartIds at: cartId) listOfItemsForInterface. 
+	
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 20:42:37'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 20:49:27'!
+test02createCartFailsWithUnvalidUsername
+
+	|internalRestInterface cartId|
+	
+	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId) isEmpty.
+	
+	
+
+	! !
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'MV 11/3/2022 20:50:12'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory autheticatorReturnValue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 20:50:11'!
+canAuth: anUser withPassword: aPassword
+
+	^autheticatorReturnValue! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 20:50:29' prior: 50559266!
+test02createCartFailsWithUnvalidUsername
+
+	|internalRestInterface cartId|
+	
+	autheticatorReturnValue _ false.	
+	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId) isEmpty.
+	
+	
+
+	! !
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:50:30'!
+ERROR!
+!InternalRestInterface class methodsFor: 'instance creation' stamp: 'MV 11/3/2022 20:50:37'!
+withAuthenticator: aRestInterfaceTest 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithAuthenticator: aRestInterfaceTest ! !
+!InternalRestInterface class methodsFor: 'instance creation' stamp: 'MV 11/3/2022 20:51:29'!
+withAuthenticator: aRestInterfaceTest withCatalog: aCatalog
+	
+	^self new initializeWithAuthenticator: aRestInterfaceTest withCatalog: aCatalog! !
+
+!methodRemoval: InternalRestInterface class #withAuthenticator: stamp: 'MV 11/3/2022 20:51:53'!
+withAuthenticator: aRestInterfaceTest 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithAuthenticator: aRestInterfaceTest !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 20:52:04' prior: 50559293!
+test02createCartFailsWithUnvalidUsername
+
+	|internalRestInterface cartId|
+	
+	autheticatorReturnValue _ false.	
+	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId) isEmpty.
+	
+	
+
+	! !
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:52:09'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:52:09'!
+ERROR!
+
+!classDefinition: #InternalRestInterface category: 'TusLibros' stamp: 'MV 11/3/2022 20:52:16'!
+Object subclass: #InternalRestInterface
+	instanceVariableNames: 'cartIds restInterfaceTest'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InternalRestInterface category: 'TusLibros' stamp: 'MV 11/3/2022 20:52:16'!
+Object subclass: #InternalRestInterface
+	instanceVariableNames: 'cartIds restInterfaceTest catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InternalRestInterface methodsFor: 'initialization' stamp: 'MV 11/3/2022 20:52:16'!
+initializeWithAuthenticator: aRestInterfaceTest withCatalog: aCatalog 
+	self shouldBeImplemented.
+	restInterfaceTest := aRestInterfaceTest.
+	catalog := aCatalog.! !
+
+!classDefinition: #InternalRestInterface category: 'TusLibros' stamp: 'MV 11/3/2022 20:52:40'!
+Object subclass: #InternalRestInterface
+	instanceVariableNames: 'cartIds restInterfaceTest catalog authenticator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InternalRestInterface methodsFor: 'initialization' stamp: 'MV 11/3/2022 20:52:38' prior: 50559376!
+initializeWithAuthenticator: anAuthenticator withCatalog: aCatalog 
+	
+	authenticator := anAuthenticator.
+	catalog := aCatalog.! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 20:52:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:52:44'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 20:57:02' prior: 50559338!
+test02createCartFailsWithUnvalidUsername
+
+	|internalRestInterface cartId|
+	
+	autheticatorReturnValue _ false.	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ 0.
+	self should:[ cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'] raise: Error - MessageNotUnderstood
+	withExceptionDo:[
+		:anError | self assert: anError messageText equals: InternalRestInterface failedAuthenticationErrorMessage.
+			       self assert: cartId equals: 0]	
+	
+	
+	
+
+	! !
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:57:05'!
+FAILURE!
+!InternalRestInterface class methodsFor: 'instance creation' stamp: 'MV 11/3/2022 20:57:30'!
+failedAuthenticationErrorMessage
+	^'Failed authentication'.! !
+!InternalRestInterface class methodsFor: 'instance creation' stamp: 'MV 11/3/2022 20:57:49' prior: 50559433!
+failedAuthenticationErrorMessage
+	^'Authentication failed: Invalid username or password'! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 20:57:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:57:55'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:57:55'!
+FAILURE!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 20:59:05' prior: 50555966!
+createCartFor: aUsername authenticatedWith: aPassword 
+	
+	|cart|
+	
+	(authenticator canAuth: aUsername withPassword: aPassword)ifFalse: [self error: self class failedAuthenticationErrorMessage ].
+	
+	cart _ Cart acceptingItemsOf: Dictionary new.
+	
+	cartIds add: 1->cart.
+	
+	^1.! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 20:59:06'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:59:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 20:59:06'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 20:59:42' prior: 50555902!
+test01createCartReturnsCartIdOfEmptyCart
+
+	|internalRestInterface cartId| 
+	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId) isEmpty.
+	
+	
+
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 20:59:50' prior: 50555846 overrides: 16961394!
+setUp
+
+	testObjectsFactory _ StoreTestObjectsFactory new.
+	autheticatorReturnValue _ true.! !
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:59:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 20:59:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 20:59:58'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 20:59:59'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:00:32'!
+test01createCartReturnsCartIdOfEmptyCartWithValidAuth
+
+	|internalRestInterface cartId| 
+	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId) isEmpty.
+	
+	
+
+	! !
+
+!methodRemoval: RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCart stamp: 'MV 11/3/2022 21:00:34'!
+test01createCartReturnsCartIdOfEmptyCart
+
+	|internalRestInterface cartId| 
+	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId) isEmpty.
+	
+	
+
+	!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:00:40'!
+test02createCartFailsWithUnvalidAuth
+	|internalRestInterface cartId|
+	
+	autheticatorReturnValue _ false.	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ 0.
+	self should:[ cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'] raise: Error - MessageNotUnderstood
+	withExceptionDo:[
+		:anError | self assert: anError messageText equals: InternalRestInterface failedAuthenticationErrorMessage.
+			       self assert: cartId equals: 0]	
+	
+	
+	
+
+	! !
+
+!methodRemoval: RestInterfaceTest #test02createCartFailsWithUnvalidUsername stamp: 'MV 11/3/2022 21:00:41'!
+test02createCartFailsWithUnvalidUsername
+
+	|internalRestInterface cartId|
+	
+	autheticatorReturnValue _ false.	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ 0.
+	self should:[ cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'] raise: Error - MessageNotUnderstood
+	withExceptionDo:[
+		:anError | self assert: anError messageText equals: InternalRestInterface failedAuthenticationErrorMessage.
+			       self assert: cartId equals: 0]	
+	
+	
+	
+
+	!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:04:52'!
+test03addToCartDoesNotReturnTheSameCartId
+
+	|internalRestInterface cartId1 cartId2| 
+	
+		
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId1 _ 	internalRestInterface createCartFor: 'pancrasio' authenticatedWith: 'pancreas'.
+	cartId2 _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	self deny: (cartId1 = cartId2)
+
+	! !
+
+!testRun: #RestInterfaceTest #test03addToCartDoesNotReturnTheSameCartId stamp: 'MV 11/3/2022 21:04:53'!
+FAILURE!
+
+!classDefinition: #InternalRestInterface category: 'TusLibros' stamp: 'MV 11/3/2022 21:05:39'!
+Object subclass: #InternalRestInterface
+	instanceVariableNames: 'cartIds restInterfaceTest catalog authenticator lastId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 21:05:37' prior: 50559456!
+createCartFor: aUsername authenticatedWith: aPassword 
+	
+	|cart newId|
+	
+	
+	(authenticator canAuth: aUsername withPassword: aPassword)ifFalse: [self error: self class failedAuthenticationErrorMessage ].
+	
+	cart _ Cart acceptingItemsOf: Dictionary new.
+	newId _ lastId +1.
+	
+	cartIds add: newId->cart.
+	
+	^newId.! !
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 21:06:09' prior: 50559612!
+createCartFor: aUsername authenticatedWith: aPassword 
+	
+	|cart newId|
+	
+	
+	(authenticator canAuth: aUsername withPassword: aPassword)ifFalse: [self error: self class failedAuthenticationErrorMessage ].
+	
+	cart _ Cart acceptingItemsOf: Dictionary new.
+	newId _ lastId +1.
+	lastId _ newId.
+	cartIds add: newId->cart.
+	
+	^newId.! !
+!InternalRestInterface methodsFor: 'initialization' stamp: 'MV 11/3/2022 21:06:15' prior: 50559394!
+initializeWithAuthenticator: anAuthenticator withCatalog: aCatalog 
+	
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	lastId _ 0.! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:06:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:06:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03addToCartDoesNotReturnTheSameCartId stamp: 'MV 11/3/2022 21:06:18'!
+PASSED!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'MV 11/3/2022 21:07:13'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory autheticatorReturnValue internalRestInterfacex'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:07:11' prior: 50559494 overrides: 16961394!
+setUp
+
+	testObjectsFactory _ StoreTestObjectsFactory new.
+	autheticatorReturnValue _ true.
+	internalRestInterfacex _ 	InternalRestInterface withAuthenticator: self withCatalog: testObjectsFactory defaultCatalog .! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:07:21' prior: 50559514!
+test01createCartReturnsCartIdOfEmptyCartWithValidAuth
+
+	|cartId| 
+	
+	internalRestInterfacex _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ internalRestInterfacex createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterfacex listCart: cartId) isEmpty.
+	
+	
+
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:07:31' prior: 50559542!
+test02createCartFailsWithUnvalidAuth
+	|cartId|
+	
+	autheticatorReturnValue _ false.	
+	internalRestInterfacex _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ 0.
+	self should:[ cartId _ internalRestInterfacex createCartFor: 'usuario' authenticatedWith: 'contraseña'] raise: Error - MessageNotUnderstood
+	withExceptionDo:[
+		:anError | self assert: anError messageText equals: InternalRestInterface failedAuthenticationErrorMessage.
+			       self assert: cartId equals: 0]	
+	
+	
+	
+
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:07:37' prior: 50559583!
+test03addToCartDoesNotReturnTheSameCartId
+
+	|cartId1 cartId2| 
+	
+		
+	internalRestInterfacex _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId1 _ 	internalRestInterfacex createCartFor: 'pancrasio' authenticatedWith: 'pancreas'.
+	cartId2 _ internalRestInterfacex createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	self deny: (cartId1 = cartId2)
+
+	! !
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'MV 11/3/2022 21:07:43'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory autheticatorReturnValue internalRestInterface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:07:43' prior: 50559692!
+test02createCartFailsWithUnvalidAuth
+	|cartId|
+	
+	autheticatorReturnValue _ false.	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ 0.
+	self should:[ cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'] raise: Error - MessageNotUnderstood
+	withExceptionDo:[
+		:anError | self assert: anError messageText equals: InternalRestInterface failedAuthenticationErrorMessage.
+			       self assert: cartId equals: 0]	
+	
+	
+	
+
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:07:43' prior: 50559668 overrides: 16961394!
+setUp
+
+	testObjectsFactory _ StoreTestObjectsFactory new.
+	autheticatorReturnValue _ true.
+	internalRestInterface _ 	InternalRestInterface withAuthenticator: self withCatalog: testObjectsFactory defaultCatalog .! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:07:43' prior: 50559678!
+test01createCartReturnsCartIdOfEmptyCartWithValidAuth
+
+	|cartId| 
+	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'.
+	
+	self assert: (internalRestInterface listCart: cartId) isEmpty.
+	
+	
+
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:07:43' prior: 50559712!
+test03addToCartDoesNotReturnTheSameCartId
+
+	|cartId1 cartId2| 
+	
+		
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId1 _ 	internalRestInterface createCartFor: 'pancrasio' authenticatedWith: 'pancreas'.
+	cartId2 _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	self deny: (cartId1 = cartId2)
+
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:09:32'!
+test03createReturnsDifferentCartIdFromLastTime
+
+	|cartId1 cartId2| 
+	
+		
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId1 _ 	internalRestInterface createCartFor: 'pancrasio' authenticatedWith: 'pancreas'.
+	cartId2 _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	self deny: (cartId1 = cartId2)
+
+	! !
+
+!methodRemoval: RestInterfaceTest #test03addToCartDoesNotReturnTheSameCartId stamp: 'MV 11/3/2022 21:09:32'!
+test03addToCartDoesNotReturnTheSameCartId
+
+	|cartId1 cartId2| 
+	
+		
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId1 _ 	internalRestInterface createCartFor: 'pancrasio' authenticatedWith: 'pancreas'.
+	cartId2 _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	self deny: (cartId1 = cartId2)
+
+	!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:11:02'!
+test04addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+
+	
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:14:13' prior: 50559828!
+test04addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: 'libro' ammount: 1.
+
+	
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:14:54' prior: 50559837!
+test04addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: 'libro' ammount: 1.
+	
+	self assert: internalRestInterface listCart equals: 'libro 1|'.
+
+	
+	! !
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:14:56'!
+ERROR!
+!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:15:09'!
+addToCart: cartId book: aString ammount: aString3 
+	self shouldBeImplemented.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:16:19' prior: 50559848!
+test04addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 1.
+	
+	self assert: internalRestInterface listCart equals: testObjectsFactory itemSellByTheStore , ' 1|'.
+
+	
+	! !
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:16:20'!
+ERROR!
+!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:17:01' prior: 50559864!
+addToCart: cartId book: aString ammount: aString3 
+	
+	
+	(cartIds at: cartId) add:''! !
+!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:17:37' prior: 50559889!
+addToCart: cartId book: aBook ammount: anAmmount 
+	
+	
+	(cartIds at: cartId) add: aBook! !
+!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:17:46' prior: 50559895!
+addToCart: cartId book: aBook ammount: anAmmount 
+	
+	
+	(cartIds at: cartId) add: aBook.! !
+
+----SNAPSHOT----(3 November 2022 21:17:59) CuisUniversity-5510.image priorSource: 7173144!
+!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:18:25' prior: 50559902!
+addToCart: cartId book: aBook ammount: anAmmount 
+	
+	
+	(cartIds at: cartId) add: anAmmount of: aBook.! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:18:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:18:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:18:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:18:34'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:18:34'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:19:15' prior: 50559870!
+test04addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 1.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: testObjectsFactory itemSellByTheStore , ' 1|'.
+
+	
+	! !
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:19:15'!
+ERROR!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 21:20:12' prior: 50559625!
+createCartFor: aUsername authenticatedWith: aPassword 
+	
+	|cart newId|
+	
+	
+	(authenticator canAuth: aUsername withPassword: aPassword)ifFalse: [self error: self class failedAuthenticationErrorMessage ].
+	
+	cart _ Cart acceptingItemsOf: catalog .
+	newId _ lastId +1.
+	lastId _ newId.
+	cartIds add: newId->cart.
+	
+	^newId.! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:20:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:20:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:20:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:20:13'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:20:13'!
+ERROR!
+
+!methodRemoval: InternalRestInterface #initialize stamp: 'MV 11/3/2022 21:20:33'!
+initialize 
+
+	cartIds _ Dictionary new.!
+!InternalRestInterface methodsFor: 'initialization' stamp: 'MV 11/3/2022 21:21:01' prior: 50559639!
+initializeWithAuthenticator: anAuthenticator withCatalog: aCatalog 
+	
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	lastId := 0.
+	cartIds := Dictionary new.! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:21:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:21:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:21:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:21:02'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:21:02'!
+ERROR!
+
+items asBag sortedElements!
+
+anAssociation key!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:22:56'!
+ERROR!
+!Cart methodsFor: 'printing - private' stamp: 'MV 11/3/2022 21:23:18' prior: 50559246!
+listOfItemsForInterface
+	|returnedString|
+	returnedString _ ''.
+	items asBag sortedElements associationsDo: [:anAssociation| returnedString _  returnedString , ' ', anAssociation key, ' ', anAssociation value asString , '|'].
+	^returnedString 
+	! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:23:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:23:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:23:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:23:22'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:23:22'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:23:53'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:23:53'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:23:53'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:23:53'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:23:53'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:24:12' prior: 50559936!
+test04addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 1.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 1|'.
+
+	
+	! !
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:24:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:24:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:24:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:24:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:24:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:28:58'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:28:58'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:28:58'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:28:58'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:29:00'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:29:47'!
+test04addToCartCorrectlyAddsSeveralBooksToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 2.
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 1.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 1|'.
+
+	
+	! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'MV 11/3/2022 21:30:13'!
+itemSellByTheStore2
+	
+	^ 'validBook2'! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'MV 11/3/2022 21:30:21'!
+itemSellByTheStore2Price
+	
+	^10! !
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'MV 11/3/2022 21:30:48' prior: 50555778!
+defaultCatalog
+	
+	^ Dictionary new
+		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		at: self itemSellByTheStore2 put: self itemSellByTheStore2Price;
+		yourself ! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:30:58'!
+test05addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 1.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 1|'.
+
+	
+	! !
+
+!methodRemoval: RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:30:58'!
+test04addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 1.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 1|'.
+
+	
+	!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:33:52' prior: 50560213!
+test05addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 2.
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore2 ammount: 3.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 2|' , ' ', testObjectsFactory itemSellByTheStore2 , ' 3|'.
+
+	
+	! !
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:33:55'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:33:55'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:33:55'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:34:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:34:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:34:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:34:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:34:10'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:34:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:34:10'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:34:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:34:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:34:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:34:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:34:25'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:34:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:34:25'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:34:44' prior: 50560178!
+test04addToCartCorrectlyAddsSeveralBooksToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 2.
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore2 ammount: 1.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 1|'.
+
+	
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:35:35'!
+test04addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 1.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 1|'.
+
+	
+	! !
+
+!methodRemoval: RestInterfaceTest #test04addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:35:37'!
+test04addToCartCorrectlyAddsSeveralBooksToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 2.
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore2 ammount: 1.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 1|'.
+
+	
+	!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:35:44'!
+test05addToCartCorrectlyAddsSeveralBooksToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 2.
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore2 ammount: 3.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 2|' , ' ', testObjectsFactory itemSellByTheStore2 , ' 3|'.
+
+	
+	! !
+
+!methodRemoval: RestInterfaceTest #test05addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:35:45'!
+test05addToCartCorrectlyAddsSingleBookToCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 2.
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore2 ammount: 3.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 2|' , ' ', testObjectsFactory itemSellByTheStore2 , ' 3|'.
+
+	
+	!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:35:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:35:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:35:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:35:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:35:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:35:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:35:56'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:37:22'!
+test05listCartFailsWithInvalidCartId
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 2.
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore2 ammount: 3.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 2|' , ' ', testObjectsFactory itemSellByTheStore2 , ' 3|'.
+
+	
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:37:28'!
+test02createCartFailsWithInvalidAuth
+	|cartId|
+	
+	autheticatorReturnValue _ false.	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ 0.
+	self should:[ cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'] raise: Error - MessageNotUnderstood
+	withExceptionDo:[
+		:anError | self assert: anError messageText equals: InternalRestInterface failedAuthenticationErrorMessage.
+			       self assert: cartId equals: 0]	
+	
+	
+	
+
+	! !
+
+!methodRemoval: RestInterfaceTest #test02createCartFailsWithUnvalidAuth stamp: 'MV 11/3/2022 21:37:28'!
+test02createCartFailsWithUnvalidAuth
+	|cartId|
+	
+	autheticatorReturnValue _ false.	
+	internalRestInterface _ InternalRestInterface withAuthenticator: self withCatalog: Dictionary new.
+	
+	cartId _ 0.
+	self should:[ cartId _ internalRestInterface createCartFor: 'usuario' authenticatedWith: 'contraseña'] raise: Error - MessageNotUnderstood
+	withExceptionDo:[
+		:anError | self assert: anError messageText equals: InternalRestInterface failedAuthenticationErrorMessage.
+			       self assert: cartId equals: 0]	
+	
+	
+	
+
+	!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:38:20'!
+test05listCartReturnsEmptyStringOnEmptyCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 2.
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore2 ammount: 3.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 2|' , ' ', testObjectsFactory itemSellByTheStore2 , ' 3|'.
+
+	
+	! !
+
+!methodRemoval: RestInterfaceTest #test05listCartFailsWithInvalidCartId stamp: 'MV 11/3/2022 21:38:20'!
+test05listCartFailsWithInvalidCartId
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore ammount: 2.
+	internalRestInterface addToCart: cartId book: testObjectsFactory itemSellByTheStore2 ammount: 3.
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ' ', testObjectsFactory itemSellByTheStore , ' 2|' , ' ', testObjectsFactory itemSellByTheStore2 , ' 3|'.
+
+	
+	!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:38:30' prior: 50560514!
+test05listCartReturnsEmptyStringOnEmptyCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ''.
+
+	
+	! !
+
+!testRun: #RestInterfaceTest #test05listCartReturnsEmptyStringOnEmptyCart stamp: 'MV 11/3/2022 21:38:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:38:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithInvalidAuth stamp: 'MV 11/3/2022 21:38:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:38:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:38:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:38:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05listCartReturnsEmptyStringOnEmptyCart stamp: 'MV 11/3/2022 21:38:31'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:38:41'!
+test06listCartReturnsEmptyStringOnEmptyCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ''.
+
+	
+	! !
+
+!methodRemoval: RestInterfaceTest #test05listCartReturnsEmptyStringOnEmptyCart stamp: 'MV 11/3/2022 21:38:41'!
+test05listCartReturnsEmptyStringOnEmptyCart
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+
+	
+	self assert: (internalRestInterface listCart: cartId) equals: ''.
+
+	
+	!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:41:50'!
+test07listCartFailsWithInvalidCartId
+
+	|cartId| 
+		
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	"cartId es 0 por ser el primer cart de la interfaz"
+	
+	self should: [internalRestInterface listCart: 666] raise: Error
+	withExceptionDo:[:anError| self assert: anError messageText equals: InternalRestInterface invalidCartIdErrorMessage.].
+
+	
+	! !
+
+!testRun: #RestInterfaceTest #test07listCartFailsWithInvalidCartId stamp: 'MV 11/3/2022 21:42:04'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:43:18' prior: 50560610!
+test07listCartFailsWithInvalidCartId
+
+	|cartId listCartOutput|
+	 
+	listCartOutput _ 'test string'.	
+	cartId _ internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	"cartId es 0 por ser el primer cart de la interfaz"
+	
+	self should: [listCartOutput _ internalRestInterface listCart: 666] raise: Error
+	withExceptionDo:[:anError| self assert: anError messageText equals: InternalRestInterface invalidCartIdErrorMessage.
+						  self assert: listCartOutput equals: 'test string'].
+
+	
+	! !
+
+!testRun: #RestInterfaceTest #test07listCartFailsWithInvalidCartId stamp: 'MV 11/3/2022 21:43:26'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:43:35' prior: 50560629!
+test07listCartFailsWithInvalidCartId
+
+	|listCartOutput|
+	 
+	listCartOutput _ 'test string'.	
+	internalRestInterface createCartFor: 'manuel' authenticatedWith: 'asdsadasd'. 
+	"cartId es 0 por ser el primer cart de la interfaz"
+	
+	self should: [listCartOutput _ internalRestInterface listCart: 666] raise: Error
+	withExceptionDo:[:anError| self assert: anError messageText equals: InternalRestInterface invalidCartIdErrorMessage.
+						  self assert: listCartOutput equals: 'test string'].
+
+	
+	! !
+
+!testRun: #RestInterfaceTest #test07listCartFailsWithInvalidCartId stamp: 'MV 11/3/2022 21:43:36'!
+ERROR!
+!InternalRestInterface class methodsFor: 'error messages' stamp: 'MV 11/3/2022 21:43:45'!
+invalidCartIdErrorMessage
+	self shouldBeImplemented.! !
+!InternalRestInterface class methodsFor: 'error messages' stamp: 'MV 11/3/2022 21:44:09' prior: 50560674!
+invalidCartIdErrorMessage
+	^'supplied cartId is not valid'! !
+
+!testRun: #RestInterfaceTest #test07listCartFailsWithInvalidCartId stamp: 'MV 11/3/2022 21:44:11'!
+FAILURE!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 21:45:35' prior: 50559257!
+listCart: cartId 
+	
+	
+	^(cartIds at: cartId ifAbsent: (self error: self class invalidCartIdErrorMessage)) listOfItemsForInterface. 
+	
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:45:37'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithInvalidAuth stamp: 'MV 11/3/2022 21:45:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:45:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:45:37'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:45:37'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test06listCartReturnsEmptyStringOnEmptyCart stamp: 'MV 11/3/2022 21:45:37'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test07listCartFailsWithInvalidCartId stamp: 'MV 11/3/2022 21:45:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:45:53'!
+ERROR!
+!InternalRestInterface methodsFor: 'accessing' stamp: 'MV 11/3/2022 21:46:34' prior: 50560689!
+listCart: cartId 
+	
+	
+	^(cartIds at: cartId ifAbsent: [self error: self class invalidCartIdErrorMessage]) listOfItemsForInterface. 
+	
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01createCartReturnsCartIdOfEmptyCartWithValidAuth stamp: 'MV 11/3/2022 21:46:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02createCartFailsWithInvalidAuth stamp: 'MV 11/3/2022 21:46:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03createReturnsDifferentCartIdFromLastTime stamp: 'MV 11/3/2022 21:46:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04addToCartCorrectlyAddsSingleBookToCart stamp: 'MV 11/3/2022 21:46:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05addToCartCorrectlyAddsSeveralBooksToCart stamp: 'MV 11/3/2022 21:46:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06listCartReturnsEmptyStringOnEmptyCart stamp: 'MV 11/3/2022 21:46:35'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07listCartFailsWithInvalidCartId stamp: 'MV 11/3/2022 21:46:35'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:49:21'!
+test08checkoutCartReturnsTransactionIdOfACompletedTransaction
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MV 11/3/2022 21:49:37' prior: 50560759!
+test08checkoutCartReturnsTransactionIdOfACompletedTransaction
+
+"vamos a tener que usar tanto listPurchases como checkoutCart"
+	! !
+
+----SNAPSHOT----(3 November 2022 21:49:45) CuisUniversity-5510.image priorSource: 7304218!
