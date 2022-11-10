@@ -1,3 +1,30 @@
+!classDefinition: #ForkJoinPool category: 'TusLibros-Model'!
+TestCase subclass: #ForkJoinPool
+	instanceVariableNames: 'numberOfRunningForks'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!ForkJoinPool methodsFor: 'paralellizing' stamp: 'MV 11/10/2022 14:59:29'!
+fork: aBlockClosure
+	
+	numberOfRunningForks _ numberOfRunningForks + 1.
+	[aBlockClosure value. numberOfRunningForks _ numberOfRunningForks -1] fork.
+	! !
+
+!ForkJoinPool methodsFor: 'paralellizing' stamp: 'MV 11/10/2022 00:52:04'!
+join
+
+	[numberOfRunningForks = 0] whileFalse: []
+
+	! !
+
+
+!ForkJoinPool methodsFor: 'initialize' stamp: 'MV 11/10/2022 00:50:12'!
+initialize
+	numberOfRunningForks _ 0! !
+
+
 !classDefinition: #Cart category: 'TusLibros-Model'!
 Object subclass: #Cart
 	instanceVariableNames: 'catalog items'
@@ -753,16 +780,16 @@ salesBook
 	^ salesBook! !
 
 
-!TusLibrosSystemFacade methodsFor: 'private' stamp: 'MV 11/10/2022 00:54:00'!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'MV 11/10/2022 15:00:04'!
 bookPerformance: anItem
 
-	| forkerJoiner bookPerformance totalMoney totalSales |
+	| forkJoinPool bookPerformance totalMoney totalSales |
 
 	bookPerformance := Dictionary new.
-	forkerJoiner _ FORKER_JOINER_UNLEASHED new.
-	forkerJoiner fork: [totalSales := self totalSalesOf: anItem.].
+	forkJoinPool _ ForkJoinPool new.
+	forkJoinPool fork: [totalSales := self totalSalesOf: anItem.].
 	totalMoney := self totalMoneyRaisedBy: anItem.
-	forkerJoiner join.
+	forkJoinPool join.
 	
 	bookPerformance at: 'quantity' put: totalSales.
 	bookPerformance at: 'total' put: totalMoney.
@@ -788,17 +815,17 @@ salesDoneBy: aUser
 	"Esto es un indicio de que por ahi conviene empezar a pensar en modelar un SaleBook - Hernan"
 	^ salesBook select: [ :aSale | aSale wasDoneBy: aUser ]! !
 
-!TusLibrosSystemFacade methodsFor: 'private' stamp: 'MV 11/10/2022 00:55:41'!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'MV 11/10/2022 14:59:58'!
 storePerformance
 
-	| totalMoney totalSales performance forkerJoiner|
+	| totalMoney totalSales performance forkJoinPool|
 	
-	forkerJoiner _ FORKER_JOINER_UNLEASHED new.
+	forkJoinPool _ ForkJoinPool new.
 	performance := Dictionary new.
 	
-	forkerJoiner fork: [totalSales := self totalSales].
+	forkJoinPool fork: [totalSales := self totalSales].
 	totalMoney := self totalMoneyRaised.
-	forkerJoiner join.
+	forkJoinPool join.
 	
 	performance at: 'quantity' put: totalSales.
 	performance at: 'total' put: totalMoney.
@@ -1808,32 +1835,6 @@ ManualClock class
 now: aTime 
 	
 	^self new initializeNow: aTime ! !
-
-
-!classDefinition: #FORKER_JOINER_UNLEASHED category: 'TusLibros-Tests'!
-Object subclass: #FORKER_JOINER_UNLEASHED
-	instanceVariableNames: 'numberOfRunningForks'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros-Tests'!
-
-!FORKER_JOINER_UNLEASHED methodsFor: 'as yet unclassified' stamp: 'MV 11/10/2022 00:49:47'!
-fork: aBlockClosure
-	
-	numberOfRunningForks _ numberOfRunningForks + 1.
-	[aBlockClosure value. numberOfRunningForks _ numberOfRunningForks -1] fork.
-	! !
-
-!FORKER_JOINER_UNLEASHED methodsFor: 'as yet unclassified' stamp: 'MV 11/10/2022 00:50:12'!
-initialize
-	numberOfRunningForks _ 0! !
-
-!FORKER_JOINER_UNLEASHED methodsFor: 'as yet unclassified' stamp: 'MV 11/10/2022 00:52:04'!
-join
-
-	[numberOfRunningForks = 0] whileFalse: []
-
-	! !
 
 
 !classDefinition: #StoreTestObjectsFactory category: 'TusLibros-Tests'!
