@@ -2000,3 +2000,344 @@ test01Import
 	! !
 
 ----SNAPSHOT----(10 November 2022 19:28:27) CuisUniversity-5510.image priorSource: 7155150!
+
+----STARTUP---- (14 November 2022 10:34:58) as C:\Lautaro Disco C\Programas Varios\CuisUniversity\CuisUniversity-5510.image!
+
+
+----End fileIn of C:\Lautaro Disco C\Programas Varios\CuisUniversity\CustomerImporter.st----!
+
+----End fileIn of C:\Lautaro Disco C\Programas Varios\CuisUniversity\CustomerImporter.st----!
+
+----SNAPSHOT----(14 November 2022 10:35:51) CuisUniversity-5510.image priorSource: 7155150!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:36:44'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:36:46'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:36:49'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:36:49'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:37:00'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:37:00'!
+ERROR!
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'LM 11/14/2022 10:37:43' prior: 50555922!
+from: aSession with: anInputStream
+	
+	^self new initializeFrom: aSession with: anInputStream! !
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:38:03'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:38:03'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:39:50'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'LM 11/14/2022 10:40:25'!
+import
+
+	| newCustomer line |
+	
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+inputStream close! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'LM 11/14/2022 10:40:25' prior: 50555658!
+test01Import
+
+	|customer1 customer2 address1 address2 address3 |
+	
+	(CustomerImporter from: session with: self validInput) import.
+
+	customer1 _ (session select: [:aCustomer | aCustomer identificationNumber = '22333444'] ofType: Customer) anyOne.	
+	customer2 _ (session select: [:aCustomer | aCustomer identificationNumber = '23-25666777-9'] ofType: Customer) anyOne.
+	address1 _ customer1 addresses first.	
+	address2 _ customer1 addresses second.
+	address3 _ customer2 addresses first.		
+	
+	self assert: 2 equals: (session selectAllOfType: Customer) size.
+	
+	self assertCustomer: customer1 hasFirstName: 'Pepe' lastName: 'Sanchez' identificationType: 'D' identificationNumber: '22333444'.
+	self assertAddress: address1  hasName: 'San Martin'  number: 3322 town: 'Olivos'  zipCode: 1636  province: 'BsAs'.
+	self assertAddress: address2  hasName: 'Maipu'  number: 888  town: 'Florida' zipCode: 1122 province: 'Buenos Aires'.
+
+	self assertCustomer: customer2 hasFirstName: 'Juan' lastName: 'Perez' identificationType: 'C' identificationNumber: '23-25666777-9'.
+	self assertAddress: address3 hasName: 'Alem' number: 1122 town: 'CABA' zipCode: 1001 province:'CABA'.
+	! !
+
+!methodRemoval: CustomerImporter #value stamp: 'LM 11/14/2022 10:40:25'!
+value
+
+	| newCustomer line |
+	
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+inputStream close!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:40:28'!
+PASSED!
+
+----SNAPSHOT----(14 November 2022 10:42:59) CuisUniversity-5510.image priorSource: 7180159!
+
+----SNAPSHOT----(14 November 2022 10:43:08) CuisUniversity-5510.image priorSource: 7184512!
+
+----End fileIn of D:\Lautaro Disco H\Estudios\Inge1\Repo nuestro\ingsoft-2022-2c\09-TusLibros\It3\TusLibros.st----!
+
+----SNAPSHOT----(14 November 2022 10:45:38) CuisUniversity-5510.image priorSource: 7184605!
+
+----SNAPSHOT----(14 November 2022 10:45:50) CuisUniversity-5510.image priorSource: 7227720!
+
+customer1 addresses!
+
+!classRemoval: #StoreTestObjectsFactory stamp: 'LM 11/14/2022 10:49:31'!
+Object subclass: #StoreTestObjectsFactory
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Sale stamp: 'LM 11/14/2022 10:49:31'!
+Object subclass: #Sale
+	instanceVariableNames: 'total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #InternalRestInterface stamp: 'LM 11/14/2022 10:49:31'!
+Object subclass: #InternalRestInterface
+	instanceVariableNames: 'cartIds catalog authenticator lastCartId salesBook clients cartOwners clock cartsLastUpdate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCard stamp: 'LM 11/14/2022 10:49:32'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration cardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Client stamp: 'LM 11/14/2022 10:49:32'!
+Object subclass: #Client
+	instanceVariableNames: 'id purchases total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'LM 11/14/2022 10:49:32'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'LM 11/14/2022 10:49:32'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #InternalRestInterfaceTest stamp: 'LM 11/14/2022 10:49:32'!
+TestCase subclass: #InternalRestInterfaceTest
+	instanceVariableNames: 'factory autheticator internalRestInterface clockBehaviour defaultUsername defaultPassword'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCardTest stamp: 'LM 11/14/2022 10:49:33'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: 'card'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'LM 11/14/2022 10:49:33'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'LM 11/14/2022 10:49:33'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:49:34'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/14/2022 10:49:51' prior: 50556094!
+test01Import
+
+	|customer1 customer2 address1 address2 address3 |
+	
+	(CustomerImporter from: session with: self validInput) import.
+
+	customer1 _ (session select: [:aCustomer | aCustomer identificationNumber = '22333444'] ofType: Customer) anyOne.	
+	customer2 _ (session select: [:aCustomer | aCustomer identificationNumber = '23-25666777-9'] ofType: Customer) anyOne.
+	address1 _ customer1 addresses first.	
+	address2 _ customer1 addresses second.
+	address3 _ customer2 addresses anyOne.		
+	
+	self assert: 2 equals: (session selectAllOfType: Customer) size.
+	
+	self assertCustomer: customer1 hasFirstName: 'Pepe' lastName: 'Sanchez' identificationType: 'D' identificationNumber: '22333444'.
+	self assertAddress: address1  hasName: 'San Martin'  number: 3322 town: 'Olivos'  zipCode: 1636  province: 'BsAs'.
+	self assertAddress: address2  hasName: 'Maipu'  number: 888  town: 'Florida' zipCode: 1122 province: 'Buenos Aires'.
+
+	self assertCustomer: customer2 hasFirstName: 'Juan' lastName: 'Perez' identificationType: 'C' identificationNumber: '23-25666777-9'.
+	self assertAddress: address3 hasName: 'Alem' number: 1122 town: 'CABA' zipCode: 1001 province:'CABA'.
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:49:53'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:49:53'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/14/2022 10:50:49' prior: 50557603!
+test01Import
+
+	|customer1 customer2 address1 address2 address3 |
+	
+	(CustomerImporter from: session with: self validInput) import.
+
+	customer1 _ (session select: [:aCustomer | aCustomer identificationNumber = '22333444'] ofType: Customer) anyOne.	
+	customer2 _ (session select: [:aCustomer | aCustomer identificationNumber = '23-25666777-9'] ofType: Customer) anyOne.
+	address1 _ customer1 addresses detect: [:anAddress | anAddress zipCode: 1636].	
+	address2 _ customer1 addresses detect: [:anAddress | anAddress zipCode: 1001].
+	address3 _ customer2 addresses anyOne.		
+	
+	self assert: 2 equals: (session selectAllOfType: Customer) size.
+	
+	self assertCustomer: customer1 hasFirstName: 'Pepe' lastName: 'Sanchez' identificationType: 'D' identificationNumber: '22333444'.
+	self assertAddress: address1  hasName: 'San Martin'  number: 3322 town: 'Olivos'  zipCode: 1636  province: 'BsAs'.
+	self assertAddress: address2  hasName: 'Maipu'  number: 888  town: 'Florida' zipCode: 1122 province: 'Buenos Aires'.
+
+	self assertCustomer: customer2 hasFirstName: 'Juan' lastName: 'Perez' identificationType: 'C' identificationNumber: '23-25666777-9'.
+	self assertAddress: address3 hasName: 'Alem' number: 1122 town: 'CABA' zipCode: 1001 province:'CABA'.
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:50:53'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:51:04'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:51:05'!
+ERROR!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/14/2022 10:51:31' prior: 50557647!
+test01Import
+
+	|customer1 customer2 address1 address2 address3 |
+	
+	(CustomerImporter from: session with: self validInput) import.
+
+	customer1 _ (session select: [:aCustomer | aCustomer identificationNumber = '22333444'] ofType: Customer) anyOne.	
+	customer2 _ (session select: [:aCustomer | aCustomer identificationNumber = '23-25666777-9'] ofType: Customer) anyOne.
+	address1 _ customer1 addresses detect: [:anAddress | anAddress zipCode = 1636].	
+	address2 _ customer1 addresses detect: [:anAddress | anAddress zipCode = 1001].
+	address3 _ customer2 addresses anyOne.		
+	
+	self assert: 2 equals: (session selectAllOfType: Customer) size.
+	
+	self assertCustomer: customer1 hasFirstName: 'Pepe' lastName: 'Sanchez' identificationType: 'D' identificationNumber: '22333444'.
+	self assertAddress: address1  hasName: 'San Martin'  number: 3322 town: 'Olivos'  zipCode: 1636  province: 'BsAs'.
+	self assertAddress: address2  hasName: 'Maipu'  number: 888  town: 'Florida' zipCode: 1122 province: 'Buenos Aires'.
+
+	self assertCustomer: customer2 hasFirstName: 'Juan' lastName: 'Perez' identificationType: 'C' identificationNumber: '23-25666777-9'.
+	self assertAddress: address3 hasName: 'Alem' number: 1122 town: 'CABA' zipCode: 1001 province:'CABA'.
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:51:32'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:51:37'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:51:37'!
+ERROR!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/14/2022 10:51:44' prior: 50557696!
+test01Import
+
+	|customer1 customer2 address1 address2 address3 |
+	
+	(CustomerImporter from: session with: self validInput) import.
+
+	customer1 _ (session select: [:aCustomer | aCustomer identificationNumber = '22333444'] ofType: Customer) anyOne.	
+	customer2 _ (session select: [:aCustomer | aCustomer identificationNumber = '23-25666777-9'] ofType: Customer) anyOne.
+	address1 _ customer1 addresses detect: [:anAddress | anAddress zipCode = 1636].	
+	address2 _ customer1 addresses detect: [:anAddress | anAddress zipCode = 1122].
+	address3 _ customer2 addresses anyOne.		
+	
+	self assert: 2 equals: (session selectAllOfType: Customer) size.
+	
+	self assertCustomer: customer1 hasFirstName: 'Pepe' lastName: 'Sanchez' identificationType: 'D' identificationNumber: '22333444'.
+	self assertAddress: address1  hasName: 'San Martin'  number: 3322 town: 'Olivos'  zipCode: 1636  province: 'BsAs'.
+	self assertAddress: address2  hasName: 'Maipu'  number: 888  town: 'Florida' zipCode: 1122 province: 'Buenos Aires'.
+
+	self assertCustomer: customer2 hasFirstName: 'Juan' lastName: 'Perez' identificationType: 'C' identificationNumber: '23-25666777-9'.
+	self assertAddress: address3 hasName: 'Alem' number: 1122 town: 'CABA' zipCode: 1001 province:'CABA'.
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:51:45'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:51:46'!
+PASSED!
+
+----SNAPSHOT----(14 November 2022 10:51:49) CuisUniversity-5510.image priorSource: 7227813!
+
+!testRun: #ImportTest #test01Import stamp: 'LM 11/14/2022 10:55:17'!
+PASSED!
+
+----SNAPSHOT----(14 November 2022 10:55:20) CuisUniversity-5510.image priorSource: 7236510!
+
+----QUIT----(14 November 2022 10:55:25) CuisUniversity-5510.image priorSource: 7236681!

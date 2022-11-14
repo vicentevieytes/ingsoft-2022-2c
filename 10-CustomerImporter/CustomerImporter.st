@@ -5,47 +5,6 @@ TestCase subclass: #ImportTest
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'as yet unclassified' stamp: 'MV 11/10/2022 18:35:24'!
-setUp
-
-	session := DataBaseSession for: (Array with: Address with: Customer).
-	session beginTransaction! !
-
-!ImportTest methodsFor: 'as yet unclassified' stamp: 'MV 11/10/2022 18:35:37'!
-tearDown
-
-	session commit.
-	session close! !
-
-!ImportTest methodsFor: 'as yet unclassified' stamp: 'MV 11/10/2022 19:27:59'!
-test01Import
-
-	|customer1 customer2 address1 address2 address3 |
-	
-	(CustomerImporter from: session with: self validInput) value.
-
-	customer1 _ (session select: [:aCustomer | aCustomer identificationNumber = '22333444'] ofType: Customer) anyOne.	
-	customer2 _ (session select: [:aCustomer | aCustomer identificationNumber = '23-25666777-9'] ofType: Customer) anyOne.
-	address1 _ customer1 addresses first.	
-	address2 _ customer1 addresses second.
-	address3 _ customer2 addresses first.		
-	
-	self assert: 2 equals: (session selectAllOfType: Customer) size.
-	
-	self assertCustomer: customer1 hasFirstName: 'Pepe' lastName: 'Sanchez' identificationType: 'D' identificationNumber: '22333444'.
-	self assertAddress: address1  hasName: 'San Martin'  number: 3322 town: 'Olivos'  zipCode: 1636  province: 'BsAs'.
-	self assertAddress: address2  hasName: 'Maipu'  number: 888  town: 'Florida' zipCode: 1122 province: 'Buenos Aires'.
-
-	self assertCustomer: customer2 hasFirstName: 'Juan' lastName: 'Perez' identificationType: 'C' identificationNumber: '23-25666777-9'.
-	self assertAddress: address3 hasName: 'Alem' number: 1122 town: 'CABA' zipCode: 1001 province:'CABA'.
-	! !
-
-!ImportTest methodsFor: 'as yet unclassified' stamp: 'MV 11/10/2022 18:39:31'!
-validInput
-
-	^ StandardFileStream new open: 'input.txt' forWrite: false! !
-
-
 !ImportTest methodsFor: 'assertions' stamp: 'MV 11/10/2022 19:17:16'!
 assertAddress: address hasName: anAdress number: aStreetNumber town: aTown zipCode: aZipCode province: aProvince 
 	
@@ -62,6 +21,49 @@ assertCustomer: customer hasFirstName: aFirstName lastName: aLastName identifica
 	self assert: aLastName equals: customer lastName .
 	self assert: anIdentificationType equals: customer identificationType .
 	self assert: anIdentificationName equals: customer identificationNumber .! !
+
+
+!ImportTest methodsFor: 'setUp and tearDown' stamp: 'MV 11/10/2022 18:35:24'!
+setUp
+
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction! !
+
+!ImportTest methodsFor: 'setUp and tearDown' stamp: 'MV 11/10/2022 18:35:37'!
+tearDown
+
+	session commit.
+	session close! !
+
+
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/14/2022 10:51:44'!
+test01Import
+
+	|customer1 customer2 address1 address2 address3 |
+	
+	(CustomerImporter from: session with: self validInput) import.
+
+	customer1 _ (session select: [:aCustomer | aCustomer identificationNumber = '22333444'] ofType: Customer) anyOne.	
+	customer2 _ (session select: [:aCustomer | aCustomer identificationNumber = '23-25666777-9'] ofType: Customer) anyOne.
+	address1 _ customer1 addresses detect: [:anAddress | anAddress zipCode = 1636].	
+	address2 _ customer1 addresses detect: [:anAddress | anAddress zipCode = 1122].
+	address3 _ customer2 addresses anyOne.		
+	
+	self assert: 2 equals: (session selectAllOfType: Customer) size.
+	
+	self assertCustomer: customer1 hasFirstName: 'Pepe' lastName: 'Sanchez' identificationType: 'D' identificationNumber: '22333444'.
+	self assertAddress: address1  hasName: 'San Martin'  number: 3322 town: 'Olivos'  zipCode: 1636  province: 'BsAs'.
+	self assertAddress: address2  hasName: 'Maipu'  number: 888  town: 'Florida' zipCode: 1122 province: 'Buenos Aires'.
+
+	self assertCustomer: customer2 hasFirstName: 'Juan' lastName: 'Perez' identificationType: 'C' identificationNumber: '23-25666777-9'.
+	self assertAddress: address3 hasName: 'Alem' number: 1122 town: 'CABA' zipCode: 1001 province:'CABA'.
+	! !
+
+
+!ImportTest methodsFor: 'inputs' stamp: 'MV 11/10/2022 18:39:31'!
+validInput
+
+	^ StandardFileStream new open: 'input.txt' forWrite: false! !
 
 
 !classDefinition: #Address category: 'CustomerImporter'!
@@ -208,8 +210,8 @@ initializeFrom: aSession with: anInputStream
 	inputStream := anInputStream.! !
 
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'MV 11/10/2022 19:06:53'!
-value
+!CustomerImporter methodsFor: 'evaluating' stamp: 'LM 11/14/2022 10:40:25'!
+import
 
 	| newCustomer line |
 	
@@ -243,8 +245,9 @@ inputStream close! !
 CustomerImporter class
 	instanceVariableNames: ''!
 
-!CustomerImporter class methodsFor: 'instance creation' stamp: 'MV 11/10/2022 19:06:53'!
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'LM 11/14/2022 10:37:43'!
 from: aSession with: anInputStream
+	
 	^self new initializeFrom: aSession with: anInputStream! !
 
 
