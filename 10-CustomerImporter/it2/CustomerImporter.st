@@ -5,61 +5,81 @@ TestCase subclass: #ImportTest
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 18:17:51'!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/17/2022 11:47:00'!
 test01Import
 
-	CustomerImporter valueFrom: self validImportData into: session..
+	CustomerImporter importFrom: self validImportData into: session..
 
 	self assertImportedRightNumberOfCustomers.
 	self assertPepeSanchezWasImportedCorrecty.
 	self assertJuanPerezWasImportedCorrectly ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'MV 11/14/2022 18:20:11'!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/17/2022 11:47:00'!
 test02ImportingAnInvalidRecordTypeRaisesError
 
-	self should: [CustomerImporter valueFrom: self importDataWithInvalidRecordType into: session]
+	self should: [CustomerImporter importFrom: self dataWithInvalidRecordType into: session]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [:anError| 						self assert: CustomerImporter invalidRecordTypeErrorMessage equals: anError messageText.
 								self assert: 0 equals: (session selectAllOfType: Customer) size ]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'MV 11/14/2022 18:30:56'!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/17/2022 11:47:00'!
 test03ImportingDataWithInvalidCustomerTypeRaisesError
 
-	self should: [CustomerImporter valueFrom: self importDataWithInvalidCustomerType into: session]
+	self should: [CustomerImporter importFrom: self dataWithInvalidCustomerType into: session]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [:anError| 						self assert: CustomerImporter invalidRecordTypeErrorMessage equals: anError messageText.
 								self assert: 0 equals: (session selectAllOfType: Customer) size ]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'MV 11/14/2022 18:51:29'!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/17/2022 11:47:00'!
 test04ImportingDataWithInvalidAddressTypeRaisesError
 
-	self should: [CustomerImporter valueFrom: self importDataWithInvalidAddressType into: session]
+	self should: [CustomerImporter importFrom: self dataWithInvalidAddressType into: session]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [:anError| 						self assert: CustomerImporter invalidRecordTypeErrorMessage equals: anError messageText.
 								self assert: (session selectAllOfType: Customer) anyOne addresses isEmpty]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'MV 11/14/2022 18:50:19'!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/17/2022 11:47:00'!
 test05ImportingDataWithEmptyLineRaisesException
 
-	self should: [CustomerImporter valueFrom: self importDataWithEmptyLine into: session]
+	self should: [CustomerImporter importFrom: self dataWithEmptyLine into: session]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [:anError| 						self assert: CustomerImporter emptyLineOnDataErrorMessage equals: anError messageText.
 								self assert: 0 equals: (session selectAllOfType: Customer) size ]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'MV 11/14/2022 18:54:05'!
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/17/2022 11:47:00'!
 test06ImportingDataWithAddressBeforeCustomerRaisesException
 
-	self should: [CustomerImporter valueFrom: self importDataWithAddressBeforeCustomer into: session]
+	self should: [CustomerImporter importFrom: self dataWithAddressBeforeCustomer into: session]
 		raise: Error - MessageNotUnderstood
-		withExceptionDo: [:anError| 						self assert: CustomerImporter noCustomerToAssignAddressErrorMessage equals: anError messageText.
+		withExceptionDo: [:anError| 						self assert: CustomerImporter noCustomerToAssignAddressToErrorMessage equals: anError messageText.
+								self assert: 0 equals: (session selectAllOfType: Customer) size ]
+
+	! !
+
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/17/2022 11:51:06'!
+test07ImportingDataWithEmptyFieldsRaisesException
+
+	self should: [CustomerImporter importFrom: self dataWithEmptyField into: session]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError| 						self assert: CustomerImporter incorrectNumberOfFieldsErrorMessage equals: anError messageText.
+								self assert: 0 equals: (session selectAllOfType: Customer) size ]
+
+	! !
+
+!ImportTest methodsFor: 'tests' stamp: 'LM 11/17/2022 11:51:41'!
+test08ImportingDataWithTooManyFieldsRaisesException
+
+	self should: [CustomerImporter importFrom: self dataWithTooManyFields into: session]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [:anError| 						self assert: CustomerImporter incorrectNumberOfFieldsErrorMessage equals: anError messageText.
 								self assert: 0 equals: (session selectAllOfType: Customer) size ]
 
 	! !
@@ -145,33 +165,45 @@ customerWithIdentificationType: anIdType number: anIdNumber
 		ofType: Customer) anyOne! !
 
 
-!ImportTest methodsFor: 'test data' stamp: 'MV 11/14/2022 18:55:16'!
-importDataWithAddressBeforeCustomer
+!ImportTest methodsFor: 'test data' stamp: 'LM 11/17/2022 11:44:35'!
+dataWithAddressBeforeCustomer
 	^ReadStream on: 'A,San Martin,3322,Olivos,1636,BsAs
 	C,Pepe,Sanchez,D,22333444'! !
 
-!ImportTest methodsFor: 'test data' stamp: 'MV 11/14/2022 18:41:44'!
-importDataWithEmptyLine
+!ImportTest methodsFor: 'test data' stamp: 'LM 11/17/2022 11:45:26'!
+dataWithEmptyField
+
+	^ ReadStream on:
+'C,Pepe,,D,22333444'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'LM 11/17/2022 11:44:40'!
+dataWithEmptyLine
 	^ReadStream on:'
 	
 	C,Pepe,Sanchez,D,22333444	'! !
 
-!ImportTest methodsFor: 'test data' stamp: 'MV 11/14/2022 18:32:49'!
-importDataWithInvalidAddressType
+!ImportTest methodsFor: 'test data' stamp: 'LM 11/17/2022 11:44:48'!
+dataWithInvalidAddressType
 	
 	^ReadStream on:
 'C,Pepe,Sanchez,D,22333444
 AX,San Martin,3322,Olivos,1636,BsAs'! !
 
-!ImportTest methodsFor: 'test data' stamp: 'MV 11/14/2022 18:29:36'!
-importDataWithInvalidCustomerType
+!ImportTest methodsFor: 'test data' stamp: 'LM 11/17/2022 11:44:54'!
+dataWithInvalidCustomerType
 	
 	^ReadStream on: 'CX,Pepe,Sanchez,D,22333444'! !
 
-!ImportTest methodsFor: 'test data' stamp: 'MV 11/14/2022 18:21:15'!
-importDataWithInvalidRecordType
+!ImportTest methodsFor: 'test data' stamp: 'LM 11/17/2022 11:44:59'!
+dataWithInvalidRecordType
 	
 	^ReadStream on: 'X'.! !
+
+!ImportTest methodsFor: 'test data' stamp: 'LM 11/17/2022 11:52:04'!
+dataWithTooManyFields
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444,Too,Many,Fields'! !
 
 !ImportTest methodsFor: 'test data' stamp: 'HAW 5/22/2022 18:08:08'!
 validImportData
@@ -364,28 +396,31 @@ hasLineToImport
 	line := readStream nextLine.
 	^line notNil! !
 
-!CustomerImporter methodsFor: 'auxiliary' stamp: 'MV 11/14/2022 18:58:40'!
+!CustomerImporter methodsFor: 'auxiliary' stamp: 'LM 11/17/2022 11:50:33'!
 importAddress
 
 	| newAddress |
-			newAddress := Address new.
-			newCustomer ifNil: [self error: self class noCustomerToAssignAddressErrorMessage ]. 
-			newCustomer addAddress: newAddress.
-			newAddress streetName: record second.
-			newAddress streetNumber: record third asNumber .
-			newAddress town: record fourth.
-			newAddress zipCode: record fifth asNumber .
-			newAddress province: record sixth! !
 
-!CustomerImporter methodsFor: 'auxiliary' stamp: 'MV 11/14/2022 18:10:25'!
+	(record size = 6) ifFalse: [self error: self class incorrectNumberOfFieldsErrorMessage].
+	newAddress := Address new.
+	newCustomer ifNil: [self error: self class noCustomerToAssignAddressToErrorMessage ]. 
+	newCustomer addAddress: newAddress.
+	newAddress streetName: record second.
+	newAddress streetNumber: record third asNumber .
+	newAddress town: record fourth.
+	newAddress zipCode: record fifth asNumber .
+	newAddress province: record sixth! !
+
+!CustomerImporter methodsFor: 'auxiliary' stamp: 'LM 11/17/2022 11:50:53'!
 importCustomer
 
+	(record size = 5) ifFalse: [self error: self class incorrectNumberOfFieldsErrorMessage].
 	newCustomer := Customer new.
-			newCustomer firstName: record second.
-			newCustomer lastName: record third.
-			newCustomer identificationType: record fourth.
-			newCustomer identificationNumber: record fifth.
-			session persist: newCustomer! !
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	session persist: newCustomer! !
 
 !CustomerImporter methodsFor: 'auxiliary' stamp: 'MV 11/14/2022 18:43:40'!
 importRecord
@@ -416,8 +451,8 @@ from: aReadStream into: aSession
 	^self new initializeFrom: aReadStream into: aSession! !
 
 
-!CustomerImporter class methodsFor: 'importing' stamp: 'MV 11/14/2022 18:05:00'!
-valueFrom: aReadStream into: aSession
+!CustomerImporter class methodsFor: 'importing' stamp: 'LM 11/17/2022 11:47:00'!
+importFrom: aReadStream into: aSession
 
 	^(self from: aReadStream into: aSession) import! !
 
@@ -426,13 +461,18 @@ valueFrom: aReadStream into: aSession
 emptyLineOnDataErrorMessage
 	^'Empty line detected on import data'.! !
 
+!CustomerImporter class methodsFor: 'error message' stamp: 'LM 11/17/2022 11:43:54'!
+incorrectNumberOfFieldsErrorMessage
+
+	^'Incorrect number of data fields'! !
+
 !CustomerImporter class methodsFor: 'error message' stamp: 'MV 11/14/2022 18:18:46'!
 invalidRecordTypeErrorMessage
 	
 	^'Invalid Record Type'! !
 
-!CustomerImporter class methodsFor: 'error message' stamp: 'MV 11/14/2022 18:58:17'!
-noCustomerToAssignAddressErrorMessage
+!CustomerImporter class methodsFor: 'error message' stamp: 'LM 11/17/2022 11:40:37'!
+noCustomerToAssignAddressToErrorMessage
 
 ^'No customer to assign address'! !
 
