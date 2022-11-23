@@ -179,9 +179,10 @@ shouldFailImporting: aReadStream messageText: anErrorMessageText asserting: anAs
 	! !
 
 
-!ImportTest methodsFor: 'setUp/tearDown' stamp: 'Mv 11/17/2022 19:45:02'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'LM 11/22/2022 21:36:30'!
 setUp
 
+	Smalltalk at: #ENV put: #DEV.
 	system := Enviroment current createSystem.
 	system start
 	
@@ -764,7 +765,6 @@ selectAllOfType: aType
 
 	self delay.
 	^(self objectsOfType: aType) copy ! !
-
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
