@@ -528,7 +528,7 @@ valueFrom: aReadStream using: aSystem
 !CustomerImporter class methodsFor: 'error messages' stamp: 'HAW 5/22/2022 19:13:48'!
 canNotImportAddressWithoutCustomerErrorDescription
 
-	^'Cannot import address without customer'! !
+	^'Can not import address without customer'! !
 
 !CustomerImporter class methodsFor: 'error messages' stamp: 'HAW 5/22/2022 19:41:39'!
 invalidAddressRecordErrorDescription
